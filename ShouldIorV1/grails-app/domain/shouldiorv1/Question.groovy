@@ -2,13 +2,15 @@ package shouldiorv1
 
 class Question {
 	
+	// Id information
+	String questionID
+	
 	// Question type
 	boolean Shouldi // True if a shouldI question, false if an or
 	boolean yesOrNo // if a shouldI, is this a do-dont or yes-no
 	
 	// Question
 	String question
-	String questionID
 	Date date
 	
 	// Answers

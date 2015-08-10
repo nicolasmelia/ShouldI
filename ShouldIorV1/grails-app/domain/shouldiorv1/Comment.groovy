@@ -1,12 +1,15 @@
 package shouldiorv1
 
 class Comment {
+	// CommentID information
+	String commentID
+	String QuestionID // Question this comment belongs to
 
 	String userName
 	String userID // can be from facebook or us
 	
-	String commentID
 	String comment
+	Date date
 	int upVotes
 	int downVotes
 	

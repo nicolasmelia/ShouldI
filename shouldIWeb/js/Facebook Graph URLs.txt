@@ -1,1 +1,4 @@
-ttp://graph.facebook.com/[UID]/picture
+http://graph.facebook.com/[UID]/picture
+
+
+https://graph.facebook.com/v1.0/10154139404594251/?access_token=aefasdefasdgfsadegwe
