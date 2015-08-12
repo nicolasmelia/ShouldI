@@ -15,13 +15,13 @@
       <link rel="stylesheet" type="text/css" href="<g:resource dir='css' file='bootstrap.css'/>">
       <link rel="stylesheet" type="text/css" href="<g:resource dir='css' file='buttons.css'/>">
 
-
-
 	<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
 
 			
 	   <!-- facebook login -->
 	<g:javascript src="facebookLogin.js" />
+	<g:javascript src="dataRequest.js" />
+	
 		
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -37,9 +37,13 @@
 
   <body style = "  ">
   
-  <script>
-
-	</script>  
+  	<g:if test="${session.name}">
+	  	<input id = "sessionCheck" type="hidden" name="country" value="true">
+	</g:if>
+	<g:else>
+		  <input id = "sessionCheck" type="hidden" name="country" value="false">
+	</g:else>
+	
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
@@ -57,12 +61,25 @@
             <li><a href="#">My Home</a></li>
 			<li><a href="#">Hot Questions</a></li>
           </ul>
-		  <ul class="nav navbar-nav navbar-right">
+
+		<g:if test="${session.name}">
+       	 <ul class="nav navbar-nav navbar-right">
+        <li><a id = "facebookLoginMenu" href = "#"  onClick = "loginFacebook()">Welcome ${session.name}</a></li>
+		</ul>
+		<ul class="nav navbar-nav navbar-right">
+        <li><a id = "createAccount" href = "#"   onClick = "logoutFaceBook()">Logout</a></li>
+		</ul>
+</g:if>
+<g:else>
+  	 <ul class="nav navbar-nav navbar-right">
         <li><a id = "facebookLoginMenu" href = "#"  onClick = "loginFacebook()">Log in with <span href="#about" style = "padding-left: 4px;" class='fa fa-facebook-official'></span> </a></li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
         <li><a id = "createAccount" href = "#"   onClick = "login()">Sign Up/Login</a></li>
 		</ul>
+</g:else>
+		
+		
         </div><!--/.nav-collapse -->
       </div>
     </nav>
@@ -281,6 +298,7 @@
 	<script>
 	
 	function postComment() {
+		 getStuff();
 	  if (checkFaceBookLogin()) {
 	  alert("conected");
 		} else {

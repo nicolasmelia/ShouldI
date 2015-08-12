@@ -13,6 +13,7 @@ class User {
 	int peopleReached
 
     static constraints = {
-
+		userName nullable: true
+		token(maxSize: 5000)	
     }
 }

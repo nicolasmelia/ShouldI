@@ -32,35 +32,53 @@ invokeTag('wrapTitleTag','sitemesh',12,[:],2)
 printHtmlPart(5)
 invokeTag('resource','g',15,['dir':("css"),'file':("bootstrap.css")],-1)
 printHtmlPart(6)
-invokeTag('resource','g',17,['dir':("css"),'file':("buttons.css")],-1)
+invokeTag('resource','g',16,['dir':("css"),'file':("buttons.css")],-1)
 printHtmlPart(7)
-invokeTag('javascript','g',25,['src':("facebookLogin.js")],-1)
+invokeTag('javascript','g',22,['src':("facebookLogin.js")],-1)
 printHtmlPart(8)
-})
-invokeTag('captureHead','sitemesh',33,[:],1)
+invokeTag('javascript','g',23,['src':("dataRequest.js")],-1)
 printHtmlPart(9)
-createTagBody(1, {->
-printHtmlPart(10)
-expressionOut.print(resource(dir:'images',file:'blankAv.png'))
-printHtmlPart(11)
-expressionOut.print(resource(dir:'images',file:'sampImg3.jpg'))
-printHtmlPart(12)
-expressionOut.print(resource(dir:'images',file:'sampImg2.jpg'))
-printHtmlPart(13)
-expressionOut.print(resource(dir:'images',file:'blankAv.png'))
-printHtmlPart(14)
-invokeTag('resource','g',274,['dir':("js"),'file':("bootstrap.min.js")],-1)
-printHtmlPart(15)
 })
-invokeTag('captureBody','sitemesh',300,['style':("  ")],1)
+invokeTag('captureHead','sitemesh',32,[:],1)
+printHtmlPart(10)
+createTagBody(1, {->
+printHtmlPart(11)
+if(true && (session.name)) {
+printHtmlPart(12)
+}
+else {
+printHtmlPart(13)
+}
+printHtmlPart(14)
+if(true && (session.name)) {
+printHtmlPart(15)
+expressionOut.print(session.name)
 printHtmlPart(16)
+}
+else {
+printHtmlPart(17)
+}
+printHtmlPart(18)
+expressionOut.print(resource(dir:'images',file:'blankAv.png'))
+printHtmlPart(19)
+expressionOut.print(resource(dir:'images',file:'sampImg3.jpg'))
+printHtmlPart(20)
+expressionOut.print(resource(dir:'images',file:'sampImg2.jpg'))
+printHtmlPart(21)
+expressionOut.print(resource(dir:'images',file:'blankAv.png'))
+printHtmlPart(22)
+invokeTag('resource','g',290,['dir':("js"),'file':("bootstrap.min.js")],-1)
+printHtmlPart(23)
+})
+invokeTag('captureBody','sitemesh',317,['style':("  ")],1)
+printHtmlPart(24)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1439170431621L
+public static final long LAST_MODIFIED = 1439335442442L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

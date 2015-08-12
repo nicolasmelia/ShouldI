@@ -16,5 +16,6 @@ class Comment {
     static constraints = {
 		upVotes(nullable:true)
 		downVotes(nullable:true)
+		comment(maxSize: 500)	
     }
 }

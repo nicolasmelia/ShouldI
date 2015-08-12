@@ -32,6 +32,9 @@ class Question {
 	String ClientAddress // Reponnce IP address
 
     static constraints = {
+		
+		question(maxSize: 500)
+		
 		answerOneImage(nullable:true, maxSize: 1024 * 1024 * 2 /* 2MB */)
 		answerTwoImage(nullable:true, maxSize: 1024 * 1024 * 2 /* 2MB */)
 		

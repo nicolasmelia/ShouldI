@@ -1,7 +1,7 @@
 // Gloabal Vars
 var connectedToFacebook = false;
 var authToken = "";
-loginSuccess
+
 // This is called with the results from from FB.getLoginStatus().
 window.fbAsyncInit = function () {
 	FB.init({
@@ -28,6 +28,7 @@ window.fbAsyncInit = function () {
 //Get Login Status
 function loginFacebook() {
 	FB.getLoginStatus(function (response) {
+		
 		if (response.status === 'connected') {
 			loginSuccess(response);
 		} else {
@@ -41,12 +42,10 @@ function loginFacebook() {
 
 		}
 	});
-
+	
 }
 
 function statusChangeCallback(response) {
-	console.log('statusChangeCallback');
-	console.log(response);
 	// The response object is returned with a status field that lets the
 	// app know the current login status of the person.
 	// Full docs on the response object can be found in the documentation
@@ -54,6 +53,8 @@ function statusChangeCallback(response) {
 	if (response.status === 'connected') {
 		// Logged into your app and Facebook.
 		loginSuccess(response);
+		
+		
 	} else if (response.status === 'not_authorized') {
 		// The person is logged into Facebook, but not your app.
 	} else {
@@ -111,28 +112,29 @@ window.fbAsyncInit = function () {
 }
 	(document, 'script', 'facebook-jssdk'));
 
-// Here we run a very simple test of the Graph API after login is
-// successful.  See statusChangeCallback() for when this call is made.
-// ********* CALLED ON PAGE LOAD ***********
-function getFBName() {
-	console.log('Welcome!  Fetching your information.... ');
-	FB.api('/me', function (response) {});
-}
+
+// ********** CUSTOM SHOULDI.FM FUNCTIONS BELOW **********
 
 function loginSuccess(response) {
-	connectedToFacebook = true;
-	var accessToken = response.authResponse.accessToken;
+		console.log($('#sessionCheck').val())
+			if ($('#sessionCheck').val() == "false" && (response.status === 'connected')) {
+	  $.ajax({
+		  type: 'post',
+		    url: "/ShouldIorV1/Authentication/loginFaceBook",
+		    async: true,
+		    data: {token : response.authResponse.accessToken, userID: response.authResponse.userID},
+	  }).done(function(result){
+		  if (result == "Success") {
+				location.reload();
+		  } else if  (result == "Fail") {
+			  // Our Server failed to create a session
+		  } else {
+			  // Who knows what the hell went wrong
+		  } 
+	  });
+			}
+	}
 
-	$('#facebookLoginMenu').html("Welcome");
-	$('#createAccount').html("Logout");
-
-	 $('#createAccount').unbind('click',login);
-
-		jQuery('#createAccount').click(function () {
-			logoutFaceBook();
-		});
-
-}
 
 function checkFaceBookLogin() {
 	if (connectedToFacebook == true) {
@@ -143,7 +145,22 @@ function checkFaceBookLogin() {
 }
 
 function logoutFaceBook() {
-	FB.logout(function (response) {
-		location.reload();
-	});
+	  $.ajax({
+		  type: 'post',
+		    url: "/ShouldIorV1/Authentication/logout",
+		    async: true,
+		    data: {logout : "true"},
+	  }).done(function(result){
+		  if (result == "Success") {
+			// logout of serverfirst then facebook.  
+			  FB.logout(function(response) {
+					location.reload();
+				});
+		  } else if  (result == "Fail") {
+			  // Our Server failed to create a session
+		  } else {
+			  // Who knows what the hell went wrong
+		  } 
+	  });
 }
+
