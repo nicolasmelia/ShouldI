@@ -24,7 +24,7 @@ class AuthenticationController {
 				if (!user.token.matches(params.token)){
 					// Token has been changed. Update it.
 					user.token = params.token
-					user.save(flush:true);
+					user.save(flush:true); 
 				}
 			}
 			
@@ -49,10 +49,14 @@ class AuthenticationController {
 		session["userID"] = tempUser.userID
 		
 		if (tempUser.userName != null) {
-		// Name has been changed to an alias display name
-		session["name"] = tempUser.userName
-		} else {
-		session["name"] = tempUser.name
+			// Name has been changed to an alias display name
+			session["name"] = tempUser.userName
+			} else {
+			try {
+			session["name"] = tempUser.name.trim().split(" ")[0]
+			} catch (Exception ex) {
+			session["name"] = tempUser.name.trim()
+			}
 		}
 		
 		if  (session["name"]) {

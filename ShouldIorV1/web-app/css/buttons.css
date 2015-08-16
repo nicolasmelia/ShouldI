@@ -49,4 +49,63 @@ body {background-color: #F5F5F5!important;  min-width: 330px;}
 	background-color: #ffffff;
    }
    
+   
+   
+     .comment .left{
+    float:left;
+    width:100px;
+  }
+  .comment .right{
+     margin-left:100px;
+   }
+   
+   .btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+   
+   
+   .custom{
+	 color: #8BA5FE;
+	 cursor: default; 
+	 border-bottom: solid 2px #d3d3d3;
+	 background-color: #ffffff;
+   }
+   
+       .single{
+	  cursor: default; 
+	  border-bottom: solid 2px #d3d3d3;
+
+	 background-color: #F7FBFF;
+
+   }
   
+ 
+     .single:hover{
+	  cursor: default; 
+
+	  border-bottom: solid 2px #5BC0DE;
+	 background-color: #F7FBFF;
+   }
+   
+       .custom:hover{
+	  cursor: default; 
+	border-bottom: solid 2px #5BC0DE;
+	 background-color: #F7FBFF;
+   }
+   

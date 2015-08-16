@@ -8,10 +8,15 @@ class Question {
 	// Question type
 	boolean Shouldi // True if a shouldI question, false if an or
 	boolean yesOrNo // if a shouldI, is this a do-dont or yes-no
+	boolean anonymous 
 	
 	// Question
 	String question
+	String questionTitle
+	
 	Date date
+	
+	String tags
 	
 	// Answers
 	String answerOne
@@ -26,6 +31,8 @@ class Question {
 	// Votes for answers
 	int answerOneVotes
 	int answerTwoVotes
+	int totalVotes
+	int totalComments
 	
 	// User information
 	String UserID // Either facebooks userid or ours
@@ -34,6 +41,7 @@ class Question {
     static constraints = {
 		
 		question(maxSize: 500)
+		tags(nullable:true)
 		
 		answerOneImage(nullable:true, maxSize: 1024 * 1024 * 2 /* 2MB */)
 		answerTwoImage(nullable:true, maxSize: 1024 * 1024 * 2 /* 2MB */)
@@ -42,9 +50,9 @@ class Question {
 		answerTwo(nullable:true)
 		answerThree(nullable:true)
 		answerFour(nullable:true)
+		questionTitle(nullable:true)
 		
 		answerOneVotes(nullable:true)
-		answerTwoVotes(nullable:true)
-		
+		answerTwoVotes(nullable:true)		
     }
 }
