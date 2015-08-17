@@ -121,16 +121,13 @@
 	</div>
 	
 	
-	
+	                                              
 	<div id="wysihtml5-toolbar" style="display: none;  margin-top: 24px; ">
 
 
+        
 		<div class="btn-group">
-        <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h2" style = "padding-top: 2px; padding-bottom: 2px;" class="btn btn-default">
-                <i  style = "color: #5BC0DE;"  class="fa fa-header"></i>
-          </a>
-				
-				
+						
 				<a  data-wysihtml5-command="bold" style = "padding-top: 2px; padding-bottom: 2px;"  class="btn btn-default">
                     <i  style = "color: #5BC0DE;"  class="fa fa-bold"></i>
                 </a>

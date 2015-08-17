@@ -1,6 +1,18 @@
 @CHARSET "ISO-8859-1";
 body {background-color: #F5F5F5!important;  min-width: 330px;}
 
+		.voteUp:hover {
+		opacity:0.5;
+		}
+		
+		.voteDown:hover {
+		opacity:0.5;
+		}
+		
+		.reply:hover {
+		opacity:0.5;
+		}
+		
   .comment .left{
     float:left;
     width:100px;

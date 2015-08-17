@@ -63,24 +63,31 @@ printHtmlPart(18)
 printHtmlPart(19)
 expressionOut.print(resource(dir:'images',file:'blankAv.png'))
 printHtmlPart(20)
-expressionOut.print(resource(dir:'images',file:'sampImg3.jpg'))
+for( _it2086073988 in (question) ) {
+changeItVariable(_it2086073988)
 printHtmlPart(21)
-expressionOut.print(resource(dir:'images',file:'sampImg2.jpg'))
+expressionOut.print(raw(it.question))
 printHtmlPart(22)
-expressionOut.print(resource(dir:'images',file:'blankAv.png'))
+expressionOut.print(resource(dir:'images',file:'sampImg3.jpg'))
 printHtmlPart(23)
-invokeTag('resource','g',289,['dir':("js"),'file':("bootstrap.min.js")],-1)
+expressionOut.print(resource(dir:'images',file:'sampImg2.jpg'))
 printHtmlPart(24)
-})
-invokeTag('captureBody','sitemesh',314,['style':("  ")],1)
+}
 printHtmlPart(25)
+expressionOut.print(resource(dir:'images',file:'blankAv.png'))
+printHtmlPart(26)
+invokeTag('resource','g',296,['dir':("js"),'file':("bootstrap.min.js")],-1)
+printHtmlPart(27)
+})
+invokeTag('captureBody','sitemesh',325,['style':("  ")],1)
+printHtmlPart(28)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1439424999270L
+public static final long LAST_MODIFIED = 1439779240495L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

@@ -137,49 +137,68 @@
 			<p style = "color: #FD7B7B; padding: 10px; padding-top: 12px; height: 30px;  font-size: 18px;" class = "fa  fa-fire" > <span style ="margin-left: 7px; color: #3E3E3E; ">Popular Right Now</span> </p>
 			</div>
 			
-				<div  class="jumbotron" style="    border-top-left-radius: 0px;    border-top-left-radius: 0px; background-color: rgba(255,255,255,0.9); overflow-y: scroll;   padding: 0px; padding-top: 10px;   height: 250px;  display: block; margin: auto; margin-top: 0px;  ">
+				<div  class="jumbotron" style="    border-top-left-radius: 0px;    border-top-left-radius: 0px; background-color: rgba(255,255,255,0.9); overflow-y: scroll;   padding: 0px; padding-top: 0px;   height: 250px;  display: block; margin: auto; margin-top: 0px;  ">
 	
 			
 			<g:each in="${question}">
 
-				<div style = " margin: auto; width: 98%;   padding: 5px;  display: table;"> 
+				<div onmouseover="glow(this)" onmouseout="unGlow(this)" onClick = "loadQuestionURL('${it.questionID}')" style = "margin: auto; width: 100%; border-bottom: 1px solid #ccc;    padding: 10px;  display: table;"> 
 				
-				<div  style = 'width: 118px; display:table-cell;  ' >
-					<img  style = "width: 110px; margin: auto;  padding: 0px;  " src = "/ShouldIorV1/question/getAnswerOneImageById/${it.questionID}" />	
+				<div  style = 'text-align: center;  vertical-align:top; width: 110px; display:table-cell;  ' >
+				
+				
+			    <g:if test="${it.answerOneImage}">
+					<img  style = "max-width:110px; max-height:100px; width: auto; height: auto; margin: auto;   padding: 0px;  " src = "/ShouldIorV1/question/getAnswerOneImageById/${it.questionID}" />	
+				</g:if>
+				<g:else>
+					<img  style = "max-width:110px; max-height:100px; width: auto; height: auto; margin: auto;   padding: 0px;  " src="${resource(dir:'images',file:'noImg.png')}"  />	
+				</g:else>
+
 				</div>
 					
-					<p style = " display:table-cell;    color: #414141;  text-align: left; vertical-align: top; padding:0px; margin-bottom: 0px; font-size: 17px;">
-						<span style = "display:block;    margin-bottom: -4px;" >Nicolas Melia</span> 
+					<p style = "display:table-cell;   color: #414141;  text-align: left; vertical-align: top; padding-left:6px; margin-bottom: 0px; font-size: 17px;">
+						<span style = "display:block;  margin-bottom: -4px;" >Nicolas Melia</span> 
 						<span style = "display:block;  color: #6A6A6A; " >${it.questionTitle}</span> 
+						
+						
 						<span style = "display:block;     " >
 						<span class = "fa fa-line-chart"  style = "color: #5BC0DE; margin-right: 5px;" ></span>${it.totalVotes}
-						<span class = "fa fa-comments" style = "color: #5BC0DE; margin-left: 8px; margin-right: 5px; "  > </span>10k  
+						<span class = "fa fa-comments" style = "color: #5BC0DE;   margin-left: 8px; margin-right: 5px; "  > </span>10k  
 						</span> 
 	
 					</p>
 				
-					</div>
-					
-					<hr style = "margin-top: 5px;  border-top: 1px solid #ccc; margin-bottom: 8px; padding-top: 0px; width:100%;">
+					</div>	
 		</g:each>
 
 		</div>
 		<!-- container -->	
 		
-
-				
-
-
 		</div>
 		
-		
-
 		
     </div><!-- /.container -->
 
 
 
 	<script>
+
+
+	function glow(id) {
+	$(id).css("background-color","rgba(217,232,237,0.5)")
+	}
+
+
+
+	function unGlow(id) {
+	$(id).css("background-color","")
+	}
+
+	function loadQuestionURL(url) {
+		window.location.href = "/ShouldIorV1/Question/shouldi/" + url;
+	}
+		
+
 	
 	 $(function(){
         $(".element").typed({

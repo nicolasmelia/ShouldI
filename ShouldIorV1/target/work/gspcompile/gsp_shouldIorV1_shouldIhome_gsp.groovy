@@ -71,27 +71,38 @@ else {
 printHtmlPart(22)
 }
 printHtmlPart(23)
-for( _it1017980078 in (question) ) {
-changeItVariable(_it1017980078)
+for( _it394837559 in (question) ) {
+changeItVariable(_it394837559)
 printHtmlPart(24)
 expressionOut.print(it.questionID)
 printHtmlPart(25)
-expressionOut.print(it.title)
+if(true && (it.answerOneImage)) {
 printHtmlPart(26)
-expressionOut.print(it.totalVotes)
+expressionOut.print(it.questionID)
 printHtmlPart(27)
 }
+else {
 printHtmlPart(28)
-})
-invokeTag('captureBody','sitemesh',270,['style':("background-image:url('${resource(dir: "images", file: "wall1.jpg")}');  background-size: cover;  background-attachment: fixed; min-width: 330px;  ")],1)
+expressionOut.print(resource(dir:'images',file:'noImg.png'))
 printHtmlPart(29)
+}
+printHtmlPart(30)
+expressionOut.print(it.questionTitle)
+printHtmlPart(31)
+expressionOut.print(it.totalVotes)
+printHtmlPart(32)
+}
+printHtmlPart(33)
+})
+invokeTag('captureBody','sitemesh',289,['style':("background-image:url('${resource(dir: "images", file: "wall1.jpg")}');  background-size: cover;  background-attachment: fixed; min-width: 330px;  ")],1)
+printHtmlPart(34)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1439689418207L
+public static final long LAST_MODIFIED = 1439779240526L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

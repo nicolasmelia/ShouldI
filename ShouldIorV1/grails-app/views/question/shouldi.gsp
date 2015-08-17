@@ -15,6 +15,7 @@
       <link rel="stylesheet" type="text/css" href="<g:resource dir='css' file='buttons.css'/>">
 
 	<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+     <link rel="stylesheet" type="text/css" href="<g:resource dir='css' file='awesome-bootstrap-checkbox.css'/>">
 
 			
 	   <!-- facebook login -->
@@ -29,10 +30,7 @@
     <![endif]-->
 	
   </head>
-  
-  <style>
 
-  </style>
 
   <body style = "  ">
   
@@ -106,56 +104,61 @@
 		</div> 
 		<!-- PROFILE INFORMATION -->	
 
-		
-		
+
+
 	<!-- QUESTION -->	
+			<g:each in="${question}">
+	
 	<span style = "display: block;">
-			<div style = "padding-bottom: 30px; float:left;">
-			<span style = 'text-align: left; font-size: 18px; color: #4A4A4A; padding-left: 12px; padding-top:10px; display: inline-block;'><span style = "color: #61B7FE;font-size: 22px;">+23</span> <span style = "color: #8D8D8D;">You Should!</span></span>
+	<div style ="display: table;" >
+			<div style = "float:left; display: block;">
+			<span style = 'text-align: left; font-size: 18px; color: #4A4A4A; padding-left: 12px; padding-top:10px; display: inline-block;'><span style = "color: #61B7FE;font-size: 18px;">54% </span><span style = "color: #8D8D8D;">Yes</span></span>
 			</div>
 			
-			<div style = "padding-bottom: -10px; margin-bottom: -10px; float:right;">
+			<div style = "padding-bottom: -10px; margin-bottom: -10px; float:right; display: block;">
 			<span style = 'text-align: left; color: #545252; font-size: 21px; padding-right: 15px; padding-top:10px; display: inline-block;' class='fa fa-share-alt-square'></span>		
 			</div>
 			
-			<div style = "padding-bottom: -10px; float:right; ">
+			<div style = "padding-bottom: -10px; float:right; display: block;">
 			<span style = 'text-align: left; color: #545252; font-size: 21px; padding-right: 13px; padding-top:10px; display: inline-block;' class='fa fa-star'></span>
 			</div>
 			
-			<div style = "padding-bottom: -5px; float:right; ">
+			<div style = "padding-bottom: -5px; float:right;display: block; ">
 			<span style = 'text-align: left; color: #545252; font-size: 18px; padding-right: 13px; padding-top:10px; display: inline-block;' >Follow</span>
 			</div>
-			
-		 <div style = "padding: 35px;   padding-top: 170px; display: block;">
-		 
-				 
-				<p style = "padding-top:  0px; text-align: center; margin: auto; width: 100%;  font-size: 17px; padding-top: 5px; padding-bottom: 25px;" >
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-			Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure 
-			dolor in reprehenderit in tac.
-				</p>
+		</div>
+		
+				 					 	
+	<div id = "imgContainer" style = "margin-top: 10px; margin-bottom: 30px; padding: 15px;  margin: 20px; margin-top: 20px; background-color: #F4FAFF; display: block;" >
+		 <img id="image1" src = "/ShouldIorV1/question/getAnswerOneImageById/${it.questionID}"  style ="display: block; max-width:200px; max-height:200px; width: auto; height: auto; margin: auto; alt="Error displaying image (Image will still upload)" />
+	</div>
+	
+		
+		 <div style = "padding: 12px; width: 100%; max-height: 300px;  padding-top: 10px; overflow-y: auto;  display: block;">
+								${raw(it.question)} 
+
 		  </div>
 
 		<div style="overflow: hidden; display: flex; width: 100%; ">
-			<div  class="picAnswer1" style=" height: inherit; flex-direction: row ; border-bottom-left-radius: 8px;  flex-wrap: wrap; text-align: bottom; border-top: 1px solid #E1E1E1;  margin-top: 0px;  width: 50%; padding-top: 8px; display: flex;">
+			<div  class="picAnswer1" style=" height: inherit; flex-direction: row ; border-bottom-left-radius: 8px;  flex-wrap: wrap; text-align: bottom; border-top: 1px solid #E1E1E1;  margin-top: 0px;  width: 50%; padding-top: 8px; display: false;">
 			<div class = "img" id = "imgContainer3" style = "padding: 0px; text-align: center; width: 100%; display: flex; flex-direction: column ; " >
 			
-			<img class ="image" src="${resource(dir:'images',file:'sampImg3.jpg')}"style ="padding: 15px 15px 12px 15px;   margin: auto; max-height: 300px; max-width:100%; display:flex; " alt="Error displaying image" />				
+			<img class ="image" src="${resource(dir:'images',file:'sampImg3.jpg')}"style ="padding: 15px 15px 12px 15px;   margin: auto; max-height: 300px; max-width:100%; display:none; " alt="Error displaying image" />				
 
 			<div style = "display:flex;  flex-direction: column;  align-items: flex-end; ">
-			<p style = " padding-top:0px; padding-left: 4px; padding-right: 4px;   padding-bottom: 5px;  border-bottom-right-radius: 8px; width: 100%; text-align: center; margin: auto; text-align: center; font-size: 19px;  color: #61B7FE; ">Nicolas Melia <span style = "color: #8D8D8D;">(145)</span></p>
+			<p style = " padding-top:0px; padding-left: 4px; padding-right: 4px;   padding-bottom: 5px;  border-bottom-right-radius: 8px; width: 100%; text-align: center; margin: auto; text-align: center; font-size: 19px;  color: #61B7FE; ">Yes <span style = "color: #8D8D8D;">(145)</span></p>
 			</div>
 	
 			</div>
 			
 		</div> 
 
-			<div  class="picAnswer2" style=" height: inherit; flex-direction: row ; border-bottom-right-radius: 8px;  flex-wrap: wrap; text-align: bottom; border-top: 1px solid #E1E1E1;  margin-top: 0px;  width: 50%;    padding-top: 8px;   display: flex;">
+			<div  class="picAnswer2" style=" height: inherit; flex-direction: row ; border-bottom-right-radius: 8px;  flex-wrap: wrap; text-align: bottom; border-top: 1px solid #E1E1E1;  margin-top: 0px;  width: 50%;    padding-top: 8px;   display: false;">
 			<div class = "img" id = "imgContainer3" style = "padding: 0px; text-align: center; width: 100%; display: flex; flex-direction: column ; " >
-					<img class ="image" src="${resource(dir:'images',file:'sampImg2.jpg')}" style ="padding: 15px 15px 12px 15px;  margin: auto; max-height: 300px; max-width:100%; display:flex;   " alt="Error displaying image" />				
+					<img class ="image" src="${resource(dir:'images',file:'sampImg2.jpg')}" style ="padding: 15px 15px 12px 15px;  margin: auto; max-height: 300px; max-width:100%; display:none;   " alt="Error displaying image" />				
 
 			<div style = "display:flex;  flex-direction: column;  align-items: flex-end; ">
-			<p style = " padding-top:0px; padding-left: 4px; padding-right: 4px;   padding-bottom: 5px;  border-bottom-right-radius: 8px; width: 100%; text-align: center; margin: auto; text-align: center; font-size: 19px;  color: #61B7FE; ">Nicolas Melia <span style = "color: #8D8D8D;">(145)</span></p>
+			<p style = " padding-top:0px; padding-left: 4px; padding-right: 4px;   padding-bottom: 5px;  border-bottom-right-radius: 8px; width: 100%; text-align: center; margin: auto; text-align: center; font-size: 19px;  color: #61B7FE; ">No <span style = "color: #8D8D8D;">(145)</span></p>
 			</div>
 	
 			</div>
@@ -167,13 +170,14 @@
 
 	</span>
 	<!-- QUESTION -->	
-		
-		
+		</g:each>
+
 	
 		</div>
+				
+		
 	</div>
 	<!-- MAIN -->	
-
 
 
 		<!-- NEXT Q -->	
@@ -211,8 +215,9 @@
 			
 			<div style = "padding-bottom: 10px; ">
 			<span style = 'text-align: left; font-size: 15px; padding-left: 5px; padding-top:0px; display: inline-block;'><b>34</b></span>
-			<span style = 'text-align: left; font-size: 15px; padding-left: 6px; padding-top:0px; display: inline-block;' class='fa fa-chevron-up'></span>
-			<span style = 'text-align: left; font-size: 15px; padding-left: 6px; padding-top:0px; display: inline-block;' class='fa fa-chevron-down'></span>
+			<span  style = 'text-align: left; font-size: 15px; padding-left: 6px; padding-top:0px; display: inline-block;' class='fa fa-chevron-up voteUp'></span>
+			<span style = 'text-align: left; font-size: 15px; padding-left: 6px; padding-top:0px; display: inline-block;' class='fa fa-chevron-down voteDown'></span>
+			<span style = 'text-align: left; font-size: 15px; padding-left: 6px; padding-top:0px; display: inline-block;' class='fa fa-reply reply'></span>
 			</div>
 			
 		  </div>
@@ -228,12 +233,12 @@
 		<textarea type="text" style = "resize: none; height: 90px;" class="form-control" id="exampleInputPassword1" placeholder="Leave a comment"></textarea>
 		<button type="button"  onClick = "postComment()"  style = "margin-top: 10px; display: inline-block;" class="btn btn-default">Comment</button>
 
-		<div class="checkbox" style = "display: inline-block; padding-top: 0px; height: 10px; vertical-align:bottom;  " >
-		  <label style = "vertical-align: bottom; margin-top: 0px; margin-left: 5px; " >
-			<input type="checkbox" value="">
-			Anonymous Comment
-		  </label>
-		</div>
+	<div class="checkbox checkbox-danger"  style = "display: inline-block;  margin-left: 2px;" >
+	<input type="checkbox"  name = "anonymous"  id="anonymousCheckbox"/>
+    <label  for="anonymousCheckbox">
+        Anonymous Comment
+    </label>
+	</div> 
 					
 	</div>
 		<!-- COMMENT BOX -->
@@ -293,6 +298,10 @@
 
 
 	<script>
+
+	function hoverGlow(this){
+		 $(this).css("opacity","0.5"): 
+	}
 	
 	function postComment() {
 		 getStuff();

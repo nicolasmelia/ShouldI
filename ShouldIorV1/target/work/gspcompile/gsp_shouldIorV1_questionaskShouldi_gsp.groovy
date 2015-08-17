@@ -65,19 +65,19 @@ printHtmlPart(19)
 printHtmlPart(20)
 createTagBody(2, {->
 printHtmlPart(21)
-invokeTag('actionSubmit','g',176,['value':("Post"),'action':("postShouldI"),'style':("margin-top: 1px; width: 100px; display: inline-block;"),'class':("btn btn-default")],-1)
+invokeTag('actionSubmit','g',173,['value':("Post"),'action':("postShouldI"),'style':("margin-top: 1px; width: 100px; display: inline-block;"),'class':("btn btn-default")],-1)
 printHtmlPart(22)
 })
-invokeTag('form','g',181,['controller':("Question"),'action':("postShouldI"),'enctype':("multipart/form-data")],2)
+invokeTag('form','g',178,['controller':("Question"),'action':("postShouldI"),'enctype':("multipart/form-data")],2)
 printHtmlPart(23)
-invokeTag('resource','g',201,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput-angular.js")],-1)
+invokeTag('resource','g',198,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput-angular.js")],-1)
 printHtmlPart(24)
-invokeTag('resource','g',202,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.js")],-1)
+invokeTag('resource','g',199,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.js")],-1)
 printHtmlPart(25)
-invokeTag('resource','g',203,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.css")],-1)
+invokeTag('resource','g',200,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.css")],-1)
 printHtmlPart(26)
 })
-invokeTag('captureBody','sitemesh',285,['style':("background-color: #f4f4f4; min-width: 330px; ")],1)
+invokeTag('captureBody','sitemesh',282,['style':("background-color: #f4f4f4; min-width: 330px; ")],1)
 printHtmlPart(27)
 }
 public static final Map JSP_TAGS = new HashMap()
@@ -85,7 +85,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1439691252107L
+public static final long LAST_MODIFIED = 1439775224354L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'
