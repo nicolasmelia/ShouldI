@@ -25,6 +25,8 @@ body {background-color: #F5F5F5!important;  min-width: 330px;}
     .picAnswer1 {
 	border-bottom: solid 2px #FFFFFF;
 	border-right: solid 1px #F0F0E1;
+	background-color: #FFFFFF;
+	
    }
    
    .picAnswer1:hover{
@@ -35,7 +37,8 @@ body {background-color: #F5F5F5!important;  min-width: 330px;}
    
 
      .picAnswer2 {
-	border-bottom: solid 2px #FFFFFF;
+	border-bottom: solid 2px #FFFFFF;	
+	background-color: #FFFFFF;
    }
    
    .picAnswer1 > .image :hover {

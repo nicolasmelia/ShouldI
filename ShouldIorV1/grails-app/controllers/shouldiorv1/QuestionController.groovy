@@ -10,6 +10,8 @@ class QuestionController {
 	// View of a single question with comments
 	def shouldi() {
 		def question = Question.findByQuestionID(params.id)
+
+		
 		// Return a max of 10 comments, offset returns starting at palce 0, sort by votes desc
 		def comments = Comment.findAllByQuestionID(params.id, [max: 10, offset: 0, sort: "upVotes", order: "desc"])
 		render(view: "shouldi", model: ["question": question, "comments": comments])		
@@ -42,16 +44,19 @@ class QuestionController {
 				
 		// Generate a unique ID
 		while(true) {
-			String uniqueID = UUID.randomUUID().toString()
-			int matchCount = Question.countByQuestionID(uniqueID)
+			// Create a UUID and cut it in half for easier reading
+			String uniqueID = UUID.randomUUID().toString().replace("-", "");
+			int midpoint = uniqueID.length() / 2;
+			String halfUUID = uniqueID.substring(0, midpoint)
+			int matchCount = Question.countByQuestionID(halfUUID)
 			if (matchCount == 0) {
-				question.questionID = uniqueID
+				question.questionID = halfUUID
 				break;
 			 }
 		} 
 	
-		question.Shouldi = true
-		question.yesOrNo = false
+		question.custom = false
+		question.yesOrNo = true // This is a YES/NO question
 		
 		if (params.anonymous != null) {
 		question.anonymous = params.anonymous
@@ -106,6 +111,62 @@ class QuestionController {
 		}
 	}
 	
+	
+	def questionVote() {
+		def votes = Vote.findAllByUserIDAndItemID(session["userID"], params.questionID)
+		if (votes.size() == 0) {
+			// Create a vote
+			Vote vote = new Vote()
+			vote.userID = session["userID"]
+			vote.itemID = params.questionID
+			vote.voteType = "Question"
+			vote.date = new Date()
+			
+			// User has not votes on this question. Allow it.
+			def question = Question.findByQuestionID(params.questionID)
+			if (question.yesOrNo) {
+			// *********** YES/NO question vote ***********
+			if (params.vote.toString().matches("ONE")) {
+				vote.vote = 1
+				question.answerOneVotes = question.answerOneVotes + 1
+			} else if (params.vote.toString().matches("TWO")) {
+				vote.vote = 2
+				question.answerTwoVotes = question.answerTwoVotes + 1
+			}
+			
+			// Save the question vote
+			question.totalVotes = question.totalVotes + 1
+			question.save(flush:true)
+			
+			// save the vote
+			vote.save(flush:true)
+			
+			// Now render new question stats split by a ":"  
+			question.totalVotes
+
+			// Calc percent diff
+			int percentDif = 100
+		
+			
+			render ("TRUE" + ":" + question.totalVotes + ":" + question.answerOneVotes + ":" + question.answerTwoVotes + ":" + percentDif)
+			
+			} else {
+			// *********** Custom question vote ***********
+
+			}
+			
+			
+			
+		} else {
+			render ("False")
+		}	
+		
+		
+	}
+	
+	def calcDiffPercent (boolean yesNo, int q1, int q2, int q3, int q4) {
+
+	}
 	
 	
 	

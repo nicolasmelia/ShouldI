@@ -34,60 +34,62 @@ invokeTag('resource','g',14,['dir':("css"),'file':("bootstrap.css")],-1)
 printHtmlPart(6)
 invokeTag('resource','g',15,['dir':("css"),'file':("buttons.css")],-1)
 printHtmlPart(7)
-invokeTag('javascript','g',21,['src':("facebookLogin.js")],-1)
+invokeTag('resource','g',18,['dir':("css"),'file':("awesome-bootstrap-checkbox.css")],-1)
 printHtmlPart(8)
-invokeTag('javascript','g',22,['src':("dataRequest.js")],-1)
+invokeTag('javascript','g',22,['src':("facebookLogin.js")],-1)
 printHtmlPart(9)
-})
-invokeTag('captureHead','sitemesh',31,[:],1)
+invokeTag('javascript','g',23,['src':("dataRequest.js")],-1)
 printHtmlPart(10)
-createTagBody(1, {->
+})
+invokeTag('captureHead','sitemesh',32,[:],1)
 printHtmlPart(11)
-if(true && (session.name)) {
+createTagBody(1, {->
 printHtmlPart(12)
-}
-else {
+if(true && (session.name)) {
 printHtmlPart(13)
 }
-printHtmlPart(14)
-expressionOut.print(resource(dir:'images',file:'logo.png'))
-printHtmlPart(15)
-if(true && (session.name)) {
-printHtmlPart(16)
-expressionOut.print(session.name)
-printHtmlPart(17)
-}
 else {
+printHtmlPart(14)
+}
+printHtmlPart(15)
+expressionOut.print(resource(dir:'images',file:'logo.png'))
+printHtmlPart(16)
+if(true && (session.name)) {
+printHtmlPart(17)
+expressionOut.print(session.name)
 printHtmlPart(18)
 }
+else {
 printHtmlPart(19)
-expressionOut.print(resource(dir:'images',file:'blankAv.png'))
-printHtmlPart(20)
-for( _it2086073988 in (question) ) {
-changeItVariable(_it2086073988)
-printHtmlPart(21)
-expressionOut.print(raw(it.question))
-printHtmlPart(22)
-expressionOut.print(resource(dir:'images',file:'sampImg3.jpg'))
-printHtmlPart(23)
-expressionOut.print(resource(dir:'images',file:'sampImg2.jpg'))
-printHtmlPart(24)
 }
-printHtmlPart(25)
+printHtmlPart(20)
 expressionOut.print(resource(dir:'images',file:'blankAv.png'))
+printHtmlPart(21)
+for( _it1270901310 in (question) ) {
+changeItVariable(_it1270901310)
+printHtmlPart(22)
+expressionOut.print(it.questionID)
+printHtmlPart(23)
+expressionOut.print(it.questionID)
+printHtmlPart(24)
+expressionOut.print(raw(it.question))
+printHtmlPart(25)
+}
 printHtmlPart(26)
-invokeTag('resource','g',296,['dir':("js"),'file':("bootstrap.min.js")],-1)
+invokeTag('javascript','g',314,['src':("shouldIVote.js")],-1)
 printHtmlPart(27)
-})
-invokeTag('captureBody','sitemesh',325,['style':("  ")],1)
+invokeTag('resource','g',316,['dir':("js"),'file':("bootstrap.min.js")],-1)
 printHtmlPart(28)
+})
+invokeTag('captureBody','sitemesh',342,['style':("  ")],1)
+printHtmlPart(29)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1439779240495L
+public static final long LAST_MODIFIED = 1440037236326L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

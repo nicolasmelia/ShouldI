@@ -6,7 +6,7 @@ class Question {
 	String questionID
 	
 	// Question type
-	boolean Shouldi // True if a shouldI question, false if an or
+	boolean custom // True if a shouldI question, false if an or
 	boolean yesOrNo // if a shouldI, is this a do-dont or yes-no
 	boolean anonymous 
 	
@@ -27,10 +27,15 @@ class Question {
 	// Image for answer
 	byte[] answerOneImage
 	byte[] answerTwoImage
+	byte[] answerThreeImage
+	byte[] answerFourImage
 	
 	// Votes for answers
 	int answerOneVotes
 	int answerTwoVotes
+	int answerThreeVotes
+	int answerFourVotes
+	
 	int totalVotes
 	int totalComments
 	
@@ -45,6 +50,9 @@ class Question {
 		
 		answerOneImage(nullable:true, maxSize: 1024 * 1024 * 2 /* 2MB */)
 		answerTwoImage(nullable:true, maxSize: 1024 * 1024 * 2 /* 2MB */)
+		answerThreeImage(nullable:true, maxSize: 1024 * 1024 * 2 /* 2MB */)
+		answerFourImage(nullable:true, maxSize: 1024 * 1024 * 2 /* 2MB */)
+		
 		
 		answerOne(nullable:true)
 		answerTwo(nullable:true)
@@ -54,5 +62,8 @@ class Question {
 		
 		answerOneVotes(nullable:true)
 		answerTwoVotes(nullable:true)		
+		answerThreeVotes(nullable:true)
+		answerFourVotes(nullable:true)
+		
     }
 }

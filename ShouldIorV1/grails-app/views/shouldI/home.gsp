@@ -141,11 +141,14 @@
 	
 			
 			<g:each in="${question}">
-
-				<div onmouseover="glow(this)" onmouseout="unGlow(this)" onClick = "loadQuestionURL('${it.questionID}')" style = "margin: auto; width: 100%; border-bottom: 1px solid #ccc;    padding: 10px;  display: table;"> 
-				
-				<div  style = 'text-align: center;  vertical-align:top; width: 110px; display:table-cell;  ' >
-				
+			
+			
+			
+			<table onmouseover="glow(this)" onmouseout="unGlow(this)"  onClick = "loadQuestionURL('${it.questionID}')" style="width: 100%; padding: 8px 4px 8px 4px; display:block;">
+  <tr style = "display:block; max-height: 105px; width: 100%; margin-top: 0px; ">
+	<td style = "min-width: 125px;  height: 100%; text-align:center; vertical-align:top; ">
+	
+	
 				
 			    <g:if test="${it.answerOneImage}">
 					<img  style = "max-width:110px; max-height:100px; width: auto; height: auto; margin: auto;   padding: 0px;  " src = "/ShouldIorV1/question/getAnswerOneImageById/${it.questionID}" />	
@@ -153,22 +156,31 @@
 				<g:else>
 					<img  style = "max-width:110px; max-height:100px; width: auto; height: auto; margin: auto;   padding: 0px;  " src="${resource(dir:'images',file:'noImg.png')}"  />	
 				</g:else>
-
-				</div>
-					
-					<p style = "display:table-cell;   color: #414141;  text-align: left; vertical-align: top; padding-left:6px; margin-bottom: 0px; font-size: 17px;">
-						<span style = "display:block;  margin-bottom: -4px;" >Nicolas Melia</span> 
-						<span style = "display:block;  color: #6A6A6A; " >${it.questionTitle}</span> 
-						
-						
-						<span style = "display:block;     " >
-						<span class = "fa fa-line-chart"  style = "color: #5BC0DE; margin-right: 5px;" ></span>${it.totalVotes}
-						<span class = "fa fa-comments" style = "color: #5BC0DE;   margin-left: 8px; margin-right: 5px; "  > </span>10k  
-						</span> 
 	
-					</p>
-				
-					</div>	
+	
+	</td>
+	<td style = "width: 100%; height:1px; ">
+	<table style="width:100%;  height: 100%; ">
+	  <tr  style = "vertical-align: top;" >
+	  <td style = "height: 100%; ">
+	  	<span style = "display: block;  font-size: 16px;" >Nicolas Melia<span> 
+		<span style = "display:block; font-size: 16px;  color: #6A6A6A; " >${it.questionTitle}</span> 
+	  </td>
+	 </tr>
+	  <tr  style = "vertical-align: bottom;" >
+	  <td style = "text-align: top;  height: 100%; ">
+	  	<span class = "fa fa-line-chart"  style = "color: #5BC0DE; margin-right: 5px;" ></span>${it.totalVotes}
+						<span class = "fa fa-comments" style = "color: #5BC0DE;   margin-left: 8px; margin-right: 5px; "  > </span>10k  
+	  </td>
+	 </tr>
+	</table>
+	</td>
+	  			<hr style = "padding: 0px; margin: 0px;"/>
+	
+  </tr>
+  
+</table>
+			
 		</g:each>
 
 		</div>
