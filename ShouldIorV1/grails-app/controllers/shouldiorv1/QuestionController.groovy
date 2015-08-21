@@ -10,11 +10,25 @@ class QuestionController {
 	// View of a single question with comments
 	def shouldi() {
 		def question = Question.findByQuestionID(params.id)
-
 		
 		// Return a max of 10 comments, offset returns starting at palce 0, sort by votes desc
 		def comments = Comment.findAllByQuestionID(params.id, [max: 10, offset: 0, sort: "upVotes", order: "desc"])
-		render(view: "shouldi", model: ["question": question, "comments": comments])		
+		if (question != null) {
+			
+		String percentDif = (calcHighDiffPercent(true,question.totalVotes,question.answerOneVotes,question.answerTwoVotes,0,0)).toString().replace(".", "")
+		
+		// Did they vote on this question?
+		boolean voted = false
+		def votes = Vote.findAllByUserIDAndItemID(session["userID"], question.questionID)
+		if (votes.size() > 0) {
+			voted = true		
+		}
+				
+		render(view: "shouldi", model: ["question": question, "comments": comments, "percentDiff": percentDif, "voted": voted])
+		
+		} else {
+		render "Error finding this question"
+		}
 	}
 	
 	// View of a single question with comments
@@ -24,9 +38,7 @@ class QuestionController {
 		// Return a max of 10 comments, offset returns starting at palce 0, sort by votes desc
 		def comments = Comment.findAllByQuestionID(params.id, [max: 10, offset: 0, sort: "upVotes", order: "desc"])
 		render(view: "shouldi", model: ["question": question, "comments": comments])
-	}
-	
-	
+	}	
 	
 	
 	// ********************* ASK SHOULD I *********************
@@ -113,6 +125,7 @@ class QuestionController {
 	
 	
 	def questionVote() {
+		if (session["userID"] != null) {
 		def votes = Vote.findAllByUserIDAndItemID(session["userID"], params.questionID)
 		if (votes.size() == 0) {
 			// Create a vote
@@ -145,26 +158,45 @@ class QuestionController {
 			question.totalVotes
 
 			// Calc percent diff
-			int percentDif = 100
-		
-			
-			render ("TRUE" + ":" + question.totalVotes + ":" + question.answerOneVotes + ":" + question.answerTwoVotes + ":" + percentDif)
+			String percentDif = (calcHighDiffPercent(true,question.totalVotes,question.answerOneVotes,question.answerTwoVotes,0,0)).toString().replace(".", "")
+				
+			render ("True" + ":" + question.totalVotes + ":" + question.answerOneVotes + ":" + question.answerTwoVotes + ":" + percentDif)
 			
 			} else {
 			// *********** Custom question vote ***********
 
-			}
-			
-			
+			}	
 			
 		} else {
 			render ("False")
 		}	
 		
+		} else {
+			render ("False")	
+		}
+		
 		
 	}
 	
-	def calcDiffPercent (boolean yesNo, int q1, int q2, int q3, int q4) {
+	def calcHighDiffPercent (boolean yesNo, totalVotes, int q1, int q2, int q3, int q4) {
+		// Returns the highest percentage of the difference 
+		if (totalVotes > 0) {
+			int diff
+			if (yesNo) {
+				int q1Per = Math.round((q1 / totalVotes * 100))
+				int q2Per = Math.round((q2 / totalVotes * 100))		
+				if (q1Per > q2Per) {
+					diff = q1Per	
+				} else {
+					diff = q2Per
+				} 
+			} else {
+			 // Nothing
+			}
+			return diff
+			} else {
+			return 0
+		}
 
 	}
 	

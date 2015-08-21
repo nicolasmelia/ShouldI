@@ -6,11 +6,14 @@ function questionVote(vote) {
 			    async: true,
 			    data: {questionID : $("#questionID").val(), vote: vote},
 		  }).done(function(result){
-			  if (result.split(":")[0]  == "TRUE") {
+			  if (result.split(":")[0]  == "True") {
 				  $("#AnswerOneCount").text("(" + result.split(":")[2] + ")");
 				  $("#AnswerTwoCount").text("(" + result.split(":")[3] + ")");
-			  } else if (result.result.split(":")[0]  == "FAIL") {
-				  // Our Server failed to create a session
+				  $("#diffPercent").html("(" + result.split(":")[4] + ")" + "%");
+					$("#AnswerOneCount").css("display","inline-block")
+					$("#AnswerTwoCount").css("display","inline-block")
+			  } else if (result.split(":")[0]  == "False") {
+					$('#noVote').modal('show');
 			  } else {
 				  // Who knows what the hell went wrong
 			  } 

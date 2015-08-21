@@ -124,3 +124,9 @@ body {background-color: #F5F5F5!important;  min-width: 330px;}
 	 background-color: #F7FBFF;
    }
    
+.modal-open {
+    overflow: visible;
+}
+.modal-open, .modal-open .navbar-fixed-top, .modal-open .navbar-fixed-bottom {
+    padding-right:0px!important;
+}

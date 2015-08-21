@@ -52,44 +52,60 @@ else {
 printHtmlPart(14)
 }
 printHtmlPart(15)
-expressionOut.print(resource(dir:'images',file:'logo.png'))
+expressionOut.print(percentDiff)
 printHtmlPart(16)
-if(true && (session.name)) {
+expressionOut.print(voted)
 printHtmlPart(17)
-expressionOut.print(session.name)
+expressionOut.print(answerOneVote)
 printHtmlPart(18)
+expressionOut.print(answerTwoVote)
+printHtmlPart(19)
+expressionOut.print(answerThreeVote)
+printHtmlPart(20)
+expressionOut.print(answerFourVote)
+printHtmlPart(21)
+expressionOut.print(resource(dir:'images',file:'logo.png'))
+printHtmlPart(22)
+if(true && (session.name)) {
+printHtmlPart(23)
+expressionOut.print(session.name)
+printHtmlPart(24)
 }
 else {
-printHtmlPart(19)
-}
-printHtmlPart(20)
-expressionOut.print(resource(dir:'images',file:'blankAv.png'))
-printHtmlPart(21)
-for( _it1270901310 in (question) ) {
-changeItVariable(_it1270901310)
-printHtmlPart(22)
-expressionOut.print(it.questionID)
-printHtmlPart(23)
-expressionOut.print(it.questionID)
-printHtmlPart(24)
-expressionOut.print(raw(it.question))
 printHtmlPart(25)
 }
 printHtmlPart(26)
-invokeTag('javascript','g',314,['src':("shouldIVote.js")],-1)
+expressionOut.print(resource(dir:'images',file:'blankAv.png'))
 printHtmlPart(27)
-invokeTag('resource','g',316,['dir':("js"),'file':("bootstrap.min.js")],-1)
+for( _it1866281916 in (question) ) {
+changeItVariable(_it1866281916)
 printHtmlPart(28)
-})
-invokeTag('captureBody','sitemesh',342,['style':("  ")],1)
+expressionOut.print(it.questionID)
 printHtmlPart(29)
+expressionOut.print(it.questionID)
+printHtmlPart(30)
+expressionOut.print(raw(it.question))
+printHtmlPart(31)
+expressionOut.print(it.answerOneVotes)
+printHtmlPart(32)
+expressionOut.print(it.answerTwoVotes)
+printHtmlPart(33)
+}
+printHtmlPart(34)
+invokeTag('javascript','g',349,['src':("shouldIVote.js")],-1)
+printHtmlPart(35)
+invokeTag('resource','g',351,['dir':("js"),'file':("bootstrap.min.js")],-1)
+printHtmlPart(36)
+})
+invokeTag('captureBody','sitemesh',382,['style':("  ")],1)
+printHtmlPart(37)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1440037236326L
+public static final long LAST_MODIFIED = 1440117760940L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

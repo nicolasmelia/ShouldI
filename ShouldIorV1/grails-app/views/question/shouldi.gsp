@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Starter Template for Bootstrap</title>
+    <title>ShouldI.fm</title>
 
     <!-- Bootstrap core CSS -->
       <link rel="stylesheet" type="text/css" href="<g:resource dir='css' file='bootstrap.css'/>">
@@ -35,12 +35,22 @@
   <body style = "  ">
   
   	<g:if test="${session.name}">
-	  	<input id = "sessionCheck" type="hidden" name="country" value="true">
+	  	<input id = "sessionCheck" type="hidden" name="sess" value="true">
 	</g:if>
 	<g:else>
-		  <input id = "sessionCheck" type="hidden" name="country" value="false">
+		  <input id = "sessionCheck" type="hidden" name="sess" value="false">
 	</g:else>
+		
+	<input id = "percentDiffHidden" type="hidden" name="perdif" value="${percentDiff}">
+	<input id = "voted" type="hidden" name="voted" value="${voted}">
+
+
+	<input id = "answerOneVote" type="hidden" name="perdif" value="${answerOneVote}">
+	<input id = "answerTwoVote" type="hidden" name="perdif" value="${answerTwoVote}">
+	<input id = "answerTheeVote" type="hidden" name="perdif" value="${answerThreeVote}">
+	<input id = "answerFourVote" type="hidden" name="perdif" value="${answerFourVote}">
 	
+
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
@@ -81,28 +91,13 @@
       </div>
     </nav>
 
-    <div class="container">
+    <div class="container" style = "padding-top: 80px; max-width: 875px;">
 	
-	
-	
-		<!-- MAIN -->	
-	<div  style="display: block;  padding-top: 40px; padding-bottom: 12px;  margin-bottom: -10px; padding-top: 80px; max-width: 875px;  margin: auto;  ">
-		<div  class="jumbotron" style=" background-color: #FFFFFF; margin: 0px; padding: 0px; box-shadow:0 0 10px rgba(0, 0, 0, 0.15);  height: 100%;  display: block; width: 100%; ">
-			
+
 		
-		
-		<!-- PROFILE INFORMATION -->	
-		<div  class="" style=" margin-bottom: 0px; background-color:#fefefe;  border-bottom: 1px solid #E1E1E1; border-top-left-radius: 8px; border-top-right-radius: 8px; border-top: 1px solid #E1E1E1;  margin-top: 0px;  width: 100%; float: left; padding: 13px; vertical-align: bottom; display: block">	
-				<div style = "display: inline-block; width: 68px; padding-left: 5px;">
-				<img style = 'width: 100%;  display: inline-block; border-top-right-radius: 6px; border-top-left-radius: 5px; ' src="${resource(dir:'images',file:'blankAv.png')}"  />			
-		</div>
-				<div style = "display: inline-block; padding-bottom:0px; margin-right: 4px; margin-left: 4px; vertical-align: top;  ">
-				<span style = "margin-left: 1px; color: #5C5C5C; display: block; font-size: 18px;"><b>Nicolas Melia</b></span>
-				<span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px;  display: block; font-size: 15px;">Followers: 349</span>
-				<span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Reached: 34k People</span>
-		</div>
-		</div> 
-		<!-- PROFILE INFORMATION -->	
+		<div  class="jumbotron" style=" background-color: #FFFFFF; margin: 0px; padding: 0px; box-shadow:0 0 10px rgba(0, 0, 0, 0.15);  height: 100%;   display: block; width: 100%; ">
+
+
 
 
 
@@ -110,28 +105,79 @@
 			<g:each in="${question}">
 		<input id = "questionID" type="hidden" name="country" value="${it.questionID}">
 			
-	<table>
-	<div style ="display: block; width: 100%;" >
-			<span style = 'text-align: left; font-size: 18px; color: #4A4A4A; padding-left: 12px; padding-top:10px; display: inline-block;'><span style = "color: #61B7FE;font-size: 18px;">54% </span><span style = "color: #8D8D8D;">Yes</span></span>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div style ="display: block; width: 100%; padding-bottom: -5px; " >
+
+		
+		
+				 			
+		
+		
+			
+	
+		<!-- MAIN -->	
+	<div  style="display: block;  padding-top:10px; padding-bottom: 12px;  border-bottom: solid 1px;  margin: auto;  ">
+				<!-- PROFILE INFORMATION -->	
+				<div style = "display: inline-block; width: 68px; padding-left: 5px;">
+				<img style = 'width: 100%;  display: inline-block; border-top-right-radius: 6px; border-top-left-radius: 5px; ' src="${resource(dir:'images',file:'blankAv.png')}"  />			
+				</div> 	
+				<div style = "display: inline-block; padding-bottom:0px; margin-right: 4px; margin-left: 4px; vertical-align: top;  ">
+				<span style = "margin-left: 1px; color: #5C5C5C; display: block; font-size: 18px;"><b>Nicolas Melia</b></span>
+				<span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px;  display: block; font-size: 15px;">Followers: 349</span>
+				<span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Reached: 34k People</span>
+		</div>
+		</div> 
+		<!-- PROFILE INFORMATION -->	
+		
+			
+	<div style = " display: block; height: 50px;">
+	
+			<span style = 'text-align: left; font-size: 18px; color: #4A4A4A; padding-left: 12px; padding-top:10px; display: inline-block;'>
+			<span id = "diffPercent"style = "color: #61B7FE; font-size: 18px;"></span>
+			<span style = "color: #8D8D8D;">Yes</span></span>
 			
 			<div style = "padding-bottom: -10px; margin-bottom: -10px; float:right; display: inline-block;">
 			<span style = 'text-align: left; color: #545252; font-size: 21px; padding-right: 15px; padding-top:10px; display: inline-block;' class='fa fa-share-alt-square'></span>		
 			</div>
 			
 			<div style = "padding-bottom: -10px; float:right; display: inline-block; vertical-align: top;">
-			<span style = 'text-align: right; color: #545252; font-size: 21px; padding-right: 13px; padding-top:10px; display: inline-block;' class='fa fa-star'></span>
+			<span style = 'text-align: left; color: #545252; font-size: 21px; padding-right: 13px; padding-top:10px; display: inline-block;' class='fa fa-star'></span>
 			</div>
 			
 			<div style = "padding-bottom: -5px; float:right;  display: inline-block; vertical-align: top; ">
-			<span style = 'text-align: right; color: #545252; font-size: 18px; padding-right: 13px; padding-top:10px; display: inline-block;' >Follow</span>
-		</div>
-		
-				 					 	
-	<div id = "ee" style = "margin-top: 10px; margin-bottom: 30px; padding: 15px;  margin: auto; margin-top: 20px;  width: 60%; min-width: 290px; background-color: #F4FAFF; display: block;" >
-		 <img id="eeee" src = "/ShouldIorV1/question/getAnswerOneImageById/${it.questionID}"  style ="display: block;  width: 100%;  height: 100%; margin: auto;" alt="UhOh! We cant seem to load the image." />
+			<span style = 'text-align: left; color: #545252; font-size: 18px; padding-right: 13px; padding-top:10px; display: inline-block;' >Follow</span>
+			</div>
+			
 	</div>
 		
-		 <div style = "padding: 15px; width: 98%; max-height: 300px; margin:auto; padding-top: 10px; overflow-y: auto;  display: block;">
+		
+		
+		
+		
+		
+					<span style = 'text-align: center; margin: center; margin-top: 10px; padding: 0px 8px 0 8px; color: #545252; font-size: 20px; display: block;' >${it.questionTitle}</span>
+		
+		
+		
+			<hr style = "margin-top: 8px; width: 85%; margin-bottom: 8px; padding-top: 0px;">
+				 					 	
+				 	
+				 					 	
+		<div id = "ee" style = "margin-bottom: 30px; padding: 15px;  margin: auto; margin-top: 10px;  width: 50%; min-width: 290px; max-width: 330px; mag-height: 100px; background-color: #F4FAFF; display: block;" >
+			 <img id="singleImg" src = "/ShouldIorV1/question/getAnswerOneImageById/${it.questionID}"  style ="display: block;  width: 95%;  height: 80%; margin: auto;" alt="UhOh! We cant seem to load the image." />
+		</div>
+		
+		
+		
+		
+		 <div style = "padding: 15px; width: 98%; max-height: 300px; margin:auto; padding-top: 18px; overflow-y: auto;  display: block;">
 								${raw(it.question)} 
 		  </div>
 
@@ -150,11 +196,11 @@
   
     <tr style = "width: 100%; ">
   <td  onClick = "questionVote('ONE')" class="picAnswer1"  style = "width: 50%; text-align: center; border-right: 1px solid #E1E1E1;  " >
-	<p style = "padding:5px; width: 100%; display:block; margin: auto; bottom: 0px; text-align: center; font-size: 19px;  color: #61B7FE; ">Yes  <span id = "AnswerOneCount" style = "color: #8D8D8D;"></span></p>
+	<p style = "padding:5px; width: 100%; display:block; margin: auto; bottom: 0px; text-align: center; font-size: 19px;  color: #61B7FE; ">Yes <span id = "AnswerOneCount" style = "color: #8D8D8D; display:none;">(${it.answerOneVotes})</span></p>
 	</td>	
 	
   <td onClick = "questionVote('TWO')"  class="picAnswer2"  style = " width: 50%; text-align: center; " >
-	<p style = "padding:5px;  width: 100%; display:block; margin: auto; bottom: 0px; text-align: center; font-size: 19px;  color: #61B7FE; ">No <span id = "AnswerTwoCount"  style = "color: #8D8D8D;"></span></p>
+	<p style = "padding:5px;  width: 100%; display:block; margin: auto; bottom: 0px; text-align: center; font-size: 19px;  color: #61B7FE; ">No <span id = "AnswerTwoCount"  style = "color: #8D8D8D; display:none;">(${it.answerTwoVotes})</span></p>
 	</td>	
   </tr>
   
@@ -172,7 +218,7 @@
 
 
 		<!-- NEXT Q -->	
-		<div  class="jumbotron next" style="overflow: auto;  text-align: center; display: block; box-shadow:0 0 10px rgba(0, 0, 0, 0.10); height: 44px; margin: auto; max-width: 875px; padding-left: 0px; padding-right: 0px; padding-top: 11px; padding-bottom: 0px;  margin-bottom: 12px; ">
+		<div  class="jumbotron next" style="overflow: auto;  text-align: center; display: block; box-shadow:0 0 10px rgba(0, 0, 0, 0.10); height: 44px; margin: auto; max-width: 875px; padding-left: 0px; padding-right: 0px; padding-top: 11px; padding-bottom: 0px;  margin-bottom: 12px; margin-top: 12px; ">
 		<span class = "" style = "margin: auto; width: 100px; color: #888888; font-size: 17px;">More Questions<span style = "color: #9D9D9D; margin-left: 8px;" class = "fa fa-refresh"> </span></span>
 		</div>
 		<!-- NEXT Q -->	
@@ -238,7 +284,7 @@
 		  </div>
 		  		 </blockquote>
 				 		  <!-- MESSAGE reply -->	
-				 		  		<button type="button" style = "display: block; height: 30px; padding: 4px; width: 100px;   margin-bottom: 10px;" class="btn btn-default">Load More</button>
+				 		  <button type="button" style = "display: block; height: 30px; padding: 4px; width: 100px;   margin-bottom: 10px;" class="btn btn-default">Load More</button>
 		</div>	
 		  </div>
 		  <!-- Reply BOX -->	
@@ -279,7 +325,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title"><span href="#about" style = "padding-left: 4px;" class='fa fa-exclamation-circle'></span> Not logged in</h4>
+          <h4 class="modal-title"><span href="#about" style = "padding-left: 4px;" class='fa fa-exclamation-circle'> </span>Not logged in</h4>
         </div>
         <div class="modal-body">
           <p>Please login to post a comment</p>
@@ -296,6 +342,29 @@
   </div>
     <!-- LOGIN Modal -->
 	
+	
+	
+	  <!-- LOGIN Modal -->
+  <div class="modal fade" id="noVote" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"><span href="#about" style = "padding-left: 4px;" class='fa fa-exclamation-circle'> </span> Can't do that...</h4>
+        </div>
+        <div class="modal-body">
+          <p>You can't vote twice. Sorry!</p>
+        </div>
+        <div class="modal-footer">
+          <button style = "" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+    <!-- LOGIN Modal -->
 	
 </div><!-- /.container -->
 
@@ -315,12 +384,17 @@
     
     <script src="<g:resource dir="js" file="bootstrap.min.js" />"></script>
 
-    
-
-
 
 	<script>
+	$(document).ready(function() {
+		$("#diffPercent").text($("#percentDiffHidden").val() + "%")
 
+		if ($("#voted").val() == "true") {
+			$("#AnswerOneCount").css("display","inline-block")
+			$("#AnswerTwoCount").css("display","inline-block")
+		}
+		
+	});
 	
 	function postComment() {
 		 getStuff();
