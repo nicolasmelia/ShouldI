@@ -12,10 +12,13 @@ class Comment {
 	Date date
 	int upVotes
 	int downVotes
+	int voteDiff // collection of all votes added up and down
 	
     static constraints = {
 		upVotes(nullable:true)
 		downVotes(nullable:true)
+		voteDiff(nullable:true)
+		
 		comment(maxSize: 500)	
     }
 }

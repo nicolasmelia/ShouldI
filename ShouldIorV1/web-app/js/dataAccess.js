@@ -21,3 +21,24 @@ function questionVote(vote) {
 		}
 }
 
+
+// Comment to main post
+function postMainComment() {
+	if ($('#sessionCheck').val() == "true") {
+		  $.ajax({
+			  type: 'post',
+			    url: "/ShouldIorV1/Comment/postMainComment",
+			    async: true,
+			    data: {questionID : $("#questionID").val(), comment: $("#commentText").val()},
+		  }).done(function(result){
+			  if (result == "True") {
+				  	alert("RELOAD");
+			  } else if (result == "False") {
+					$('#noVote').modal('show');
+			  } else {
+				  // Who knows what the hell went wrong
+			  } 
+		  });
+		}
+}
+

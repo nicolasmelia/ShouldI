@@ -38,49 +38,49 @@ invokeTag('resource','g',18,['dir':("css"),'file':("awesome-bootstrap-checkbox.c
 printHtmlPart(8)
 invokeTag('javascript','g',22,['src':("facebookLogin.js")],-1)
 printHtmlPart(9)
-invokeTag('javascript','g',23,['src':("dataRequest.js")],-1)
-printHtmlPart(10)
 })
-invokeTag('captureHead','sitemesh',32,[:],1)
-printHtmlPart(11)
+invokeTag('captureHead','sitemesh',31,[:],1)
+printHtmlPart(10)
 createTagBody(1, {->
-printHtmlPart(12)
+printHtmlPart(11)
 if(true && (session.name)) {
+printHtmlPart(12)
+}
+else {
 printHtmlPart(13)
 }
-else {
 printHtmlPart(14)
-}
-printHtmlPart(15)
 expressionOut.print(percentDiff)
-printHtmlPart(16)
+printHtmlPart(15)
 expressionOut.print(voted)
-printHtmlPart(17)
+printHtmlPart(16)
 expressionOut.print(answerOneVote)
-printHtmlPart(18)
+printHtmlPart(17)
 expressionOut.print(answerTwoVote)
-printHtmlPart(19)
+printHtmlPart(18)
 expressionOut.print(answerThreeVote)
-printHtmlPart(20)
+printHtmlPart(19)
 expressionOut.print(answerFourVote)
-printHtmlPart(21)
+printHtmlPart(20)
 expressionOut.print(resource(dir:'images',file:'logo.png'))
-printHtmlPart(22)
+printHtmlPart(21)
 if(true && (session.name)) {
-printHtmlPart(23)
+printHtmlPart(22)
 expressionOut.print(session.name)
+printHtmlPart(23)
+}
+else {
 printHtmlPart(24)
 }
-else {
 printHtmlPart(25)
-}
+for( _it516952715 in (question) ) {
+changeItVariable(_it516952715)
 printHtmlPart(26)
-expressionOut.print(resource(dir:'images',file:'blankAv.png'))
-printHtmlPart(27)
-for( _it1866281916 in (question) ) {
-changeItVariable(_it1866281916)
-printHtmlPart(28)
 expressionOut.print(it.questionID)
+printHtmlPart(27)
+expressionOut.print(it.userID)
+printHtmlPart(28)
+expressionOut.print(it.questionTitle)
 printHtmlPart(29)
 expressionOut.print(it.questionID)
 printHtmlPart(30)
@@ -92,20 +92,33 @@ expressionOut.print(it.answerTwoVotes)
 printHtmlPart(33)
 }
 printHtmlPart(34)
-invokeTag('javascript','g',349,['src':("shouldIVote.js")],-1)
+for( _it1394205948 in (comments) ) {
+changeItVariable(_it1394205948)
 printHtmlPart(35)
-invokeTag('resource','g',351,['dir':("js"),'file':("bootstrap.min.js")],-1)
+expressionOut.print(it.userID)
 printHtmlPart(36)
-})
-invokeTag('captureBody','sitemesh',382,['style':("  ")],1)
+expressionOut.print(it.userName)
 printHtmlPart(37)
+expressionOut.print(it.comment)
+printHtmlPart(38)
+expressionOut.print(it.voteDiff)
+printHtmlPart(39)
+}
+printHtmlPart(40)
+invokeTag('javascript','g',350,['src':("dataAccess.js")],-1)
+printHtmlPart(41)
+invokeTag('resource','g',352,['dir':("js"),'file':("bootstrap.min.js")],-1)
+printHtmlPart(42)
+})
+invokeTag('captureBody','sitemesh',383,['style':("  ")],1)
+printHtmlPart(43)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1440117760940L
+public static final long LAST_MODIFIED = 1440365512032L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

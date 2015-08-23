@@ -22,7 +22,7 @@ class AuthenticationController {
 		if (user != null) {
 			if (session["userID"] == null) {
 				if (!user.token.matches(params.token)){
-					// Token has been changed. Update it.
+					// Token has been changed. Update it.					
 					user.token = params.token
 					user.save(flush:true); 
 				}
@@ -38,7 +38,7 @@ class AuthenticationController {
 			newUser.accountType = "Facebook"
 			newUser.password = "NONE"
 			newUser.peopleReached = 0
-			newUser.userName = null
+			newUser.userName = getFaceBookName(params.userID, params.token)
 			newUser.name = getFaceBookName(params.userID, params.token)
 			newUser.save(flush:true);
 			tempUser = newUser;

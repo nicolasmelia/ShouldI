@@ -99,7 +99,7 @@ class QuestionController {
 		question.ClientAddress = request.getRemoteAddr().toString()
 		question.save(flush:true)
 		render "Created"
-
+		
 	}
 	
 	
