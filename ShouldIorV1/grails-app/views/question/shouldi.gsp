@@ -7,6 +7,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
+    
 
     <title>ShouldI.fm</title>
 
@@ -33,6 +34,15 @@
 
   <body style = "  ">
   
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4&appId=1625511597708023";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+  
   	<g:if test="${session.name}">
 	  	<input id = "sessionCheck" type="hidden" name="sess" value="true">
 	</g:if>
@@ -51,7 +61,7 @@
 	
 
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top" style = "">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -60,7 +70,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <img src="${resource(dir:'images',file:'logo.png')}"   class="navbar-brand"/>
+          <img  onClick = "share()"src="${resource(dir:'images',file:'logo.png')}"   class="navbar-brand"/>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -90,13 +100,16 @@
       </div>
     </nav>
 
-    <div class="container" style = "padding-top: 80px; max-width: 875px;">
+    <div class="container" style = "padding-top: 77px; max-width: 875px;">
 	
 
 		<div  class="jumbotron" style=" background-color: #FFFFFF; margin: 0px; padding: 0px; box-shadow:0 0 10px rgba(0, 0, 0, 0.15);  height: 100%;   display: block; width: 100%; ">
 
 	<!-- QUESTION -->	
 			<g:each in="${question}">
+			
+					
+
 		<input id = "questionID" type="hidden" name="country" value="${it.questionID}">	
 	
 	<div style ="display: block; width: 100%; padding-bottom: -5px; " >
@@ -106,7 +119,7 @@
 	<div  style="display: block;  padding: 10px;  border-bottom: solid 1px; border-color: #f3f3f3;  margin: auto;  ">
 				<!-- PROFILE INFORMATION -->	
 				<div style = "display: inline-block; width: 68px; padding-left: 5px;">
-				<img  style = "width: 100%;   display: inline-block; border-top-right-radius: 6px; border-top-left-radius: 5px;" src = "/ShouldIorV1/User/getProfileImage/${it.userID}"  />			
+				<img  style = "width: 100%;   display: inline-block; border-top-right-radius: 6px; border-top-left-radius: 5px;" src = "../../User/getProfileImage/${it.userID}"  />			
 				</div> 	
 				<div style = "display: inline-block; padding-bottom:0px; margin-right: 4px; margin-left: 4px; vertical-align: top;  ">
 				<span style = "margin-left: 1px; color: #5C5C5C; display: block; font-size: 15px;"><b>Nicolas Melia</b></span>
@@ -119,16 +132,25 @@
 			
 	<div style = " display: block; height: 50px; ">
 	
-			<span style = 'text-align: left; font-size: 18px; color: #4A4A4A; padding-left: 12px; padding-top:10px; display: inline-block;'>
+			<span style = 'text-align: left; font-size: 18px; color: #4A4A4A; padding-left: 12px; padding-top:6px; display: inline-block;'>
 			<span id = "diffPercent"style = "color: #61B7FE; font-size: 18px;"></span>
 			<span style = "color: #8D8D8D;">Yes</span></span>
 			
-			<div style = "padding-bottom: -10px; margin-bottom: -10px; float:right; display: inline-block;">
-			<span style = 'text-align: left; color: #545252; font-size: 21px; padding-right: 15px; padding-top:10px; display: inline-block;' class='fa fa-share-alt-square'></span>		
+
+			<div style = "padding-bottom: -10px; float:right; display: inline-block; vertical-align: top;">
+			
+			<div  onClick = "test()" style = "text-align: left; width: 70px; background-color: #61B7FE; padding: 2px; padding-left: 4px; color: #ffffff; font-size: 12px; margin-right: 8px; margin-top:9px; ">
+			<div style = "margin: auto; padding: 0px; margin: 0px;"><span style = ' ' class='fa fa-facebook'></span> Share</div>
+			</div>
+			
 			</div>
 			
 			<div style = "padding-bottom: -10px; float:right; display: inline-block; vertical-align: top;">
-			<span style = 'text-align: left; color: #545252; font-size: 21px; padding-right: 13px; padding-top:10px; display: inline-block;' class='fa fa-star'></span>
+			
+			<div  onClick = "test()" style = "text-align: left; width: 70px; background-color: #61B7FE; padding: 2px; padding-left: 4px; color: #ffffff; font-size: 12px; margin-right: 8px; margin-top:9px; ">
+			<div style = "margin: auto; padding: 0px; margin: 0px;"><span style = ' ' class='fa fa-star'></span> Favorite</div>
+			</div>
+			
 			</div>
 			
 	</div>
@@ -138,7 +160,7 @@
 		<hr style = "margin-top: 8px; width: 85%; margin-bottom: 0px; padding-top: 0px;">		 	
 				 					 	
 		<div id = "ee" style = "margin-bottom: 30px; padding: 15px;  margin: auto; margin-top: 20px;  width: 50%; min-width: 290px; max-width: 330px; mag-height: 100px; background-color: #F4FAFF; display: block;" >
-			 <img id="singleImg" src = "/ShouldIorV1/question/getAnswerOneImageById/${it.questionID}"  style ="display: block;  width: 95%;  height: 80%; margin: auto;" alt="UhOh! We cant seem to load the image." />
+			 <img id="singleImg" src = "../getAnswerOneImageById/${it.questionID}"  style ="display: block;  width: 95%;  height: 80%; margin: auto;" alt="UhOh! We cant seem to load the image." />
 		</div>
 		
 	
@@ -193,115 +215,10 @@
 
 	
 	<!-- COMMENT BOX -->	
-		<div  class="jumbotron" style="overflow: auto;  display: block; box-shadow:0 0 10px rgba(0, 0, 0, 0.15); min-height: 100px; margin: auto; min-width: 200px;  max-width: 875px; padding-left: 0px; padding-right: 0px; padding-top: 0px; padding-bottom: 0px;  margin-bottom: 50px; background-color: #FFFFFF;  ">
+		<div  class="jumbotron" style="overflow: auto;  display: block; box-shadow:0 0 10px rgba(0, 0, 0, 0.15); min-height: 100px; margin: auto; min-width: 200px;  max-width: 875px; padding: 0px 10px 0px 10px;  margin-bottom: 50px; background-color: #FFFFFF;  ">
 			
-			<p style = "padding-left: 15px; margin-bottom: -10px;  padding-top: 15px; font-size: 18px;" class = "fa fa-comments" > Comments (7) </p>
-			<hr style = "margin-top: 8px; margin-bottom: 8px; padding-top: 0px;">
-			<div style = " width: 100%;  display: block; overflow-y: auto; overflow-x: hidden; padding: 0px;  max-height: 340px;  ">
 			
-		<g:each in="${comments}">
-			
-		<!-- MESSAGE ROW BEGIN -->	
-		<div style = "padding: 10px 15px 5px 15px;">
-		
-		<table style = "width: 100%; padding-left: 15px;">
-		
-		<tr>
-		
-		<td style ="vertical-align: top; width: 60px; padding-top: 2px; ">
-			<img style = 'width: 100%;' src = "/ShouldIorV1/User/getProfileImage/${it.userID}" />
-		</td>
-		<td>
-		<table>
-		<tr>
-			<td style = " vertical-align: top; padding-left: 10px; text-align: left;">
-			<p style = " padding: 0px; font-size: 13px;" >
-			<span style = ""><b>${it.userName}</b></span>
-			<span style = "font-size: 12px;"><g:formatDate format="MM-dd-yyyy" date="${it.date}"/></span><br>
-			${it.comment}
-			</p>
-			</td>
-		</tr>
-		
-		<tr>
-		<td style = "padding-left: 10px; text-align: left;">
-		<span style = 'text-align: left; font-size: 15px; padding-top:0px; display: inline-block;'><b>${it.voteDiff}</b></span>
-		<span style = 'text-align: left; font-size: 15px; padding-left: 6px; padding-top:0px; display: inline-block;' class='fa fa-chevron-up'></span>
-		<span style = 'text-align: left; font-size: 15px; padding-left: 6px; padding-top:0px; display: inline-block;' class='fa fa-chevron-down'></span>
-		<span style = 'text-align: left; font-size: 15px; padding-left: 6px; padding-top:0px; display: inline-block;' class='fa fa-reply'></span>
-		<span style = 'text-align: left; font-size: 15px; padding-left: 6px; padding-top:0px; display: inline-block;' ><a href = "#">34 Replys</a></span>
-		
-		</td>
-		
-		</tr>
-		</table>
-		</td>	
-		
-		
-		</tr>
-		
-		
-		</table>
-		
-	
-		  <div style = ' float: left; margin-bottom: 0px; margin-left: 28px;'>  
-		
-			
-		
-		  </div>
-		  
-		  <!-- Reply BOX -->	
-		  <div id = "replyBox"style = "display:none; margin-top: 10px;">
-		 <div class="commentReplies" style = "margin-left: 100px;">
-		 		
-		  <!-- MESSAGE reply -->	
-				<blockquote style = "padding: 0px; ">
-
-		  <div  style = "width: 70px; display: inline-block; float: left;">
-			<img style = 'text-align: center; width: 100%; padding-top:8px; padding-left: 10px; padding-right: 0px;' src = "blankAv.png" />
-		  </div>
-		  <div  style = "margin-left:80px;">  
-			<p style = "padding: 4px 9px 4px 4px; font-size: 14px; margin-bottom: 0px;" >
-			<span style = "margin-right: 4px;"><b>Nicolas Melia</b></span>
-			<span style = "margin-right: 4px;">11/10/1989</span><br>
-			Yeah right no one belives in this this is  ajoke	
-			</p>
-			
-			<div style = "padding-bottom: 10px; ">
-			<span style = 'text-align: left; font-size: 15px; padding-left: 5px; padding-top:0px; display: inline-block;'><b>34</b></span>
-			<span style = 'text-align: left; font-size: 15px; padding-left: 6px; padding-top:0px; display: inline-block;' class='fa fa-chevron-up'></span>
-			<span style = 'text-align: left; font-size: 15px; padding-left: 6px; padding-top:0px; display: inline-block;' class='fa fa-chevron-down'></span>
-			</div>
-			
-		  </div>
-		  		 </blockquote>
-				 		  <!-- MESSAGE reply -->	
-				 		  <button type="button" style = "display: block; height: 30px; padding: 4px; width: 100px;   margin-bottom: 10px;" class="btn btn-default">Load More</button>
-		</div>	
-		  </div>
-		  <!-- Reply BOX -->	
- 
-		</div>		 
-		<hr style =" padding: 2px 0px 0px 0px; margin: 0px; width: 90%; margin: auto;">
-		<!-- MESSAGE ROW END -->
-		
-			</g:each>
-						
-			</div>
-			
-	<div class="form-group" style = "padding-left: 16px; padding-right: 16px; padding-top: 15px; vertical-align:top;  height: 140px; ">		
-		<textarea id  = "commentText" type="text" style = "resize: none; height: 90px;" class="form-control" id="exampleInputPassword1" placeholder="Leave a comment"></textarea>
-		<button onClick = "postMainComment()" type="button" style = "margin-top: 10px; display: inline-block;" class="btn btn-default">Comment</button>
-
-		<div class="checkbox checkbox-danger"  style = "display: inline-block;  vertical-align: bottom;  margin-left: 2px;" >
-		<input type="checkbox"  id="anonymousCheckbox"/>
-		    <label  for="anonymousCheckbox">
-		        Anonymous Comment
-		    </label>
-		</div> 
-					
-	</div>
-
+			<div class="fb-comments" data-href="http://localhost:8080/ShouldIorV1/Question/shouldi/${questionID}" data-numposts="5"></div>
 
 		</div>
 		<!-- COMMENT BOX -->	
@@ -382,6 +299,13 @@
 	$(document).ready(function() {
 		$("#diffPercent").text($("#percentDiffHidden").val() + "%")
 
+		FB.ui({
+  method: 'share',
+  display: 'dialog',
+  href: 'https://developers.facebook.com/docs/',
+}, function(response){});
+		
+		
 		//if ($("#voted").val() == "true") {
 			//$("#AnswerOneCount").css("display","inline-block")
 			//$("#AnswerTwoCount").css("display","inline-block")
@@ -401,7 +325,19 @@
 	function login() {
 		  alert("conected");
 	}
-			
+
+
+	function test() {
+		FB.ui({
+			  method: 'feed',
+			  display: 'iframe',
+			  app_id: '1625511597708023',
+			  link: 'https://developers.facebook.com/docs/',
+			  caption: 'How are you doing',
+			  description: 'Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello Hello',
+			  picture: 'https://upload.wikimedia.org/wikipedia/commons/9/95/Burning_Yellow_Sunset.jpg',
+			}, function(response){});
+		}
 		
 
 	

@@ -2,7 +2,7 @@ function questionVote(vote) {
 	if ($('#sessionCheck').val() == "true") {
 		  $.ajax({
 			  type: 'post',
-			    url: "/ShouldIorV1/Question/questionVote",
+			    url: "../../Question/questionVote",
 			    async: true,
 			    data: {questionID : $("#questionID").val(), vote: vote},
 		  }).done(function(result){
@@ -27,7 +27,7 @@ function postMainComment() {
 	if ($('#sessionCheck').val() == "true") {
 		  $.ajax({
 			  type: 'post',
-			    url: "/ShouldIorV1/Comment/postMainComment",
+			    url: "../../Comment/postMainComment",
 			    async: true,
 			    data: {questionID : $("#questionID").val(), comment: $("#commentText").val()},
 		  }).done(function(result){

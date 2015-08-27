@@ -24,7 +24,7 @@ class QuestionController {
 			voted = true		
 		}
 				
-		render(view: "shouldi", model: ["question": question, "comments": comments, "percentDiff": percentDif, "voted": voted])
+		render(view: "shouldi", model: ["question": question, "questionID": question.questionID, "percentDiff": percentDif, "voted": voted])
 		
 		} else {
 		render "Error finding this question"
