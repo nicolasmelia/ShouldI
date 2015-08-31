@@ -23,106 +23,120 @@ printHtmlPart(2)
 invokeTag('captureMeta','sitemesh',8,['gsp_sm_xmlClosingForEmptyTag':(""),'name':("description"),'content':("")],-1)
 printHtmlPart(1)
 invokeTag('captureMeta','sitemesh',9,['gsp_sm_xmlClosingForEmptyTag':(""),'name':("author"),'content':("")],-1)
-printHtmlPart(3)
-for( _it2041386868 in (question) ) {
-changeItVariable(_it2041386868)
-printHtmlPart(4)
-invokeTag('captureMeta','sitemesh',13,['gsp_sm_xmlClosingForEmptyTag':("/"),'property':("og:url"),'content':("http://localhost:8080/ShouldIorV1/")],-1)
-printHtmlPart(5)
-invokeTag('captureMeta','sitemesh',14,['gsp_sm_xmlClosingForEmptyTag':("/"),'property':("og:type"),'content':("website")],-1)
-printHtmlPart(5)
-invokeTag('captureMeta','sitemesh',15,['gsp_sm_xmlClosingForEmptyTag':("/"),'property':("og:title"),'content':("ShouldI.fm")],-1)
-printHtmlPart(5)
-invokeTag('captureMeta','sitemesh',16,['gsp_sm_xmlClosingForEmptyTag':("/"),'property':("og:description"),'content':(it.questionTitle)],-1)
-printHtmlPart(5)
-invokeTag('captureMeta','sitemesh',17,['gsp_sm_xmlClosingForEmptyTag':("/"),'property':("og:image"),'content':("http://localhost:8080/ShouldIorV1/Question/getAnswerOneImageById/${it.questionID}")],-1)
-printHtmlPart(6)
-}
-printHtmlPart(7)
+printHtmlPart(1)
 createTagBody(2, {->
-createClosureForHtmlPart(8, 3)
-invokeTag('captureTitle','sitemesh',21,[:],3)
+createClosureForHtmlPart(3, 3)
+invokeTag('captureTitle','sitemesh',10,[:],3)
 })
-invokeTag('wrapTitleTag','sitemesh',21,[:],2)
+invokeTag('wrapTitleTag','sitemesh',10,[:],2)
+printHtmlPart(4)
+invokeTag('resource','g',12,['dir':("css"),'file':("bootstrap.css")],-1)
+printHtmlPart(5)
+invokeTag('resource','g',13,['dir':("css"),'file':("buttons.css")],-1)
+printHtmlPart(6)
+invokeTag('resource','g',15,['dir':("css"),'file':("awesome-bootstrap-checkbox.css")],-1)
+printHtmlPart(7)
+invokeTag('javascript','g',17,['src':("facebookLogin.js")],-1)
+printHtmlPart(8)
+})
+invokeTag('captureHead','sitemesh',25,[:],1)
 printHtmlPart(9)
-invokeTag('resource','g',24,['dir':("css"),'file':("bootstrap.css")],-1)
-printHtmlPart(10)
-invokeTag('resource','g',25,['dir':("css"),'file':("buttons.css")],-1)
-printHtmlPart(11)
-invokeTag('resource','g',28,['dir':("css"),'file':("awesome-bootstrap-checkbox.css")],-1)
-printHtmlPart(12)
-invokeTag('javascript','g',32,['src':("facebookLogin.js")],-1)
-printHtmlPart(13)
-})
-invokeTag('captureHead','sitemesh',41,[:],1)
-printHtmlPart(14)
 createTagBody(1, {->
-printHtmlPart(15)
+printHtmlPart(10)
 if(true && (session.name)) {
-printHtmlPart(16)
+printHtmlPart(11)
 }
 else {
-printHtmlPart(17)
+printHtmlPart(12)
 }
-printHtmlPart(18)
+printHtmlPart(13)
 expressionOut.print(percentDiff)
-printHtmlPart(19)
-expressionOut.print(voted)
-printHtmlPart(20)
+printHtmlPart(14)
+expressionOut.print(vote)
+printHtmlPart(15)
 expressionOut.print(answerOneVote)
-printHtmlPart(21)
+printHtmlPart(16)
 expressionOut.print(answerTwoVote)
-printHtmlPart(22)
+printHtmlPart(17)
 expressionOut.print(answerThreeVote)
-printHtmlPart(23)
+printHtmlPart(18)
 expressionOut.print(answerFourVote)
-printHtmlPart(24)
+printHtmlPart(19)
 expressionOut.print(resource(dir:'images',file:'logo.png'))
-printHtmlPart(25)
+printHtmlPart(20)
 if(true && (session.name)) {
-printHtmlPart(26)
+printHtmlPart(21)
+}
+else {
+printHtmlPart(22)
+}
+printHtmlPart(23)
+if(true && (session.name)) {
+printHtmlPart(24)
+expressionOut.print(session.userID)
+printHtmlPart(25)
 expressionOut.print(session.name)
+printHtmlPart(26)
+}
+else {
 printHtmlPart(27)
 }
-else {
 printHtmlPart(28)
-}
+for( _it698336642 in (question) ) {
+changeItVariable(_it698336642)
 printHtmlPart(29)
-for( _it105856166 in (question) ) {
-changeItVariable(_it105856166)
+expressionOut.print(it.questionID)
 printHtmlPart(30)
-expressionOut.print(it.questionID)
-printHtmlPart(31)
 expressionOut.print(it.userID)
-printHtmlPart(32)
+printHtmlPart(31)
 expressionOut.print(it.questionTitle)
-printHtmlPart(33)
+printHtmlPart(32)
 expressionOut.print(it.questionID)
-printHtmlPart(34)
+printHtmlPart(33)
 expressionOut.print(raw(it.question))
-printHtmlPart(35)
+printHtmlPart(34)
 expressionOut.print(it.answerOneVotes)
-printHtmlPart(36)
+printHtmlPart(35)
 expressionOut.print(it.answerTwoVotes)
-printHtmlPart(37)
+printHtmlPart(36)
 }
+printHtmlPart(37)
+for( _it811249375 in (questionArray) ) {
+changeItVariable(_it811249375)
 printHtmlPart(38)
-expressionOut.print(questionID)
+expressionOut.print(it.questionID)
 printHtmlPart(39)
-invokeTag('javascript','g',304,['src':("dataAccess.js")],-1)
+if(true && (it.answerOneImage)) {
 printHtmlPart(40)
-invokeTag('resource','g',306,['dir':("js"),'file':("bootstrap.min.js")],-1)
+expressionOut.print(it.questionID)
 printHtmlPart(41)
-})
-invokeTag('captureBody','sitemesh',343,['style':("  ")],1)
+}
+else {
 printHtmlPart(42)
+expressionOut.print(resource(dir:'images',file:'noImg.png'))
+printHtmlPart(43)
+}
+printHtmlPart(44)
+expressionOut.print(it.questionTitle)
+printHtmlPart(45)
+}
+printHtmlPart(46)
+expressionOut.print(questionID)
+printHtmlPart(47)
+invokeTag('javascript','g',267,['src':("dataAccess.js")],-1)
+printHtmlPart(48)
+invokeTag('resource','g',268,['dir':("js"),'file':("bootstrap.min.js")],-1)
+printHtmlPart(49)
+})
+invokeTag('captureBody','sitemesh',302,['style':("  ")],1)
+printHtmlPart(50)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1440632624643L
+public static final long LAST_MODIFIED = 1440997707516L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

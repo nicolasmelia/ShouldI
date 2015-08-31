@@ -140,3 +140,9 @@ body {background-color: #F5F5F5!important;  min-width: 330px;}
 .fb-page, .fb-page iframe[style], .fb-page span {
     width: 100% !important;
 }
+
+.favsharButtion :hover {
+	opacity: .65;
+	
+}
+

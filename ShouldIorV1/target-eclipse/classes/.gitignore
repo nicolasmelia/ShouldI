@@ -1,5 +1,13 @@
+/asset/
+/dbdoc/
 /grails/
+/hibernate/
+/hibernate.cfg.xml
+/javascripts/
 /org/
+/shouldiorv1/
+/spring/
+/uglifyjs/
 /AssetPipelineBootStrap$_closure1.class
 /AssetPipelineBootStrap.class
 /AssetUrlMappings$__clinit__closure1.class
@@ -33,6 +41,8 @@
 /DataSource$_run_closure3_closure6_closure9.class
 /DataSource$_run_closure3_closure6_closure9_closure10.class
 /DataSource.class
+/DbdocUrlMappings$__clinit__closure1.class
+/DbdocUrlMappings.class
 /DefaultCacheConfig$_run_closure1.class
 /DefaultCacheConfig$_run_closure1_closure2.class
 /DefaultCacheConfig$_run_closure1_closure3.class
@@ -41,12 +51,8 @@
 /UrlMappings$__clinit__closure1_closure2.class
 /UrlMappings$__clinit__closure1_closure2_closure3.class
 /UrlMappings.class
-/asset/
 /resources$_run_closure1.class
 /resources.class
-/shouldiorv1/
-/DbdocUrlMappings$__clinit__closure1.class
-/DbdocUrlMappings.class
 /DefaultWebXmlConfig$_run_closure1.class
 /DefaultWebXmlConfig.class
 /JQueryConfig$_run_closure1.class

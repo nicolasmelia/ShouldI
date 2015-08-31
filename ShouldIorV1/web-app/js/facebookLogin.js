@@ -147,7 +147,7 @@ function checkFaceBookLogin() {
 function logoutFaceBook() {
 	  $.ajax({
 		  type: 'post',
-		    url: "../../Authentication/logout",
+		    url: "/ShouldIorV1/Authentication/logout",
 		    async: true,
 		    data: {logout : "true"},
 	  }).done(function(result){

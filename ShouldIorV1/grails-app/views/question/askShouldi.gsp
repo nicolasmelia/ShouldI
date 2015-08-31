@@ -107,7 +107,7 @@
 		<p style = "padding:0px; font-size: 19px; margin: auto; color: #5BC0DE; text-align: center;">Yes/No<span style = "color: #8D8D8D; font-size: 18px;"></span></p>
 		</div> 
 	
-		<div  class="custom" style=" border-top-right-radius: 8px; border-top: 1px solid #E1E1E1;  border-left: 1px solid #E1E1E1;  margin-top: 0px;  width: 50%;margin-right:-1px;   float: right; padding: 8px; vertical-align: bottom; display: inline-block;">
+		<div onClick = "openCustom()" class="custom" style=" border-top-right-radius: 8px; border-top: 1px solid #E1E1E1;  border-left: 1px solid #E1E1E1;  margin-top: 0px;  width: 50%;margin-right:-1px;   float: right; padding: 8px; vertical-align: bottom; display: inline-block;">
 		<p style = "padding:0px; font-size: 19px; margin: auto; color: #5BC0DE; text-align: center;">Custom<span style = "color: #8D8D8D; font-size: 18px; "> </span></p>
 		</div> 
 		</div>	
@@ -200,7 +200,7 @@
      <link rel="stylesheet" type="text/css" href="<g:resource dir='js/tagsJS' file='bootstrap-tagsinput.css'/>">
 	
 	<script>
-	
+	var editor;
 	$('#tagsInput1').tagsinput({
 	  maxChars: 10
 	});
@@ -208,11 +208,23 @@
 	$( document ).ready(function() {
 		  $('.single').css('border-bottom', ' solid 2px #5BC0DE');
 
-		var editor = new wysihtml5.Editor("wysihtml5-textarea", { // id of textarea element
+		 editor = new wysihtml5.Editor("wysihtml5-textarea", { // id of textarea element
 			  toolbar:      "wysihtml5-toolbar", // id of toolbar element
 			  parserRules:  wysihtml5ParserRules // defined in parser rules set 
 			});
-			
+
+		
+		// ADDDDDDDDDDDDDDDDDDDDD
+		editor.on('load', function () {
+	    var body = $('iframe').contents().find('body');
+
+	    body.on('keydown', function (e) {
+	        if (e.keyCode == 13) {
+	            editor.composer.commands.exec("insertHTML", "&nbsp;");
+	        }
+	    })
+	});
+		//ADDDDDDDDDDDDDDDDDDDDD
 	
 	$("#anonymousCheckbox").click(function() {
 	  if (this.checked) {
@@ -265,6 +277,14 @@
 	//$('#image1').fadeOut(1000);
 	$('#imgContainer').fadeOut(800);
 	}	
+
+
+	function openCustom() {
+		 
+		window.location.href = '/ShouldIorV1/Question/askShouldICustom';
+
+	}
+
 	
 	</script>
 	

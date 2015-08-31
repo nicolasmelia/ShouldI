@@ -18,13 +18,17 @@ class QuestionController {
 		String percentDif = (calcHighDiffPercent(true,question.totalVotes,question.answerOneVotes,question.answerTwoVotes,0,0)).toString().replace(".", "")
 		
 		// Did they vote on this question?
-		boolean voted = false
-		def votes = Vote.findAllByUserIDAndItemID(session["userID"], question.questionID)
-		if (votes.size() > 0) {
-			voted = true		
+		String vote
+		def votes = Vote.findByUserIDAndItemID(session["userID"], question.questionID)
+		if (votes !=null) {
+			vote = votes.vote + ""	
+		} else {
+			vote = "NONE"
 		}
+		
+		def questions = Question.findAllByTotalVotesGreaterThan(-1)
 				
-		render(view: "shouldi", model: ["question": question, "questionID": question.questionID, "percentDiff": percentDif, "voted": voted])
+		render(view: "shouldi", model: ["question": question, "questionID": question.questionID, "questionArray" : questions, "percentDiff": percentDif, "vote": vote])
 		
 		} else {
 		render "Error finding this question"
@@ -103,6 +107,17 @@ class QuestionController {
 	}
 	
 	
+	
+	// ********************* ASK SHOULD I CUSTOM *********************
+	
+	def askShouldICustom() {
+		if (session["userID"] != null) {
+		render(view: "askshouldiCustom")
+		} else {
+			render "Please log in bitch"
+		}
+	}
+	
 	def getAnswerOneImageById() {
 		Question question = Question.findByQuestionID(params.id)
 		if (question != null) {
@@ -139,10 +154,10 @@ class QuestionController {
 			def question = Question.findByQuestionID(params.questionID)
 			if (question.yesOrNo) {
 			// *********** YES/NO question vote ***********
-			if (params.vote.toString().matches("ONE")) {
+			if (params.vote.toString().matches("1")) {
 				vote.vote = 1
 				question.answerOneVotes = question.answerOneVotes + 1
-			} else if (params.vote.toString().matches("TWO")) {
+			} else if (params.vote.toString().matches("2")) {
 				vote.vote = 2
 				question.answerTwoVotes = question.answerTwoVotes + 1
 			}
