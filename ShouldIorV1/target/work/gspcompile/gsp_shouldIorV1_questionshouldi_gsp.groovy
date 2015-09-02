@@ -82,8 +82,8 @@ else {
 printHtmlPart(27)
 }
 printHtmlPart(28)
-for( _it698336642 in (question) ) {
-changeItVariable(_it698336642)
+for( _it1170482099 in (question) ) {
+changeItVariable(_it1170482099)
 printHtmlPart(29)
 expressionOut.print(it.questionID)
 printHtmlPart(30)
@@ -91,52 +91,66 @@ expressionOut.print(it.userID)
 printHtmlPart(31)
 expressionOut.print(it.questionTitle)
 printHtmlPart(32)
-expressionOut.print(it.questionID)
+if(true && (it.custom.toString().equals('false'))) {
 printHtmlPart(33)
-expressionOut.print(raw(it.question))
-printHtmlPart(34)
-expressionOut.print(it.answerOneVotes)
-printHtmlPart(35)
-expressionOut.print(it.answerTwoVotes)
-printHtmlPart(36)
-}
-printHtmlPart(37)
-for( _it811249375 in (questionArray) ) {
-changeItVariable(_it811249375)
-printHtmlPart(38)
 expressionOut.print(it.questionID)
+printHtmlPart(34)
+}
+printHtmlPart(35)
+expressionOut.print(raw(it.question))
+printHtmlPart(36)
+if(true && (it.custom.toString().equals('false'))) {
+printHtmlPart(37)
+expressionOut.print(it.custom)
+printHtmlPart(38)
+}
 printHtmlPart(39)
-if(true && (it.answerOneImage)) {
+expressionOut.print(it.questionID)
 printHtmlPart(40)
 expressionOut.print(it.questionID)
 printHtmlPart(41)
-}
-else {
+expressionOut.print(it.answerOneVotes)
 printHtmlPart(42)
-expressionOut.print(resource(dir:'images',file:'noImg.png'))
+expressionOut.print(it.answerTwoVotes)
 printHtmlPart(43)
 }
 printHtmlPart(44)
-expressionOut.print(it.questionTitle)
+for( _it2117195067 in (questionArray) ) {
+changeItVariable(_it2117195067)
 printHtmlPart(45)
-}
+expressionOut.print(it.questionID)
 printHtmlPart(46)
-expressionOut.print(questionID)
+if(true && (it.answerOneImage)) {
 printHtmlPart(47)
-invokeTag('javascript','g',267,['src':("dataAccess.js")],-1)
+expressionOut.print(it.questionID)
 printHtmlPart(48)
-invokeTag('resource','g',268,['dir':("js"),'file':("bootstrap.min.js")],-1)
+}
+else {
 printHtmlPart(49)
-})
-invokeTag('captureBody','sitemesh',302,['style':("  ")],1)
+expressionOut.print(resource(dir:'images',file:'noImg.png'))
 printHtmlPart(50)
+}
+printHtmlPart(51)
+expressionOut.print(it.questionTitle)
+printHtmlPart(52)
+}
+printHtmlPart(53)
+expressionOut.print(questionID)
+printHtmlPart(54)
+invokeTag('javascript','g',293,['src':("dataAccess.js")],-1)
+printHtmlPart(55)
+invokeTag('resource','g',294,['dir':("js"),'file':("bootstrap.min.js")],-1)
+printHtmlPart(56)
+})
+invokeTag('captureBody','sitemesh',328,['style':("  ")],1)
+printHtmlPart(57)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1440997707516L
+public static final long LAST_MODIFIED = 1441149728799L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

@@ -172,7 +172,7 @@
 	<div style = "display: block; width: 100%" >
 	<g:actionSubmit  value = "Post"  action = "postShouldI" style = "margin-top: 1px; width: 100px; display: inline-block;" class="btn btn-default"/>
 		<span class="btn btn-default btn-file">
-			Upload Photo <input id = "imageUpload" name = 'image' type="file">
+			Upload Photo <input id = "imageUpload" name = 'image1' type="file">
 		</span>
 	</div>
 			</g:form>

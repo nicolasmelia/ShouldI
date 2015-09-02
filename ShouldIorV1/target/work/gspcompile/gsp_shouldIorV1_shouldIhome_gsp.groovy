@@ -82,8 +82,8 @@ printHtmlPart(24)
 printHtmlPart(25)
 expressionOut.print(resource(dir:'images',file:'logoDark.png'))
 printHtmlPart(26)
-for( _it1626987646 in (question) ) {
-changeItVariable(_it1626987646)
+for( _it1399693980 in (question) ) {
+changeItVariable(_it1399693980)
 printHtmlPart(27)
 expressionOut.print(it.questionID)
 printHtmlPart(28)
@@ -104,36 +104,36 @@ expressionOut.print(it.totalVotes)
 printHtmlPart(35)
 }
 printHtmlPart(36)
-for( _it22958662 in (question) ) {
-changeItVariable(_it22958662)
+for( _it1492896625 in (question) ) {
+changeItVariable(_it1492896625)
 printHtmlPart(37)
 expressionOut.print(it.questionID)
 printHtmlPart(38)
 if(true && (it.answerOneImage)) {
 printHtmlPart(39)
 expressionOut.print(it.questionID)
-printHtmlPart(40)
+printHtmlPart(30)
 }
 else {
-printHtmlPart(41)
+printHtmlPart(40)
 expressionOut.print(resource(dir:'images',file:'noImg.png'))
+printHtmlPart(32)
+}
+printHtmlPart(41)
+expressionOut.print(it.questionTitle)
 printHtmlPart(42)
 }
 printHtmlPart(43)
-expressionOut.print(it.questionTitle)
-printHtmlPart(44)
-}
-printHtmlPart(45)
 })
-invokeTag('captureBody','sitemesh',337,['style':("background-image:url('${resource(dir: "images", file: "wall21.jpg")}'); margin-bottom: 20px; background-size: cover;  background-attachment: fixed; min-width: 330px;  ")],1)
-printHtmlPart(46)
+invokeTag('captureBody','sitemesh',316,['style':("background-color: #F6F6F6!important; margin-bottom: 20px; background-size: cover;  background-attachment: fixed; min-width: 330px;  ")],1)
+printHtmlPart(44)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1440998301555L
+public static final long LAST_MODIFIED = 1441149582914L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

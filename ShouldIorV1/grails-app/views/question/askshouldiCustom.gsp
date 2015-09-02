@@ -159,7 +159,7 @@
 
 </div>
 
-	 <g:form controller="Question" action="postShouldI" enctype="multipart/form-data" >
+	 <g:form controller="Question" action="postShouldICutom" enctype="multipart/form-data" >
 	<input type="text" name = "title" style = "width: 100%;  margin-top: 8px; " class="form-control" id="title" placeholder="Title">
 
 	<textarea type="text" name = "question" style = "resize: none; height: 170px; margin-top: 8px; " class="form-control" id="wysihtml5-textarea" placeholder="Should I, or..."></textarea>
@@ -175,9 +175,9 @@
 		<span onClick = "removePhoto('imgContainer1', 'imageUpload1')" style = 'text-align: right;  right: 0px; float: right; font-color: #606060; font-size: 20px; padding-right: 0px; padding-top:0px; display: inline-block;' class='fa fa-share-alt-square'></span>
 		<img id="image1" src="#" style ="display: none; margin: auto; width: 50%" alt="Error displaying image (Image will still upload)" />
 		</div>
-		<input type="text" style = "width: 100%;" class="form-control" id="option1" placeholder="Ex. Yes, Black, Fast">
+		<input name = "answerOne" type="text" style = "width: 100%;" class="form-control" id="option1" placeholder="Ex. Yes, Black, Fast">
 		<span  class="btn btn-default btn-file" style ="height: 25px; margin-top: 10px; padding-top: 2px;">
-			Upload Photo <input onClick = "test()" id = "imageUpload1" name = 'image' type="file">
+			Upload Photo <input onClick = "test()" id = "imageUpload1" name = 'image1' type="file">
 		</span>
 		</div>
 	</div>
@@ -189,9 +189,9 @@
 		<span onClick = "removePhoto('imgContainer2', 'imageUpload2')" style = 'text-align: right;  right: 0px; float: right;  font-color: #606060; font-size: 20px; padding-right: 0px; padding-top:0px; display: inline-block;' class='fa fa-share-alt-square'></span>
 		<img id="image2" src="#" style ="display: none; margin: auto; width: 50%" alt="Error displaying image (Image will still upload)" />
 		</div>
-		<input type="text" style = "width: 100%;" class="form-control" style = "" id="option2" placeholder="Ex. No, White, Slow">
+		<input  name = "answerTwo" type="text" style = "width: 100%;" class="form-control" style = "" id="option2" placeholder="Ex. No, White, Slow">
 		<span class="btn btn-default btn-file" style ="height: 25px; margin-top: 10px; padding-top: 2px;">
-			Upload Photo <input id = "imageUpload2" name = 'image' type="file">
+			Upload Photo <input id = "imageUpload2" name = 'image2' type="file">
 		</span>
 	  </div>
     </div>
@@ -204,7 +204,7 @@
 	<span onClick = "removePhoto('imgContainer3', 'imageUpload3')" style = 'text-align: right;  right: 0px; float: right;  font-color: #606060; font-size: 20px; padding-right: 0px; padding-top:0px; display: inline-block;' class='fa fa-share-alt-square'></span>
 	<img id="image3" src="#" style ="display: none; margin: auto; width: 50%" alt="Error displaying image (Image will still upload)" />
 	</div>
-    <input type="text" style = "width: 100%;" class="form-control" style = "" id="option3" placeholder="Ex. No, White, Slow">
+    <input  name = "answerThree" type="text" style = "width: 100%;" class="form-control" style = "" id="option3" placeholder="Ex. No, White, Slow">
 	<span class="btn btn-default btn-file" style ="height: 25px; margin-top: 10px; padding-top: 2px;">
 		Upload Photo <input id = "imageUpload3" name = 'image3' type="file">
 	</span>
@@ -219,9 +219,9 @@
 	<span onClick = "removePhoto('imgContainer4', 'imageUpload4')" style = 'text-align: right;  right: 0px; float: right;  font-color: #606060; font-size: 20px; padding-right: 0px; padding-top:0px; display: inline-block;' class='fa fa-share-alt-square'></span>
 	<img id="image4" src="#" style ="display: none; margin: auto; width: 50%" alt="Error displaying image (Image will still upload)" />
 	</div>
-    <input type="text" style = "width: 100%;" class="form-control" style = "" id="option4" placeholder="Ex. No, White, Slow">
+    <input  name = "answerFour" type="text" style = "width: 100%;" class="form-control" style = "" id="option4" placeholder="Ex. No, White, Slow">
 	<span class="btn btn-default btn-file" style ="height: 25px; margin-top: 10px; padding-top: 2px;">
-		Upload Photo <input id = "imageUpload4" name = 'image' type="file">
+		Upload Photo <input id = "imageUpload4" name = 'image4' type="file">
 	</span>
   </div>
   </div>
@@ -247,8 +247,9 @@
 		</div> 
 		
 		
-	<g:actionSubmit  value = "Post"  action = "postShouldI" style = "margin-top: 1px; width: 100px; display: inline-block;" class="btn btn-default"/>
-		 			</g:form>
+	<g:actionSubmit  value = "Post"  action = "postShouldICutom" style = "margin-top: 1px; width: 100px; display: inline-block;" class="btn btn-default"/>
+	
+	</g:form>
 
 		</div>
 

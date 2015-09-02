@@ -45,13 +45,13 @@ class Question {
 
     static constraints = {
 		
-		question(maxSize: 500)
+		question maxSize: 200000
 		tags(nullable:true)
 		
-		answerOneImage(nullable:true, maxSize: 1024 * 1024 * 2 /* 2MB */)
-		answerTwoImage(nullable:true, maxSize: 1024 * 1024 * 2 /* 2MB */)
-		answerThreeImage(nullable:true, maxSize: 1024 * 1024 * 2 /* 2MB */)
-		answerFourImage(nullable:true, maxSize: 1024 * 1024 * 2 /* 2MB */)
+		answerOneImage(nullable:true, maxSize: 1024 * 1024 * 3 /* 2MB */)
+		answerTwoImage(nullable:true, maxSize: 1024 * 1024 * 3 /* 2MB */)
+		answerThreeImage(nullable:true, maxSize: 1024 * 1024 * 3 /* 2MB */)
+		answerFourImage(nullable:true, maxSize: 1024 * 1024 * 3 /* 2MB */)
 		
 		
 		answerOne(nullable:true)
@@ -66,4 +66,8 @@ class Question {
 		answerFourVotes(nullable:true)
 		
     }
+	
+	static mapping = {
+		question sqlType: 'longtext'
+	}
 }

@@ -34,7 +34,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
       <![endif]-->
    </head>
-  <body style = "background-image:url('${resource(dir: "images", file: "wall21.jpg")}'); margin-bottom: 20px; background-size: cover;  background-attachment: fixed; min-width: 330px;  ">
+  <body style = "background-color: #F6F6F6!important; margin-bottom: 20px; background-size: cover;  background-attachment: fixed; min-width: 330px;  ">
       <g:if test="${session.name}">
          <input id = "sessionCheck" type="hidden" name="country" value="true">
       </g:if>
@@ -99,11 +99,11 @@
       <div  class="" style="overflow: none;  display: block; min-height: 500px; margin: auto; min-width: 300px;    max-width: 775px; padding-left: 0px; padding-right: 0px; padding-top: 15px; padding-bottom: 0px;  margin-bottom: 0px;   ">
 
 
-		<div style = "width: 100%; display: block; text-align: center; margin-top: 65px;  ">
-		<img style = "width:10%; display: none; min-width: 80px; margin: auto; " src="${resource(dir:'images',file:'logoDark.png')}" />		
+		<div style = "width: 100%; display: block; text-align: center; margin-top: 70px;  ">
+		<img style = "width:50%; display: block; min-width: 260px; margin: auto; " src="${resource(dir:'images',file:'logoDark.png')}"   />		
 				
 				
-         <div class = 'favsharButtion' style = " font-size: 25px;  display: block; width: 100%; text-align: left; margin-top: 10px;">
+         <div class = 'favsharButtion' style = " font-size: 23px;  display: block; width: 100%; text-align: left; margin-top: 15px;">
                    <a  style = "color: #3d3d3d; margin:0px; padding: 0px;" href = "/ShouldIorV1/Question/askShouldI" > <span class= 'fa fa-pencil-square-o'> 
                    <span class = "element"  ></span>
                            </span> 
@@ -121,17 +121,17 @@
          
         
         
-         <div  class="jumbotron" style="box-shadow:0 0 10px rgba(0, 0, 0, 0.1);  border-top-left-radius: 5px; border-top-left-radius: 5px; background-color: rgba(255,255,255,0.9);  padding: 0px; padding-top: 0px;   height: 250px;  display: block; margin: 5px 0px 10px 0px; ">
+         <div  class="jumbotron" style="box-shadow:0 0 10px rgba(0, 0, 0, 0.1);  border-top-left-radius: 5px; border-top-left-radius: 5px; background-color: rgba(255,255,255,0.9);  padding: 0px; padding-top: 0px;  display: block; margin: 5px 0px 10px 0px; ">
             <div style = " border-top-left-radius: 5px;   border-bottom: 1px solid #ccc;   border-top-right-radius: 5px;  display:block;  margin: auto;  margin-top: 0px;   ">
                <p style = "color: #FD7B7B; padding: 10px; padding-top: 12px; height: 30px;  font-size: 18px;" class = "fa  fa-fire" > <span style ="margin-left: 7px; color: #3E3E3E; ">Popular Right Now</span> </p>
             </div>
-            <div style = "overflow-y: auto; display: block;">
+            <div style = "overflow-y: scroll; height: 200px; display: block;">
                <g:each in="${question}">
                   <table onmouseover="glow(this)" onmouseout="unGlow(this)"  onClick = "loadQuestionURL('${it.questionID}')" style="width: 100%; padding: 8px 4px 8px 4px; display:block;">
                      <tr style = "display:block; max-height: 105px; width: 100%; margin-top: 0px; ">
                         <td style = "min-width: 125px;  height: 100%; text-align:center; vertical-align:top; ">
                            <g:if test="${it.answerOneImage}">
-                              <img  style = "max-width:110px; max-height:100px; width: auto; height: auto; margin: auto;   padding: 0px;  " src = "/ShouldIorV1/question/getAnswerOneImageById/${it.questionID}" />	
+                              <img  style = "max-width:110px; max-height:100px; width: auto; height: auto; margin: auto;   padding: 0px;"    src = "/ShouldIorV1/Question/getAnswerImageById/${it.questionID}:1" />	
                            </g:if>
                            <g:else>
                               <img  style = "max-width:110px; max-height:100px; width: auto; height: auto; margin: auto;   padding: 0px;  " src="${resource(dir:'images',file:'noImg.png')}"  />	
@@ -167,7 +167,7 @@
       <div style = "width: 100%; ">
          <div  class="jumbotron" style="box-shadow:0 0 10px rgba(0, 0, 0, 0.1);  border-top-left-radius: 5px; border-top-left-radius: 5px; background-color: rgba(255,255,255,0.9);  padding: 0px; padding-top: 0px; display: block; margin: 10px 0px 10px 0px; ">
             <div style = " border-top-left-radius: 5px;   border-bottom: 1px solid #ccc;   border-top-right-radius: 5px;  display:block;  margin: auto;  margin-top: 10px;   ">
-               <p style = "color: #33A6DD; padding: 10px; padding-top: 12px; height: 30px;  font-size: 18px;" class = "fa  fa-money" > <span style ="margin-left: 7px; color: #3E3E3E; ">Cash in votes!</span> </p>
+               <p style = "color: #fff090; padding: 10px; padding-top: 12px; height: 30px;  font-size: 18px;" class = "fa  fa-star" > <span style ="margin-left: 7px; color: #3E3E3E; ">Get Noticed!</span> </p>
             </div>
 	            <div style = "padding: 15px;">
 		            <h3 style = "text-align: left; color: #6A6A6A; margin:0px;">
@@ -181,26 +181,23 @@
             </div>
          </div>
       </div>
-      
-      
-      
-      
+     
             
       <div style = "width: 100%; ">
          <div  class="jumbotron" style="box-shadow:0 0 10px rgba(0, 0, 0, 0.1);  border-top-left-radius: 5px; border-top-left-radius: 5px; background-color: rgba(255,255,255,0.9);  padding: 0px; padding-top: 0px;  display: block; margin: 10px 0px 10px 0px;  ">
             <div style = " border-top-left-radius: 5px;   border-bottom: 1px solid #ccc;   border-top-right-radius: 5px;  display:block;  margin: auto;  margin-top: 10px;   ">
-               <p style = "color: #33A6DD; padding: 10px; padding-top: 12px; height: 30px;  font-size: 18px;" class = "fa  fa-paper-plane-o" > <span style ="margin-left: 7px; color: #3E3E3E; ">On the rise</span> </p>
+               <p style = "color: #33A6DD; padding: 10px; padding-top: 12px; height: 30px;  font-size: 18px;" class = "fa  fa-random" > <span style ="margin-left: 7px; color: #3E3E3E; ">Randomly Awesome Polls!</span> </p>
             </div>
 	             <div  style = " margin:0px" class="row">
                <g:each in="${question}">
-                  <div style = "text-align: center; padding: 10px;" onmouseover="glow(this)" onmouseout="unGlow(this)"  onClick = "loadQuestionURL('${it.questionID}')"  class="col-xs-6 col-md-4">
-                     <div style = "width: 100%;">
-                        <g:if test="${it.answerOneImage}">
-                           <img  style = " width: 80%;   padding: 0px;  " src = "/ShouldIorV1/question/getAnswerOneImageById/${it.questionID}" />	
-                        </g:if>
-                        <g:else>
-                           <img  style = " width: 80%;   padding: 0px;  " src="${resource(dir:'images',file:'noImg.png')}"  />	
-                        </g:else>
+                  <div style = "text-align: center; padding: 10px; " onmouseover="glow(this)" onmouseout="unGlow(this)"  onClick = "loadQuestionURL('${it.questionID}')"  class="col-xs-6 col-md-4">
+                     <div style = "width: 100%; ">
+    					  <g:if test="${it.answerOneImage}">
+                              <img  style = "max-width:130px; max-height:130px; width: auto; height: auto; margin: auto;   padding: 0px;  " src = "/ShouldIorV1/Question/getAnswerImageById/${it.questionID}:1" />	
+                           </g:if>
+                           <g:else>
+                              <img  style = "max-width:130px; max-height:130px; width: auto; height: auto; margin: auto;   padding: 0px;  " src="${resource(dir:'images',file:'noImg.png')}"  />	
+                           </g:else>
                         <div style = "display:block;margin-top: 5px; ">${it.questionTitle}</div>
                      </div>
                   </div>
@@ -208,10 +205,6 @@
             </div>
          </div>
       </div>
-      
-      
-      
-      
       
 
       </div>

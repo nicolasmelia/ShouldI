@@ -8,7 +8,14 @@ class QuestionController {
 	static scaffold = true
 	
 	// View of a single question with comments
-	def shouldi() {
+	def shouldi(String questionID) {
+		
+		boolean opView = false; // True for first time view of OP
+		if (questionID != null) {
+			opView = true;
+			params.id = questionID
+		}
+		
 		def question = Question.findByQuestionID(params.id)
 		
 		// Return a max of 10 comments, offset returns starting at palce 0, sort by votes desc
@@ -28,7 +35,8 @@ class QuestionController {
 		
 		def questions = Question.findAllByTotalVotesGreaterThan(-1)
 				
-		render(view: "shouldi", model: ["question": question, "questionID": question.questionID, "questionArray" : questions, "percentDiff": percentDif, "vote": vote])
+		render(view: "shouldi", model: ["question": question, "questionID": question.questionID, "questionArray" : questions,
+			 "percentDiff": percentDif, "vote": vote, "opView" : opView])
 		
 		} else {
 		render "Error finding this question"
@@ -85,11 +93,11 @@ class QuestionController {
 		question.tags = params.tags
 		question.date = new Date()
 		
-		//question.answerOne = params.answerOne
-		//question.answerTwo = params.answerOne
+		question.answerOne = params.answerOne
+		question.answerTwo = params.answerOne
 		
-		if (params.image != null) {
-			def f = request.getFile('image')
+		if (params.image1 != null) {
+			def f = request.getFile('image1')
 				question.answerOneImage = f.bytes
 		}
 	
@@ -102,7 +110,9 @@ class QuestionController {
 		
 		question.ClientAddress = request.getRemoteAddr().toString()
 		question.save(flush:true)
-		render "Created"
+		
+		// Render question page for user posting
+		shouldi(question.questionID)
 		
 	}
 	
@@ -118,26 +128,107 @@ class QuestionController {
 		}
 	}
 	
-	def getAnswerOneImageById() {
-		Question question = Question.findByQuestionID(params.id)
+	
+	def postShouldICutom() {
+		Question question = new Question()
+				
+		// Generate a unique ID
+		while(true) {
+			// Create a UUID and cut it in half for easier reading
+			String uniqueID = UUID.randomUUID().toString().replace("-", "");
+			int midpoint = uniqueID.length() / 2;
+			String halfUUID = uniqueID.substring(0, midpoint)
+			int matchCount = Question.countByQuestionID(halfUUID)
+			if (matchCount == 0) {
+				question.questionID = halfUUID
+				break;
+			 }
+		}
+		
+		question.custom = true
+		question.yesOrNo = false // This is a YES/NO question
+		
+		if (params.anonymous != null) {
+			question.anonymous = params.anonymous
+		} else {
+			question.anonymous = false
+		}
+		
+		question.question = params.question
+		question.questionTitle = params.title
+		question.tags = params.tags
+		question.date = new Date()
+		
+		question.answerOne = params.answerOne
+		question.answerTwo = params.answerTwo
+		
+		question.answerOneVotes = 0
+		question.answerTwoVotes = 0
+		
+		if (params.image1 != null) {
+			def f = request.getFile('image1')
+				question.answerOneImage = f.bytes
+		}
+		
+		
+		if (params.image2 != null) {
+			def f = request.getFile('image2')
+				question.answerTwoImage = f.bytes
+		}
+		
+		
+		if (params.answerThree != null) {
+			question.answerThree = params.answerThree	
+			if (params.image3 != null) {
+				def f = request.getFile('image3')
+					question.answerThreeImage = f.bytes
+			}		
+			
+			question.answerThreeVotes = 0
+		} 
+		
+		if (params.answerFour != null) {
+			question.answerFour = params.answerFour
+			if (params.image4 != null) {
+				def f = request.getFile('image4')
+					question.answerFourImage = f.bytes
+			}		
+			question.answerFourVotes = 0	
+		}
+		
+		question.totalVotes = 0
+		question.totalComments = 0
+		
+		question.UserID = session["userID"]
+		
+		question.ClientAddress = request.getRemoteAddr().toString()
+		question.save(flush:true, failOnError: true)
+		render "Created"
+					
+	}
+	
+	// ********************* Get answer image by ID and numset *********************
+	def getAnswerImageById() {
+		// param is split by question id then number of question using :
+		Question question = Question.findByQuestionID(params.id.split(":")[0])
 		if (question != null) {
+			String imageSetNum = params.id.split(":")[1]
+			if (imageSetNum.matches("1")) {
                 response.outputStream << question.answerOneImage  // write the photo to the outputstream  
-                response.outputStream.flush() 
-		} else {
-			render "NONE"
-		}
-	}
-	
-	def getAnswerTwoImageById() {
-		Question question = Question.findByQuestionID(params.id)
-		if (question != null) {
+			} else if (imageSetNum.matches("2")) {
 				response.outputStream << question.answerTwoImage  // write the photo to the outputstream
-				response.outputStream.flush()
+			} else if (imageSetNum.matches("3")) {
+				response.outputStream << question.answerThreeImage  // write the photo to the outputstream
+			} else if (imageSetNum.matches("4")) {
+			response.outputStream << question.answerFourImage  // write the photo to the outputstream
+			}
+			response.outputStream.flush() 
 		} else {
 			render "NONE"
 		}
 	}
 	
+
 	
 	def questionVote() {
 		if (session["userID"] != null) {
