@@ -41,7 +41,7 @@ printHtmlPart(9)
 invokeTag('resource','g',36,['dir':("js/wysihtml5"),'file':("wysihtml5-0.3.0.min.js")],-1)
 printHtmlPart(10)
 })
-invokeTag('captureHead','sitemesh',47,[:],1)
+invokeTag('captureHead','sitemesh',44,[:],1)
 printHtmlPart(11)
 createTagBody(1, {->
 printHtmlPart(12)
@@ -74,19 +74,19 @@ printHtmlPart(23)
 printHtmlPart(24)
 createTagBody(2, {->
 printHtmlPart(25)
-invokeTag('actionSubmit','g',250,['value':("Post"),'action':("postShouldICutom"),'style':("margin-top: 1px; width: 100px; display: inline-block;"),'class':("btn btn-default")],-1)
+invokeTag('actionSubmit','g',245,['value':("Post"),'action':("postShouldICutom"),'style':("margin-top: 1px; width: 100px; display: inline-block;"),'class':("btn btn-default")],-1)
 printHtmlPart(26)
 })
-invokeTag('form','g',252,['controller':("Question"),'action':("postShouldICutom"),'enctype':("multipart/form-data")],2)
+invokeTag('form','g',247,['controller':("Question"),'action':("postShouldICutom"),'enctype':("multipart/form-data")],2)
 printHtmlPart(27)
-invokeTag('resource','g',268,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput-angular.js")],-1)
+invokeTag('resource','g',263,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput-angular.js")],-1)
 printHtmlPart(28)
-invokeTag('resource','g',269,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.js")],-1)
+invokeTag('resource','g',264,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.js")],-1)
 printHtmlPart(29)
-invokeTag('resource','g',270,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.css")],-1)
+invokeTag('resource','g',265,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.css")],-1)
 printHtmlPart(30)
 })
-invokeTag('captureBody','sitemesh',401,['style':("background-color: #f4f4f4; min-width: 330px; ")],1)
+invokeTag('captureBody','sitemesh',415,['style':("background-color: #f4f4f4; min-width: 330px; ")],1)
 printHtmlPart(31)
 }
 public static final Map JSP_TAGS = new HashMap()
@@ -94,7 +94,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1441151480823L
+public static final long LAST_MODIFIED = 1441490075390L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

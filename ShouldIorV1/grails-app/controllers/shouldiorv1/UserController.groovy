@@ -14,7 +14,6 @@ class UserController {
 	
 	def getProfileImage() {
 		User user = User.findByUserID(params.id);	
-		print "UI:" +  params.id
 		if (user != null) {
 			if (user.avatar != null) {
 				// If user avatar is from our system

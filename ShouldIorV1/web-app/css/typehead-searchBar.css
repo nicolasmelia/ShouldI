@@ -162,8 +162,8 @@
 
 .typed-cursor{
     opacity: 1;
-	color: #3d3d3d;
-	font-size: 25px;
+	color: #5BC0DE;
+	font-size: 23px;
 	height: 100%;
     -webkit-animation: blink 0.7s infinite;
     -moz-animation: blink 0.7s infinite;

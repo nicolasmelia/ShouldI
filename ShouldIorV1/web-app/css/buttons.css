@@ -23,35 +23,7 @@ body {background-color: #F5F5F5!important;  min-width: 330px;}
    }
    
 
-    .picAnswer1 {
-	border-bottom: solid 2px #FFFFFF;
-	border-right: solid 1px #F0F0E1;
-	background-color: #FFFFFF;
-	
-   }
-   
-   .picAnswer1:hover{
-	cursor: default; 
-	border-bottom: solid 2px #61B7FE;
-	background-color: #F7FBFF;
-   }
-   
-
-     .picAnswer2 {
-	border-bottom: solid 2px #FFFFFF;	
-	background-color: #FFFFFF;
-   }
-   
-   .picAnswer1 > .image :hover {
-   	opacity: 0.6;
-
-   }
-   
-   .picAnswer2:hover{
-	cursor: default; 
-	border-bottom: solid 2px #61B7FE;
-	background-color: #F7FBFF;
-   }
+  
    
     .next:hover {	  
 	cursor: default; 

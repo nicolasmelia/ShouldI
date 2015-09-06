@@ -14,11 +14,23 @@ function questionVote(vote) {
 		  }).done(function(result){
 			  if (result.split(":")[0]  == "True") {
 				  $("#vote").val(vote);
-				  $("#AnswerOneCount").text("(" + result.split(":")[2] + ")");
-				  $("#AnswerTwoCount").text("(" + result.split(":")[3] + ")");
-				  $("#diffPercent").html(result.split(":")[4] + "%");
-					$("#AnswerOneCount").css("display","inline-block")
-					$("#AnswerTwoCount").css("display","inline-block")
+				  
+				  // Display answer counts after vote
+				  var answersCount = result.split(":")
+				  var answerNum = 1;
+				  for (i = 4; i < answersCount.length; i++) { 	  
+					  $("#Answer" + answerNum + "Count").text("(" + answersCount[i] + ")");
+					  $("#Answer" + answerNum + "Count").css("display","inline-block")
+					  answerNum++;
+					}
+				  
+				  $("#diffPercent").empty();
+				  $("#topAnswer").empty();
+				  
+				  $("#diffPercent").html(result.split(":")[1] + "%");
+				  $("#topAnswer").html(result.split(":")[2]);
+
+			
 			  } else if (result.split(":")[0]  == "False") {
 					$('#voteWarn').slideDown();
 			  } else {

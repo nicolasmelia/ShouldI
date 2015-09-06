@@ -10,9 +10,7 @@ class QuestionController {
 	// View of a single question with comments
 	def shouldi(String questionID) {
 		
-		boolean opView = false; // True for first time view of OP
 		if (questionID != null) {
-			opView = true;
 			params.id = questionID
 		}
 		
@@ -20,23 +18,49 @@ class QuestionController {
 		
 		// Return a max of 10 comments, offset returns starting at palce 0, sort by votes desc
 		def comments = Comment.findAllByQuestionID(params.id, [max: 10, offset: 0, sort: "upVotes", order: "desc"])
-		if (question != null) {
-			
-		String percentDif = (calcHighDiffPercent(true,question.totalVotes,question.answerOneVotes,question.answerTwoVotes,0,0)).toString().replace(".", "")
-		
-		// Did they vote on this question?
-		String vote
-		def votes = Vote.findByUserIDAndItemID(session["userID"], question.questionID)
+		if (question != null) {			
+			String percentDif = (calcHighDiffPercent(question)).toString().replace(".", "")
+			// Did they vote on this question?
+			String vote
+			def votes = Vote.findByUserIDAndItemID(session["userID"], question.questionID)
 		if (votes !=null) {
 			vote = votes.vote + ""	
 		} else {
 			vote = "NONE"
 		}
 		
+		// add one to the questions views
+		question.totalViews = question.totalViews + 1
+		question.save(flush:true)
+		
+		// add one to the OPs view count
+		try {
+			if (session["UserID"].toString().matches(question.UserID)) {
+				User user = User.findByUserID(question.UserID)
+				user.peopleReached =  user.peopleReached + 1
+			}
+		} catch (Exception ex) {
+			// Do nothing. User is either deleted or banned. 
+		}
+		
+		// Check is question has an image
+		boolean hasQuestionImage = false
+		if (question.answerOneImage) {
+			hasQuestionImage = true;
+		} else if (question.answerTwoImage) {
+			hasQuestionImage = true;
+		} else if (question.answerThreeImage) {
+			hasQuestionImage = true;	
+		} else if (question.answerFourImage) {
+			hasQuestionImage = true;
+		}
+		
+		String topAnswer = getTopVote(question)
+		
 		def questions = Question.findAllByTotalVotesGreaterThan(-1)
 				
 		render(view: "shouldi", model: ["question": question, "questionID": question.questionID, "questionArray" : questions,
-			 "percentDiff": percentDif, "vote": vote, "opView" : opView])
+			 "percentDiff": percentDif, "vote": vote, "totalViews" : question.totalViews, "hasQuestionImage": hasQuestionImage, "topAnswer": topAnswer])
 		
 		} else {
 		render "Error finding this question"
@@ -103,7 +127,9 @@ class QuestionController {
 	
 		question.answerOneVotes = 0
 		question.answerTwoVotes = 0
+		
 		question.totalVotes = 0
+		question.totalViews = 0
 		question.totalComments = 0
 		
 		question.UserID = session["userID"]
@@ -197,6 +223,7 @@ class QuestionController {
 		}
 		
 		question.totalVotes = 0
+		question.totalViews = 0	
 		question.totalComments = 0
 		
 		question.UserID = session["userID"]
@@ -243,7 +270,7 @@ class QuestionController {
 			
 			// User has not votes on this question. Allow it.
 			def question = Question.findByQuestionID(params.questionID)
-			if (question.yesOrNo) {
+
 			// *********** YES/NO question vote ***********
 			if (params.vote.toString().matches("1")) {
 				vote.vote = 1
@@ -251,6 +278,12 @@ class QuestionController {
 			} else if (params.vote.toString().matches("2")) {
 				vote.vote = 2
 				question.answerTwoVotes = question.answerTwoVotes + 1
+			} else if (params.vote.toString().matches("3")) {
+				vote.vote = 3
+				question.answerThreeVotes = question.answerThreeVotes + 1
+			} else if (params.vote.toString().matches("4")) {
+				vote.vote = 4
+				question.answerFourVotes = question.answerFourVotes + 1
 			}
 			
 			// Save the question vote
@@ -259,51 +292,125 @@ class QuestionController {
 			
 			// save the vote
 			vote.save(flush:true)
-			
-			// Now render new question stats split by a ":"  
-			question.totalVotes
 
 			// Calc percent diff
-			String percentDif = (calcHighDiffPercent(true,question.totalVotes,question.answerOneVotes,question.answerTwoVotes,0,0)).toString().replace(".", "")
-				
-			render ("True" + ":" + question.totalVotes + ":" + question.answerOneVotes + ":" + question.answerTwoVotes + ":" + percentDif)
+			String percentDif = (calcHighDiffPercent(question)).toString().replace(".", "")
 			
-			} else {
-			// *********** Custom question vote ***********
-
-			}	
+			// Get top asnwer
+			String topAnswer = getTopVote(question)
+			
+			render ("True" + ":" + percentDif + ":" + topAnswer + ":" + question.totalVotes + ":" + question.answerOneVotes + ":" + 
+				question.answerTwoVotes + ":" + question.answerThreeVotes + ":" + question.answerFourVotes  + ":")
+			
 			
 		} else {
+			// User already voted
 			render ("False")
 		}	
 		
 		} else {
+			// User does not contain session.
 			render ("False")	
 		}
 		
 		
 	}
 	
-	def calcHighDiffPercent (boolean yesNo, totalVotes, int q1, int q2, int q3, int q4) {
+	def calcHighDiffPercent (Question question) {
 		// Returns the highest percentage of the difference 
-		if (totalVotes > 0) {
+		if (question.totalVotes > 0) {
 			int diff
-			if (yesNo) {
-				int q1Per = Math.round((q1 / totalVotes * 100))
-				int q2Per = Math.round((q2 / totalVotes * 100))		
+			if (question.yesOrNo) {
+				int q1Per = Math.round((question.answerOneVotes / question.totalVotes * 100))
+				int q2Per = Math.round((question.answerTwoVotes / question.totalVotes * 100))		
 				if (q1Per > q2Per) {
 					diff = q1Per	
 				} else {
 					diff = q2Per
 				} 
-			} else {
-			 // Nothing
+			} else {		
+				int q1Per = Math.round((question.answerOneVotes / question.totalVotes * 100))
+				int q2Per = Math.round((question.answerTwoVotes / question.totalVotes * 100))
+				
+				int q3Per
+				if (question.answerThreeVotes){	
+				q3Per = Math.round((question.answerThreeVotes / question.totalVotes * 100))
+				} else {
+				q3Per = 0;
+				}
+						
+				int q4Per
+				if (question.answerThreeVotes){
+				q4Per = Math.round((question.answerFourVotes / question.totalVotes * 100))
+				} else {
+				q4Per = 0;
+				}				
+					
+				int q1q2diff
+				int q3q4diff
+				
+				if (q1Per > q2Per) {
+					q1q2diff = q1Per
+				} else {
+					q1q2diff = q2Per
+				}	
+				
+				if (q3Per > q4Per) {
+					q3q4diff = q3Per
+				} else {
+					q3q4diff = q4Per
+				}
+				
+				if (q1q2diff > q3q4diff) {	
+					diff = q1q2diff
+				} else {
+					diff = q3q4diff	
+				}		
+						
 			}
 			return diff
 			} else {
 			return 0
 		}
 
+	}
+	
+	def getTopVote(Question question) {
+		// get top question
+		ArrayList<Integer> voteCounts = new ArrayList<Integer>()
+		voteCounts.add(question.answerOneVotes)
+		voteCounts.add(question.answerTwoVotes)
+		voteCounts.add(question.answerThreeVotes)
+		
+		voteCounts.add(question.answerFourVotes)
+		print  "q three: " + question.answerThree
+		String topAnswer
+		if (question.yesOrNo) {
+			topAnswer = "Yes"
+		} else {
+			topAnswer = question.answerOne
+		}
+		int maxValue = voteCounts[0];
+		for(int i=1; i < voteCounts.size; i++){
+			if(voteCounts[i] > maxValue){
+				maxValue = voteCounts[i];
+				print maxValue
+				switch (i) {
+					case 1:  if (question.yesOrNo) {
+								topAnswer = "No"
+							} else {
+								topAnswer = question.answerTwo
+							}
+							break;
+					case 2: topAnswer = question.answerThree
+							break;
+					case 3: topAnswer = question.answerFour
+							break;
+				}
+			}
+	   }
+		
+		return topAnswer
 	}
 	
 	

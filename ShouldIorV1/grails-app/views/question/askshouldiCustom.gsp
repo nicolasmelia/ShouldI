@@ -35,10 +35,7 @@
 	<script src="<g:resource dir="js/wysihtml5" file="advanced.js" />"></script>
 	<script src="<g:resource dir="js/wysihtml5" file="wysihtml5-0.3.0.min.js" />"></script>
 
-	
-	
 
-	
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -118,11 +115,11 @@
 		<div  class="jumbotron" style="overflow: none;  display: block; box-shadow:0 0 10px rgba(0, 0, 0, 0.15); min-height: 100px; margin: auto; min-width: 200px; margin-top: 60px;  max-width: 760px; padding-left: 0px; padding-right: 0px; padding-top: 0px; padding-bottom: 1px;  margin-bottom: 20px; background-color: #FDFDFD;  ">
 			
 		<div style = " margin-bottom:10px; padding-bottom: 10px; display:block; width: 100%; ">
-		<div  class="single" style=" border-top-left-radius: 8px; vertical-align: bottom;  text-align: bottom; border-top: 1px solid #E1E1E1;  margin-top: 0px;  width: 50%; float: left; margin-right:-1px; padding: 8px; vertical-align: bottom; display: inline-block;">
+		<div  class="custom" onClick = "openYesNo()" style=" border-top-left-radius: 8px; vertical-align: bottom;  text-align: bottom; border-top: 1px solid #E1E1E1;  margin-top: 0px;  width: 50%; float: left; margin-right:-1px; padding: 8px; vertical-align: bottom; display: inline-block;">
 		<p style = "padding:0px; font-size: 19px; margin: auto; color: #5BC0DE; text-align: center;">Yes/No<span style = "color: #8D8D8D; font-size: 18px;"></span></p>
 		</div> 
 	
-		<div onClick = "openCustom()" class="custom" style=" border-top-right-radius: 8px; border-top: 1px solid #E1E1E1;  border-left: 1px solid #E1E1E1;  margin-top: 0px;  width: 50%;margin-right:-1px;   float: right; padding: 8px; vertical-align: bottom; display: inline-block;">
+		<div onClick = "openCustom()" class="single" style=" border-top-right-radius: 8px; border-top: 1px solid #E1E1E1;  border-left: 1px solid #E1E1E1;  margin-top: 0px;  width: 50%;margin-right:-1px;   float: right; padding: 8px; vertical-align: bottom; display: inline-block;">
 		<p style = "padding:0px; font-size: 19px; margin: auto; color: #5BC0DE; text-align: center;">Custom<span style = "color: #8D8D8D; font-size: 18px; "> </span></p>
 		</div> 
 		</div>	
@@ -170,7 +167,7 @@
 
 	<div  id = "option1Div" style = "display: block;">
 		<div class="form-group" style = "margin-top: 12px; " >
-		<label for="exampleInputEmail1" style = "color: #5BC0DE;" ><b>Option 1</b></label>
+		<label style = "color: #5BC0DE;" ><b>Option 1</b></label>
 		<div id = "imgContainer1" style = "margin-top: 4px; margin-bottom: 9px; padding: 6px; background-color: #EAEAEA; display: none;" >
 		<span onClick = "removePhoto('imgContainer1', 'imageUpload1')" style = 'text-align: right;  right: 0px; float: right; font-color: #606060; font-size: 20px; padding-right: 0px; padding-top:0px; display: inline-block;' class='fa fa-share-alt-square'></span>
 		<img id="image1" src="#" style ="display: none; margin: auto; width: 50%" alt="Error displaying image (Image will still upload)" />
@@ -184,7 +181,7 @@
 
 	<div id = "option2Div" style = "display: block;">
 		<div class="form-group" style = "margin-top: 12px; " >
-		<label for="exampleInputEmail1" style = "color: #5BC0DE;" ><b>Option 2</b></label>
+		<label style = "color: #5BC0DE;" ><b>Option 2</b></label>
 		<div id = "imgContainer2" style = "margin-top: 4px; margin-bottom: 9px; padding: 6px; background-color: #EAEAEA; display: none;" >
 		<span onClick = "removePhoto('imgContainer2', 'imageUpload2')" style = 'text-align: right;  right: 0px; float: right;  font-color: #606060; font-size: 20px; padding-right: 0px; padding-top:0px; display: inline-block;' class='fa fa-share-alt-square'></span>
 		<img id="image2" src="#" style ="display: none; margin: auto; width: 50%" alt="Error displaying image (Image will still upload)" />
@@ -199,7 +196,7 @@
   
 	<div id = "option3Div" style = "display: none;">
     	<div class="form-group" style = "margin-top: 12px; " >
-    <label for="exampleInputEmail1" style = "color: #5BC0DE;" ><b>Option 3</b> <span  onclick = "removeOption('option3Div')" class = 'fa fa-minus-square'></span></label>
+    <label  style = "color: #5BC0DE;" ><b>Option 3</b> <span  onclick = "removeOption('option3Div')" class = 'fa fa-minus-square'></span></label>
 	<div id = "imgContainer3" style = "margin-top: 4px; margin-bottom: 9px; padding: 6px; background-color: #EAEAEA; display: none;" >
 	<span onClick = "removePhoto('imgContainer3', 'imageUpload3')" style = 'text-align: right;  right: 0px; float: right;  font-color: #606060; font-size: 20px; padding-right: 0px; padding-top:0px; display: inline-block;' class='fa fa-share-alt-square'></span>
 	<img id="image3" src="#" style ="display: none; margin: auto; width: 50%" alt="Error displaying image (Image will still upload)" />
@@ -214,28 +211,26 @@
   
   	<div id = "option4Div"  style = "display: none;">
     	<div class="form-group" style = "margin-top: 12px; " >
-    <label for="exampleInputEmail1" style = "color: #5BC0DE;" ><b>Option 4</b> <span  onclick = "removeOption('option4Div')" class = 'fa fa-minus-square'></span> </label>
+    <label  style = "color: #5BC0DE;" ><b>Option 4</b> <span  onclick = "removeOption('option4Div')" class = 'fa fa-minus-square'></span> </label>
 	<div id = "imgContainer4" style = "margin-top: 4px; margin-bottom: 9px; padding: 6px; background-color: #EAEAEA; display: none;" >
 	<span onClick = "removePhoto('imgContainer4', 'imageUpload4')" style = 'text-align: right;  right: 0px; float: right;  font-color: #606060; font-size: 20px; padding-right: 0px; padding-top:0px; display: inline-block;' class='fa fa-share-alt-square'></span>
 	<img id="image4" src="#" style ="display: none; margin: auto; width: 50%" alt="Error displaying image (Image will still upload)" />
 	</div>
     <input  name = "answerFour" type="text" style = "width: 100%;" class="form-control" style = "" id="option4" placeholder="Ex. No, White, Slow">
-	<span class="btn btn-default btn-file" style ="height: 25px; margin-top: 10px; padding-top: 2px;">
-		Upload Photo <input id = "imageUpload4" name = 'image4' type="file">
+	<span class="btn-file" style ="height: 25px; margin-top: 10px; padding-top: 2px;">
+		<span style = "cursor: default; color: #5BC0DE;  "> <span class = 'fa fa-plus-square'></span>
+		</span> Upload Photo <input id = "imageUpload4" name = 'image4' type="file">
 	</span>
   </div>
   </div>
   
   	<span id = "addOptionButtion" onClick = "addOption()" style = "cursor: default; color: #5BC0DE; margin-bottom: 5px; display:block;"> <span class = 'fa fa-plus-square'></span> <b>New Option</b> </span>
-
   
 	</div>
-	
-
   
   		<div style = "padding-top: 0px; display: block;   width: 100%; margin-top: 3px;  "  >
 		<div style = "font-color: #3d3d3d; margin-bottom: 3px;" ><b>Tags</b> <i>ie. Idea, Funny, Hair, Politics </i></div>
-				<input type="text" id = "tagsInput1" style = "width: 100%; " value="Should I" data-role="tagsinput" />
+			<input type="text" id = "tagsInput1" style = "width: 100%; " value="Should I" data-role="tagsinput" />
 		</div>
 		
 
@@ -298,6 +293,19 @@
 });
 	//ADDDDDDDDDDDDDDDDDDDDD
 
+		  $('.single').css('border-bottom', ' solid 2px #5BC0DE');
+
+	$(function() {
+		$('.custom').hover( function(){
+        $('.single').css('background-color', '#FFFFFF');
+		$('.single').css('border-bottom', ' solid 2px #d3d3d3');
+
+		},
+	   function(){
+		  $('.single').css('border-bottom', ' solid 2px #5BC0DE');
+		  $('.single').css('background-color', '#F7FBFF');
+		   });
+		});
 
 	});
 		
@@ -382,6 +390,12 @@
 			}
 	}
 	
+	}
+		
+	function openYesNo() {
+		 
+		window.location.href = '/ShouldIorV1/Question/askShouldI';
+
 	}
 	
 	

@@ -247,9 +247,6 @@
 		  $('.single').css('background-color', '#F7FBFF');
 		   });
 		});
-			
-			
-   
 });
 	
 	function readImg(input) {

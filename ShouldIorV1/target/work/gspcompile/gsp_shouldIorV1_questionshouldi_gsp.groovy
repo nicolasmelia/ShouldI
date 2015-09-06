@@ -82,75 +82,195 @@ else {
 printHtmlPart(27)
 }
 printHtmlPart(28)
-for( _it1170482099 in (question) ) {
-changeItVariable(_it1170482099)
+for( _it501766514 in (question) ) {
+changeItVariable(_it501766514)
 printHtmlPart(29)
 expressionOut.print(it.questionID)
 printHtmlPart(30)
 expressionOut.print(it.userID)
 printHtmlPart(31)
-expressionOut.print(it.questionTitle)
+if(true && (vote.toString().equals('NONE'))) {
 printHtmlPart(32)
-if(true && (it.custom.toString().equals('false'))) {
+expressionOut.print(it.totalVotes)
 printHtmlPart(33)
-expressionOut.print(it.questionID)
+}
+else {
 printHtmlPart(34)
-}
+expressionOut.print(topAnswer)
 printHtmlPart(35)
-expressionOut.print(raw(it.question))
-printHtmlPart(36)
-if(true && (it.custom.toString().equals('false'))) {
-printHtmlPart(37)
-expressionOut.print(it.custom)
-printHtmlPart(38)
 }
+printHtmlPart(36)
+expressionOut.print(it.questionTitle)
+printHtmlPart(37)
+if(true && (it.custom.toString().equals('false'))) {
+printHtmlPart(38)
+if(true && (it.answerOneImage)) {
 printHtmlPart(39)
 expressionOut.print(it.questionID)
 printHtmlPart(40)
-expressionOut.print(it.questionID)
+}
 printHtmlPart(41)
-expressionOut.print(it.answerOneVotes)
+}
 printHtmlPart(42)
-expressionOut.print(it.answerTwoVotes)
+expressionOut.print(raw(it.question))
 printHtmlPart(43)
-}
+expressionOut.print(hasQuestionImage)
 printHtmlPart(44)
-for( _it2117195067 in (questionArray) ) {
-changeItVariable(_it2117195067)
+if(true && (it.custom.toString().equals('true'))) {
 printHtmlPart(45)
-expressionOut.print(it.questionID)
-printHtmlPart(46)
 if(true && (it.answerOneImage)) {
-printHtmlPart(47)
+printHtmlPart(46)
 expressionOut.print(it.questionID)
+printHtmlPart(47)
+}
+else if(true && (hasQuestionImage.toString().equals('true'))) {
 printHtmlPart(48)
-}
-else {
-printHtmlPart(49)
 expressionOut.print(resource(dir:'images',file:'noImg.png'))
-printHtmlPart(50)
+printHtmlPart(49)
 }
+printHtmlPart(50)
+if(true && (it.answerTwoImage)) {
+printHtmlPart(46)
+expressionOut.print(it.questionID)
 printHtmlPart(51)
-expressionOut.print(it.questionTitle)
+}
+else if(true && (hasQuestionImage.toString().equals('true'))) {
 printHtmlPart(52)
+expressionOut.print(resource(dir:'images',file:'noImg.png'))
+printHtmlPart(49)
 }
 printHtmlPart(53)
-expressionOut.print(questionID)
+}
 printHtmlPart(54)
-invokeTag('javascript','g',293,['src':("dataAccess.js")],-1)
+if(true && (it.custom.toString().equals('false'))) {
 printHtmlPart(55)
-invokeTag('resource','g',294,['dir':("js"),'file':("bootstrap.min.js")],-1)
+if(true && (!vote.toString().equals('NONE'))) {
 printHtmlPart(56)
-})
-invokeTag('captureBody','sitemesh',328,['style':("  ")],1)
+expressionOut.print(it.answerOneVotes)
 printHtmlPart(57)
+}
+printHtmlPart(58)
+if(true && (!vote.toString().equals('NONE'))) {
+printHtmlPart(56)
+expressionOut.print(it.answerTwoVotes)
+printHtmlPart(57)
+}
+printHtmlPart(59)
+}
+else {
+printHtmlPart(60)
+expressionOut.print(it.answerOne)
+printHtmlPart(61)
+if(true && (!vote.toString().equals('NONE'))) {
+printHtmlPart(62)
+expressionOut.print(it.answerOneVotes)
+printHtmlPart(63)
+}
+printHtmlPart(64)
+expressionOut.print(it.answerTwo)
+printHtmlPart(65)
+if(true && (!vote.toString().equals('NONE'))) {
+printHtmlPart(66)
+expressionOut.print(it.answerTwoVotes)
+printHtmlPart(63)
+}
+printHtmlPart(67)
+}
+printHtmlPart(68)
+if(true && (it.answerThree)) {
+printHtmlPart(69)
+if(true && (it.answerThreeImage)) {
+printHtmlPart(46)
+expressionOut.print(it.questionID)
+printHtmlPart(70)
+}
+else if(true && (hasQuestionImage.toString().equals('true'))) {
+printHtmlPart(48)
+expressionOut.print(resource(dir:'images',file:'noImg.png'))
+printHtmlPart(49)
+}
+printHtmlPart(71)
+}
+printHtmlPart(72)
+if(true && (it.answerFour)) {
+printHtmlPart(73)
+if(true && (it.answerFourImage)) {
+printHtmlPart(46)
+expressionOut.print(it.questionID)
+printHtmlPart(74)
+}
+else if(true && (hasQuestionImage.toString().equals('true'))) {
+printHtmlPart(48)
+expressionOut.print(resource(dir:'images',file:'noImg.png'))
+printHtmlPart(49)
+}
+printHtmlPart(75)
+}
+printHtmlPart(76)
+if(true && (it.answerThree)) {
+printHtmlPart(77)
+expressionOut.print(it.answerThree)
+printHtmlPart(78)
+if(true && (!vote.toString().equals('NONE'))) {
+printHtmlPart(79)
+expressionOut.print(it.answerThreeVotes)
+printHtmlPart(57)
+}
+printHtmlPart(80)
+}
+printHtmlPart(81)
+if(true && (it.answerFour)) {
+printHtmlPart(82)
+expressionOut.print(it.answerFour)
+printHtmlPart(83)
+if(true && (!vote.toString().equals('NONE'))) {
+printHtmlPart(84)
+expressionOut.print(it.answerFourVotes)
+printHtmlPart(57)
+}
+printHtmlPart(85)
+}
+printHtmlPart(86)
+}
+printHtmlPart(87)
+for( _it1471278212 in (questionArray) ) {
+changeItVariable(_it1471278212)
+printHtmlPart(88)
+expressionOut.print(it.questionID)
+printHtmlPart(89)
+if(true && (it.answerOneImage)) {
+printHtmlPart(90)
+expressionOut.print(it.questionID)
+printHtmlPart(91)
+}
+else {
+printHtmlPart(92)
+expressionOut.print(resource(dir:'images',file:'noImg.png'))
+printHtmlPart(93)
+}
+printHtmlPart(94)
+expressionOut.print(it.questionTitle)
+printHtmlPart(95)
+}
+printHtmlPart(96)
+expressionOut.print(questionID)
+printHtmlPart(97)
+invokeTag('javascript','g',349,['src':("dataAccess.js")],-1)
+printHtmlPart(98)
+invokeTag('resource','g',350,['dir':("js"),'file':("bootstrap.min.js")],-1)
+printHtmlPart(99)
+invokeTag('javascript','g',351,['src':("buttonAnswerGlow.js")],-1)
+printHtmlPart(100)
+})
+invokeTag('captureBody','sitemesh',400,['style':("  ")],1)
+printHtmlPart(101)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1441149728799L
+public static final long LAST_MODIFIED = 1441510487078L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

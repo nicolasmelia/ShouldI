@@ -66,10 +66,6 @@ class AuthenticationController {
 		}
 	}
 	
-	def test(){
-		print "HITME" +  params.userID + " " + params.token
-		render (params.userID + " " + params.token)
-	}
 	
 	// ********************* READ FROM FACEBOOK GRAPH API *********************
 	

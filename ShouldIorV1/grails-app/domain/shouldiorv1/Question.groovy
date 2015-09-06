@@ -37,6 +37,8 @@ class Question {
 	int answerFourVotes
 	
 	int totalVotes
+	int totalViews
+	
 	int totalComments
 	
 	// User information
