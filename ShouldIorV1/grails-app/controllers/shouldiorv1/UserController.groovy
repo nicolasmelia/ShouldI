@@ -12,6 +12,14 @@ class UserController {
 	static scaffold = true
 
 	
+		def myProfile() {	
+		def question = Question.findAllByTotalVotesGreaterThan(-1)
+		render (view: "myProfile", model: ["question": question])
+		}
+	
+	
+	
+	
 	def getProfileImage() {
 		User user = User.findByUserID(params.id);	
 		if (user != null) {

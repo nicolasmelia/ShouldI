@@ -112,19 +112,19 @@
 
 
 		<!-- Question form -->	
-		<div  class="jumbotron" style="overflow: none;  display: block; box-shadow:0 0 10px rgba(0, 0, 0, 0.15); min-height: 100px; margin: auto; min-width: 200px; margin-top: 60px;  max-width: 760px; padding-left: 0px; padding-right: 0px; padding-top: 0px; padding-bottom: 1px;  margin-bottom: 20px; background-color: #FDFDFD;  ">
+		<div  class="jumbotron" style="overflow: none;  display: block; box-shadow:0 0 10px rgba(0, 0, 0, 0.15); min-height: 100px; margin: auto; min-width: 200px; margin-top: 60px;  max-width: 600px; padding-left: 0px; padding-right: 0px; padding-top: 0px; padding-bottom: 1px;  margin-bottom: 20px; background-color: #FDFDFD;  ">
 			
 		<div style = " margin-bottom:10px; padding-bottom: 10px; display:block; width: 100%; ">
-		<div  class="custom" onClick = "openYesNo()" style=" border-top-left-radius: 8px; vertical-align: bottom;  text-align: bottom; border-top: 1px solid #E1E1E1;  margin-top: 0px;  width: 50%; float: left; margin-right:-1px; padding: 8px; vertical-align: bottom; display: inline-block;">
+		<div  class="custom" onClick = "openYesNo()" style=" border-top-left-radius: 8px; vertical-align: bottom;  text-align: bottom; border-top: 1px solid #E1E1E1;  margin-top: 0px;  width: 50%; float: left; margin-right:-1px; padding: 2px; vertical-align: bottom; display: inline-block;">
 		<p style = "padding:0px; font-size: 19px; margin: auto; color: #5BC0DE; text-align: center;">Yes/No<span style = "color: #8D8D8D; font-size: 18px;"></span></p>
 		</div> 
 	
-		<div onClick = "openCustom()" class="single" style=" border-top-right-radius: 8px; border-top: 1px solid #E1E1E1;  border-left: 1px solid #E1E1E1;  margin-top: 0px;  width: 50%;margin-right:-1px;   float: right; padding: 8px; vertical-align: bottom; display: inline-block;">
+		<div onClick = "openCustom()" class="single" style=" border-top-right-radius: 8px; border-top: 1px solid #E1E1E1;  border-left: 1px solid #E1E1E1;  margin-top: 0px;  width: 50%;margin-right:-1px;   float: right; padding: 2px; vertical-align: bottom; display: inline-block;">
 		<p style = "padding:0px; font-size: 19px; margin: auto; color: #5BC0DE; text-align: center;">Custom<span style = "color: #8D8D8D; font-size: 18px; "> </span></p>
 		</div> 
 		</div>	
 
-	<div class="form-group" style = "padding-left: 16px;  display:block; padding-right: 16px; padding-top: 40px; margin-top: 10px;  ">		
+	<div class="form-group" style = "padding-left: 16px;  display:block; padding-right: 16px; padding-top: 25px; ">		
 
 	
 	                                              

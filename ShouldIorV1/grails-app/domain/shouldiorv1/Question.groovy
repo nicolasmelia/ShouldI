@@ -42,11 +42,13 @@ class Question {
 	int totalComments
 	
 	// User information
+	String userName
 	String UserID // Either facebooks userid or ours
-	String ClientAddress // Reponnce IP address
+	String ClientAddress // Responce IP address
 
     static constraints = {
 		
+		userName(nullable:true)
 		question maxSize: 200000
 		tags(nullable:true)
 		

@@ -2,6 +2,31 @@
 body {background-color: #F5F5F5!important;  min-width: 330px;}
 
 
+			
+	.answerContainer {
+	position: relative;  
+	cursor: default;  
+	box-sizing: border-box;
+	height: 100%;
+	width: 50%; 
+	text-align: center;
+	height: 32px; 
+	
+	}
+	
+	.miniBarGraphBar {
+	top: 0px; 
+	left: 0px; 
+	 display: none; 
+	 height: 100%; 
+	 position: absolute;
+	 
+	background-color: rgba(41,153,255,0.15); 
+	}
+
+
+
+
 		.voteUp:hover {
 		opacity:0.5;
 		}
@@ -96,7 +121,7 @@ body {background-color: #F5F5F5!important;  min-width: 330px;}
 	border-bottom: solid 2px #5BC0DE;
 	 background-color: #F7FBFF;
    }
-   
+  
 .modal-open {
     overflow: visible;
 }

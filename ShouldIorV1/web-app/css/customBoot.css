@@ -1,0 +1,113 @@
+@CHARSET "ISO-8859-1";
+
+
+.contentContainer{
+	box-shadow:0 0 10px rgba(0, 0, 0, 0.05); 
+	border-top-left-radius: 5px; 
+	border-top-right-radius: 5px; 
+	background-color: rgba(255,255,255,0.95); 
+	padding: 0px; padding-top: 0px; 
+	display: block; 
+	margin: 10px 0px 10px 0px; 
+}
+
+
+.contentContainerTitle {
+	border-top-left-radius: 5px;   
+	border-bottom: 1px solid #ccc;   
+	border-top-right-radius: 5px;  
+	display:block;  margin: auto;  
+	margin-top: 10px;
+}
+
+.contentContainerTitle > p {
+	color: #33A6DD;
+	padding: 10px;  
+	height: 30px;  
+	font-size: 18px;
+	padding-bottom: 5px; 
+}
+
+.contentContainerTitle > p > span {
+margin-left: 5px; color: #3E3E3E;
+}
+
+
+.scrollCon {
+ overflow-y: scroll;
+ height: 200px; 
+ display: block;
+}
+
+ /* LONG (IMG TO LEFT) QUESTIONS LIST VIEW */
+ .longQuestionView {
+	 cursor: default; 
+	 width: 100%; 
+	 padding: 8px 4px 8px 4px; 
+	 display:block;
+ }
+ 
+ .longQuestionView > tr {
+	 display:block; 
+	 max-height: 105px; 
+	 width: 100%; 
+	 margin-top: 0px;
+ }
+ 
+ .longViewTable {
+	cursor: default; 
+	width: 100%; 
+	padding: 8px 4px 8px 4px; 
+	display:block;
+ }
+ 
+ longQuestionView > tr > .imgTD {
+	 min-width: 125px;  
+	 height: 100%; 
+	 text-align:center; 
+	 vertical-align:top;
+ }
+ 
+
+  .imgTD{
+  	 max-height: 105px; 
+	 min-width: 125px;  
+	 height: 100%; 
+	 text-align:center; 
+	 vertical-align:top;
+ }
+ 
+ 
+ 
+ 
+ 
+ 
+.SmallViewImg {
+	max-width:110px; 
+	max-height:100px; 
+	width: auto; 
+	height: auto;
+	margin: auto;   
+}
+
+
+
+ /* SQUARE QUESTIONS LIST VIEW */
+.bigViewImg  {
+	 width: 40%;
+	 max-height:80px; 
+	 width: auto; 
+	 height: auto; 
+	 margin: auto;   
+	 padding: 0px; 
+	 margin-top: 9px; 
+}
+
+.scrollCon > .questionTitle {
+	display:block; 
+	margin-top: 5px; 
+	margin-bottom: 5px; 
+}
+
+
+

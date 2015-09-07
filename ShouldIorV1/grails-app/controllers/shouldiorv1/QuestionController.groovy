@@ -133,6 +133,8 @@ class QuestionController {
 		question.totalComments = 0
 		
 		question.UserID = session["userID"]
+		question.userName = session["name"]
+		
 		
 		question.ClientAddress = request.getRemoteAddr().toString()
 		question.save(flush:true)
@@ -226,6 +228,7 @@ class QuestionController {
 		question.totalViews = 0	
 		question.totalComments = 0
 		
+		question.userName = session["name"]
 		question.UserID = session["userID"]
 		
 		question.ClientAddress = request.getRemoteAddr().toString()
@@ -383,7 +386,6 @@ class QuestionController {
 		voteCounts.add(question.answerThreeVotes)
 		
 		voteCounts.add(question.answerFourVotes)
-		print  "q three: " + question.answerThree
 		String topAnswer
 		if (question.yesOrNo) {
 			topAnswer = "Yes"
@@ -394,7 +396,6 @@ class QuestionController {
 		for(int i=1; i < voteCounts.size; i++){
 			if(voteCounts[i] > maxValue){
 				maxValue = voteCounts[i];
-				print maxValue
 				switch (i) {
 					case 1:  if (question.yesOrNo) {
 								topAnswer = "No"

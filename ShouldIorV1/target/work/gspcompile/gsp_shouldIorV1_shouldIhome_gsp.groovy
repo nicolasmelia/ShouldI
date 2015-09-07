@@ -34,25 +34,27 @@ invokeTag('resource','g',14,['dir':("css"),'file':("bootstrap.css")],-1)
 printHtmlPart(6)
 invokeTag('resource','g',15,['dir':("css"),'file':("buttons.css")],-1)
 printHtmlPart(6)
-invokeTag('resource','g',16,['dir':("css"),'file':("awesome-bootstrap-checkbox.css")],-1)
+invokeTag('resource','g',16,['dir':("css"),'file':("customBoot.css")],-1)
+printHtmlPart(6)
+invokeTag('resource','g',17,['dir':("css"),'file':("awesome-bootstrap-checkbox.css")],-1)
 printHtmlPart(7)
-invokeTag('resource','g',18,['dir':("js"),'file':("bootstrap.min.js")],-1)
+invokeTag('resource','g',19,['dir':("js"),'file':("bootstrap.min.js")],-1)
 printHtmlPart(8)
-invokeTag('javascript','g',20,['src':("facebookLogin.js")],-1)
+invokeTag('javascript','g',21,['src':("facebookLogin.js")],-1)
 printHtmlPart(1)
-invokeTag('javascript','g',21,['src':("dataRequest.js")],-1)
+invokeTag('javascript','g',22,['src':("dataRequest.js")],-1)
 printHtmlPart(9)
-invokeTag('resource','g',24,['dir':("css"),'file':("typehead-searchBar.css")],-1)
+invokeTag('resource','g',25,['dir':("css"),'file':("typehead-searchBar.css")],-1)
 printHtmlPart(10)
-invokeTag('resource','g',26,['dir':("js/typedJS"),'file':("typed.min.js")],-1)
+invokeTag('resource','g',27,['dir':("js/typedJS"),'file':("typed.min.js")],-1)
 printHtmlPart(11)
-invokeTag('resource','g',29,['dir':("js/typeaheadJS"),'file':("typeahead.jquery.min.js")],-1)
+invokeTag('resource','g',30,['dir':("js/typeaheadJS"),'file':("typeahead.jquery.min.js")],-1)
 printHtmlPart(12)
 })
-invokeTag('captureHead','sitemesh',36,[:],1)
+invokeTag('captureHead','sitemesh',37,[:],1)
 printHtmlPart(13)
 createTagBody(1, {->
-printHtmlPart(1)
+printHtmlPart(13)
 if(true && (session.name)) {
 printHtmlPart(14)
 }
@@ -82,8 +84,8 @@ printHtmlPart(24)
 printHtmlPart(25)
 expressionOut.print(resource(dir:'images',file:'logoDark.png'))
 printHtmlPart(26)
-for( _it1892646174 in (question) ) {
-changeItVariable(_it1892646174)
+for( _it907089215 in (question) ) {
+changeItVariable(_it907089215)
 printHtmlPart(27)
 expressionOut.print(it.questionID)
 printHtmlPart(28)
@@ -98,42 +100,44 @@ expressionOut.print(resource(dir:'images',file:'noImg.png'))
 printHtmlPart(32)
 }
 printHtmlPart(33)
-expressionOut.print(it.questionTitle)
+expressionOut.print(it.userName)
 printHtmlPart(34)
-expressionOut.print(it.totalVotes)
+expressionOut.print(it.questionTitle)
 printHtmlPart(35)
-}
+expressionOut.print(it.totalVotes)
 printHtmlPart(36)
-for( _it1928589644 in (question) ) {
-changeItVariable(_it1928589644)
+}
 printHtmlPart(37)
-expressionOut.print(it.questionID)
+for( _it1479926346 in (question) ) {
+changeItVariable(_it1479926346)
 printHtmlPart(38)
-if(true && (it.answerOneImage)) {
-printHtmlPart(39)
 expressionOut.print(it.questionID)
-printHtmlPart(30)
+printHtmlPart(39)
+if(true && (it.answerOneImage)) {
+printHtmlPart(40)
+expressionOut.print(it.questionID)
+printHtmlPart(41)
 }
 else {
-printHtmlPart(40)
-expressionOut.print(resource(dir:'images',file:'noImg.png'))
-printHtmlPart(32)
-}
-printHtmlPart(41)
-expressionOut.print(it.questionTitle)
 printHtmlPart(42)
-}
+expressionOut.print(resource(dir:'images',file:'noImg.png'))
 printHtmlPart(43)
-})
-invokeTag('captureBody','sitemesh',303,['style':("background-color: #F6F6F6!important; background-image:url('${resource(dir: "images", file: "wall1.jpg")}'); margin-bottom: 20px; background-size: cover;  background-attachment: fixed; min-width: 320px;  ")],1)
+}
 printHtmlPart(44)
+expressionOut.print(it.questionTitle)
+printHtmlPart(45)
+}
+printHtmlPart(46)
+})
+invokeTag('captureBody','sitemesh',248,['style':("background-color: #F6F6F6!important; background-image:url('${resource(dir: "images", file: "wall1.jpg")}'); margin-bottom: 20px; background-size: cover;  background-attachment: fixed; min-width: 320px;  ")],1)
+printHtmlPart(47)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1441421092283L
+public static final long LAST_MODIFIED = 1441668022539L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'
