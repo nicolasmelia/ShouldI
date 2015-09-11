@@ -160,8 +160,6 @@
 				<input type="text"   name = "tags"  id = "tagsInput1"  style = "width: 100%; " value="Should I" data-role="tagsinput" />
 		</div>
 		
-		
-
 		<div class="checkbox checkbox-danger"  style = "display: block; margin-top: 0px; margin-left: 2px;" >
 		    <input type="checkbox"  name = "anonymous"  id="anonymousCheckbox"/>
     <label  for="anonymousCheckbox">
@@ -172,7 +170,7 @@
 	<div style = "display: block; width: 100%" >
 	<g:actionSubmit  value = "Post"  action = "postShouldI" style = "margin-top: 1px; width: 100px; display: inline-block;" class="btn btn-default"/>
 		<span class="btn btn-default btn-file">
-			Upload Photo <input id = "imageUpload" name = 'image1' type="file">
+			Add Image <input id = "imageUpload" name = 'image1' type="file" accept="image/*">
 		</span>
 	</div>
 			</g:form>

@@ -76,8 +76,8 @@ else {
 printHtmlPart(24)
 }
 printHtmlPart(25)
-for( _it1037983544 in (question) ) {
-changeItVariable(_it1037983544)
+for( _it187885955 in (question) ) {
+changeItVariable(_it187885955)
 printHtmlPart(26)
 expressionOut.print(it.totalVotes)
 printHtmlPart(27)
@@ -93,186 +93,192 @@ expressionOut.print(it.questionID)
 printHtmlPart(32)
 expressionOut.print(it.userID)
 printHtmlPart(33)
-if(true && (vote.toString().equals('NONE'))) {
+if(true && (thisUserPost == true)) {
 printHtmlPart(34)
-expressionOut.print(it.totalVotes)
+expressionOut.print(it.questionID)
 printHtmlPart(35)
 }
-else {
 printHtmlPart(36)
-expressionOut.print(topAnswer)
+expressionOut.print(it.totalVotes)
 printHtmlPart(37)
-}
-printHtmlPart(38)
 expressionOut.print(it.questionTitle)
-printHtmlPart(39)
+printHtmlPart(38)
 if(true && (it.custom.toString().equals('false'))) {
-printHtmlPart(40)
+printHtmlPart(39)
 if(true && (it.answerOneImage)) {
-printHtmlPart(41)
+printHtmlPart(40)
 expressionOut.print(it.questionID)
+printHtmlPart(41)
+}
 printHtmlPart(42)
 }
 printHtmlPart(43)
-}
-printHtmlPart(44)
 expressionOut.print(raw(it.question))
+printHtmlPart(44)
+if(true && (vote.toString().equals('NONE'))) {
 printHtmlPart(45)
-if(true && (it.custom.toString().equals('true'))) {
+}
+else {
 printHtmlPart(46)
-if(true && (it.answerOneImage)) {
+expressionOut.print(topAnswer)
 printHtmlPart(47)
-expressionOut.print(it.questionID)
+}
 printHtmlPart(48)
-}
-else if(true && (hasQuestionImage.toString().equals('true'))) {
+if(true && (it.custom.toString().equals('true'))) {
 printHtmlPart(49)
-expressionOut.print(resource(dir:'images',file:'noImg.png'))
+if(true && (it.answerOneImage)) {
 printHtmlPart(50)
-}
-printHtmlPart(51)
-if(true && (it.answerTwoImage)) {
-printHtmlPart(47)
 expressionOut.print(it.questionID)
-printHtmlPart(52)
+printHtmlPart(51)
 }
 else if(true && (hasQuestionImage.toString().equals('true'))) {
-printHtmlPart(53)
+printHtmlPart(52)
 expressionOut.print(resource(dir:'images',file:'noImg.png'))
-printHtmlPart(50)
+printHtmlPart(53)
 }
 printHtmlPart(54)
-}
+if(true && (it.answerTwoImage)) {
+printHtmlPart(50)
+expressionOut.print(it.questionID)
 printHtmlPart(55)
-if(true && (it.custom.toString().equals('false'))) {
-printHtmlPart(56)
-if(true && (!vote.toString().equals('NONE'))) {
-printHtmlPart(57)
-expressionOut.print(it.answerOneVotes)
-printHtmlPart(58)
 }
+else if(true && (hasQuestionImage.toString().equals('true'))) {
+printHtmlPart(56)
+expressionOut.print(resource(dir:'images',file:'noImg.png'))
+printHtmlPart(53)
+}
+printHtmlPart(57)
+}
+printHtmlPart(58)
+if(true && (it.custom.toString().equals('false'))) {
 printHtmlPart(59)
 if(true && (!vote.toString().equals('NONE'))) {
-printHtmlPart(57)
-expressionOut.print(it.answerTwoVotes)
-printHtmlPart(58)
-}
 printHtmlPart(60)
-}
-else {
+expressionOut.print(it.answerOneVotes)
 printHtmlPart(61)
-expressionOut.print(it.answerOne)
+}
 printHtmlPart(62)
 if(true && (!vote.toString().equals('NONE'))) {
-printHtmlPart(63)
-expressionOut.print(it.answerOneVotes)
-printHtmlPart(64)
-}
-printHtmlPart(65)
-expressionOut.print(it.answerTwo)
-printHtmlPart(66)
-if(true && (!vote.toString().equals('NONE'))) {
-printHtmlPart(67)
+printHtmlPart(60)
 expressionOut.print(it.answerTwoVotes)
-printHtmlPart(64)
+printHtmlPart(61)
 }
-printHtmlPart(68)
-}
-printHtmlPart(69)
-if(true && (it.answerThree)) {
-printHtmlPart(70)
-if(true && (it.answerThreeImage)) {
-printHtmlPart(47)
-expressionOut.print(it.questionID)
-printHtmlPart(71)
-}
-else if(true && (hasQuestionImage.toString().equals('true'))) {
-printHtmlPart(49)
-expressionOut.print(resource(dir:'images',file:'noImg.png'))
-printHtmlPart(50)
-}
-printHtmlPart(72)
-}
-printHtmlPart(73)
-if(true && (it.answerFour)) {
-printHtmlPart(74)
-if(true && (it.answerFourImage)) {
-printHtmlPart(47)
-expressionOut.print(it.questionID)
-printHtmlPart(75)
-}
-else if(true && (hasQuestionImage.toString().equals('true'))) {
-printHtmlPart(49)
-expressionOut.print(resource(dir:'images',file:'noImg.png'))
-printHtmlPart(50)
-}
-printHtmlPart(76)
-}
-printHtmlPart(77)
-if(true && (it.answerThree)) {
-printHtmlPart(78)
-expressionOut.print(it.answerThree)
-printHtmlPart(79)
-if(true && (!vote.toString().equals('NONE'))) {
-printHtmlPart(80)
-expressionOut.print(it.answerThreeVotes)
-printHtmlPart(58)
-}
-printHtmlPart(81)
-}
-printHtmlPart(82)
-if(true && (it.answerFour)) {
-printHtmlPart(83)
-expressionOut.print(it.answerFour)
-printHtmlPart(84)
-if(true && (!vote.toString().equals('NONE'))) {
-printHtmlPart(85)
-expressionOut.print(it.answerFourVotes)
-printHtmlPart(58)
-}
-printHtmlPart(86)
-}
-printHtmlPart(87)
-}
-printHtmlPart(88)
-for( _it105856166 in (questionArray) ) {
-changeItVariable(_it105856166)
-printHtmlPart(89)
-expressionOut.print(it.questionID)
-printHtmlPart(90)
-if(true && (it.answerOneImage)) {
-printHtmlPart(91)
-expressionOut.print(it.questionID)
-printHtmlPart(92)
+printHtmlPart(63)
 }
 else {
-printHtmlPart(93)
+printHtmlPart(64)
+expressionOut.print(it.answerOne)
+printHtmlPart(65)
+if(true && (!vote.toString().equals('NONE'))) {
+printHtmlPart(66)
+expressionOut.print(it.answerOneVotes)
+printHtmlPart(67)
+}
+printHtmlPart(68)
+expressionOut.print(it.answerTwo)
+printHtmlPart(69)
+if(true && (!vote.toString().equals('NONE'))) {
+printHtmlPart(70)
+expressionOut.print(it.answerTwoVotes)
+printHtmlPart(67)
+}
+printHtmlPart(71)
+}
+printHtmlPart(72)
+if(true && (it.answerThree)) {
+printHtmlPart(73)
+if(true && (it.answerThreeImage)) {
+printHtmlPart(50)
+expressionOut.print(it.questionID)
+printHtmlPart(74)
+}
+else if(true && (hasQuestionImage.toString().equals('true'))) {
+printHtmlPart(52)
 expressionOut.print(resource(dir:'images',file:'noImg.png'))
+printHtmlPart(53)
+}
+printHtmlPart(75)
+}
+printHtmlPart(76)
+if(true && (it.answerFour)) {
+printHtmlPart(77)
+if(true && (it.answerFourImage)) {
+printHtmlPart(50)
+expressionOut.print(it.questionID)
+printHtmlPart(78)
+}
+else if(true && (hasQuestionImage.toString().equals('true'))) {
+printHtmlPart(52)
+expressionOut.print(resource(dir:'images',file:'noImg.png'))
+printHtmlPart(53)
+}
+printHtmlPart(79)
+}
+printHtmlPart(80)
+if(true && (it.answerThree)) {
+printHtmlPart(81)
+expressionOut.print(it.answerThree)
+printHtmlPart(82)
+if(true && (!vote.toString().equals('NONE'))) {
+printHtmlPart(83)
+expressionOut.print(it.answerThreeVotes)
+printHtmlPart(61)
+}
+printHtmlPart(84)
+}
+printHtmlPart(85)
+if(true && (it.answerFour)) {
+printHtmlPart(86)
+expressionOut.print(it.answerFour)
+printHtmlPart(87)
+if(true && (!vote.toString().equals('NONE'))) {
+printHtmlPart(88)
+expressionOut.print(it.answerFourVotes)
+printHtmlPart(61)
+}
+printHtmlPart(89)
+}
+printHtmlPart(90)
+}
+printHtmlPart(91)
+for( _it383753182 in (questionArray) ) {
+changeItVariable(_it383753182)
+printHtmlPart(92)
+expressionOut.print(it.questionID)
+printHtmlPart(93)
+if(true && (it.answerOneImage)) {
 printHtmlPart(94)
-}
+expressionOut.print(it.questionID)
 printHtmlPart(95)
-expressionOut.print(it.questionTitle)
-printHtmlPart(96)
 }
+else {
+printHtmlPart(96)
+expressionOut.print(resource(dir:'images',file:'noImg.png'))
 printHtmlPart(97)
-expressionOut.print(questionID)
+}
 printHtmlPart(98)
-invokeTag('javascript','g',369,['src':("dataAccess.js")],-1)
+expressionOut.print(it.questionTitle)
 printHtmlPart(99)
-invokeTag('resource','g',370,['dir':("js"),'file':("bootstrap.min.js")],-1)
+}
 printHtmlPart(100)
-invokeTag('javascript','g',371,['src':("buttonAnswerGlow.js")],-1)
+expressionOut.print(questionID)
 printHtmlPart(101)
-})
-invokeTag('captureBody','sitemesh',446,['style':("  ")],1)
+invokeTag('javascript','g',385,['src':("dataAccess.js")],-1)
 printHtmlPart(102)
+invokeTag('resource','g',386,['dir':("js"),'file':("bootstrap.min.js")],-1)
+printHtmlPart(103)
+invokeTag('javascript','g',387,['src':("buttonAnswerGlow.js")],-1)
+printHtmlPart(104)
+})
+invokeTag('captureBody','sitemesh',463,['style':(" margin-bottom: 20px;  ")],1)
+printHtmlPart(105)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1441668722466L
+public static final long LAST_MODIFIED = 1441905478348L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

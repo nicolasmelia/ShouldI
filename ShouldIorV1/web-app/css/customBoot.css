@@ -88,19 +88,21 @@ margin-left: 5px; color: #3E3E3E;
 	width: auto; 
 	height: auto;
 	margin: auto;   
+	overflow: hidden;
 }
 
 
 
  /* SQUARE QUESTIONS LIST VIEW */
 .bigViewImg  {
-	 width: 40%;
+	 width: 45%;
 	 max-height:80px; 
 	 width: auto; 
 	 height: auto; 
 	 margin: auto;   
-	 padding: 0px; 
+	 padding: 4px; 
 	 margin-top: 9px; 
+	 overflow: hidden;
 }
 
 .scrollCon > .questionTitle {

@@ -13,9 +13,33 @@ class UserController {
 
 	
 		def myProfile() {	
-		def question = Question.findAllByTotalVotesGreaterThan(-1)
-		render (view: "myProfile", model: ["question": question])
+		
+		// Configure off pagination 
+		int offset
+		if (params.offset == null) {
+			offset = 0
+		} else {
+			offset = Integer.parseInt(params.offset);
+		}	
+		
+		if (params.up.toString().matches("true")) {
+			offset = offset + 10
+		} else if (params.up.toString().matches("false"))  {
+		if (offset != 0) { // Dont allow offset to go below 0
+			offset = offset - 10
+		} 
+		} else if (params.up.toString().matches("reset"))  {
+			offset = 0
+		} 
+		
+		// Query for questions
+		def question = Question.findAll("from Question as q where q.userID =" + session['userID'],  [max: 10, offset: offset])
+
+		render (view: "myProfile", model: ["question": question, "offset" : offset])
+		
 		}
+		
+
 	
 	
 	

@@ -73,8 +73,8 @@ expressionOut.print(session.name)
 printHtmlPart(22)
 expressionOut.print(session.userID)
 printHtmlPart(23)
-for( _it889961821 in (question) ) {
-changeItVariable(_it889961821)
+for( _it1615804266 in (question) ) {
+changeItVariable(_it1615804266)
 printHtmlPart(24)
 expressionOut.print(it.questionID)
 printHtmlPart(25)
@@ -97,22 +97,28 @@ expressionOut.print(it.totalVotes)
 printHtmlPart(33)
 }
 printHtmlPart(34)
-invokeTag('javascript','g',161,['src':("dataAccess.js")],-1)
-printHtmlPart(35)
-invokeTag('resource','g',162,['dir':("js"),'file':("bootstrap.min.js")],-1)
+createClosureForHtmlPart(35, 2)
+invokeTag('link','g',154,['action':("myProfile"),'params':([offset: offset, up: 'false']),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
 printHtmlPart(36)
-invokeTag('javascript','g',163,['src':("buttonAnswerGlow.js")],-1)
-printHtmlPart(37)
-})
-invokeTag('captureBody','sitemesh',178,[:],1)
+createClosureForHtmlPart(37, 2)
+invokeTag('link','g',158,['action':("myProfile"),'params':([offset: offset, up: 'true']),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
 printHtmlPart(38)
+invokeTag('javascript','g',172,['src':("dataAccess.js")],-1)
+printHtmlPart(39)
+invokeTag('resource','g',173,['dir':("js"),'file':("bootstrap.min.js")],-1)
+printHtmlPart(40)
+invokeTag('javascript','g',174,['src':("buttonAnswerGlow.js")],-1)
+printHtmlPart(41)
+})
+invokeTag('captureBody','sitemesh',189,[:],1)
+printHtmlPart(42)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1441668066937L
+public static final long LAST_MODIFIED = 1441929407213L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

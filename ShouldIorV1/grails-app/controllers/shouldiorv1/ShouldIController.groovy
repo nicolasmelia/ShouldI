@@ -11,4 +11,9 @@ class ShouldIController {
 		def question = Question.findAllByTotalVotesGreaterThan(-1)
 		render (view: "home", model: ["question": question])
 	}
+	
+	def category() {
+		def question = Question.findAllByTotalVotesGreaterThan(-1)
+		render (view: "category", model: ["question": question])
+	}
 }

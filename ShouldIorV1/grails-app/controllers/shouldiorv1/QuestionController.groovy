@@ -10,10 +10,6 @@ class QuestionController {
 	// View of a single question with comments
 	def shouldi(String questionID) {
 		
-		if (questionID != null) {
-			params.id = questionID
-		}
-		
 		def question = Question.findByQuestionID(params.id)
 		
 		// Return a max of 10 comments, offset returns starting at palce 0, sort by votes desc
@@ -55,12 +51,19 @@ class QuestionController {
 			hasQuestionImage = true;
 		}
 		
+		boolean thisUserPost = false;
+		if (session["userID"] != null) {
+			if (session["userID"].matches(question.userID)) {
+				thisUserPost = true		
+			}
+		}
+		
 		String topAnswer = getTopVote(question)
 		
 		def questions = Question.findAllByTotalVotesGreaterThan(-1)
 				
 		render(view: "shouldi", model: ["question": question, "questionID": question.questionID, "questionArray" : questions,
-			 "percentDiff": percentDif, "vote": vote, "totalViews" : question.totalViews, "hasQuestionImage": hasQuestionImage, "topAnswer": topAnswer])
+			 "thisUserPost": thisUserPost, "percentDiff": percentDif, "vote": vote, "totalViews" : question.totalViews, "hasQuestionImage": hasQuestionImage, "topAnswer": topAnswer])
 		
 		} else {
 		render "Error finding this question"
@@ -140,7 +143,7 @@ class QuestionController {
 		question.save(flush:true)
 		
 		// Render question page for user posting
-		shouldi(question.questionID)
+		redirect(action: "shouldi", params: [id: question.questionID])
 		
 	}
 	

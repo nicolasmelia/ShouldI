@@ -25,7 +25,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
       <![endif]-->
    </head>
-   <body style = "  ">
+   <body style = " margin-bottom: 20px;  ">
       <div id="fb-root"></div>
       <script>(function(d, s, id) {
          var js, fjs = d.getElementsByTagName(s)[0];
@@ -100,6 +100,8 @@
       <div class="container" style = "padding-top: 65px; max-width: 725px;">
       
       <div  class="contentContainer">
+      
+
             <!-- QUESTION -->	
             <g:each in="${question}">
               <input id = "totalVotes" type="hidden" value="${it.totalVotes}">
@@ -123,22 +125,23 @@
                      </div>
                   </div>
                   <!-- PROFILE INFORMATION -->	
+                  
+                    <g:if test="${thisUserPost == true}">
+                        <div class="alert alert-info" role="alert" style = "margin: 10px 10px 0px 10px; text-align: left; background-color: rgba(41,153,255,0.05);">
+						 This is your question. <a style = "cursor: default;" onclick = "share()"><b>Share</b></a> or copy this pages <a onClick = "displayPageLink()" style = "cursor: default;"><b>link</b></a></br>
+						 <span id = "pageLink" style = "display: none; color: #8D8D8D; word-break: break-all;"><u>www.ShouldI.fm/Question/${it.questionID}</u></span>
+						</div>
+					</g:if>
+						
                   <div style = " display: block; height: 50px; ">
                      <span style = 'text-align: left; font-size: 18px; color: #4A4A4A; padding-left: 12px; padding-top:6px; display: inline-block;'>
                   
-                     <g:if test="${vote.toString().equals('NONE')}">
-                      <span id = "diffPercent"style = "color: #61B7FE; font-size: 18px;"></span>
-                      <span  id = "topAnswer" style = "color: #8D8D8D;">${it.totalVotes} Votes</span>
-                     </g:if>
-                     <g:else>
-                      <span id = "diffPercent"style = "color: #61B7FE; font-size: 18px;"></span>
-                      <span id = "topAnswer" style = "color: #8D8D8D;">${topAnswer}</span>
-                     </g:else>
-                     
+                      <span  id = "" style = "color: #8D8D8D; font-size: 14px; ">Votes: ${it.totalVotes}</span>             
+
                      
                      </span>
                      <div style = "padding-bottom: -10px; float:right; display: inline-block; vertical-align: top;">
-                        <div  class = 'favsharButtion' onClick = "test()" style = " cursor: default; text-align: center; width: 65px; padding: 2px; padding-left: 2px; color: #4DAEFF; font-size: 13px; margin-right: 7px; margin-top:9px; ">
+                        <div  class = 'favsharButtion' onClick = "share()" style = " cursor: default; text-align: center; width: 65px; padding: 2px; padding-left: 2px; color: #4DAEFF; font-size: 13px; margin-right: 7px; margin-top:9px; ">
                            <div style = "margin: auto; padding: 0px; margin: 0px;"><span style = ' ' class='fa fa-facebook'></span> Share</div>
                         </div>
                      </div>
@@ -168,10 +171,27 @@
                   </div>
                   
                   
+
+                  
                   <div  id = "voteWarn" style = "width: 100%; text-align: center; color: #61B7FE; display:none;  ">  
                      <span class = "fa fa-check"></span> You have already voted on this question.
                   </div>
 
+
+						<div style = "width: 100%; text-align: left; padding-left: 15px;  " >
+						
+						                  
+                     <g:if test="${vote.toString().equals('NONE')}">
+                     <span id = "diffPercent"style = "color: #61B7FE; font-size: 14px;"></span>
+                     <span id = "topAnswer" style = "color: #8D8D8D; font-size: 14px;"></span> 
+                      </g:if>
+                     <g:else>
+                       <span id = "diffPercent"style = "color: #61B7FE; font-size: 14px;"></span>
+                      <span id = "topAnswer" style = "color: #8D8D8D; font-size: 14px;">${topAnswer}</span>       
+                       </g:else>
+                     
+
+						 </div>
 
                  <table style="width: 100%; overflow:none; margin-top: 5px; padding:0px; border-top: 1px solid #E1E1E1;">
 
@@ -318,9 +338,6 @@
                </div>
                         </g:each>
                         
-
-         
-               
          </div>
          <!-- QUESTION -->	
          <!-- MAIN -->	
@@ -332,8 +349,8 @@
             </div>
             <div class = "scrollCon">
                <g:each in="${questionArray}">
-                  <div style = "text-align: center;" onmouseover="glow(this)" onmouseout="unGlow(this)"  onClick = "loadQuestionURL('${it.questionID}')"  class="col-xs-6 col-md-4">
-                     <div  class="row" style = "cursor: default;">
+                  <div style = "overflow: hidden; text-align: center; " onmouseover="glow(this)" onmouseout="unGlow(this)"  onClick = "loadQuestionURL('${it.questionID}')"  class="col-xs-6 col-md-4">
+                     <div  class="row" style = "cursor: default; ">
                         <g:if test="${it.answerOneImage}">
                            <img class = "bigViewImg"  src = "/ShouldIorV1/Question/getAnswerImageById/${it.questionID}:1" />	
                         </g:if>
@@ -357,7 +374,6 @@
          <!-- COMMENT BOX -->	
      </div>
   
-      <!-- /.container -->
       
       <footer class="footer" style= " width: 90%;">
          <div class="container">
@@ -398,7 +414,11 @@
          	window.location.href = "/ShouldIorV1/Question/shouldi/" + url;
          }
          
-         function test() {
+         function displayPageLink() {
+        	 $("#pageLink").slideDown("1000");
+         }
+         
+         function share() {
          	FB.ui({
          		  method: 'feed',
          		  display: 'iframe',
@@ -414,18 +434,14 @@
 
 				var ans1per = (ans1 / totalVotes * 100);
 				var ans2per = (ans2 / totalVotes * 100);
-
 					
 				$("#per1").width(ans1per + '%');
 				$("#per2").width(ans2per + '%');
 				
 			    $("#per1" ).show('slide', {direction: 'left'}, 2000);
 			    $("#per2" ).show('slide', {direction: 'left'}, 2000);
-			     
-
 				
 				if (ans3 != null) {
-					console.log(ans3);
 					var ans3per = (ans3 / totalVotes * 100);
 					$("#per3").width(ans3per + '%');
 				    $("#per3" ).show('slide', {direction: 'left'}, 2000);
@@ -441,6 +457,7 @@
 
           	}
          
+    
          
       </script>
    </body>

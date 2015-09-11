@@ -95,19 +95,25 @@
    </nav>
    
    <div class="container" style = "max-width: 725px; margin-top: 75px; ">
-   <img style = "width:55%; display: block; min-width: 270px; margin: auto; " src="${resource(dir:'images',file:'logoDark.png')}"   />				
-   <h3 style = "width:50%; display: block; font-size: 18px;  min-width: 260px; margin: auto; margin-top: 5px; color: #e9e9e9;  " >Bring Thoughts and Opinions Together.</h3>
-   <div class = 'favsharButtion' style = " font-size: 22px;  display: block; width: 100%; text-align: left; margin-top: 23px; margin-bottom: -10px;">
-      <a  style = "color: #79cce5; margin:0px; padding: 0px;" href = "/ShouldIorV1/Question/askShouldI" > <span class= 'fa fa-pencil-square-o'> 
-      <span class = "element"  ></span>
-      </span> 
-      </a> 
-   </div>
-   
+
    <div style = "width: 100%; ">
       <div  class="contentContainer">
-         <div class="contentContainerTitle">
-            <p class = "fa  fa-random" > <span>Randomly Awesome</span> </p>
+         <div class="contentContainerTitle dropdown">
+         
+                  <button class="btn btn-default dropdown-toggle" type="button" style = "width: 100%; border-bottom-right-radius: 0px;     background-color: rgb(0,0,0, 0); border-bottom-left-radius: 0px;" data-toggle="dropdown">
+                  Trending Now 
+                  <span class="caret"></span></button>
+                  <ul class="dropdown-menu" style = "width: 100%; ">
+                     <li class="dropdown-header">My Stuff</li>
+                     <li><a href="#">My Notifications</a></li>
+                     <li><a href="#">My Questions</a></li>
+                     <li><a href="#">My Favorites</a></li>
+                     <li class="divider"></li>
+                     <li class="dropdown-header">Follow</li>
+                     <li><a href="#">My Followers</a></li>
+                     <li><a href="#">Following</a></li>
+                  </ul>
+
          </div>
                      <div class = "scrollCon" style = "height: 310px; " >  
          <g:each in="${question}">
@@ -141,9 +147,31 @@
                </tr>
             </table>
          </g:each>
+                     </div>
+                 
+           <div style = "border-top: solid 1px #b2b2b2;  width: 100%;">  
+      		<div class="btn-group" style = "margin: 10px 0px 10px 10px;    " >
+                 <g:link  action="myProfile"  params="[offset: offset, up: 'false']"  style = "padding-top: 2px; padding-bottom: 2px;" class="btn btn-default">
+                   		  <span class="fa fa-angle-double-left"></span> Back 
+                </g:link>
+
+                 <g:link  action="myProfile"  params="[offset: offset, up: 'true']" style = "padding-top: 2px; padding-bottom: 2px;" class="btn btn-default">
+                   		   Next <span class="fa fa-angle-double-right"></span>
+                </g:link>
+            </div> 
+            
+                  		<div class="btn-group" style = "margin: 10px 0px 10px 0px;   " >
+                 <g:link  action="myProfile"  params="[offset: offset, up: 'false']"  style = "padding-top: 2px; padding-bottom: 2px;" class="btn btn-default">
+                   		  <span class="fa fa-random"></span>  
+                </g:link>
+            </div>  
+            
+            
+              
+        </div>      
+            
       </div>
-            </div>
-      
+
    </div>
    
    <div style = "width: 100%; ">
@@ -163,28 +191,7 @@
          </div>
       </div>
       
-      <div style = "width: 100%; ">
-         <div  class="contentContainer">
-            <div class="contentContainerTitle">
-               <p class = "fa  fa-random" > <span>Randomly Awesome</span> </p>
-            </div>
-            <div class = "scrollCon">
-               <g:each in="${question}">
-                  <div style = "overflow: hidden; text-align: center; " onmouseover="glow(this)" onmouseout="unGlow(this)"  onClick = "loadQuestionURL('${it.questionID}')"  class="col-xs-6 col-md-4">
-                     <div  class="row" style = "cursor: default; ">
-                        <g:if test="${it.answerOneImage}">
-                           <img class = "bigViewImg"  src = "/ShouldIorV1/Question/getAnswerImageById/${it.questionID}:1" />	
-                        </g:if>
-                        <g:else>
-                           <img  class = "bigViewImg" src="${resource(dir:'images',file:'noImg.png')}"  />	
-                        </g:else>
-                        <div class = "questionTitle" >${it.questionTitle}</div>
-                     </div>
-                  </div>
-               </g:each>
-            </div>
-         </div>
-      </div>
+
    
  
    <!-- LOGIN Modal -->

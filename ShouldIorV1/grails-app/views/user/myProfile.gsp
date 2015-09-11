@@ -146,7 +146,18 @@
                   <hr style = "padding: 0px; margin: 0px;"/>
                </g:each>
             </div>
-                        </div>
+            
+            
+			<div class="btn-group" style = "margin: 10px; " >
+                 <g:link  action="myProfile"  params="[offset: offset, up: 'false']"  style = "padding-top: 2px; padding-bottom: 2px;" class="btn btn-default">
+                   		  <span class="fa fa-angle-double-left"></span> Back 
+                </g:link>
+
+                 <g:link  action="myProfile"  params="[offset: offset, up: 'true']" style = "padding-top: 2px; padding-bottom: 2px;" class="btn btn-default">
+                   		   Next <span class="fa fa-angle-double-right"></span>
+                </g:link>
+            </div>    
+            
             
             <!-- QUESTION REPLY -->
          </div>
