@@ -82,8 +82,8 @@ else {
 printHtmlPart(24)
 }
 printHtmlPart(25)
-for( _it131475186 in (question) ) {
-changeItVariable(_it131475186)
+for( _it1805259269 in (question) ) {
+changeItVariable(_it1805259269)
 printHtmlPart(26)
 expressionOut.print(it.questionID)
 printHtmlPart(27)
@@ -106,16 +106,25 @@ expressionOut.print(it.totalVotes)
 printHtmlPart(35)
 }
 printHtmlPart(36)
+createClosureForHtmlPart(37, 2)
+invokeTag('link','g',156,['action':("myProfile"),'params':([offset: offset, up: 'false']),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
+printHtmlPart(38)
+createClosureForHtmlPart(39, 2)
+invokeTag('link','g',160,['action':("myProfile"),'params':([offset: offset, up: 'true']),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
+printHtmlPart(40)
+createClosureForHtmlPart(41, 2)
+invokeTag('link','g',166,['action':("myProfile"),'params':([offset: offset, up: 'false']),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
+printHtmlPart(42)
 })
-invokeTag('captureBody','sitemesh',217,['style':("background-color: #F6F6F6!important; background-image:url('${resource(dir: "images", file: "wall1.jpg")}'); margin-bottom: 20px; background-size: cover;  background-attachment: fixed; min-width: 320px;  ")],1)
-printHtmlPart(37)
+invokeTag('captureBody','sitemesh',253,['style':("background-color: #F6F6F6!important; background-image:url('${resource(dir: "images", file: "wall1.jpg")}'); margin-bottom: 20px; background-size: cover;  background-attachment: fixed; min-width: 320px;  ")],1)
+printHtmlPart(43)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1441930920987L
+public static final long LAST_MODIFIED = 1441938420651L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

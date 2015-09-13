@@ -94,7 +94,7 @@
       </div>
    </nav>
    
-   <div class="container" style = "max-width: 725px; margin-top: 75px; ">
+   <div class="container" style = "max-width: 825px; margin-top: 75px; ">
 
    <div style = "width: 100%; ">
       <div  class="contentContainer">

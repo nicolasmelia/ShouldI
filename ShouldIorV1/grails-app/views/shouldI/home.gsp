@@ -42,62 +42,63 @@
    <g:else>
       <input id = "sessionCheck" type="hidden" name="country" value="false">
    </g:else>
-   <nav class="navbar navbar-inverse navbar-fixed-top" style = "">
-      <div class="container">
-         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            </button>
-            <a href = "shouldI" ><img onClick = "h" src="${resource(dir:'images',file:'logo.png')}"   class="navbar-brand"/></a>
-         </div>
-         <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
+   
+  <nav class="navbar navbar-inverse navbar-fixed-top" >
+         <div class="container">
+            <div class="navbar-header">
+               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+               <span class="sr-only">Toggle navigation</span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               </button>
+               <a href = "${createLink(controller: 'ShouldI', action: 'home')}" ><img src="${resource(dir:'images',file:'logo.png')}"   class="navbar-brand"/></a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+               <ul class="nav navbar-nav">
+                  <g:if test="${session.name}">
+                     <li><a href="#"><span class= 'fa fa-bell-o'></span><span style = "padding-left: 6px;" >0</span></a></a></li>
+                     <li><a href = "${createLink(controller: 'Question', action: 'askShouldI')}" ><span class= 'fa fa-pencil-square-o'></span><span style = "padding-left: 6px;" >Ask</span></a></li>
+                      <li><a href = "${createLink(controller: 'ShouldI', action: 'category', params: [cat: 'trending'])}" ><span class= 'fa fa-line-chart'></span><span style = "padding-left: 6px;" >Trending</span></a></li>
+                  </g:if>
+                  <g:else>
+                     <li><a href="#"  onClick = "showNoLogin()" ><span class= 'fa fa-pencil-square-o'></span><span style = "padding-left: 6px;" >Ask</span></a></li>
+                     <li><a href="#"><span class= 'fa fa-line-chart'></span><span style = "padding-left: 6px;" >Trending</span></a></li>
+                  </g:else>
+               </ul>
                <g:if test="${session.name}">
-                  <li><a href="#"><span class= 'fa fa-bell-o'></span><span style = "padding-left: 6px;" >0</span></a></a></li>
-                  <li><a href="#"><span class= 'fa fa-pencil-square-o'></span><span style = "padding-left: 6px;" >Ask</span></a></a></li>
-                  <li><a href="#"><span class= 'fa fa-line-chart'></span><span style = "padding-left: 6px;" >Trending</span></a></a></li>
+                  <ul class="nav navbar-nav navbar-right" style = "padding: -10px;" >
+                     <li class="dropdown" style = "">
+                        <a href="#" style = "" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <img style = "display:inline-block; width: 25px; height: 25px; margin-right: 4px; margin-top: -25px;  margin-bottom: -25px;" src = "${createLink(controller: 'User', action: 'getProfileImage', params: [id: session.userID])}" />			
+                        ${session.name}
+                        <span class="fa fa-caret-down"></span></a>
+                        <ul class="dropdown-menu">
+                           <li><a href="#"><span class= 'fa fa-leaf'></span><span style = "padding-left: 5px;" >My Profile</span></a></li>                           
+                           <li><a href="#"><span class= 'fa fa-globe'></span><span style = "padding-left: 5px;" >Categories</span></a></li>
+                           <li><a href = "${createLink(controller: 'Question', action: 'askShouldI')}" ><span class= 'fa fa-pencil-square-o'></span><span style = "padding-left: 6px;" >Ask</span></a></li>
+                           <li role="separator" class="divider"></li>
+                           <li><a  onClick = "logoutFaceBook()" href="#"><span class= 'fa fa-sign-out'></span><span style = "padding-left: 5px;" >Log Out</span></a></li>
+                        </ul>
+                     </li>
+                  </ul>
                </g:if>
                <g:else>
-                  <li><a href="#"  onClick = "showNoLogin()" ><span class= 'fa fa-pencil-square-o'></span><span style = "padding-left: 6px;" >Ask</span></a></a></li>
-                  <li><a href="#"><span class= 'fa fa-line-chart'></span><span style = "padding-left: 6px;" >Trending</span></a></a></li>
+                  <ul class="nav navbar-nav navbar-right">
+                     <li><a id = "facebookLoginMenu" href = "#"  style = ""  onClick = "loginFacebook()">Log in with <span href="#about" style = "padding-left: 4px; color:#5BC0DE;" class='fa fa-facebook-official'></span> </a></li>
+                  </ul>
+                  <ul class="nav navbar-nav navbar-right">
+                  </ul>
                </g:else>
-            </ul>
-            <g:if test="${session.name}">
-               <ul class="nav navbar-nav navbar-right" style = "padding: -10px;" >
-                  <li class="dropdown" style = "">
-                     <a href="#" style = "" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                     <img style = "display:inline-block; width: 25px; height: 25px; margin-right: 4px; margin-top: -25px;  margin-bottom: -25px;" src = "User/getProfileImage/${session.userID}" />			
-                     ${session.name}
-                     <span class="fa fa-caret-down"></span></a>
-                     <ul class="dropdown-menu">
-                        <li><a href="#"><span class= 'fa fa-home'><span style = "padding-left: 5px;" >Home</span></a></li>
-                        <li><a href="#"><span class= 'fa fa-leaf'><span style = "padding-left: 5px;" >My Profile</span></a></li>
-                        <li><a href="#"><span class= 'fa fa-question-circle'><span style = "padding-left: 5px;" >Search</span></a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a  onClick = "logoutFaceBook()" href="#"><span class= 'fa fa-sign-out'><span style = "padding-left: 5px;" >Log Out</span></a></li>
-                     </ul>
-                  </li>
-               </ul>
-            </g:if>
-            <g:else>
-               <ul class="nav navbar-nav navbar-right">
-                  <li><a id = "facebookLoginMenu" href = "#"  style = ""  onClick = "loginFacebook()">Log in with <span href="#about" style = "padding-left: 4px; color:#5BC0DE;" class='fa fa-facebook-official'></span> </a></li>
-               </ul>
-               <ul class="nav navbar-nav navbar-right">
-               </ul>
-            </g:else>
+            </div>
+            <!--/.nav-collapse -->
          </div>
-         <!--/.nav-collapse -->
-      </div>
-   </nav>
+      </nav>
    
-   <div class="container" style = "max-width: 725px; margin-top: 75px; ">
+   <div class="container" style = "max-width: 825px; margin-top: 75px; ">
    <img style = "width:55%; display: block; min-width: 270px; margin: auto; " src="${resource(dir:'images',file:'logoDark.png')}"   />				
    <h3 style = "width:50%; display: block; font-size: 18px;  min-width: 260px; margin: auto; margin-top: 5px; color: #e9e9e9;  " >Bring Thoughts and Opinions Together.</h3>
-   <div class = 'favsharButtion' style = " font-size: 22px;  display: block; width: 100%; text-align: left; margin-top: 23px; margin-bottom: -10px;">
+   <div class = 'favsharButtion' style = " font-size: 22px;  display: block; width: 100%; text-align: left; margin-top: 23px; margin-bottom: -8px;">
       <a  style = "color: #79cce5; margin:0px; padding: 0px;" href = "/ShouldIorV1/Question/askShouldI" > <span class= 'fa fa-pencil-square-o'> 
       <span class = "element"  ></span>
       </span> 
@@ -115,7 +116,7 @@
                <tr class = 'imgTR'>
                   <td class = 'imgTD'>
                      <g:if test="${it.answerOneImage}">
-                        <img  class = "SmallViewImg" src = "/ShouldIorV1/Question/getAnswerImageById/${it.questionID}:1" />	
+                        <img  class = "SmallViewImg" src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1'])}" />	
                      </g:if>
                      <g:else>
                         <img  class = "SmallViewImg"  src="${resource(dir:'images',file:'noImg.png')}"  />	
@@ -173,7 +174,7 @@
                   <div style = "overflow: hidden; text-align: center; " onmouseover="glow(this)" onmouseout="unGlow(this)"  onClick = "loadQuestionURL('${it.questionID}')"  class="col-xs-6 col-md-4">
                      <div  class="row" style = "cursor: default; ">
                         <g:if test="${it.answerOneImage}">
-                           <img class = "bigViewImg"  src = "/ShouldIorV1/Question/getAnswerImageById/${it.questionID}:1" />	
+                           <img class = "bigViewImg"  src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1'])}" />	
                         </g:if>
                         <g:else>
                            <img  class = "bigViewImg" src="${resource(dir:'images',file:'noImg.png')}"  />	

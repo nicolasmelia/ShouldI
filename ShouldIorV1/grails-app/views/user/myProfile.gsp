@@ -76,7 +76,7 @@
             <!--/.nav-collapse -->
          </div>
       </nav>
-      <div class="container" style = "max-width: 725px; margin-top: 70px; margin-bottom: 20px; " >
+      <div class="container" style = "max-width: 825px; margin-top: 70px; margin-bottom: 20px; " >
          <!-- QUESTION BLOCK -->	
          <div  class="contentContainer">
             <!-- PROFILE INFORMATION -->	
@@ -119,7 +119,7 @@
                      <tr style = "display:block; max-height: 105px; width: 100%; margin-top: 0px; ">
                         <td style = "min-width: 125px;  height: 100%; text-align:center; vertical-align:top; ">
                            <g:if test="${it.answerOneImage}">
-                              <img  style = "max-width:110px; max-height:100px; width: auto; height: auto; margin: auto;   padding: 0px;"    src = "/ShouldIorV1/Question/getAnswerImageById/${it.questionID}:1" />	
+                              <img  style = "max-width:110px; max-height:100px; width: auto; height: auto; margin: auto;   padding: 0px;"    src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1'])}"/>	
                            </g:if>
                            <g:else>
                               <img  style = "max-width:110px; max-height:100px; width: auto; height: auto; margin: auto;   padding: 0px;  " src="${resource(dir:'images',file:'noImg.png')}"  />	

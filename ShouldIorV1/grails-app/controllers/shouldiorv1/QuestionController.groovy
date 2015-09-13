@@ -243,9 +243,9 @@ class QuestionController {
 	// ********************* Get answer image by ID and numset *********************
 	def getAnswerImageById() {
 		// param is split by question id then number of question using :
-		Question question = Question.findByQuestionID(params.id.split(":")[0])
+		Question question = Question.findByQuestionID(params.id)
 		if (question != null) {
-			String imageSetNum = params.id.split(":")[1]
+			String imageSetNum = params.imgNum
 			if (imageSetNum.matches("1")) {
                 response.outputStream << question.answerOneImage  // write the photo to the outputstream  
 			} else if (imageSetNum.matches("2")) {

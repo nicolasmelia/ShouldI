@@ -32,11 +32,13 @@ function questionVote(vote) {
       			 
 				  var totalVotes =  parseInt(answersCount[4]) + parseInt(answersCount[5]) + 
 				  parseInt(answersCount[6]) + parseInt(answersCount[7]);
-				  
-				  console.log("JUJZ: " + answersCount[4]);
 
-				  console.log(totalVotes);
-				  displayMiniGraphs(totalVotes, answersCount[4], answersCount[5],answersCount[6], answersCount[7] );
+					$("#per1").fadeOut(900);
+					$("#per2").fadeOut(900);
+		
+					setTimeout(function(){ 
+						  displayMiniGraphs(totalVotes, answersCount[4], answersCount[5],answersCount[6], answersCount[7] );					
+					}, 1000);
 
 			
 			  } else if (result.split(":")[0]  == "False") {

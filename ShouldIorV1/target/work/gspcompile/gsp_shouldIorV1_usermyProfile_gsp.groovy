@@ -73,14 +73,14 @@ expressionOut.print(session.name)
 printHtmlPart(22)
 expressionOut.print(session.userID)
 printHtmlPart(23)
-for( _it1615804266 in (question) ) {
-changeItVariable(_it1615804266)
+for( _it684619244 in (question) ) {
+changeItVariable(_it684619244)
 printHtmlPart(24)
 expressionOut.print(it.questionID)
 printHtmlPart(25)
 if(true && (it.answerOneImage)) {
 printHtmlPart(26)
-expressionOut.print(it.questionID)
+expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1']))
 printHtmlPart(27)
 }
 else {
@@ -118,7 +118,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1441929407213L
+public static final long LAST_MODIFIED = 1442095862559L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

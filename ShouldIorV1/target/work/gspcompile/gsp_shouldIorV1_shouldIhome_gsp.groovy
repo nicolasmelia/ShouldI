@@ -62,82 +62,90 @@ else {
 printHtmlPart(15)
 }
 printHtmlPart(16)
-expressionOut.print(resource(dir:'images',file:'logo.png'))
+expressionOut.print(createLink(controller: 'ShouldI', action: 'home'))
 printHtmlPart(17)
-if(true && (session.name)) {
+expressionOut.print(resource(dir:'images',file:'logo.png'))
 printHtmlPart(18)
-}
-else {
-printHtmlPart(19)
-}
-printHtmlPart(20)
 if(true && (session.name)) {
+printHtmlPart(19)
+expressionOut.print(createLink(controller: 'Question', action: 'askShouldI'))
+printHtmlPart(20)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [cat: 'trending']))
 printHtmlPart(21)
-expressionOut.print(session.userID)
+}
+else {
 printHtmlPart(22)
-expressionOut.print(session.name)
+}
 printHtmlPart(23)
-}
-else {
+if(true && (session.name)) {
 printHtmlPart(24)
-}
+expressionOut.print(createLink(controller: 'User', action: 'getProfileImage', params: [id: session.userID]))
 printHtmlPart(25)
-expressionOut.print(resource(dir:'images',file:'logoDark.png'))
+expressionOut.print(session.name)
 printHtmlPart(26)
-for( _it1864630663 in (question) ) {
-changeItVariable(_it1864630663)
+expressionOut.print(createLink(controller: 'Question', action: 'askShouldI'))
 printHtmlPart(27)
-expressionOut.print(it.questionID)
-printHtmlPart(28)
-if(true && (it.answerOneImage)) {
-printHtmlPart(29)
-expressionOut.print(it.questionID)
-printHtmlPart(30)
 }
 else {
-printHtmlPart(31)
-expressionOut.print(resource(dir:'images',file:'noImg.png'))
-printHtmlPart(32)
+printHtmlPart(28)
 }
+printHtmlPart(29)
+expressionOut.print(resource(dir:'images',file:'logoDark.png'))
+printHtmlPart(30)
+for( _it1137940831 in (question) ) {
+changeItVariable(_it1137940831)
+printHtmlPart(31)
+expressionOut.print(it.questionID)
+printHtmlPart(32)
+if(true && (it.answerOneImage)) {
 printHtmlPart(33)
-expressionOut.print(it.userName)
+expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1']))
 printHtmlPart(34)
-expressionOut.print(it.questionTitle)
+}
+else {
 printHtmlPart(35)
-expressionOut.print(it.totalVotes)
+expressionOut.print(resource(dir:'images',file:'noImg.png'))
 printHtmlPart(36)
 }
 printHtmlPart(37)
-for( _it1043984524 in (question) ) {
-changeItVariable(_it1043984524)
+expressionOut.print(it.userName)
 printHtmlPart(38)
-expressionOut.print(it.questionID)
-printHtmlPart(39)
-if(true && (it.answerOneImage)) {
-printHtmlPart(40)
-expressionOut.print(it.questionID)
-printHtmlPart(41)
-}
-else {
-printHtmlPart(42)
-expressionOut.print(resource(dir:'images',file:'noImg.png'))
-printHtmlPart(43)
-}
-printHtmlPart(44)
 expressionOut.print(it.questionTitle)
+printHtmlPart(39)
+expressionOut.print(it.totalVotes)
+printHtmlPart(40)
+}
+printHtmlPart(41)
+for( _it571585615 in (question) ) {
+changeItVariable(_it571585615)
+printHtmlPart(42)
+expressionOut.print(it.questionID)
+printHtmlPart(43)
+if(true && (it.answerOneImage)) {
+printHtmlPart(44)
+expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1']))
 printHtmlPart(45)
 }
+else {
 printHtmlPart(46)
-})
-invokeTag('captureBody','sitemesh',246,['style':("background-color: #F6F6F6!important; background-image:url('${resource(dir: "images", file: "wall1.jpg")}'); margin-bottom: 20px; background-size: cover;  background-attachment: fixed; min-width: 320px;  ")],1)
+expressionOut.print(resource(dir:'images',file:'noImg.png'))
 printHtmlPart(47)
+}
+printHtmlPart(48)
+expressionOut.print(it.questionTitle)
+printHtmlPart(49)
+}
+printHtmlPart(50)
+})
+invokeTag('captureBody','sitemesh',247,['style':("background-color: #F6F6F6!important; background-image:url('${resource(dir: "images", file: "wall1.jpg")}'); margin-bottom: 20px; background-size: cover;  background-attachment: fixed; min-width: 320px;  ")],1)
+printHtmlPart(51)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1441850590121L
+public static final long LAST_MODIFIED = 1442098812735L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'
