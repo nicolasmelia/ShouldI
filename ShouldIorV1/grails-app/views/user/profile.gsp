@@ -52,7 +52,7 @@
                   <ul class="nav navbar-nav navbar-right" style = "padding: -10px;" >
                      <li class="dropdown" style = "">
                         <a href="#" style = "" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        <img style = "display:inline-block; width: 25px; height: 25px; margin-right: 4px; margin-top: -25px;  margin-bottom: -25px;" src = "/ShouldIorV1/User/getProfileImage/${session.userID}" />			
+                        <img style = "display:inline-block; width: 25px; height: 25px; margin-right: 4px; margin-top: -25px;  margin-bottom: -25px;" src = "/ShouldIorV1/User/getProfileImage/${userID}" />			
                         ${session.name}
                         <span class="fa fa-caret-down"></span></a>
                         <ul class="dropdown-menu">
@@ -81,13 +81,13 @@
          <div  class="contentContainer">
             <!-- PROFILE INFORMATION -->	
             <div  class="contentContainer" style = "padding: 10px 10px 0px 10px; box-shadow:0 0 0px rgba(0, 0, 0, 0.0); " >
-               <span style = "margin: auto; width: 100%; text-align: center; color: #5C5C5C; display: block; font-size: 18px; margin-bottom: 0px; margin-top: 2px;"><b>${user.userName}</b>
+               <span style = "margin: auto; width: 100%; text-align: center; color: #5C5C5C; display: block; font-size: 18px; margin-bottom: 0px; margin-top: 2px;"><b>${user.name}</b>
                </span>
                <hr style = "padding:0px; margin-top: 8px; margin-bottom: 14px; ">
                <div style = "display: inline-block; width: 80px; height: 80px; background-image: url('${createLink(controller: 'User', action: 'getProfileImage', params: [id: user.userID])}'); background-size: cover; background-repeat: no-repeat;   background-position: center center; padding-left: 5px;"> </div>
                <div style = "display: inline-block; padding-bottom:0px; margin-right: 4px; margin-left: 4px; vertical-align: top;  ">
-                  <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px;  display: block; font-size: 15px;">Followers: ${opQuestionCount}</span>
-                  <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Reached: ${user.peopleReached}</span>
+                  <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px;  display: block; font-size: 15px;">Questions: ${opQuestionCount}</span>
+                  <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Reached: ${user.peopleReached} </span>
                </div>
             </div>
             <!-- PROFILE INFORMATION -->	
@@ -97,9 +97,8 @@
                   ${category} 
                   <span class="caret"></span></button>
                   <ul class="dropdown-menu" style = "width: 100%; ">
-	                  <li><a href = "${createLink(controller: 'User', action: 'myProfile', params: [category: 'My Questions'])}"><span style = "padding-left: 5px;" >My Questions</span></a></li>                           
-	                  <li><a href = "${createLink(controller: 'User', action: 'myProfile', params: [category: 'My Notifications'])}"><span style = "padding-left: 5px;" >My Notifications</span></a></li>                           
-	                  <li><a href = "${createLink(controller: 'User', action: 'myProfile', params: [category: 'My Favorites'])}"><span style = "padding-left: 5px;" >My Favorites</span></a></li>                           
+	                  <li><a href = "${createLink(controller: 'User', action: 'myProfile', params: [category: 'New Questions'])}"><span style = "padding-left: 5px;" >New Questions</span></a></li>                           
+	                  <li><a href = "${createLink(controller: 'User', action: 'myProfile', params: [category: 'Top Questions'])}"><span style = "padding-left: 5px;" >Top Questions</span></a></li>                           
 	               </ul>
                </div>
             </div>
@@ -143,11 +142,11 @@
             
             
 			<div class="btn-group" style = "margin: 10px; " >
-                 <g:link  action="myProfile"  params="[offset: offset, up: 'false', category: category]"  style = "padding-top: 2px; padding-bottom: 2px;" class="btn btn-default">
+                 <g:link  action="profile"  params="[offset: offset, up: 'false', category: category, id: user.userID ]"  style = "padding-top: 2px; padding-bottom: 2px;" class="btn btn-default">
                    		  <span class="fa fa-angle-double-left"></span> Back 
                 </g:link>
 
-                 <g:link  action="myProfile"  params="[offset: offset, up: 'true', category: category]" style = "padding-top: 2px; padding-bottom: 2px;" class="btn btn-default">
+                 <g:link  action="profile"  params="[offset: offset, up: 'true', category: category, id : user.userID]" style = "padding-top: 2px; padding-bottom: 2px;" class="btn btn-default">
                    		   Next <span class="fa fa-angle-double-right"></span>
                 </g:link>
             </div>    

@@ -13,35 +13,96 @@ class UserController {
 
 	
 		def myProfile() {	
+					
+			User user = User.findByUserID(session.userID);
+			
+			// Configure off pagination 
+			if (params.category == null) {
+				params.category = "My Questions"
+			}	
+			
+			int offset
+			if (params.offset == null) {
+				offset = 0
+			} else {
+				offset = Integer.parseInt(params.offset);
+			}	
+			
+			if (params.up.toString().matches("true")) {
+				offset = offset + 10
+			} else if (params.up.toString().matches("false"))  {
+			if (offset != 0) { // Dont allow offset to go below 0
+				offset = offset - 10
+			} 
+			} else if (params.up.toString().matches("reset"))  {
+				offset = 0
+			} 
+			
+			def questions
+			switch (params.category) {
+				case "My Questions": 
+					questions = Question.findAll("from Question as q where q.userID =" + session['userID'],  [max: 10, offset: offset])
+				break;
+				case "My Notifications":
+					questions = Question.findAll("from Question as q where q.userID =" + session['userID'] + "and q.opNotifyVoteCount > 0 order by q.opNotifyVoteCount DESC",  [max: 10, offset: offset])		
+				break;	
+				case "My Favorites":
+					questions = Question.findAll("from Question as q where q.userID =" + session['userID'],  [max: 10, offset: offset])
+				break;	
+			}
+			
+			def opQuestionCount = Question.countByUserID(session['userID'])
+			
+			// Query for questions
+			render (view: "myProfile", model: ["question": questions, "offset" : offset, "category" : params.category, "opQuestionCount" : opQuestionCount, "user" : user])	
+	}
 		
-		// Configure off pagination 
+
+		// View others profiles
+	def profile() {		
+		
+		// Get profile information
+		User user = User.findByUserID(params.id);
+		
+		// Configure off pagination
+		if (params.category == null) {
+			params.category = "New Questions"
+		}
+		
 		int offset
 		if (params.offset == null) {
 			offset = 0
 		} else {
 			offset = Integer.parseInt(params.offset);
-		}	
+		}
 		
 		if (params.up.toString().matches("true")) {
 			offset = offset + 10
 		} else if (params.up.toString().matches("false"))  {
 		if (offset != 0) { // Dont allow offset to go below 0
 			offset = offset - 10
-		} 
+		}
 		} else if (params.up.toString().matches("reset"))  {
 			offset = 0
-		} 
+		}
 		
-		// Query for questions
-		def question = Question.findAll("from Question as q where q.userID =" + session['userID'],  [max: 10, offset: offset])
-
-		render (view: "myProfile", model: ["question": question, "offset" : offset])
-		
+		def questions
+		switch (params.category) {
+			case "New Questions":
+				questions = Question.findAll("from Question as q where q.userID =" + user.userID,  [max: 10, offset: offset])
+			break;
+			case "Top Questions":
+				questions = Question.findAll("from Question as q where q.userID =" + user.userID + "and q.opNotifyVoteCount > 0 order by q.opNotifyVoteCount DESC",  [max: 10, offset: offset])
+			break;
 		}
 		
 
-	
-	
+		def opQuestionCount = Question.countByUserID(params.id)
+		
+		// Query for questions
+		render (view: "profile", model: ["question": questions, "offset" : offset, "category" : params.category, "user" : user, "opQuestionCount" : opQuestionCount])
+
+}
 	
 	
 	def getProfileImage() {

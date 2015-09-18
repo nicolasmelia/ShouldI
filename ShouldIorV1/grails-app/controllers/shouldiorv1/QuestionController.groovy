@@ -26,18 +26,23 @@ class QuestionController {
 		}
 		
 		// add one to the questions views
-		question.totalViews = question.totalViews + 1
-		question.save(flush:true)
+		
 		
 		// add one to the OPs view count
+		User user = User.findByUserID(question.UserID)
 		try {
-			if (session["UserID"].toString().matches(question.UserID)) {
-				User user = User.findByUserID(question.UserID)
+			if (session["userID"].toString().matches(question.UserID)) {
+				question.opNotifyVoteCount = 0 // OP has seen new votes set notify count to 0
+			} else {
 				user.peopleReached =  user.peopleReached + 1
+				user.save(flush:true)
 			}
 		} catch (Exception ex) {
 			// Do nothing. User is either deleted or banned. 
 		}
+		
+		question.totalViews = question.totalViews + 1
+		question.save(flush:true)
 		
 		// Check is question has an image
 		boolean hasQuestionImage = false
@@ -60,10 +65,12 @@ class QuestionController {
 		
 		String topAnswer = getTopVote(question)
 		
+		def opQuestionCount = Question.countByUserID(question.UserID)
 		def questions = Question.findAllByTotalVotesGreaterThan(-1)
 				
 		render(view: "shouldi", model: ["question": question, "questionID": question.questionID, "questionArray" : questions,
-			 "thisUserPost": thisUserPost, "percentDiff": percentDif, "vote": vote, "totalViews" : question.totalViews, "hasQuestionImage": hasQuestionImage, "topAnswer": topAnswer])
+			 "thisUserPost": thisUserPost, "percentDiff": percentDif, "vote": vote, "totalViews" : question.totalViews, "hasQuestionImage": hasQuestionImage, "topAnswer": topAnswer,
+			 "peopleReached" : user.peopleReached, "opQuestionCount" : opQuestionCount])
 		
 		} else {
 		render "Error finding this question"
@@ -92,7 +99,7 @@ class QuestionController {
 	
 	def postShouldI () {
 		Question question = new Question()
-				
+			print(params.category)
 		// Generate a unique ID
 		while(true) {
 			// Create a UUID and cut it in half for easier reading
@@ -110,10 +117,17 @@ class QuestionController {
 		question.yesOrNo = true // This is a YES/NO question
 		
 		if (params.anonymous != null) {
-		question.anonymous = params.anonymous
+			question.anonymous = true
 		} else {
-		question.anonymous = false
+			question.anonymous = false
 		}
+		
+		if (params.loginToVote != null) {
+			question.requireLoginToVote = true
+		} else {
+			question.requireLoginToVote = false
+		}
+		
 		
 		question.question = params.question
 		question.questionTitle = params.title
@@ -185,6 +199,13 @@ class QuestionController {
 			question.anonymous = false
 		}
 		
+		if (params.loginToVote != null) {
+			question.requireLoginToVote = true
+		} else {
+			question.requireLoginToVote = false
+		}
+		
+		
 		question.question = params.question
 		question.questionTitle = params.title
 		question.tags = params.tags
@@ -230,7 +251,7 @@ class QuestionController {
 		question.totalVotes = 0
 		question.totalViews = 0	
 		question.totalComments = 0
-		
+		question.opNotifyVoteCount = 0
 		question.userName = session["name"]
 		question.UserID = session["userID"]
 		
@@ -264,12 +285,27 @@ class QuestionController {
 
 	
 	def questionVote() {
+		if (session["userID"] != null || params.requireLoginToVote.toString().matches("false")) {
+		
+		// If logged in DO NOT allow two votes
+		int voteCount = 0
 		if (session["userID"] != null) {
-		def votes = Vote.findAllByUserIDAndItemID(session["userID"], params.questionID)
-		if (votes.size() == 0) {
+			voteCount = Vote.countByUserIDAndItemID(session["userID"], params.questionID)
+		}
+					
+		if (voteCount == 0) {
 			// Create a vote
 			Vote vote = new Vote()
-			vote.userID = session["userID"]
+			
+			if (session["userID"] != null) {
+				vote.userID = session["userID"]
+			} else if (params.requireLoginToVote.toString().matches("false")) {
+				vote.userID = 'NOT_REQUIRED'
+			} else {
+				// Umm.. Something went wrong.
+				vote.userID = 'NOT_REQUIRED'		
+			}
+			
 			vote.itemID = params.questionID
 			vote.voteType = "Question"
 			vote.date = new Date()
@@ -294,6 +330,19 @@ class QuestionController {
 			
 			// Save the question vote
 			question.totalVotes = question.totalVotes + 1
+			//question.opNotifyVoteCount = question.opNotifyVoteCount + 1
+
+			if (session["userID"] != null) {
+				if (!session["userID"].toString().matches(question.UserID)) {
+					question.opNotifyVoteCount = question.opNotifyVoteCount + 1
+				} else if (params.requireLoginToVote.toString().matches("false") && !session["userID"].toString().matches(question.UserID)) {
+					question.opNotifyVoteCount = question.opNotifyVoteCount + 1
+				}
+			} else if (params.requireLoginToVote.toString().matches("false")){
+				question.opNotifyVoteCount = question.opNotifyVoteCount + 1
+			}
+
+			
 			question.save(flush:true)
 			
 			// save the vote
@@ -311,12 +360,12 @@ class QuestionController {
 			
 		} else {
 			// User already voted
-			render ("False")
+			render ("False" + ":" + "voted")
 		}	
 		
 		} else {
-			// User does not contain session.
-			render ("False")	
+			// Login required to vote
+			render ("False" + ":" + "login")	
 		}
 		
 		

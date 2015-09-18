@@ -1,20 +1,22 @@
+var votedFor = false;
 function questionVote(vote) {
-	
-	//Show the checkMark for vote
-	if ($("#vote").val() == "NONE") {
-	$("#option" + vote  + "Check").css("display","inline-block");
-	}
-	
-	if ($('#sessionCheck').val() == "true") {
+	if (($('#sessionCheck').val() == "true" ||  $('#requireLoginToVote').val() == "false") && votedFor == false) {
 		  $.ajax({
 			  type: 'post',
 			    url: "../../Question/questionVote",
 			    async: true,
-			    data: {questionID : $("#questionID").val(), vote: vote},
+			    data: {questionID : $("#questionID").val(), vote: vote, requireLoginToVote: $('#requireLoginToVote').val()},
 		  }).done(function(result){
 			  if (result.split(":")[0]  == "True") {
-				  $("#vote").val(vote);
 				  
+					//Show the checkMark for vote
+				if ($("#vote").val() == "NONE") {
+					$("#option" + vote  + "Check").css("display","inline-block");
+				}
+					
+				  votedFor = true;
+
+				  $("#vote").val(vote);
 				  // Display answer counts after vote
 				  var answersCount = result.split(":")
 				  var answerNum = 1;
@@ -41,12 +43,23 @@ function questionVote(vote) {
 					}, 1000);
 
 			
-			  } else if (result.split(":")[0]  == "False") {
+			  } else if (result.split(":")[0]  == "False") {					
+				if (result.split(":")[1] == 'voted') {
 					$('#voteWarn').slideDown();
+				} else if (result.split(":")[1] = 'login' )  {
+					alert("LOGIN PLEASE1");
+				}
+					
 			  } else {
 				  // Who knows what the hell went wrong
 			  } 
 		  });
+		} else {
+			if (votedFor == false) {
+				alert("LOGIN PLEASE2");
+			} else {
+				$('#voteWarn').slideDown();
+			}
 		}
 }
 

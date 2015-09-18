@@ -5,8 +5,8 @@ import org.codehaus.groovy.grails.web.taglib.exceptions.GrailsTagException
 import org.springframework.web.util.*
 import grails.util.GrailsUtil
 
-class gsp_shouldIorV1_usermyProfile_gsp extends GroovyPage {
-public String getGroovyPageFileName() { "/WEB-INF/grails-app/views/user/myProfile.gsp" }
+class gsp_shouldIorV1_userprofile_gsp extends GroovyPage {
+public String getGroovyPageFileName() { "/WEB-INF/grails-app/views/user/profile.gsp" }
 public Object run() {
 Writer out = getOut()
 Writer expressionOut = getExpressionOut()
@@ -60,7 +60,7 @@ printHtmlPart(15)
 printHtmlPart(16)
 if(true && (session.name)) {
 printHtmlPart(17)
-expressionOut.print(session.userID)
+expressionOut.print(userID)
 printHtmlPart(18)
 expressionOut.print(session.name)
 printHtmlPart(19)
@@ -69,7 +69,7 @@ else {
 printHtmlPart(20)
 }
 printHtmlPart(21)
-expressionOut.print(user.userName)
+expressionOut.print(user.name)
 printHtmlPart(22)
 expressionOut.print(createLink(controller: 'User', action: 'getProfileImage', params: [id: user.userID]))
 printHtmlPart(23)
@@ -79,58 +79,56 @@ expressionOut.print(user.peopleReached)
 printHtmlPart(25)
 expressionOut.print(category)
 printHtmlPart(26)
-expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: [category: 'My Questions']))
+expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: [category: 'New Questions']))
 printHtmlPart(27)
-expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: [category: 'My Notifications']))
+expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: [category: 'Top Questions']))
 printHtmlPart(28)
-expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: [category: 'My Favorites']))
+for( _it1583686310 in (question) ) {
+changeItVariable(_it1583686310)
 printHtmlPart(29)
-for( _it1982703147 in (question) ) {
-changeItVariable(_it1982703147)
-printHtmlPart(30)
 expressionOut.print(it.questionID)
-printHtmlPart(31)
+printHtmlPart(30)
 if(true && (it.answerOneImage)) {
-printHtmlPart(32)
+printHtmlPart(31)
 expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1']))
-printHtmlPart(33)
+printHtmlPart(32)
 }
 else {
-printHtmlPart(34)
+printHtmlPart(33)
 expressionOut.print(resource(dir:'images',file:'noImg.png'))
+printHtmlPart(34)
+}
 printHtmlPart(35)
-}
-printHtmlPart(36)
 expressionOut.print(it.userName)
-printHtmlPart(37)
+printHtmlPart(36)
 expressionOut.print(it.questionTitle)
-printHtmlPart(38)
+printHtmlPart(37)
 expressionOut.print(it.totalVotes)
-printHtmlPart(39)
+printHtmlPart(38)
 }
-printHtmlPart(40)
-createClosureForHtmlPart(41, 2)
-invokeTag('link','g',148,['action':("myProfile"),'params':([offset: offset, up: 'false', category: category]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
-printHtmlPart(42)
-createClosureForHtmlPart(43, 2)
-invokeTag('link','g',152,['action':("myProfile"),'params':([offset: offset, up: 'true', category: category]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
+printHtmlPart(39)
+createClosureForHtmlPart(40, 2)
+invokeTag('link','g',147,['action':("profile"),'params':([offset: offset, up: 'false', category: category, id: user.userID ]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
+printHtmlPart(41)
+createClosureForHtmlPart(42, 2)
+invokeTag('link','g',151,['action':("profile"),'params':([offset: offset, up: 'true', category: category, id : user.userID]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
+printHtmlPart(43)
+invokeTag('javascript','g',165,['src':("dataAccess.js")],-1)
 printHtmlPart(44)
-invokeTag('javascript','g',166,['src':("dataAccess.js")],-1)
+invokeTag('resource','g',166,['dir':("js"),'file':("bootstrap.min.js")],-1)
 printHtmlPart(45)
-invokeTag('resource','g',167,['dir':("js"),'file':("bootstrap.min.js")],-1)
+invokeTag('javascript','g',167,['src':("buttonAnswerGlow.js")],-1)
 printHtmlPart(46)
-invokeTag('javascript','g',168,['src':("buttonAnswerGlow.js")],-1)
-printHtmlPart(47)
 })
-invokeTag('captureBody','sitemesh',183,[:],1)
-printHtmlPart(48)
+invokeTag('captureBody','sitemesh',182,[:],1)
+printHtmlPart(47)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1442519894004L
+public static final long LAST_MODIFIED = 1442518378442L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

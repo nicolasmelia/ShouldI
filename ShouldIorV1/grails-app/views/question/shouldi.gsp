@@ -76,7 +76,7 @@
                         ${session.name}
                         <span class="fa fa-caret-down"></span></a>
                         <ul class="dropdown-menu">
-                           <li><a href = "${createLink(controller: 'User', action: 'myProfile')}"><span class= 'fa fa-leaf'></span><span style = "padding-left: 5px;" >My Profile</span></a></li>                           
+                           <li><a href = "${createLink(controller: 'User', action: 'myProfile', params: [category: 'My Questions'])}"><span class= 'fa fa-leaf'></span><span style = "padding-left: 5px;" >My Profile</span></a></li>                           
                            <li><a href = "${createLink(controller: 'ShouldI', action: 'category', params: [cat: 'trending'])}" ><span class= 'fa fa-globe'></span><span style = "padding-left: 5px;" >Categories</span></a></li>
                            <li><a href = "${createLink(controller: 'Question', action: 'askShouldI')}" ><span class= 'fa fa-pencil-square-o'></span><span style = "padding-left: 6px;" >Ask</span></a></li>
                            <li role="separator" class="divider"></li>
@@ -115,26 +115,62 @@
                   <!-- MAIN -->	
                   <div  style="display: block;  padding: 10px;  border-bottom: solid 1px; border-color: #f3f3f3;  margin: auto;  ">
                      <!-- PROFILE INFORMATION -->	
-                     <div style = "display: inline-block; width: 68px; padding-left: 5px;">
+                     
+                     <g:if test="${it.anonymous == false}">
+                         <div style = "display: inline-block; width: 68px; padding-left: 5px;">
                         <img  style = "width: 100%;   display: inline-block; border-top-right-radius: 6px; border-top-left-radius: 5px;"  src = "${createLink(controller: 'User', action: 'getProfileImage', params: [id: it.userID])}"   />			
                      </div>
                      <div style = "display: inline-block; padding-bottom:0px; margin-right: 4px; margin-left: 4px; vertical-align: top;  ">
-                        <span style = "margin-left: 1px; color: #5C5C5C; display: block; font-size: 15px;"><b>Nicolas Melia</b></span>
-                        <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px;  display: block; font-size: 15px;">Followers: 234 <span style = 'text-align: left; color: #545252;  padding-left: 2px; display: inline-block;' class='fa fa-plus'></span></span>
-                        <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Reached: 34k People</span>
+                        <span style = "margin-left: 1px; color: #5C5C5C; display: block; font-size: 15px;"><a href = "${createLink(controller: 'User', action: 'profile', params: [id: it.userID, category : 'New Questions'])}"><b>${it.userName}</b></a></span>
+                        <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px;  display: block; font-size: 15px;">Questions: ${opQuestionCount}</span>
+                        <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Reached: ${peopleReached} </span>
                      </div>
+                     
+                     </g:if>
+                     
+                     <g:else>
+                     <div style = "display: inline-block; width: 68px; padding-left: 5px;">
+                        <img  style = "width: 100%;   display: inline-block; border-top-right-radius: 6px; border-top-left-radius: 5px;"  src="${resource(dir:'images',file:'blankAv.png')}"   />			
+                     </div>
+                     <div style = "display: inline-block; padding-bottom:0px; margin-right: 4px; margin-left: 4px; vertical-align: top;  ">
+                        <span style = "margin-left: 1px; color: #5C5C5C; display: block; font-size: 15px;"><b><span class = "fa fa-eye-slash"></span> Anonymous</b></span>
+                        <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px;  display: block; font-size: 15px;">Questions: <span class='fa fa-question'></span></span>
+                        <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Reached: <span class='fa fa-question'></span>       
+                     </div>
+                     
+                     </g:else>
+                     
                   </div>
                   <!-- PROFILE INFORMATION -->	
                   
+  
+                     <input id = "requireLoginToVote" type="hidden" name="perdif" value="${it.requireLoginToVote}">    
+                      
+                    <g:if test="${thisUserPost == true || it.requireLoginToVote == false}">
+                        <div class="alert alert-info" role="alert" style = "margin: 10px 10px 0px 10px; padding: 8px; text-align: left; background-color: rgba(41,153,255,0.05);">
+                    
+                   <g:if test="${it.requireLoginToVote == false}">
+	                  <p style = " color: #407b98; margin: 0px; display: block;">
+	                  	<span class = " fa  fa-thumbs-o-up"></span> Login not required to vote.
+	                  </p> 
+                  </g:if>
+                  
                     <g:if test="${thisUserPost == true}">
-                        <div class="alert alert-info" role="alert" style = "margin: 10px 10px 0px 10px; text-align: left; background-color: rgba(41,153,255,0.05);">
-						 This is your question. <a style = "cursor: default;" onclick = "share()"><b>Share</b></a> or copy this pages <a onClick = "displayPageLink()" style = "cursor: default;"><b>link</b></a></br>
+                     <p style = " display: block; color: #407b98; margin: 0px;">
+						<a style = "cursor: default;" onclick = "share()"><b>Share</b></a> or copy this pages <a onClick = "displayPageLink()" style = "cursor: default;"><b>link</b></a></br>
 						 <span id = "pageLink" style = "display: none; color: #8D8D8D; word-break: break-all;"><u>www.ShouldI.fm/Question/${it.questionID}</u></span>
+					</p>
+					</g:if>
+						
 						</div>
 					</g:if>
 						
-                  <div style = " display: block; height: 50px; ">
+
+                  <div style = " display: block; height: 50px;  ">
+       
+                  
                      <span style = 'text-align: left; font-size: 18px; color: #4A4A4A; padding-left: 12px; padding-top:6px; display: inline-block;'>
+  
                   
                       <span  id = "" style = "color: #8D8D8D; font-size: 14px; ">Votes: ${it.totalVotes}</span>             
 
@@ -153,7 +189,7 @@
                   </div>
                   <span id = "titleText" style = 'text-align: center; margin: center; margin-top: 0px; padding: 0px 8px 0 8px; color: #545252; font-size: 20px; display: block;' >${it.questionTitle}</span>
                   <hr style = "margin-top: 8px; width: 85%; margin-bottom: 0px; padding-top: 0px;">
-               
+
                   <g:if test="${it.custom.toString().equals('false')}">
                   		<g:if test="${it.answerOneImage}">
 	                  <div id = "ee" style = "margin-bottom: 30px; padding: 15px;  margin: auto; margin-top: 20px;  width: 50%; min-width: 290px; max-width: 330px; mag-height: 100px; background-color: #F4FAFF; display: block;" >
@@ -163,15 +199,13 @@
                   </g:if>
                   
                   
-                  <div style = "padding: 15px; width: 98%; max-height: 300px; margin:auto; padding-top: 18px;   display: block;">
+                  <div style = "padding: 15px; width: 98%; overflow-y: hidden; margin:auto; padding-top: 18px;   display: block;">
                    <div style = "margin: 0px; padding: 0px; width: 100%;" id = "questiontText">
                      ${raw(it.question)}		           
                     </div>
                      
                   </div>
                   
-                  
-
                   
                   <div  id = "voteWarn" style = "width: 100%; text-align: center; color: #61B7FE; display:none;  ">  
                      <span class = "fa fa-check"></span> You have already voted on this question.
@@ -322,6 +356,10 @@
          </div>
          <!-- QUESTION -->	
          <!-- MAIN -->	
+         <div   class="contentContainer next " style="overflow: auto;  text-align: center; display: block; height: 44px;  padding-top: 11px; padding-bottom: 0px;">
+		<span class = "" style = "margin: auto; width: 100px; color: #888888; font-size: 17px;">Next in 
+		<span style = "color:#61B7FE;">Hot Or Not</span></span><span style = "color: #9D9D9D; margin-left: 8px;" class = "fa fa-chevron-right"> </span></span>
+		</div>
           
       <div style = "width: 100%; ">
          <div  class="contentContainer">
@@ -344,9 +382,7 @@
                </g:each>
             </div>
          </div>
-      </div>
-
-                        
+      </div>                    
                                    
          <!-- COMMENT BOX -->	
       <div  class="contentContainer">

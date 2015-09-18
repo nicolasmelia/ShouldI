@@ -95,9 +95,9 @@
          </div>
       </nav>
    
-   <div class="container" style = "max-width: 825px; margin-top: 75px; ">
+   <div class="container" style = "max-width: 825px; margin-top: 75px;">
    <img style = "width:55%; display: block; min-width: 270px; margin: auto; " src="${resource(dir:'images',file:'logoDark.png')}"   />				
-   <h3 style = "width:50%; display: block; font-size: 18px;  min-width: 260px; margin: auto; margin-top: 5px; color: #e9e9e9;  " >Bring Thoughts and Opinions Together.</h3>
+   <h3 style = "width:50%; display: none; font-size: 18px;  min-width: 260px; margin: auto; margin-top: 5px; color: #e9e9e9;  " >Bring Thoughts and Opinions Together.</h3>
    <div class = 'favsharButtion' style = " font-size: 22px;  display: block; width: 100%; text-align: left; margin-top: 23px; margin-bottom: -8px;">
       <a  style = "color: #79cce5; margin:0px; padding: 0px;" href = "/ShouldIorV1/Question/askShouldI" > <span class= 'fa fa-pencil-square-o'> 
       <span class = "element"  ></span>
@@ -125,15 +125,15 @@
                   <td style = "width: 100%; height:1px; ">
                      <table style=" height: 100%; ">
                         <tr  style = "vertical-align: top;" >
-                           <td style = "height: 100%; ">
+                           <td style = "height: 100%;  ">
                               <span style = "display: block;  font-size: 16px;" >${it.userName}</span> 
-                              <span style = "display:block; font-size: 16px;  color: #6A6A6A; " >${it.questionTitle}</span> 
+                              <span style = "display:block; font-size: 16px;  color: #6A6A6A; word-wrap: break-word;" >${it.questionTitle}</span> 
                            </td>
                         </tr>
                         <tr  style = "vertical-align: bottom;" >
                            <td style = "text-align: top;  height: 100%; ">
                               <span class = "fa fa-line-chart" style = "color: #5BC0DE;  margin-right: 3px;" ></span>${it.totalVotes}
-                              <span class = "fa fa-comments" style = "color: #5BC0DE;    margin-right: 3px; margin-left: 10px;"  > </span>10k  
+                              <span class = "fa fa-eye" style = "color: #5BC0DE; margin-right: 3px; margin-left: 10px;"  > </span>${it.totalViews} 
                            </td>
                         </tr>
                      </table>

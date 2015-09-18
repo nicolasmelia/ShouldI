@@ -92,8 +92,8 @@ printHtmlPart(28)
 printHtmlPart(29)
 expressionOut.print(resource(dir:'images',file:'logoDark.png'))
 printHtmlPart(30)
-for( _it1137940831 in (question) ) {
-changeItVariable(_it1137940831)
+for( _it566447096 in (question) ) {
+changeItVariable(_it566447096)
 printHtmlPart(31)
 expressionOut.print(it.questionID)
 printHtmlPart(32)
@@ -114,38 +114,40 @@ expressionOut.print(it.questionTitle)
 printHtmlPart(39)
 expressionOut.print(it.totalVotes)
 printHtmlPart(40)
-}
+expressionOut.print(it.totalViews)
 printHtmlPart(41)
-for( _it571585615 in (question) ) {
-changeItVariable(_it571585615)
+}
 printHtmlPart(42)
-expressionOut.print(it.questionID)
+for( _it1436434279 in (question) ) {
+changeItVariable(_it1436434279)
 printHtmlPart(43)
-if(true && (it.answerOneImage)) {
+expressionOut.print(it.questionID)
 printHtmlPart(44)
-expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1']))
+if(true && (it.answerOneImage)) {
 printHtmlPart(45)
+expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1']))
+printHtmlPart(46)
 }
 else {
-printHtmlPart(46)
-expressionOut.print(resource(dir:'images',file:'noImg.png'))
 printHtmlPart(47)
-}
+expressionOut.print(resource(dir:'images',file:'noImg.png'))
 printHtmlPart(48)
-expressionOut.print(it.questionTitle)
-printHtmlPart(49)
 }
+printHtmlPart(49)
+expressionOut.print(it.questionTitle)
 printHtmlPart(50)
+}
+printHtmlPart(51)
 })
 invokeTag('captureBody','sitemesh',247,['style':("background-color: #F6F6F6!important; background-image:url('${resource(dir: "images", file: "wall1.jpg")}'); margin-bottom: 20px; background-size: cover;  background-attachment: fixed; min-width: 320px;  ")],1)
-printHtmlPart(51)
+printHtmlPart(52)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1442098812735L
+public static final long LAST_MODIFIED = 1442528098678L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

@@ -107,7 +107,7 @@
 		<p style = "padding:0px; font-size: 19px; margin: auto; color: #5BC0DE; text-align: center;">Yes/No<span style = "color: #8D8D8D; font-size: 18px;"></span></p>
 		</div> 
 	
-		<div onClick = "openCustom()" class="custom" style=" border-top-right-radius: 8px; border-top: 1px solid #E1E1E1;  border-left: 1px solid #E1E1E1;  margin-top: 0px;  width: 50%;margin-right:-1px;   float: right; padding: 2px; vertical-align: bottom; display: inline-block;">
+		<div onClick = "openCustom()" class="custom" style=" border-top-right-radius: 8px; border-top: 1px solid #E1E1E1;  border-left: 1px solid #E1E1E1;  margin-top: 0px;  width: 50%;margin-right:-1px;  float: right; padding: 2px; vertical-align: bottom; display: inline-block;">
 		<p style = "padding:0px; font-size: 19px; margin: auto; color: #5BC0DE; text-align: center;">Custom<span style = "color: #8D8D8D; font-size: 18px; "> </span></p>
 		</div> 
 		</div>	
@@ -115,23 +115,21 @@
 	<div class="form-group" style = "padding-left: 16px;  display:block; padding-right: 16px; padding-top: 1px; ">		
 	<span  id = "postingAs" style = "margin-bottom:4px; margin-top:10px; padding-top: 15px;  display:none;" >Posting as Nicolas</span>
 
-	<div id = "imgContainer" style = "margin-top: 22px; margin-bottom: -10px; padding: 6px; background-color: #EAEAEA; display: none;" >
-		<span onclick = "resetFormElement1()" style = 'text-align: right;  right: 0px; float: right;  color: #d9534f; font-size: 20px; padding-right: 0px; padding-top:0px; display: inline-block;' class='fa fa-times'></span>
+		<div id = "errorAlert"class="alert alert-danger" role="alert" style = " display: none; margin-top: 25px; padding: 6px; margin-bottom: -15px;" >
+		 <span id = 'errorMessage' ></span>
+		</div>
+		
+			<div id = "imgContainer" style = "margin-top: 22px; margin-bottom: -10px; padding: 6px; background-color: #EAEAEA; display: none;" >
+		<span onclick = "resetFormElement1()" style = 'text-align: right;  right: 0px; float: right;  color: #d9534f; font-size: 20px; padding-right: 0px; padding-top:0px; display: inline-block;' class = 'fa fa-minus-square' ></span>
 		 <img id="image1" src="#" style ="display: none; margin: auto; width: 50%; max-width: 200px;" alt="Error displaying image (Image will still upload)" />
-	</div>
-	
-	
-	                                              
+		</div>
+			                                              
 	<div id="wysihtml5-toolbar" style="display: none;  margin-top: 24px; ">
-
-
-        
 		<div class="btn-group">
 						
 				<a  data-wysihtml5-command="bold" style = "padding-top: 2px; padding-bottom: 2px;"  class="btn btn-default">
                     <i  style = "color: #5BC0DE;"  class="fa fa-bold"></i>
                 </a>
-				
 							
 				<a data-wysihtml5-command="italic" style = "padding-top: 2px; padding-bottom: 2px;" class="btn btn-default">
                     <i  style = "color: #5BC0DE;"  class="fa fa-italic"></i>
@@ -151,26 +149,46 @@
 </div>
 
 	 <g:form controller="Question" action="postShouldI" enctype="multipart/form-data" >
-	<input type="text" name = "title" style = "width: 100%;  margin-top: 8px; " class="form-control" id="title" placeholder="Title">
+	<input id = 'title' type="text" name = "title" style = "width: 100%;  margin-top: 8px; " class="form-control"  placeholder="Title">
 
-	<textarea type="text" name = "question" style = "resize: none; height: 170px; margin-top: 8px; " class="form-control" id="wysihtml5-textarea" placeholder="Should I, or..."></textarea>
+	<textarea type="text" name = "question" style = "resize: none; height: 170px; margin-top: 8px; " class="form-control" id="wysihtml5-textarea" placeholder="Ask away..."></textarea>
 
-		<div style = "padding-top: 10px; display: block;   width: 100%; "  >
-		<div style = "font-color: #3d3d3d; margin-bottom: 3px;" ><b>Tags</b> <i>ie. Idea, Funny, Hair, Politics </i></div>
-				<input type="text"   name = "tags"  id = "tagsInput1"  style = "width: 100%; " value="Should I" data-role="tagsinput" />
+	<select name = "category" class="form-control" style = "margin-top: 6px; margin-bottom: 6px; ">
+	    <option value="one">No Category</option>
+	    <option value="two">Two</option>
+	    <option value="three">Three</option>
+	    <option value="four">Four</option>
+	    <option value="five">Five</option>
+	    	    <option value="two">Two</option>
+	    <option value="three">Three</option>
+	    <option value="four">Four</option>
+	    <option value="five">Five</option>
+	</select>
+
+		<div id = "errorAlertNoLogin"class="alert alert-info" role="alert" style = " display: none; margin-top: 7px; padding: 6px; margin-bottom: 7px; " >
+		 <span id = 'errorMessage' >
+		Disabling logins to vote will will make this question <b>private</b>.
+		</span>
 		</div>
 		
 		<div class="checkbox checkbox-danger"  style = "display: block; margin-top: 0px; margin-left: 2px;" >
-		    <input type="checkbox"  name = "anonymous"  id="anonymousCheckbox"/>
+		    <input type="checkbox"  name = "loginToVote"  id="anonymousCheckbox"/>
     <label  for="anonymousCheckbox">
         Post as anonymous
     </label>
 		</div> 
 		
+<div class="checkbox checkbox-default"  style = "display: block; margin-top: 0px; margin-left: 2px;" >
+		    <input type="checkbox"  name = "anonymous"  id="noLoginCheckbox" checked/>
+    <label  for="noLoginCheckbox">
+        Require login to vote
+    </label>
+		</div> 
+		
 	<div style = "display: block; width: 100%" >
-	<g:actionSubmit  value = "Post"  action = "postShouldI" style = "margin-top: 1px; width: 100px; display: inline-block;" class="btn btn-default"/>
+	<g:actionSubmit  onclick="return validate()" value = "Post"  action = "postShouldI" style = "margin-top: 1px; width: 100px; display: inline-block;" class="btn btn-default"/>
 		<span class="btn btn-default btn-file">
-			Add Image <input id = "imageUpload" name = 'image1' type="file" accept="image/*">
+			<span class = "fa fa-picture-o"></span> Add Photo  <input id = "imageUpload" name = 'image1' type="file" accept="image/*">
 		</span>
 	</div>
 			</g:form>
@@ -212,24 +230,13 @@
 			});
 
 		
-		// ADDDDDDDDDDDDDDDDDDDDD
-		editor.on('load', function () {
-	    var body = $('iframe').contents().find('body');
 
-	    body.on('keydown', function (e) {
-	        if (e.keyCode == 13) {
-	            editor.composer.commands.exec("insertHTML", "&nbsp;");
-	        }
-	    })
-	});
-		//ADDDDDDDDDDDDDDDDDDDDD
 	
-	$("#anonymousCheckbox").click(function() {
+	$("#noLoginCheckbox").click(function() {
 	  if (this.checked) {
-	  alert($('#tagsInput1').val());
-	  	$("#postingAs").html("Posting as anonymous");
+		  $('#errorAlertNoLogin').slideUp(800);	  
 	  } else {
-		$("#postingAs").html("Posting as Nicolas");
+		  $('#errorAlertNoLogin').slideDown(800);	  
 	  }
 
 	});
@@ -262,9 +269,27 @@
 	}
 
 	$("#imageUpload").change(function(){
-		readImg(this);
+		errors = [];
+		
+		 if (this.files[0].size <= 2000000) {	
+			$("#imgError").css('display', 'none');
+			readImg(this);
+		 } else {
+			$("#imgError").css('display', 'none');
+			errors.push("Images must be under 2mb.");
+			
+			$("#errorMessage").html("");
+			for (i = 0; i < errors.length; i++) { 
+				$("#errorMessage").append("*" + errors[i] + "<br/>");		
+			}		
+			//$("#errorMessage").html(errors);
+			
+			$("#errorAlert").slideDown("800");
+			
+			resetFormElement1();
+		}
 	});
-	
+		
 		// Removes file from photo input 1
 	function resetFormElement1() {
 	var control = $('#imageUpload');
@@ -273,7 +298,46 @@
 	$('#imgContainer').fadeOut(800);
 	}	
 
+	var errors = [];
+	function validate() {
+	var errorMessage;
+	var hasErrors = false;
+	var title = $("#title").val();
+	var question = $("#wysihtml5-textarea").val(); 
+	
+	$("#errorAlert").css("display", "none");
+	errors = [];
+	
+		if (title == "" || title.length < 5 || title.length > 55) {
+			hasErrors = true;
+			errors.push("Please enter a valid title.");
+		} 
 
+		if (question == "" || question.length < 10) {
+			hasErrors = true;
+			errors.push("Please enter a valid question.");
+		} 
+
+		if (question.length > 3000) {
+			hasErrors = true;
+			errors.push("Question is too long.");
+		} 
+
+		if (hasErrors) {
+			$("#errorMessage").html("");
+			for (i = 0; i < errors.length; i++) { 
+				$("#errorMessage").append("*" + errors[i] + "<br/>");		
+			}		
+			//$("#errorMessage").html(errors);
+			
+			$("#errorAlert").slideDown("800");
+			return false;
+		} else {
+		// Validate success
+			return true; 
+		}	
+	}
+		
 	function openCustom() {
 		 
 		window.location.href = '/ShouldIorV1/Question/askShouldICustom';

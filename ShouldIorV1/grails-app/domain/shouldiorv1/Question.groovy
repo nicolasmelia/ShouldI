@@ -9,10 +9,12 @@ class Question {
 	boolean custom // True if a shouldI question, false if an or
 	boolean yesOrNo // if a shouldI, is this a do-dont or yes-no
 	boolean anonymous 
+	boolean requireLoginToVote
 	
 	// Question
 	String question
 	String questionTitle
+	String category
 	
 	Date date
 	
@@ -38,6 +40,7 @@ class Question {
 	
 	int totalVotes
 	int totalViews
+	int opNotifyVoteCount // Keeps track of new unchecked votes by OP. Sets to 0 on check
 	
 	int totalComments
 	
@@ -51,6 +54,8 @@ class Question {
 		userName(nullable:true)
 		question maxSize: 200000
 		tags(nullable:true)
+		category(nullable:true)
+		opNotifyVoteCount(nullable:true)
 		
 		answerOneImage(nullable:true, maxSize: 1024 * 1024 * 3 /* 2MB */)
 		answerTwoImage(nullable:true, maxSize: 1024 * 1024 * 3 /* 2MB */)

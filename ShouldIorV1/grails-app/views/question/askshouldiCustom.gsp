@@ -105,8 +105,6 @@
          </div>
       </nav>
        
-
-		
 		<!-- COMMENT BOX -->	
     <div class="container">
 
@@ -126,23 +124,21 @@
 
 	<div class="form-group" style = "padding-left: 16px;  display:block; padding-right: 16px; padding-top: 25px; ">		
 
-	
+		<div id = "errorAlert"class="alert alert-danger" role="alert" style = " display: none; padding: 6px; margin-bottom: 10px;" >
+		 <span id = 'errorMessage' ></span>
+		</div>
+			      
 	                                              
 	<div id="wysihtml5-toolbar" style="display: none;  margin-top: 0px; ">
 
-
-        
-		<div class="btn-group">
-						
+		<div class="btn-group">					
 				<a  data-wysihtml5-command="bold" style = "padding-top: 2px; padding-bottom: 2px;"  class="btn btn-default">
                     <i  style = "color: #5BC0DE;"  class="fa fa-bold"></i>
-                </a>
-				
+                </a>	
 							
 				<a data-wysihtml5-command="italic" style = "padding-top: 2px; padding-bottom: 2px;" class="btn btn-default">
                     <i  style = "color: #5BC0DE;"  class="fa fa-italic"></i>
-                </a>
-				
+                </a>			
             </div>
 			
 			<div class="btn-group">
@@ -157,7 +153,7 @@
 </div>
 
 	 <g:form controller="Question" action="postShouldICutom" enctype="multipart/form-data" >
-	<input type="text" name = "title" style = "width: 100%;  margin-top: 8px; " class="form-control" id="title" placeholder="Title">
+	<input type="text" id="title" name = "title" style = "width: 100%;  margin-top: 8px; " class="form-control" placeholder="Title">
 
 	<textarea type="text" name = "question" style = "resize: none; height: 170px; margin-top: 8px; " class="form-control" id="wysihtml5-textarea" placeholder="Should I, or..."></textarea>
 
@@ -173,8 +169,8 @@
 		<img id="image1" src="#" style ="display: none; margin: auto; width: 50%" alt="Error displaying image (Image will still upload)" />
 		</div>
 		<input name = "answerOne" type="text" style = "width: 100%;" class="form-control" id="option1" placeholder="Ex. Yes, Black, Fast">
-		<span  class="btn btn-default btn-file" style ="height: 25px; margin-top: 10px; padding-top: 2px;">
-			Upload Photo <input onClick = "test()" id = "imageUpload1" name = 'image1' type="file">
+		<span class="btn btn-default btn-file" style =" margin-top: 10px; height: 25px; padding: 4px; font-size: 12px;">
+			<span class = "fa fa-picture-o"></span> Add Image <input id = "imageUpload1" name = 'image1' type="file">
 		</span>
 		</div>
 	</div>
@@ -187,8 +183,8 @@
 		<img id="image2" src="#" style ="display: none; margin: auto; width: 50%" alt="Error displaying image (Image will still upload)" />
 		</div>
 		<input  name = "answerTwo" type="text" style = "width: 100%;" class="form-control" style = "" id="option2" placeholder="Ex. No, White, Slow">
-		<span class="btn btn-default btn-file" style ="height: 25px; margin-top: 10px; padding-top: 2px;">
-			Upload Photo <input id = "imageUpload2" name = 'image2' type="file">
+		<span class="btn btn-default btn-file" style =" margin-top: 10px; height: 25px; padding: 4px; font-size: 12px;">
+			<span class = "fa fa-picture-o"></span> Add Image <input id = "imageUpload2" name = 'image2' type="file">
 		</span>
 	  </div>
     </div>
@@ -196,43 +192,53 @@
   
 	<div id = "option3Div" style = "display: none;">
     	<div class="form-group" style = "margin-top: 12px; " >
-    <label  style = "color: #5BC0DE;" ><b>Option 3</b> <span  onclick = "removeOption('option3Div')" class = 'fa fa-minus-square'></span></label>
+    <label  style = "color: #5BC0DE;" ><b>Option 3</b> <span  onclick = "removeOption('option3Div')" class = 'fa fa-minus-square favsharButtion'></span></label>
 	<div id = "imgContainer3" style = "margin-top: 4px; margin-bottom: 9px; padding: 6px; background-color: #EAEAEA; display: none;" >
-	<span onClick = "removePhoto('imgContainer3', 'imageUpload3')" style = 'text-align: right;  right: 0px; float: right;  font-color: #606060; font-size: 20px; padding-right: 0px; padding-top:0px; display: inline-block;' class='fa fa-share-alt-square'></span>
+	<span  onClick = "removePhoto('imgContainer3', 'imageUpload3')" style = 'text-align: right;  right: 0px; float: right;  font-color: #606060; font-size: 20px; padding-right: 0px; padding-top:0px; display: inline-block;' class='fa fa-share-alt-square'></span>
 	<img id="image3" src="#" style ="display: none; margin: auto; width: 50%" alt="Error displaying image (Image will still upload)" />
 	</div>
     <input  name = "answerThree" type="text" style = "width: 100%;" class="form-control" style = "" id="option3" placeholder="Ex. No, White, Slow">
-	<span class="btn btn-default btn-file" style ="height: 25px; margin-top: 10px; padding-top: 2px;">
-		Upload Photo <input id = "imageUpload3" name = 'image3' type="file">
-	</span>
+		<span class="btn btn-default btn-file" style =" margin-top: 10px; height: 25px; padding: 4px; font-size: 12px;">
+			<span class = "fa fa-picture-o"></span> Add Image <input id = "imageUpload3" name = 'image3' type="file">
+		</span>
   </div>
   </div>
   
   
   	<div id = "option4Div"  style = "display: none;">
     	<div class="form-group" style = "margin-top: 12px; " >
-    <label  style = "color: #5BC0DE;" ><b>Option 4</b> <span  onclick = "removeOption('option4Div')" class = 'fa fa-minus-square'></span> </label>
+    <label  style = "color: #5BC0DE;" ><b>Option 4</b> <span onclick = "removeOption('option4Div')" class = 'fa fa-minus-square favsharButtion'></span> </label>
 	<div id = "imgContainer4" style = "margin-top: 4px; margin-bottom: 9px; padding: 6px; background-color: #EAEAEA; display: none;" >
-	<span onClick = "removePhoto('imgContainer4', 'imageUpload4')" style = 'text-align: right;  right: 0px; float: right;  font-color: #606060; font-size: 20px; padding-right: 0px; padding-top:0px; display: inline-block;' class='fa fa-share-alt-square'></span>
+	<span class = "favsharButtion" onClick = "removePhoto('imgContainer4', 'imageUpload4')" style = 'text-align: right;  right: 0px; float: right;  font-color: #606060; font-size: 20px; padding-right: 0px; padding-top:0px; display: inline-block;' class='fa fa-share-alt-square'></span>
 	<img id="image4" src="#" style ="display: none; margin: auto; width: 50%" alt="Error displaying image (Image will still upload)" />
 	</div>
     <input  name = "answerFour" type="text" style = "width: 100%;" class="form-control" style = "" id="option4" placeholder="Ex. No, White, Slow">
-	<span class="btn-file" style ="height: 25px; margin-top: 10px; padding-top: 2px;">
-		<span style = "cursor: default; color: #5BC0DE;  "> <span class = 'fa fa-plus-square'></span>
-		</span> Upload Photo <input id = "imageUpload4" name = 'image4' type="file">
-	</span>
+		<span class="btn btn-default btn-file" style =" margin-top: 10px; height: 25px; padding: 4px; font-size: 12px;">
+			<span class = "fa fa-picture-o"></span> Add Image <input id = "imageUpload4" name = 'image4' type="file">
+		</span>
   </div>
   </div>
   
-  	<span id = "addOptionButtion" onClick = "addOption()" style = "cursor: default; color: #5BC0DE; margin-bottom: 5px; display:block;"> <span class = 'fa fa-plus-square'></span> <b>New Option</b> </span>
+  <div class = "favsharButtion">
+  	<span   id = "addOptionButtion" onClick = "addOption()" style = "cursor: default; color: #5BC0DE; margin-bottom: 5px; display:block;"> <span class = 'fa fa-plus-square'> <b>New Option</b> </span> </span>
+  </div>
+  
   
 	</div>
-  
-  		<div style = "padding-top: 0px; display: block;   width: 100%; margin-top: 3px;  "  >
-		<div style = "font-color: #3d3d3d; margin-bottom: 3px;" ><b>Tags</b> <i>ie. Idea, Funny, Hair, Politics </i></div>
-			<input type="text" id = "tagsInput1" style = "width: 100%; " value="Should I" data-role="tagsinput" />
+	
+  	<select name = "category" class="form-control" style = "margin-top: 6px; margin-bottom: 6px; padding: 5px;   ">
+	    <option value="one">No Category</option>
+	    <option value="two">Two</option>
+	    <option value="three">Three</option>
+	    <option value="four">Four</option>
+	    <option value="five">Five</option>
+	</select>
+	
+		<div id = "errorAlertNoLogin"class="alert alert-info" role="alert" style = " display: none; margin-top: 7px; padding: 6px; margin-bottom: 7px; " >
+		 <span id = 'errorMessage' >
+		Disabling logins to vote will will make this question <b>private</b>.
+		</span>
 		</div>
-		
 
 		<div class="checkbox checkbox-danger"  style = "display: block; margin-top: 0px; margin-left: 2px;" >
 		    <input type="checkbox"  id="anonymousCheckbox"/>
@@ -241,8 +247,16 @@
     </label>
 		</div> 
 		
+				
+<div class="checkbox checkbox-default"  style = "display: block; margin-top: 0px; margin-left: 2px;" >
+		    <input type="checkbox"  name = "anonymous"  id="noLoginCheckbox" checked/>
+    <label  for="noLoginCheckbox">
+        Require login to vote
+    </label>
+		</div> 
 		
-	<g:actionSubmit  value = "Post"  action = "postShouldICutom" style = "margin-top: 1px; width: 100px; display: inline-block;" class="btn btn-default"/>
+		
+	<g:actionSubmit  onclick="return validate()"  value = "Post"  action = "postShouldICutom" style = "margin-top: 1px; width: 100px; display: inline-block;" class="btn btn-default"/>
 	
 	</g:form>
 
@@ -280,18 +294,6 @@
 	  parserRules:  wysihtml5ParserRules // defined in parser rules set 
 	});
 	
-	
-	// ADDDDDDDDDDDDDDDDDDDDD
-	editor.on('load', function () {
-    var body = $('iframe').contents().find('body');
-
-    body.on('keydown', function (e) {
-        if (e.keyCode == 13) {
-            editor.composer.commands.exec("insertHTML", "&nbsp;");
-        }
-    })
-});
-	//ADDDDDDDDDDDDDDDDDDDDD
 
 		  $('.single').css('border-bottom', ' solid 2px #5BC0DE');
 
@@ -306,6 +308,16 @@
 		  $('.single').css('background-color', '#F7FBFF');
 		   });
 		});
+
+	});
+	
+	
+	$("#noLoginCheckbox").click(function() {
+	  if (this.checked) {
+		  $('#errorAlertNoLogin').slideUp(800);	  
+	  } else {
+		  $('#errorAlertNoLogin').slideDown(800);	  
+	  }
 
 	});
 		
@@ -325,22 +337,50 @@
 	}
 
 	$("#imageUpload1").change(function(){
-		readImg(this, 'image1', 'imgContainer1');
+		if (validImageTest(this)){
+			readImg(this, 'image1', 'imgContainer1');
+		}
 	});
 
 
 	$("#imageUpload2").change(function(){
-		readImg(this, 'image2', 'imgContainer2');
+		if (validImageTest(this)){
+			readImg(this, 'image2', 'imgContainer2');
+		}
 	});
 	
 	$("#imageUpload3").change(function(){
-		readImg(this, 'image3', 'imgContainer3');
+		if (validImageTest(this)){
+			readImg(this, 'image3', 'imgContainer3');
+		}
 	});
 	
 	
 	$("#imageUpload4").change(function(){
-		readImg(this, 'image4', 'imgContainer4');
+		if (validImageTest(this)){
+			readImg(this, 'image4', 'imgContainer4');
+		}
 	});
+	
+	
+	function validImageTest(imgFile) {
+		errors = [];
+		 if (imgFile.files[0].size <= 2000000) {	
+				return true;
+		 } else {
+			$("#imgError").css('display', 'none');
+			errors.push("Images must be under 2mb.");
+			
+			$("#errorMessage").html("");
+			for (i = 0; i < errors.length; i++) { 
+				$("#errorMessage").append("*" + errors[i] + "<br/>");		
+			}		
+			
+			$("#errorAlert").slideDown("800");
+			return false;
+		}
+	}
+	
 	
 	
 	//************* Remove Photos ******************
@@ -360,7 +400,7 @@
 		  $('#option3Div').slideDown();
 		  } else {
 		  $('#option4Div').slideDown();
-				$('#addOptionButtion').css('color', "#3d3d3d")
+				//$('#addOptionButtion').css('color', "#3d3d3d")
 		  }
 		} else { 
 			alert("Max number of options added.");
@@ -398,6 +438,74 @@
 
 	}
 	
+var errors = [];
+	function validate() {
+	var errorMessage;
+	var hasErrors = false;
+	var title = $("#title").val();
+	var question = $("#wysihtml5-textarea").val(); 
+	
+	$("#errorAlert").css("display", "none");
+	errors = [];
+	
+		if (title == "" || title.length < 5 || title.length > 55) {
+			hasErrors = true;
+			errors.push("Please enter a valid title.");
+		} 
+
+		if (question == "" || question.length < 10) {
+			hasErrors = true;
+			errors.push("Please enter a valid question.");
+		} 
+		
+		if (question.length > 3000) {
+			hasErrors = true;
+			errors.push("Question is too long.");
+		} 
+		
+		// Validate Answers
+		if (($('#option1Div').css('display') != 'none' && $("#option1").val() == "") || $("#option1").val().length > 40) {
+			hasErrors = true;
+			errors.push("Answer 1: Please enter a valid answer.");
+		} 
+		
+		if (($('#option2Div').css('display') != 'none' && $("#option2").val() == "") || $("#option2").val().length > 40) {
+			hasErrors = true;
+			errors.push("Answer 2: Please enter a valid answer.");
+		} 
+		
+		if (($('#option3Div').css('display') != 'none' && $("#option3").val() == "") || $("#option3").val().length > 40) {
+			hasErrors = true;
+			errors.push("Answer 3: Please enter a valid answer.");
+		} 
+		
+		if (($('#option4Div').css('display') != 'none' && $("#option4").val() == "") || $("#option4").val().length > 40) {
+			hasErrors = true;
+			errors.push("Answer 4: Please enter a valid answer.");
+		} 
+		
+
+
+		if (hasErrors) {
+			$("#errorMessage").html("");
+			for (i = 0; i < errors.length; i++) { 
+				$("#errorMessage").append("*" + errors[i] + "<br/>");		
+			}		
+			//$("#errorMessage").html(errors);
+			
+			$("#errorAlert").slideDown("800");
+			return false;
+		} else {
+		// Validate success
+			return true; 
+		}	
+	}
+
+	
+	function openCustom() {		 
+		window.location.href = '/ShouldIorV1/Question/askShouldICustom';
+	}
+
 	
 	</script>
 	
