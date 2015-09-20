@@ -88,8 +88,8 @@ else {
 printHtmlPart(30)
 }
 printHtmlPart(31)
-for( _it2076359512 in (question) ) {
-changeItVariable(_it2076359512)
+for( _it1316928159 in (question) ) {
+changeItVariable(_it1316928159)
 printHtmlPart(32)
 expressionOut.print(it.totalVotes)
 printHtmlPart(33)
@@ -249,8 +249,8 @@ printHtmlPart(95)
 printHtmlPart(96)
 }
 printHtmlPart(97)
-for( _it2146861130 in (questionArray) ) {
-changeItVariable(_it2146861130)
+for( _it193206035 in (questionArray) ) {
+changeItVariable(_it193206035)
 printHtmlPart(98)
 expressionOut.print(it.questionID)
 printHtmlPart(99)
@@ -271,14 +271,14 @@ printHtmlPart(104)
 printHtmlPart(105)
 expressionOut.print(questionID)
 printHtmlPart(106)
-invokeTag('javascript','g',402,['src':("dataAccess.js")],-1)
+invokeTag('javascript','g',409,['src':("dataAccess.js")],-1)
 printHtmlPart(107)
-invokeTag('resource','g',403,['dir':("js"),'file':("bootstrap.min.js")],-1)
+invokeTag('resource','g',410,['dir':("js"),'file':("bootstrap.min.js")],-1)
 printHtmlPart(108)
-invokeTag('javascript','g',404,['src':("buttonAnswerGlow.js")],-1)
+invokeTag('javascript','g',411,['src':("buttonAnswerGlow.js")],-1)
 printHtmlPart(109)
 })
-invokeTag('captureBody','sitemesh',488,['style':(" margin-bottom: 20px;  ")],1)
+invokeTag('captureBody','sitemesh',495,['style':(" margin-bottom: 20px;  ")],1)
 printHtmlPart(110)
 }
 public static final Map JSP_TAGS = new HashMap()
@@ -286,7 +286,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1442536300521L
+public static final long LAST_MODIFIED = 1442702214284L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

@@ -241,7 +241,7 @@
 		</div>
 
 		<div class="checkbox checkbox-danger"  style = "display: block; margin-top: 0px; margin-left: 2px;" >
-		    <input type="checkbox"  id="anonymousCheckbox"/>
+		    <input type="checkbox"  name = "anonymous" id="anonymousCheckbox"/>
     <label  for="anonymousCheckbox">
         Post as anonymous
     </label>
@@ -249,7 +249,7 @@
 		
 				
 <div class="checkbox checkbox-default"  style = "display: block; margin-top: 0px; margin-left: 2px;" >
-		    <input type="checkbox"  name = "anonymous"  id="noLoginCheckbox" checked/>
+		    <input type="checkbox"  name = "loginToVote"  id="noLoginCheckbox" checked/>
     <label  for="noLoginCheckbox">
         Require login to vote
     </label>

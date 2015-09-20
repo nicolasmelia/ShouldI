@@ -89,6 +89,16 @@
                   <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px;  display: block; font-size: 15px;">Questions: ${opQuestionCount}</span>
                   <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Reached: ${user.peopleReached} </span>
                </div>
+                              	             
+               	<p style =  "display: block; color: #757575; font-size: 15px;  margin: auto; margin-top: 7px; width: 100%; text-align: center;">
+               	    <g:if test="${user.about != ''}">
+               		    ${raw(user.about)}		           
+               	    </g:if>
+               	    <g:else>
+               		    Apparently, this user prefers to keep an air of mystery about them.       
+               	   	</g:else>
+				 </p>
+               
             </div>
             <!-- PROFILE INFORMATION -->	
             <div style = "width: 100%; margin: auto; text-align: center; padding-top: 0px; display:block; margin-bottom: -6px;  ">
@@ -104,10 +114,17 @@
             </div>
             <!-- QUESTION REPLY -->
             <div  class="contentContainer" style = "box-shadow:0 0 0px rgba(0, 0, 0, 0.0);" >
-               <p style =  "display: none; color: #d3d3d3; font-size: 15px;  margin: auto; margin-top: 0px; width: 100%; text-align: center;">Nothing new.</p>
+               
+             
               <div class = "scrollCon" style = "height: 310px; " >
+       
+	    <g:if test="${question.isEmpty()}">
+		     <p style =  "display: block; color: #d3d3d3; font-size: 15px;  margin: auto; margin-top: 7px; width: 100%; text-align: center;">Nothing to show here...</p>
+		</g:if>
                
                <g:each in="${question}">
+               
+               
                   <table onmouseover="glow(this)" onmouseout="unGlow(this)"  onClick = "loadQuestionURL('${it.questionID}')" style="cursor: default; width: 100%; padding: 8px 4px 8px 4px; display:block;">
                      <tr style = "display:block; max-height: 105px; width: 100%; margin-top: 0px; ">
                         <td style = "min-width: 125px;  height: 100%; text-align:center; vertical-align:top; ">

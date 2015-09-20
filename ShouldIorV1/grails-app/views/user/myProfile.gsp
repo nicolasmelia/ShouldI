@@ -86,9 +86,23 @@
                <hr style = "padding:0px; margin-top: 8px; margin-bottom: 14px; ">
                <div style = "display: inline-block; width: 80px; height: 80px; background-image: url('${createLink(controller: 'User', action: 'getProfileImage', params: [id: user.userID])}'); background-size: cover; background-repeat: no-repeat;   background-position: center center; padding-left: 5px;"> </div>
                <div style = "display: inline-block; padding-bottom:0px; margin-right: 4px; margin-left: 4px; vertical-align: top;  ">
-                  <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px;  display: block; font-size: 15px;">Followers: ${opQuestionCount}</span>
-                  <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Reached: ${user.peopleReached}</span>
+                    <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Member Since: <g:formatDate format="MM-dd-yyyy" date="${user.dateCreated}"/> </span>  
+                  <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Reached: ${user.peopleReached} People</span>
+                                   
+                   <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Questions: ${opQuestionCount}</span>                 
+                  <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Votes: ${user.totalVotes}</span>
+              
                </div>
+               	             
+               	<p style =  "display: block; color: #757575; font-size: 15px;  margin: auto; margin-top: 7px; width: 100%; text-align: center;">
+               	    <g:if test="${user.about != ''}">
+               		  <a href = '${createLink(controller:'User', action: 'editAbout')}' class = "fa fa-edit" style = "cursor: default;"> Edit: </a> ${raw(user.about)}		           
+               	    </g:if>
+               	    <g:else>
+               		  <a href = '${createLink(controller:'User', action: 'editAbout')}' class = "fa fa-edit" style = "cursor: default;"> Edit: </a> Apparently, this user prefers to keep an air of mystery about them.       
+               	   	</g:else>
+				 </p>
+               
             </div>
             <!-- PROFILE INFORMATION -->	
             <div style = "width: 100%; margin: auto; text-align: center; padding-top: 0px; display:block; margin-bottom: -6px;  ">
@@ -100,14 +114,17 @@
 	                  <li><a href = "${createLink(controller: 'User', action: 'myProfile', params: [category: 'My Questions'])}"><span style = "padding-left: 5px;" >My Questions</span></a></li>                           
 	                  <li><a href = "${createLink(controller: 'User', action: 'myProfile', params: [category: 'My Notifications'])}"><span style = "padding-left: 5px;" >My Notifications</span></a></li>                           
 	                  <li><a href = "${createLink(controller: 'User', action: 'myProfile', params: [category: 'My Favorites'])}"><span style = "padding-left: 5px;" >My Favorites</span></a></li>                           
-	               </ul>
+	               </ul>	               
                </div>
             </div>
             <!-- QUESTION REPLY -->
             <div  class="contentContainer" style = "box-shadow:0 0 0px rgba(0, 0, 0, 0.0);" >
-               <p style =  "display: none; color: #d3d3d3; font-size: 15px;  margin: auto; margin-top: 0px; width: 100%; text-align: center;">Nothing new.</p>
               <div class = "scrollCon" style = "height: 310px; " >
-               
+         
+	         <g:if test="${question.isEmpty()}">
+			     <p style =  "display: block; color: #d3d3d3; font-size: 15px;  margin: auto; margin-top: 7px; width: 100%; text-align: center;">Nothing to show here...</p>
+			</g:if>
+		
                <g:each in="${question}">
                   <table onmouseover="glow(this)" onmouseout="unGlow(this)"  onClick = "loadQuestionURL('${it.questionID}')" style="cursor: default; width: 100%; padding: 8px 4px 8px 4px; display:block;">
                      <tr style = "display:block; max-height: 105px; width: 100%; margin-top: 0px; ">

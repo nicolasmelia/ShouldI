@@ -5,8 +5,8 @@ import org.codehaus.groovy.grails.web.taglib.exceptions.GrailsTagException
 import org.springframework.web.util.*
 import grails.util.GrailsUtil
 
-class gsp_shouldIorV1_questionaskShouldi_gsp extends GroovyPage {
-public String getGroovyPageFileName() { "/WEB-INF/grails-app/views/question/askShouldi.gsp" }
+class gsp_shouldIorV1_useraskShouldi_gsp extends GroovyPage {
+public String getGroovyPageFileName() { "/WEB-INF/grails-app/views/user/askShouldi.gsp" }
 public Object run() {
 Writer out = getOut()
 Writer expressionOut = getExpressionOut()

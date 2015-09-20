@@ -77,58 +77,71 @@ expressionOut.print(opQuestionCount)
 printHtmlPart(24)
 expressionOut.print(user.peopleReached)
 printHtmlPart(25)
-expressionOut.print(category)
+if(true && (user.about != '')) {
 printHtmlPart(26)
-expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: [category: 'New Questions']))
+expressionOut.print(raw(it.about))
 printHtmlPart(27)
-expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: [category: 'Top Questions']))
-printHtmlPart(28)
-for( _it1583686310 in (question) ) {
-changeItVariable(_it1583686310)
-printHtmlPart(29)
-expressionOut.print(it.questionID)
-printHtmlPart(30)
-if(true && (it.answerOneImage)) {
-printHtmlPart(31)
-expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1']))
-printHtmlPart(32)
 }
 else {
-printHtmlPart(33)
-expressionOut.print(resource(dir:'images',file:'noImg.png'))
-printHtmlPart(34)
+printHtmlPart(28)
 }
+printHtmlPart(29)
+expressionOut.print(category)
+printHtmlPart(30)
+expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: [category: 'New Questions']))
+printHtmlPart(31)
+expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: [category: 'Top Questions']))
+printHtmlPart(32)
+if(true && (question.isEmpty())) {
+printHtmlPart(33)
+}
+printHtmlPart(34)
+for( _it934426842 in (question) ) {
+changeItVariable(_it934426842)
 printHtmlPart(35)
-expressionOut.print(it.userName)
+expressionOut.print(it.questionID)
 printHtmlPart(36)
-expressionOut.print(it.questionTitle)
+if(true && (it.answerOneImage)) {
 printHtmlPart(37)
-expressionOut.print(it.totalVotes)
+expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1']))
 printHtmlPart(38)
 }
+else {
 printHtmlPart(39)
-createClosureForHtmlPart(40, 2)
-invokeTag('link','g',147,['action':("profile"),'params':([offset: offset, up: 'false', category: category, id: user.userID ]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
+expressionOut.print(resource(dir:'images',file:'noImg.png'))
+printHtmlPart(40)
+}
 printHtmlPart(41)
-createClosureForHtmlPart(42, 2)
-invokeTag('link','g',151,['action':("profile"),'params':([offset: offset, up: 'true', category: category, id : user.userID]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
+expressionOut.print(it.userName)
+printHtmlPart(42)
+expressionOut.print(it.questionTitle)
 printHtmlPart(43)
-invokeTag('javascript','g',165,['src':("dataAccess.js")],-1)
+expressionOut.print(it.totalVotes)
 printHtmlPart(44)
-invokeTag('resource','g',166,['dir':("js"),'file':("bootstrap.min.js")],-1)
+}
 printHtmlPart(45)
-invokeTag('javascript','g',167,['src':("buttonAnswerGlow.js")],-1)
-printHtmlPart(46)
-})
-invokeTag('captureBody','sitemesh',182,[:],1)
+createClosureForHtmlPart(46, 2)
+invokeTag('link','g',164,['action':("profile"),'params':([offset: offset, up: 'false', category: category, id: user.userID ]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
 printHtmlPart(47)
+createClosureForHtmlPart(48, 2)
+invokeTag('link','g',168,['action':("profile"),'params':([offset: offset, up: 'true', category: category, id : user.userID]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
+printHtmlPart(49)
+invokeTag('javascript','g',182,['src':("dataAccess.js")],-1)
+printHtmlPart(50)
+invokeTag('resource','g',183,['dir':("js"),'file':("bootstrap.min.js")],-1)
+printHtmlPart(51)
+invokeTag('javascript','g',184,['src':("buttonAnswerGlow.js")],-1)
+printHtmlPart(52)
+})
+invokeTag('captureBody','sitemesh',199,[:],1)
+printHtmlPart(53)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1442518378442L
+public static final long LAST_MODIFIED = 1442708929230L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

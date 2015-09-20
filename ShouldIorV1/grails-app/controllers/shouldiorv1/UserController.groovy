@@ -14,8 +14,7 @@ class UserController {
 	
 		def myProfile() {	
 					
-			User user = User.findByUserID(session.userID);
-			
+			User user = User.findByUserID(session['userID']);
 			// Configure off pagination 
 			if (params.category == null) {
 				params.category = "My Questions"
@@ -53,7 +52,6 @@ class UserController {
 			
 			def opQuestionCount = Question.countByUserID(session['userID'])
 			
-			// Query for questions
 			render (view: "myProfile", model: ["question": questions, "offset" : offset, "category" : params.category, "opQuestionCount" : opQuestionCount, "user" : user])	
 	}
 		
@@ -103,6 +101,30 @@ class UserController {
 		render (view: "profile", model: ["question": questions, "offset" : offset, "category" : params.category, "user" : user, "opQuestionCount" : opQuestionCount])
 
 }
+	
+	def editAbout () {
+		User user = User.findByUserID(session['userID'])
+		
+		// About may not have been set
+		if (user.about == null) {
+			user.about = ""
+		}
+		
+		render(view: "editAbout", model: ["user": user])		
+	}
+	
+	def updateAbout() {
+		User user = User.findByUserID(session['userID']);			
+		user.about = params.aboutText	
+		
+		if (params.aboutText.toString().length() > 5) {
+			user.save(flush:true)	
+		}
+		
+		// Renders user profile
+		redirect(action: "myProfile")
+
+	}
 	
 	
 	def getProfileImage() {

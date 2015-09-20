@@ -38,6 +38,8 @@ class AuthenticationController {
 			newUser.accountType = "Facebook"
 			newUser.password = "NONE"
 			newUser.peopleReached = 0
+			newUser.about = ""
+			newUser.dateCreated = new Date()
 			newUser.userName = getFaceBookName(params.userID, params.token)
 			newUser.name = getFaceBookName(params.userID, params.token)
 			newUser.save(flush:true);

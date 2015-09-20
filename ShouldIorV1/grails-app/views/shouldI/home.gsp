@@ -85,7 +85,10 @@
                </g:if>
                <g:else>
                   <ul class="nav navbar-nav navbar-right">
-                     <li><a id = "facebookLoginMenu" href = "#"  style = ""  onClick = "loginFacebook()">Log in with <span href="#about" style = "padding-left: 4px; color:#5BC0DE;" class='fa fa-facebook-official'></span> </a></li>
+                  
+                     <li><a id = "facebookLoginMenu" href = "#"  style = ""  onClick = "loginFacebook()">Login/SignUp </a></li>
+
+                     <li><a id = "facebookLoginMenu" href = "#"  style = ""  onClick = "loginFacebook()">Login With <span href="#about" style = "padding-left: 4px; color:#3b5998;" class='fa fa-facebook-official'></span> </a></li>
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
                   </ul>
@@ -95,20 +98,38 @@
          </div>
       </nav>
    
-   <div class="container" style = "max-width: 825px; margin-top: 75px;">
-   <img style = "width:55%; display: block; min-width: 270px; margin: auto; " src="${resource(dir:'images',file:'logoDark.png')}"   />				
+   <div class="container" style = "max-width: 825px; margin-top: 65px;">
+   <img style = "width:55%; display: none; min-width: 270px; margin: auto; " src="${resource(dir:'images',file:'logoDark.png')}"   />				
    <h3 style = "width:50%; display: none; font-size: 18px;  min-width: 260px; margin: auto; margin-top: 5px; color: #e9e9e9;  " >Bring Thoughts and Opinions Together.</h3>
-   <div class = 'favsharButtion' style = " font-size: 22px;  display: block; width: 100%; text-align: left; margin-top: 23px; margin-bottom: -8px;">
+   <div class = 'favsharButtion' style = " font-size: 25px;  display: block; width: 100%; text-align: left; margin-top: 23px; margin-bottom: -5px;">
       <a  style = "color: #79cce5; margin:0px; padding: 0px;" href = "/ShouldIorV1/Question/askShouldI" > <span class= 'fa fa-pencil-square-o'> 
       <span class = "element"  ></span>
       </span> 
       </a> 
    </div>
    
+      
    <div style = "width: 100%; ">
       <div  class="contentContainer">
          <div class="contentContainerTitle">
-            <p class = "fa  fa-random" > <span>Randomly Awesome</span> </p>
+            <p class = "fa fa-paper-plane-o" ><span> Whats New</span> </p>
+         </div>
+         <div style = "padding: 15px;">
+            <h3 style = "text-align: left; color: #6A6A6A; margin:0px;">
+               ShouldI.fm is taking off rapidly!
+            </h3>
+            <p style = "font-size: 15px; width: 100%; margin-top: 10px; text-align: left;">
+               Just like YouTube you can make extra cash from the audiance you attract to your questions. Each vote earns you money. <a href = "#">Learn More</a>
+            </p>
+            <div>
+            </div>
+         </div>
+      </div>
+   
+   <div style = "width: 100%; ">
+      <div  class="contentContainer">
+         <div class="contentContainerTitle">
+            <p  style = "color: #E73116;" class = "fa  fa-fire" > <span>Trending</span> </p>
          </div>
                      <div class = "scrollCon" style = "height: 310px; " >  
          <g:each in="${question}">
@@ -146,23 +167,7 @@
             </div>
       
    </div>
-   
-   <div style = "width: 100%; ">
-      <div  class="contentContainer">
-         <div class="contentContainerTitle">
-            <p class = "fa  fa-random" > <span>Randomly Awesome</span> </p>
-         </div>
-         <div style = "padding: 15px;">
-            <h3 style = "text-align: left; color: #6A6A6A; margin:0px;">
-               ShouldI.fm is taking off rapidly!
-            </h3>
-            <p style = "font-size: 15px; width: 100%; margin-top: 10px; text-align: left;">
-               Just like YouTube you can make extra cash from the audiance you attract to your questions. Each vote earns you money. <a href = "#">Learn More</a>
-            </p>
-            <div>
-            </div>
-         </div>
-      </div>
+
       
       <div style = "width: 100%; ">
          <div  class="contentContainer">
@@ -195,12 +200,13 @@
          <div class="modal-content">
             <div class="modal-header">
                <button type="button" class="close" data-dismiss="modal">&times;</button>
-               <h4 class="modal-title"><span href="#about" style = "padding-left: 4px;" class='fa fa-exclamation-circle'> </span> Login</h4>
+               <h4 class="modal-title"><span href="#about" style = "padding-left: 4px;" class='fa fa-exclamation-circle'> </span> Login With -</h4>
             </div>
             <div class="modal-body">
-               <p>Please login to ask all the questions your hear desires <span class = "fa fa-heart-o"></span></p>
-               <button style = "" type="button" class="btn btn-default" data-dismiss="modal">Login</button>
-               <button style = "" type="button" class="btn btn-default" data-dismiss="modal">Login with Facebook</button>
+               <p>Please login to start a poll. Choose a network below.  </p>
+               <button style = "" type="button" class="btn btn-default" data-dismiss="modal">Facebook <span class = "fa fa-facebook"></span></button>
+               <button style = "" type="button" class="btn btn-default" data-dismiss="modal">Reddit <span class = "fa fa-reddit"></span></button>
+
             </div>
             <div class="modal-footer">
                <button style = "" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -208,7 +214,21 @@
          </div>
       </div>
    </div>
+   
+
+        <footer class="footer" style = "margin-top: 10px; width: 100%;" >
+      <div class="container" style = "width: 100%; text-align: left; padding: 0px; ">
+      <span style = "font-size: 15px; color: #79cce5;"><a style = "color: #79cce5;" href = "">Privacy Policy</a> | </span>
+            <span style = "font-size: 15px; color: #79cce5;"><a style = "color: #79cce5;" href = "">How To</a> | </span>
+      <span style = "font-size: 15px; color: #79cce5;"><a style = "color: #79cce5;" href = "">About</a></span>   
+      </div>   
+  	  </footer>
+      
+   
       </div>
+      
+
+      
    <!-- LOGIN Modal -->
    <script>
       function showNoLogin() {
@@ -230,7 +250,7 @@
       	 
        $(function(){
              $(".element").typed({
-                 strings: ["Start a Poll,^700 It's Easy."],
+                 strings: ["Start a Poll"],
                  typeSpeed: 90,
       		cursorChar: "|",			  
       		backDelay: 500,

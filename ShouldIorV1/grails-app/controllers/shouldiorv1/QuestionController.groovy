@@ -116,6 +116,7 @@ class QuestionController {
 		question.custom = false
 		question.yesOrNo = true // This is a YES/NO question
 		
+		print params.anonymous + ": ddd" 
 		if (params.anonymous != null) {
 			question.anonymous = true
 		} else {
@@ -290,6 +291,13 @@ class QuestionController {
 		// If logged in DO NOT allow two votes
 		int voteCount = 0
 		if (session["userID"] != null) {
+			
+			// inc votes the user has made
+			User user = User.findByUserID(session["userID"])
+			user.totalVotes = user.totalVotes + 1
+			user.save(flush:true)
+			
+			// Get count of votes on this questions.
 			voteCount = Vote.countByUserIDAndItemID(session["userID"], params.questionID)
 		}
 					

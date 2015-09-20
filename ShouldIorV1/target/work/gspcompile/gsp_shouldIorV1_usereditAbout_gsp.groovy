@@ -5,8 +5,8 @@ import org.codehaus.groovy.grails.web.taglib.exceptions.GrailsTagException
 import org.springframework.web.util.*
 import grails.util.GrailsUtil
 
-class gsp_shouldIorV1_questionaskShouldi_gsp extends GroovyPage {
-public String getGroovyPageFileName() { "/WEB-INF/grails-app/views/question/askShouldi.gsp" }
+class gsp_shouldIorV1_usereditAbout_gsp extends GroovyPage {
+public String getGroovyPageFileName() { "/WEB-INF/grails-app/views/user/editAbout.gsp" }
 public Object run() {
 Writer out = getOut()
 Writer expressionOut = getExpressionOut()
@@ -65,27 +65,29 @@ printHtmlPart(19)
 printHtmlPart(20)
 createTagBody(2, {->
 printHtmlPart(21)
-invokeTag('actionSubmit','g',189,['onclick':("return validate()"),'value':("Post"),'action':("postShouldI"),'style':("margin-top: 1px; width: 100px; display: inline-block;"),'class':("btn btn-default")],-1)
+expressionOut.print(user.about)
 printHtmlPart(22)
-})
-invokeTag('form','g',194,['controller':("Question"),'action':("postShouldI"),'enctype':("multipart/form-data")],2)
+invokeTag('actionSubmit','g',142,['value':("Update"),'action':("updateAbout"),'style':("margin-top: 1px; width: 100px; display: inline-block;"),'class':("btn btn-default")],-1)
 printHtmlPart(23)
-invokeTag('resource','g',214,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput-angular.js")],-1)
-printHtmlPart(24)
-invokeTag('resource','g',215,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.js")],-1)
-printHtmlPart(25)
-invokeTag('resource','g',216,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.css")],-1)
-printHtmlPart(26)
 })
-invokeTag('captureBody','sitemesh',359,['style':("background-color: #f4f4f4; min-width: 330px; ")],1)
+invokeTag('form','g',144,['controller':("User"),'action':("updateAbout"),'enctype':("multipart/form-data")],2)
+printHtmlPart(24)
+invokeTag('resource','g',164,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput-angular.js")],-1)
+printHtmlPart(25)
+invokeTag('resource','g',165,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.js")],-1)
+printHtmlPart(26)
+invokeTag('resource','g',166,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.css")],-1)
 printHtmlPart(27)
+})
+invokeTag('captureBody','sitemesh',309,['style':("background-color: #f4f4f4; min-width: 330px; ")],1)
+printHtmlPart(28)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1442594773199L
+public static final long LAST_MODIFIED = 1442707851955L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

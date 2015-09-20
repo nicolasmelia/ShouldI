@@ -101,30 +101,14 @@
 
 		<!-- Question form -->	
 		<div  class="jumbotron" style="overflow: none;  display: block; box-shadow:0 0 10px rgba(0, 0, 0, 0.15); min-height: 100px; margin: auto; min-width: 200px; margin-top: 60px;  max-width: 725px; padding-left: 0px; padding-right: 0px; padding-top: 0px; padding-bottom: 1px;  margin-bottom: 20px; background-color: #FDFDFD;  ">
-			
-		<div style = " margin-bottom:10px; padding-bottom: 10px; display:block; width: 100%; ">
-		<div  class="single" style=" border-top-left-radius: 8px; vertical-align: bottom;  text-align: bottom; border-top: 1px solid #E1E1E1;  margin-top: 0px;  width: 50%; float: left; margin-right:-1px; padding: 2px; vertical-align: bottom; display: inline-block;">
-		<p style = "padding:0px; font-size: 19px; margin: auto; color: #5BC0DE; text-align: center;">Yes/No<span style = "color: #8D8D8D; font-size: 18px;"></span></p>
-		</div> 
-	
-		<div onClick = "openCustom()" class="custom" style=" border-top-right-radius: 8px; border-top: 1px solid #E1E1E1;  border-left: 1px solid #E1E1E1;  margin-top: 0px;  width: 50%;margin-right:-1px;  float: right; padding: 2px; vertical-align: bottom; display: inline-block;">
-		<p style = "padding:0px; font-size: 19px; margin: auto; color: #5BC0DE; text-align: center;">Custom<span style = "color: #8D8D8D; font-size: 18px; "> </span></p>
-		</div> 
-		</div>	
 
 	<div class="form-group" style = "padding-left: 16px;  display:block; padding-right: 16px; padding-top: 1px; ">		
 	<span  id = "postingAs" style = "margin-bottom:4px; margin-top:10px; padding-top: 15px;  display:none;" >Posting as Nicolas</span>
 
-		<div id = "errorAlert"class="alert alert-danger" role="alert" style = " display: none; margin-top: 25px; padding: 6px; margin-bottom: -15px;" >
-		 <span id = 'errorMessage' ></span>
-		</div>
-		
-			<div id = "imgContainer" style = "margin-top: 22px; margin-bottom: -10px; padding: 6px; background-color: #EAEAEA; display: none;" >
-		<span onclick = "resetFormElement1()" style = 'text-align: right;  right: 0px; float: right;  color: #d9534f; font-size: 20px; padding-right: 0px; padding-top:0px; display: inline-block;' class = 'fa fa-minus-square' ></span>
-		 <img id="image1" src="#" style ="display: none; margin: auto; width: 50%; max-width: 200px;" alt="Error displaying image (Image will still upload)" />
-		</div>
-			                                              
-	<div id="wysihtml5-toolbar" style="display: none;  margin-top: 24px; ">
+	<h3>Edit About - </h3>
+
+                                          
+	<div id="wysihtml5-toolbar" style="display: none;  margin-top: 10px; ">
 		<div class="btn-group">
 						
 				<a  data-wysihtml5-command="bold" style = "padding-top: 2px; padding-bottom: 2px;"  class="btn btn-default">
@@ -148,48 +132,14 @@
 
 </div>
 
-	 <g:form controller="Question" action="postShouldI" enctype="multipart/form-data" >
-	<input id = 'title' type="text" name = "title" style = "width: 100%;  margin-top: 8px; " class="form-control"  placeholder="Title">
+	 <g:form controller="User" action="updateAbout" enctype="multipart/form-data" >
 
-	<textarea type="text" name = "question" style = "resize: none; height: 170px; margin-top: 8px; " class="form-control" id="wysihtml5-textarea" placeholder="Ask away..."></textarea>
+	<textarea type="text" name = "aboutText" style = "resize: none; height: 170px; margin-top: 8px; " class="form-control" id="wysihtml5-textarea" placeholder="Change your about me...">
+	${user.about}
+	</textarea>
 
-	<select name = "category" class="form-control" style = "margin-top: 6px; margin-bottom: 6px; ">
-	    <option value="one">No Category</option>
-	    <option value="two">Two</option>
-	    <option value="three">Three</option>
-	    <option value="four">Four</option>
-	    <option value="five">Five</option>
-	    	    <option value="two">Two</option>
-	    <option value="three">Three</option>
-	    <option value="four">Four</option>
-	    <option value="five">Five</option>
-	</select>
-
-		<div id = "errorAlertNoLogin"class="alert alert-info" role="alert" style = " display: none; margin-top: 7px; padding: 6px; margin-bottom: 7px; " >
-		 <span id = 'errorMessage' >
-		Disabling logins to vote will will make this question <b>private</b>.
-		</span>
-		</div>
-		
-		<div class="checkbox checkbox-danger"  style = "display: block; margin-top: 0px; margin-left: 2px;" >
-		    <input type="checkbox"  name = "anonymous"  id="anonymousCheckbox"/>
-    <label  for="anonymousCheckbox">
-        Post as anonymous
-    </label>
-		</div> 
-		
-<div class="checkbox checkbox-default"  style = "display: block; margin-top: 0px; margin-left: 2px;" >
-		    <input type="checkbox"  name = "loginToVote"  id="noLoginCheckbox" checked/>
-    <label  for="noLoginCheckbox">
-        Require login to vote
-    </label>
-		</div> 
-		
-	<div style = "display: block; width: 100%" >
-	<g:actionSubmit  onclick="return validate()" value = "Post"  action = "postShouldI" style = "margin-top: 1px; width: 100px; display: inline-block;" class="btn btn-default"/>
-		<span class="btn btn-default btn-file">
-			<span class = "fa fa-picture-o"></span> Add Photo  <input id = "imageUpload" name = 'image1' type="file" accept="image/*">
-		</span>
+	<div style = "display: block; width: 100%; margin-top: 5px; " >
+	<g:actionSubmit value = "Update"  action = "updateAbout" style = "margin-top: 1px; width: 100px; display: inline-block;" class="btn btn-default"/>
 	</div>
 			</g:form>
 	

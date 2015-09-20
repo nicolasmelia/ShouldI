@@ -388,14 +388,21 @@
       <div  class="contentContainer">
             <div class="fb-comments" data-href="http://localhost:8080/ShouldIorV1/Question/shouldi/${questionID}" data-numposts="5"></div>
          </div>       
-         <!-- COMMENT BOX -->	
+         <!-- COMMENT BOX -->
+         
+         
+        <footer class="footer" style = "margin-top: 10px; width: 100%;" >
+      <div class="container" style = "width: 100%; text-align: left; padding: 0px; ">
+      <span style = "font-size: 15px; color: #79cce5;"><a style = "color: #79cce5;" href = "">Privacy Policy</a> | </span>
+            <span style = "font-size: 15px; color: #79cce5;"><a style = "color: #79cce5;" href = "">How To</a> | </span>
+      <span style = "font-size: 15		px; color: #79cce5;"><a style = "color: #79cce5;" href = "">About</a></span>   
+      </div>   
+  	  </footer>
+  	  	
      </div>
   
       
-      <footer class="footer" style= " width: 90%;">
-         <div class="container">
-         </div>
-      </footer>
+
       <!-- Bootstrap core JavaScript
          ================================================== -->
       <!-- Placed at the end of the document so the pages load faster -->
