@@ -12,6 +12,7 @@ class User {
 	String name
 	String userName
 	String password
+	String favorites
 	
 	int peopleReached
 	int totalVotes
@@ -23,6 +24,7 @@ class User {
 		about nullable:true
 		
 		about maxSize: 20000
+		favorites nullable: true
 		
 		token maxSize: 5000	
     }

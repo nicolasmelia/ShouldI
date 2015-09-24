@@ -53,78 +53,106 @@ printHtmlPart(12)
 })
 invokeTag('captureHead','sitemesh',37,[:],1)
 printHtmlPart(13)
-createTagBody(1, {->
-printHtmlPart(13)
-if(true && (session.name)) {
+expressionOut.print(category)
 printHtmlPart(14)
-}
-else {
+createTagBody(1, {->
 printHtmlPart(15)
-}
-printHtmlPart(16)
-expressionOut.print(resource(dir:'images',file:'logo.png'))
-printHtmlPart(17)
 if(true && (session.name)) {
-printHtmlPart(18)
+printHtmlPart(16)
 }
 else {
-printHtmlPart(19)
+printHtmlPart(17)
 }
+printHtmlPart(18)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'home'))
+printHtmlPart(19)
+expressionOut.print(resource(dir:'images',file:'logo.png'))
 printHtmlPart(20)
 if(true && (session.name)) {
 printHtmlPart(21)
-expressionOut.print(session.userID)
+expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: [category: 'My Notifications']))
 printHtmlPart(22)
-expressionOut.print(session.name)
+expressionOut.print(notifyCount)
 printHtmlPart(23)
-}
-else {
+expressionOut.print(createLink(controller: 'Question', action: 'askShouldI'))
 printHtmlPart(24)
-}
+expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
 printHtmlPart(25)
-for( _it1805259269 in (question) ) {
-changeItVariable(_it1805259269)
-printHtmlPart(26)
-expressionOut.print(it.questionID)
-printHtmlPart(27)
-if(true && (it.answerOneImage)) {
-printHtmlPart(28)
-expressionOut.print(it.questionID)
-printHtmlPart(29)
 }
 else {
+printHtmlPart(26)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
+printHtmlPart(25)
+}
+printHtmlPart(27)
+if(true && (session.name)) {
+printHtmlPart(28)
+expressionOut.print(createLink(controller: 'User', action: 'getProfileImage', params: [id: session.userID]))
+printHtmlPart(29)
+expressionOut.print(session.name)
 printHtmlPart(30)
-expressionOut.print(resource(dir:'images',file:'noImg.png'))
+expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: [category: 'My Questions']))
 printHtmlPart(31)
-}
+expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
 printHtmlPart(32)
-expressionOut.print(it.userName)
-printHtmlPart(33)
-expressionOut.print(it.questionTitle)
-printHtmlPart(34)
-expressionOut.print(it.totalVotes)
-printHtmlPart(35)
 }
+else {
+printHtmlPart(33)
+}
+printHtmlPart(34)
+expressionOut.print(createLink(controller: 'shouldI', action: 'category', params: [category: 'Trending']))
+printHtmlPart(35)
+expressionOut.print(createLink(controller: 'shouldI', action: 'category', params: [category: 'Recent']))
 printHtmlPart(36)
-createClosureForHtmlPart(37, 2)
-invokeTag('link','g',156,['action':("myProfile"),'params':([offset: offset, up: 'false']),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
+expressionOut.print(createLink(controller: 'shouldI', action: 'category', params: [category: 'two']))
+printHtmlPart(37)
+expressionOut.print(category)
 printHtmlPart(38)
-createClosureForHtmlPart(39, 2)
-invokeTag('link','g',160,['action':("myProfile"),'params':([offset: offset, up: 'true']),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
+for( _it293786079 in (questions) ) {
+changeItVariable(_it293786079)
+printHtmlPart(39)
+expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
 printHtmlPart(40)
-createClosureForHtmlPart(41, 2)
-invokeTag('link','g',166,['action':("myProfile"),'params':([offset: offset, up: 'false']),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
+if(true && (it.answerOneImage)) {
+printHtmlPart(41)
+expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1']))
 printHtmlPart(42)
-})
-invokeTag('captureBody','sitemesh',253,['style':("background-color: #F6F6F6!important; background-image:url('${resource(dir: "images", file: "wall1.jpg")}'); margin-bottom: 20px; background-size: cover;  background-attachment: fixed; min-width: 320px;  ")],1)
+}
+else {
 printHtmlPart(43)
+expressionOut.print(resource(dir:'images',file:'noImg.png'))
+printHtmlPart(44)
+}
+printHtmlPart(45)
+expressionOut.print(it.userName)
+printHtmlPart(46)
+expressionOut.print(it.questionTitle)
+printHtmlPart(47)
+expressionOut.print(it.totalVotes)
+printHtmlPart(48)
+expressionOut.print(it.totalViews)
+printHtmlPart(49)
+}
+printHtmlPart(50)
+createClosureForHtmlPart(51, 2)
+invokeTag('link','g',179,['action':("category"),'params':([offset: offset, up: 'false', category: category]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
+printHtmlPart(52)
+createClosureForHtmlPart(53, 2)
+invokeTag('link','g',183,['action':("category"),'params':([offset: offset, up: 'true', category: category]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
+printHtmlPart(54)
+createClosureForHtmlPart(55, 2)
+invokeTag('link','g',189,['action':("category"),'params':([offset: offset, up: 'false']),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
+printHtmlPart(56)
+})
+invokeTag('captureBody','sitemesh',262,['style':("margin-bottom: 20px; min-width: 320px;  ")],1)
+printHtmlPart(57)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1441938420651L
+public static final long LAST_MODIFIED = 1443055392920L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

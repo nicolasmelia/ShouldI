@@ -52,7 +52,7 @@ class UserController {
 			
 			def opQuestionCount = Question.countByUserID(session['userID'])
 			
-			render (view: "myProfile", model: ["question": questions, "offset" : offset, "category" : params.category, "opQuestionCount" : opQuestionCount, "user" : user])	
+			render (view: "myProfile", model: ["question": questions, "offset" : offset, "category" : params.category, "opQuestionCount" : opQuestionCount, "user" : user, "notifyCount": getNotifyCount()])	
 	}
 		
 
@@ -98,7 +98,7 @@ class UserController {
 		def opQuestionCount = Question.countByUserID(params.id)
 		
 		// Query for questions
-		render (view: "profile", model: ["question": questions, "offset" : offset, "category" : params.category, "user" : user, "opQuestionCount" : opQuestionCount])
+		render (view: "profile", model: ["question": questions, "offset" : offset, "category" : params.category, "user" : user, "opQuestionCount" : opQuestionCount, "notifyCount": getNotifyCount()])
 
 }
 	
@@ -172,6 +172,16 @@ class UserController {
 		}
 		
 		return baos.toByteArray()
+	}
+	
+	def getNotifyCount() {
+		// get the op notification count
+		def notifyCount = "";
+		if (session["userID"] != null) {
+		 def notifyCountResult =  Question.executeQuery("select COUNT(*) from Question a where a.opNotifyVoteCount > 0 AND a.userID = ?", [session['userID']])
+		 notifyCount = notifyCountResult.toString().replaceAll("\\[", "").replaceAll("\\]","");
+		}
+		return notifyCount
 	}
 	
 }

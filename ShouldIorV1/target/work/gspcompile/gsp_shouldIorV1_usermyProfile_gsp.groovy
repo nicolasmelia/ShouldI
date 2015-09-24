@@ -45,109 +45,135 @@ invokeTag('captureHead','sitemesh',26,[:],1)
 printHtmlPart(9)
 createTagBody(1, {->
 printHtmlPart(10)
-expressionOut.print(createLink(controller:'ShouldI', action: 'home'))
+expressionOut.print(createLink(controller: 'ShouldI', action: 'home'))
 printHtmlPart(11)
 expressionOut.print(resource(dir:'images',file:'logo.png'))
 printHtmlPart(12)
 if(true && (session.name)) {
 printHtmlPart(13)
-expressionOut.print(createLink(controller:'Question', action: 'askShouldI'))
-printHtmlPart(14)
-}
-else {
-printHtmlPart(15)
-}
-printHtmlPart(16)
-if(true && (session.name)) {
-printHtmlPart(17)
-expressionOut.print(session.userID)
-printHtmlPart(18)
-expressionOut.print(session.name)
-printHtmlPart(19)
-}
-else {
-printHtmlPart(20)
-}
-printHtmlPart(21)
-expressionOut.print(user.userName)
-printHtmlPart(22)
-expressionOut.print(createLink(controller: 'User', action: 'getProfileImage', params: [id: user.userID]))
-printHtmlPart(23)
-expressionOut.print(opQuestionCount)
-printHtmlPart(24)
-expressionOut.print(opQuestionCount)
-printHtmlPart(25)
-expressionOut.print(user.peopleReached)
-printHtmlPart(26)
-expressionOut.print(user.peopleReached)
-printHtmlPart(27)
-if(true && (user.about != '')) {
-printHtmlPart(28)
-expressionOut.print(raw(it.about))
-printHtmlPart(29)
-}
-else {
-printHtmlPart(30)
-}
-printHtmlPart(31)
-expressionOut.print(category)
-printHtmlPart(32)
-expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: [category: 'My Questions']))
-printHtmlPart(33)
 expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: [category: 'My Notifications']))
+printHtmlPart(14)
+expressionOut.print(notifyCount)
+printHtmlPart(15)
+expressionOut.print(createLink(controller: 'Question', action: 'askShouldI'))
+printHtmlPart(16)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
+printHtmlPart(17)
+}
+else {
+printHtmlPart(18)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
+printHtmlPart(17)
+}
+printHtmlPart(19)
+if(true && (session.name)) {
+printHtmlPart(20)
+expressionOut.print(createLink(controller: 'User', action: 'getProfileImage', params: [id: session.userID]))
+printHtmlPart(21)
+expressionOut.print(session.name)
+printHtmlPart(22)
+expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: [category: 'My Questions']))
+printHtmlPart(23)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'home'))
+printHtmlPart(24)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
+printHtmlPart(25)
+}
+else {
+printHtmlPart(26)
+}
+printHtmlPart(27)
+expressionOut.print(user.userName)
+printHtmlPart(28)
+expressionOut.print(createLink(controller: 'User', action: 'getProfileImage', params: [id: user.userID]))
+printHtmlPart(29)
+invokeTag('formatDate','g',91,['format':("MM-dd-yyyy"),'date':(user.dateCreated)],-1)
+printHtmlPart(30)
+expressionOut.print(user.peopleReached)
+printHtmlPart(31)
+expressionOut.print(opQuestionCount)
+printHtmlPart(32)
+expressionOut.print(user.totalVotes)
+printHtmlPart(33)
+if(true && (user.about != '')) {
 printHtmlPart(34)
-expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: [category: 'My Favorites']))
+expressionOut.print(createLink(controller:'User', action: 'editAbout'))
 printHtmlPart(35)
-if(true && (question.isEmpty())) {
+expressionOut.print(raw(user.about))
 printHtmlPart(36)
 }
-printHtmlPart(37)
-for( _it1124773518 in (question) ) {
-changeItVariable(_it1124773518)
-printHtmlPart(38)
-expressionOut.print(it.questionID)
-printHtmlPart(39)
-if(true && (it.answerOneImage)) {
-printHtmlPart(40)
-expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1']))
-printHtmlPart(41)
-}
 else {
+printHtmlPart(34)
+expressionOut.print(createLink(controller:'User', action: 'editAbout'))
+printHtmlPart(37)
+}
+printHtmlPart(38)
+expressionOut.print(category)
+printHtmlPart(39)
+expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: [category: 'My Questions']))
+printHtmlPart(40)
+expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: [category: 'My Notifications']))
+printHtmlPart(41)
+expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: [category: 'My Favorites']))
 printHtmlPart(42)
-expressionOut.print(resource(dir:'images',file:'noImg.png'))
+if(true && (question.isEmpty())) {
 printHtmlPart(43)
 }
 printHtmlPart(44)
-expressionOut.print(it.userName)
+for( _it789359490 in (question) ) {
+changeItVariable(_it789359490)
 printHtmlPart(45)
-expressionOut.print(it.questionTitle)
+expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
 printHtmlPart(46)
-expressionOut.print(it.totalVotes)
+if(true && (it.answerOneImage)) {
 printHtmlPart(47)
-}
+expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1']))
 printHtmlPart(48)
-createClosureForHtmlPart(49, 2)
-invokeTag('link','g',164,['action':("myProfile"),'params':([offset: offset, up: 'false', category: category]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
+}
+else {
+printHtmlPart(49)
+expressionOut.print(resource(dir:'images',file:'noImg.png'))
 printHtmlPart(50)
-createClosureForHtmlPart(51, 2)
-invokeTag('link','g',168,['action':("myProfile"),'params':([offset: offset, up: 'true', category: category]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
+}
+printHtmlPart(51)
+expressionOut.print(it.userName)
 printHtmlPart(52)
-invokeTag('javascript','g',182,['src':("dataAccess.js")],-1)
+if(true && (it.opNotifyVoteCount > 0)) {
 printHtmlPart(53)
-invokeTag('resource','g',183,['dir':("js"),'file':("bootstrap.min.js")],-1)
+expressionOut.print(it.opNotifyVoteCount)
 printHtmlPart(54)
-invokeTag('javascript','g',184,['src':("buttonAnswerGlow.js")],-1)
+}
 printHtmlPart(55)
-})
-invokeTag('captureBody','sitemesh',199,[:],1)
+expressionOut.print(it.questionTitle)
 printHtmlPart(56)
+expressionOut.print(it.totalVotes)
+printHtmlPart(57)
+expressionOut.print(it.totalViews)
+printHtmlPart(58)
+}
+printHtmlPart(59)
+createClosureForHtmlPart(60, 2)
+invokeTag('link','g',177,['action':("myProfile"),'params':([offset: offset, up: 'false', category: category]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
+printHtmlPart(61)
+createClosureForHtmlPart(62, 2)
+invokeTag('link','g',181,['action':("myProfile"),'params':([offset: offset, up: 'true', category: category]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
+printHtmlPart(63)
+invokeTag('javascript','g',197,['src':("dataAccess.js")],-1)
+printHtmlPart(64)
+invokeTag('resource','g',198,['dir':("js"),'file':("bootstrap.min.js")],-1)
+printHtmlPart(65)
+invokeTag('javascript','g',199,['src':("buttonAnswerGlow.js")],-1)
+printHtmlPart(66)
+})
+invokeTag('captureBody','sitemesh',214,[:],1)
+printHtmlPart(67)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1442708929214L
+public static final long LAST_MODIFIED = 1443029481402L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

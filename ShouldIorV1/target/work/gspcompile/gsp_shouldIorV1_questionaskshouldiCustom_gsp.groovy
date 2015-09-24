@@ -45,56 +45,80 @@ invokeTag('captureHead','sitemesh',44,[:],1)
 printHtmlPart(11)
 createTagBody(1, {->
 printHtmlPart(12)
-if(true && (session.name)) {
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
 printHtmlPart(13)
-}
-else {
+if(true && (session.name)) {
 printHtmlPart(14)
 }
-printHtmlPart(15)
-expressionOut.print(resource(dir:'images',file:'logo.png'))
-printHtmlPart(16)
-if(true && (session.name)) {
-printHtmlPart(17)
-}
 else {
-printHtmlPart(18)
+printHtmlPart(15)
 }
-printHtmlPart(19)
+printHtmlPart(16)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'home'))
+printHtmlPart(17)
+expressionOut.print(resource(dir:'images',file:'logo.png'))
+printHtmlPart(18)
 if(true && (session.name)) {
+printHtmlPart(19)
+expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: [category: 'My Notifications']))
 printHtmlPart(20)
-expressionOut.print(session.userID)
+expressionOut.print(notifyCount)
 printHtmlPart(21)
-expressionOut.print(session.name)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
 printHtmlPart(22)
 }
 else {
 printHtmlPart(23)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
+printHtmlPart(22)
 }
 printHtmlPart(24)
-createTagBody(2, {->
+if(true && (session.name)) {
 printHtmlPart(25)
-invokeTag('actionSubmit','g',259,['onclick':("return validate()"),'value':("Post"),'action':("postShouldICutom"),'style':("margin-top: 1px; width: 100px; display: inline-block;"),'class':("btn btn-default")],-1)
+expressionOut.print(createLink(controller: 'User', action: 'getProfileImage', params: [id: session.userID]))
 printHtmlPart(26)
-})
-invokeTag('form','g',261,['controller':("Question"),'action':("postShouldICutom"),'enctype':("multipart/form-data")],2)
+expressionOut.print(session.name)
 printHtmlPart(27)
-invokeTag('resource','g',277,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput-angular.js")],-1)
+expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: [category: 'My Questions']))
 printHtmlPart(28)
-invokeTag('resource','g',278,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.js")],-1)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'home'))
 printHtmlPart(29)
-invokeTag('resource','g',279,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.css")],-1)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
 printHtmlPart(30)
-})
-invokeTag('captureBody','sitemesh',523,['style':("background-color: #f4f4f4; min-width: 330px; ")],1)
+}
+else {
 printHtmlPart(31)
+}
+printHtmlPart(32)
+expressionOut.print(createLink(controller: 'Question', action: 'askShouldI', params: [category: 'Trending']))
+printHtmlPart(33)
+expressionOut.print(createLink(controller: 'Question', action: 'askShouldICustom', params: [category: 'Recent']))
+printHtmlPart(34)
+createTagBody(2, {->
+printHtmlPart(35)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
+printHtmlPart(36)
+invokeTag('actionSubmit','g',263,['onclick':("return validate()"),'value':("Post"),'action':("postShouldICutom"),'style':("margin-top: 1px; width: 100px; display: inline-block;"),'class':("btn btn-default")],-1)
+printHtmlPart(37)
+})
+invokeTag('form','g',265,['controller':("Question"),'action':("postShouldICutom"),'enctype':("multipart/form-data")],2)
+printHtmlPart(38)
+invokeTag('resource','g',281,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput-angular.js")],-1)
+printHtmlPart(39)
+invokeTag('resource','g',282,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.js")],-1)
+printHtmlPart(40)
+invokeTag('resource','g',283,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.css")],-1)
+printHtmlPart(41)
+})
+invokeTag('captureBody','sitemesh',526,['style':("background-color: #f4f4f4; min-width: 330px; ")],1)
+printHtmlPart(42)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1442540034787L
+public static final long LAST_MODIFIED = 1443054352603L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

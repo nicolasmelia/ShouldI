@@ -138,7 +138,26 @@ body {background-color: #F5F5F5!important;  min-width: 330px;}
     width: 100% !important;
 }
 
-.favsharButtion :hover {
+.favsharButtion:hover {
 	color: #337ab7;
+}
+
+
+
+.flatMenuItem {
+
+}
+
+
+.flatMenuItem:hover {
+	cursor: default;
+}
+
+.flatMenuItemText{
+	color: #1aabda; 
+}
+
+.flatMenuItemText:hover{
+	color: #79cce5;
 }
 

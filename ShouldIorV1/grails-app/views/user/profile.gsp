@@ -25,7 +25,7 @@
       <![endif]-->
    </head>
    <body >
-      <nav class="navbar navbar-inverse navbar-fixed-top">
+  <nav class="navbar navbar-inverse navbar-fixed-top" >
          <div class="container">
             <div class="navbar-header">
                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -34,33 +34,33 @@
                <span class="icon-bar"></span>
                <span class="icon-bar"></span>
                </button>
-               <a href = "${createLink(controller:'ShouldI', action: 'home')}" ><img onClick = "h" src="${resource(dir:'images',file:'logo.png')}"   class="navbar-brand"/></a>
+               <a href = "${createLink(controller: 'ShouldI', action: 'home')}" ><img src="${resource(dir:'images',file:'logo.png')}"   class="navbar-brand"/></a>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                <ul class="nav navbar-nav">
                   <g:if test="${session.name}">
-                     <li><a href="#"><span class= 'fa fa-bell-o'></span><span style = "padding-left: 6px;" >0</span></a></a></li>
-                     <li><a href="${createLink(controller:'Question', action: 'askShouldI')}"><span class= 'fa fa-pencil-square-o'></span><span style = "padding-left: 6px;" >Ask</span></a></a></li>
-                     <li><a href="#"><span class= 'fa fa-line-chart'></span><span style = "padding-left: 6px;" >Trending</span></a></a></li>
+                  
+                     <li><a href="${createLink(controller: 'User', action: 'myProfile', params: [category: 'My Notifications'])}"><span class= 'fa fa-bell-o'></span><span style = "padding-left: 6px;" >${notifyCount}</span></a></li>
+                     <li><a href = "${createLink(controller: 'Question', action: 'askShouldI')}" ><span class= 'fa fa-pencil-square-o'></span><span style = "padding-left: 6px;" >Ask</span></a></li>
+                      <li><a href = "${createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending'])}" ><span class= 'fa fa-book'></span><span style = "padding-left: 6px;" >Browse Categories</span></a></li>
                   </g:if>
                   <g:else>
-                     <li><a href="#"  onClick = "showNoLogin()" ><span class= 'fa fa-pencil-square-o'></span><span style = "padding-left: 6px;" >Ask</span></a></a></li>
-                     <li><a href="#"><span class= 'fa fa-line-chart'></span><span style = "padding-left: 6px;" >Trending</span></a></a></li>
+                     <li><a href="#"  onClick = "showNoLogin()" ><span class= 'fa fa-pencil-square-o'></span><span style = "padding-left: 6px;" >Ask</span></a></li>
+                      <li><a href = "${createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending'])}" ><span class= 'fa fa-book'></span><span style = "padding-left: 6px;" >Browse Categories</span></a></li>
                   </g:else>
                </ul>
                <g:if test="${session.name}">
                   <ul class="nav navbar-nav navbar-right" style = "padding: -10px;" >
                      <li class="dropdown" style = "">
                         <a href="#" style = "" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        <img style = "display:inline-block; width: 25px; height: 25px; margin-right: 4px; margin-top: -25px;  margin-bottom: -25px;" src = "/ShouldIorV1/User/getProfileImage/${userID}" />			
+                        <img style = "display:inline-block; width: 25px; height: 25px; margin-right: 4px; margin-top: -25px;  margin-bottom: -25px;" src = "${createLink(controller: 'User', action: 'getProfileImage', params: [id: session.userID])}" />			
                         ${session.name}
                         <span class="fa fa-caret-down"></span></a>
                         <ul class="dropdown-menu">
-                           <li><a href="#"><span class= 'fa fa-home'><span style = "padding-left: 5px;" >Home</span></a></li>
-                           <li><a href="#"><span class= 'fa fa-leaf'><span style = "padding-left: 5px;" >My Profile</span></a></li>
-                           <li><a href="#"><span class= 'fa fa-question-circle'><span style = "padding-left: 5px;" >Search</span></a></li>
+                           <li><a href = "${createLink(controller: 'User', action: 'myProfile', params: [category: 'My Questions'])}"><span class= 'fa  fa-user'></span><span style = "padding-left: 5px;" >My Profile</span></a></li>                           
+                            <li><a href = "${createLink(controller: 'ShouldI', action: 'help')}" ><span class= 'fa fa-info-circle'></span><span style = "padding-left: 6px;" >Help</span></a></li>
                            <li role="separator" class="divider"></li>
-                           <li><a  onClick = "logoutFaceBook()" href="#"><span class= 'fa fa-sign-out'><span style = "padding-left: 5px;" >Log Out</span></a></li>
+                           <li><a  onClick = "logoutFaceBook()" href="#"><span class= 'fa fa-sign-out'></span><span style = "padding-left: 5px;" >Log Out</span></a></li>
                         </ul>
                      </li>
                   </ul>
@@ -86,18 +86,23 @@
                <hr style = "padding:0px; margin-top: 8px; margin-bottom: 14px; ">
                <div style = "display: inline-block; width: 80px; height: 80px; background-image: url('${createLink(controller: 'User', action: 'getProfileImage', params: [id: user.userID])}'); background-size: cover; background-repeat: no-repeat;   background-position: center center; padding-left: 5px;"> </div>
                <div style = "display: inline-block; padding-bottom:0px; margin-right: 4px; margin-left: 4px; vertical-align: top;  ">
-                  <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px;  display: block; font-size: 15px;">Questions: ${opQuestionCount}</span>
-                  <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Reached: ${user.peopleReached} </span>
+                    <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Member Since: <g:formatDate format="MM-dd-yyyy" date="${user.dateCreated}"/> </span>  
+                  <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Reached: ${user.peopleReached} People</span>               
+                   <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Questions: ${opQuestionCount}</span>                 
+                  <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Votes: ${user.totalVotes}</span>
+              
                </div>
                               	             
-               	<p style =  "display: block; color: #757575; font-size: 15px;  margin: auto; margin-top: 7px; width: 100%; text-align: center;">
+               <div style = "width: 100%; margin: auto; padding: 0px; " >
+               	<p style =  "display: block; font-size: 15px;  margin: auto; margin-top: 7px; width: 100%;">
                	    <g:if test="${user.about != ''}">
-               		    ${raw(user.about)}		           
+               		  ${raw(user.about)}		           
                	    </g:if>
                	    <g:else>
-               		    Apparently, this user prefers to keep an air of mystery about them.       
+               		  Apparently, this user prefers to keep an air of mystery about them.       
                	   	</g:else>
 				 </p>
+               </div>
                
             </div>
             <!-- PROFILE INFORMATION -->	
@@ -107,8 +112,8 @@
                   ${category} 
                   <span class="caret"></span></button>
                   <ul class="dropdown-menu" style = "width: 100%; ">
-	                  <li><a href = "${createLink(controller: 'User', action: 'myProfile', params: [category: 'New Questions'])}"><span style = "padding-left: 5px;" >New Questions</span></a></li>                           
-	                  <li><a href = "${createLink(controller: 'User', action: 'myProfile', params: [category: 'Top Questions'])}"><span style = "padding-left: 5px;" >Top Questions</span></a></li>                           
+	                  <li><a href = "${createLink(controller: 'User', action: 'profile', params: [category: 'New Questions'])}"><span style = "padding-left: 5px;" >New Questions</span></a></li>                           
+	                  <li><a href = "${createLink(controller: 'User', action: 'profile', params: [category: 'Top Questions'])}"><span style = "padding-left: 5px;" >Top Questions</span></a></li>                           
 	               </ul>
                </div>
             </div>
@@ -125,7 +130,7 @@
                <g:each in="${question}">
                
                
-                  <table onmouseover="glow(this)" onmouseout="unGlow(this)"  onClick = "loadQuestionURL('${it.questionID}')" style="cursor: default; width: 100%; padding: 8px 4px 8px 4px; display:block;">
+                  <table onmouseover="glow(this)" onmouseout="unGlow(this)"  onClick = "loadQuestionURL('${createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID])}')" style="cursor: default; width: 100%; padding: 8px 4px 8px 4px; display:block;">
                      <tr style = "display:block; max-height: 105px; width: 100%; margin-top: 0px; ">
                         <td style = "min-width: 125px;  height: 100%; text-align:center; vertical-align:top; ">
                            <g:if test="${it.answerOneImage}">
@@ -168,7 +173,7 @@
                 </g:link>
             </div>    
             
-            
+            </div>
             <!-- QUESTION REPLY -->
          </div>
       </div>
@@ -193,7 +198,7 @@
              }
              
              function loadQuestionURL(url) {
-             	window.location.href = "/ShouldIorV1/Question/shouldi/" + url;
+             	window.location.href = url;
              }
       </script>
    </body>

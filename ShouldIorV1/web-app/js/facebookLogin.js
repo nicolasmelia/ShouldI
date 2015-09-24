@@ -26,15 +26,16 @@ window.fbAsyncInit = function () {
 	(document, 'script', 'facebook-jssdk'));
 
 //Get Login Status
-function loginFacebook() {
+function loginFacebook(url) {
 	FB.getLoginStatus(function (response) {
 		
+		// See if user is connected to my app in facebook
 		if (response.status === 'connected') {
-			loginSuccess(response);
+			loginSuccess(response, $('#facebookLoginLink').val());
 		} else {
 			FB.login(function (response) {
 				if (response.authResponse) {
-			loginSuccess(response);
+			loginSuccess(response, url);
 				} else {
 					console.log('User cancelled login or did not fully authorize.');
 				}
@@ -46,15 +47,9 @@ function loginFacebook() {
 }
 
 function statusChangeCallback(response) {
-	// The response object is returned with a status field that lets the
-	// app know the current login status of the person.
-	// Full docs on the response object can be found in the documentation
-	// for FB.getLoginStatus().
 	if (response.status === 'connected') {
 		// Logged into your app and Facebook.
-		loginSuccess(response);
-		
-		
+		loginSuccess(response, 'TEST');
 	} else if (response.status === 'not_authorized') {
 		// The person is logged into Facebook, but not your app.
 	} else {
@@ -63,9 +58,6 @@ function statusChangeCallback(response) {
 	}
 }
 
-// This function is called when someone finishes with the Login
-// Button.  See the onlogin handler attached to it in the sample
-// code below.
 function checkLoginState() {
 	FB.getLoginStatus(function (response) {
 		statusChangeCallback(response);
@@ -80,18 +72,6 @@ window.fbAsyncInit = function () {
 		xfbml : true, // parse social plugins on this page
 		version : 'v2.2' // use version 2.2
 	});
-
-	// Now that we've initialized the JavaScript SDK, we call
-	// FB.getLoginStatus().  This function gets the state of the
-	// person visiting this page and can return one of three states to
-	// the callback you provide.  They can be:
-	//
-	// 1. Logged into your app ('connected')
-	// 2. Logged into Facebook, but not your app ('not_authorized')
-	// 3. Not logged into Facebook and can't tell if they are logged into
-	//    your app or not.
-	//
-	// These three cases are handled in the callback function.
 
 	FB.getLoginStatus(function (response) {
 		statusChangeCallback(response);
@@ -115,12 +95,11 @@ window.fbAsyncInit = function () {
 
 // ********** CUSTOM SHOULDI.FM FUNCTIONS BELOW **********
 
-function loginSuccess(response) {
-		console.log($('#sessionCheck').val())
+function loginSuccess(response, url) { 
 			if ($('#sessionCheck').val() == "false" && (response.status === 'connected')) {
 	  $.ajax({
 		  type: 'post',
-		    url: "/ShouldIorV1/Authentication/loginFaceBook",
+		    url: url,
 		    async: true,
 		    data: {token : response.authResponse.accessToken, userID: response.authResponse.userID},
 	  }).done(function(result){
@@ -135,7 +114,6 @@ function loginSuccess(response) {
 			}
 	}
 
-
 function checkFaceBookLogin() {
 	if (connectedToFacebook == true) {
 		return true;
@@ -144,17 +122,17 @@ function checkFaceBookLogin() {
 	}
 }
 
-function logoutFaceBook() {
+function logoutFaceBook(urlHome, urlLogout) {
 	  $.ajax({
 		  type: 'post',
-		    url: "/ShouldIorV1/Authentication/logout",
+		    url: urlLogout,
 		    async: true,
 		    data: {logout : "true"},
 	  }).done(function(result){
 		  if (result == "Success") {
 			// logout of serverfirst then facebook.  
 			  FB.logout(function(response) {
-					location.reload();
+		         	window.location.href =  urlHome;
 				});
 		  } else if  (result == "Fail") {
 			  // Our Server failed to create a session

@@ -49,6 +49,8 @@
 
 
   <body style = "background-color: #f4f4f4; min-width: 330px; ">
+  
+      <input id = "facebookLoginLink" type="hidden" name="perdif" value="${createLink(controller: 'Authentication', action: 'loginFaceBook')}">
 
     <g:if test="${session.name}">
 	  	<input id = "sessionCheck" type="hidden" name="country" value="true">
@@ -58,64 +60,79 @@
 	</g:else>
 	
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <img src="${resource(dir:'images',file:'logo.png')}"   class="navbar-brand"/>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="#">My Home</a></li>
-			<li><a href="#">Hot Questions</a></li>
-          </ul>
+      <nav class="navbar navbar-inverse navbar-fixed-top" >
+         <div class="container">
+            <div class="navbar-header">
+               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+               <span class="sr-only">Toggle navigation</span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               </button>
+               <a href = "${createLink(controller: 'ShouldI', action: 'home')}" ><img src="${resource(dir:'images',file:'logo.png')}"   class="navbar-brand"/></a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+               <ul class="nav navbar-nav">
+                  <g:if test="${session.name}">
+                  
+                     <li><a href="${createLink(controller: 'User', action: 'myProfile', params: [category: 'My Notifications'])}"><span class= 'fa fa-bell-o'></span><span style = "padding-left: 6px;" >${notifyCount}</span></a></li>
+                      <li><a href = "${createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending'])}" ><span class= 'fa fa-book'></span><span style = "padding-left: 6px;" >Browse Categories</span></a></li>
+                  </g:if>
+                  <g:else>
+                      <li><a href = "${createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending'])}" ><span class= 'fa fa-book'></span><span style = "padding-left: 6px;" >Browse Categories</span></a></li>
+                  </g:else>
+               </ul>
+               <g:if test="${session.name}">
+                  <ul class="nav navbar-nav navbar-right" style = "padding: -10px;" >
+                     <li class="dropdown" style = "">
+                        <a href="#" style = "" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <img style = "display:inline-block; width: 25px; height: 25px; margin-right: 4px; margin-top: -25px;  margin-bottom: -25px;" src = "${createLink(controller: 'User', action: 'getProfileImage', params: [id: session.userID])}" />			
+                        ${session.name}
+                        <span class="fa fa-caret-down"></span></a>
+                        <ul class="dropdown-menu">
+                           <li><a href = "${createLink(controller: 'User', action: 'myProfile', params: [category: 'My Questions'])}"><span class= 'fa  fa-user'></span><span style = "padding-left: 5px;" >My Profile</span></a></li>                           
+                            <li><a href = "${createLink(controller: 'ShouldI', action: 'home')}" ><span class= 'fa fa-home'></span><span style = "padding-left: 6px;" >Home</span></a></li>                  
+                            <li><a href = "${createLink(controller: 'ShouldI', action: 'help')}" ><span class= 'fa fa-info-circle'></span><span style = "padding-left: 6px;" >Help</span></a></li>
+                           <li role="separator" class="divider"></li>
+                           <li><a  onClick = "logoutFaceBook()" href="#"><span class= 'fa fa-sign-out'></span><span style = "padding-left: 5px;" >Log Out</span></a></li>
+                        </ul>
+                     </li>
+                  </ul>
+               </g:if>
+               <g:else>
+                  <ul class="nav navbar-nav navbar-right">
+                     <li><a id = "facebookLoginMenu" href = "#"  style = ""  onClick = "loginFacebook()">Log in with <span href="#about" style = "padding-left: 4px; color:#5BC0DE;" class='fa fa-facebook-official'></span> </a></li>
+                  </ul>
+                  <ul class="nav navbar-nav navbar-right">
+                  </ul>
+               </g:else>
+            </div>
+            <!--/.nav-collapse -->
+         </div>
+      </nav>
 
-		<g:if test="${session.name}">
-       	 <ul class="nav navbar-nav navbar-right">
-        <li><a id = "facebookLoginMenu" href = "#"  onClick = "loginFacebook()">Welcome ${session.name}</a></li>
-		</ul>
-		<ul class="nav navbar-nav navbar-right">
-        <li><a id = "createAccount" href = "#"   onClick = "logoutFaceBook()">Logout</a></li>
-		</ul>
-</g:if>
-<g:else>
-  	 <ul class="nav navbar-nav navbar-right">
-        <li><a id = "facebookLoginMenu" href = "#"  style = "color:#1980f7;"  onClick = "loginFacebook()">Log in with <span href="#about" style = "padding-left: 4px;" class='fa fa-facebook-official'></span> </a></li>
-		</ul>
-		<ul class="nav navbar-nav navbar-right">
-        <li><a id = "createAccount" href = "#"   onClick = "login()">Sign Up/Login</a></li>
-		</ul>
-</g:else>
+    <div class="container" style = "max-width: 725px; ">
 		
-		
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
-
-    <div class="container">
-
+	<div style = "width: 100%; margin-top: 60px; margin-bottom: 8px;   ">
+   
+	  <div  id = "trendingSelect" onClick = "loadQuestionURL('${createLink(controller: 'Question', action: 'askShouldI', params: [category: 'Trending'])}')" class = "flatMenuItem"   style= " margin-left: 5px; display:inline-block; border-bottom: 2px solid #79cce5; ">
+	  	<span   class = "flatMenuItemText"  style = " font-size: 19px;" >Yes/No</span>
+	  </div>
+	  
+	  <div  id = "recentSelect"  onClick = "loadQuestionURL('${createLink(controller: 'Question', action: 'askShouldICustom', params: [category: 'Recent'])}')" class = "flatMenuItem" style= " margin-left: 5px; display:inline-block; border-bottom: 0px solid #79cce5; " >
+	  	<span   class = "flatMenuItemText"  style = " font-size: 19px;" >Custom</span>
+	  </div>
+	  	
+	  	
+	  </div>
 		<!-- Question form -->	
-		<div  class="jumbotron" style="overflow: none;  display: block; box-shadow:0 0 10px rgba(0, 0, 0, 0.15); min-height: 100px; margin: auto; min-width: 200px; margin-top: 60px;  max-width: 725px; padding-left: 0px; padding-right: 0px; padding-top: 0px; padding-bottom: 1px;  margin-bottom: 20px; background-color: #FDFDFD;  ">
+		<div  class="jumbotron" style="overflow: none;  display: block; box-shadow:0 0 10px rgba(0, 0, 0, 0.15); min-height: 100px; margin: auto; min-width: 200px;  padding-left: 0px; padding-right: 0px; padding-top: 0px; padding-bottom: 1px;  margin-bottom: 20px; background-color: #FDFDFD;  ">
 			
-		<div style = " margin-bottom:10px; padding-bottom: 10px; display:block; width: 100%; ">
-		<div  class="single" style=" border-top-left-radius: 8px; vertical-align: bottom;  text-align: bottom; border-top: 1px solid #E1E1E1;  margin-top: 0px;  width: 50%; float: left; margin-right:-1px; padding: 2px; vertical-align: bottom; display: inline-block;">
-		<p style = "padding:0px; font-size: 19px; margin: auto; color: #5BC0DE; text-align: center;">Yes/No<span style = "color: #8D8D8D; font-size: 18px;"></span></p>
-		</div> 
 	
-		<div onClick = "openCustom()" class="custom" style=" border-top-right-radius: 8px; border-top: 1px solid #E1E1E1;  border-left: 1px solid #E1E1E1;  margin-top: 0px;  width: 50%;margin-right:-1px;  float: right; padding: 2px; vertical-align: bottom; display: inline-block;">
-		<p style = "padding:0px; font-size: 19px; margin: auto; color: #5BC0DE; text-align: center;">Custom<span style = "color: #8D8D8D; font-size: 18px; "> </span></p>
-		</div> 
-		</div>	
 
 	<div class="form-group" style = "padding-left: 16px;  display:block; padding-right: 16px; padding-top: 1px; ">		
-	<span  id = "postingAs" style = "margin-bottom:4px; margin-top:10px; padding-top: 15px;  display:none;" >Posting as Nicolas</span>
 
-		<div id = "errorAlert"class="alert alert-danger" role="alert" style = " display: none; margin-top: 25px; padding: 6px; margin-bottom: -15px;" >
+		<div id = "errorAlert"class="alert alert-danger" role="alert" style = " display: none; margin-top: 10px; padding: 6px;" >
 		 <span id = 'errorMessage' ></span>
 		</div>
 		
@@ -124,7 +141,7 @@
 		 <img id="image1" src="#" style ="display: none; margin: auto; width: 50%; max-width: 200px;" alt="Error displaying image (Image will still upload)" />
 		</div>
 			                                              
-	<div id="wysihtml5-toolbar" style="display: none;  margin-top: 24px; ">
+	<div id="wysihtml5-toolbar" style="display: none;  margin-top: 10px; ">
 		<div class="btn-group">
 						
 				<a  data-wysihtml5-command="bold" style = "padding-top: 2px; padding-bottom: 2px;"  class="btn btn-default">
@@ -167,7 +184,7 @@
 
 		<div id = "errorAlertNoLogin"class="alert alert-info" role="alert" style = " display: none; margin-top: 7px; padding: 6px; margin-bottom: 7px; " >
 		 <span id = 'errorMessage' >
-		Disabling logins to vote will will make this question <b>private</b>.
+		Disabling logins to vote will mark this question as <b>private</b>. <a href = "${createLink(controller: 'ShouldI', action: 'help')}" ><span style = "" >Learn More</span></a></li>	 
 		</span>
 		</div>
 		
@@ -335,12 +352,10 @@
 			return true; 
 		}	
 	}
-		
-	function openCustom() {
-		 
-		window.location.href = '/ShouldIorV1/Question/askShouldICustom';
 
-	}
+    function loadQuestionURL(url) {
+      	window.location.href = url;
+      }
 
 	
 	</script>

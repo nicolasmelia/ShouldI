@@ -27,24 +27,21 @@
    </head>
    <body style = " margin-bottom: 20px;  ">
       <div id="fb-root"></div>
-      <script>(function(d, s, id) {
-         var js, fjs = d.getElementsByTagName(s)[0];
-         if (d.getElementById(id)) return;
-         js = d.createElement(s); js.id = id;
-         js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4&appId=1625511597708023";
-         fjs.parentNode.insertBefore(js, fjs);
-         }(document, 'script', 'facebook-jssdk'));
-      </script>
+
       <g:if test="${session.name}">
          <input id = "sessionCheck" type="hidden" name="sess" value="true">
       </g:if>
       <g:else>
          <input id = "sessionCheck" type="hidden" name="sess" value="false">
       </g:else>
+      
+      <input id = "facebookLoginLink" type="hidden" name="perdif" value="${createLink(controller: 'Authentication', action: 'loginFaceBook')}">
+      
       <input id = "percentDiffHidden" type="hidden" name="perdif" value="${percentDiff}">
       <input id = "vote" type="hidden" name="voted" value="${vote}"> 
 
    
+   ${createLink(controller: 'Authentication', action: 'loginFaceBook')}
       <nav class="navbar navbar-inverse navbar-fixed-top" >
          <div class="container">
             <div class="navbar-header">
@@ -59,13 +56,13 @@
             <div id="navbar" class="collapse navbar-collapse">
                <ul class="nav navbar-nav">
                   <g:if test="${session.name}">
-                     <li><a href="#"><span class= 'fa fa-bell-o'></span><span style = "padding-left: 6px;" >0</span></a></a></li>
+                     <li><a href="${createLink(controller: 'User', action: 'myProfile', params: [category: 'My Notifications'])}"><span class= 'fa fa-bell-o'></span><span style = "padding-left: 6px;" >${notifyCount}</span></a></li>
                      <li><a href = "${createLink(controller: 'Question', action: 'askShouldI')}" ><span class= 'fa fa-pencil-square-o'></span><span style = "padding-left: 6px;" >Ask</span></a></li>
-                      <li><a href = "${createLink(controller: 'ShouldI', action: 'category', params: [cat: 'trending'])}" ><span class= 'fa fa-line-chart'></span><span style = "padding-left: 6px;" >Trending</span></a></li>
+                      <li><a href = "${createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending'])}" ><span class= 'fa fa-book'></span><span style = "padding-left: 6px;" >Browse Categories</span></a></li>
                   </g:if>
                   <g:else>
                      <li><a href="#"  onClick = "showNoLogin()" ><span class= 'fa fa-pencil-square-o'></span><span style = "padding-left: 6px;" >Ask</span></a></li>
-                     <li><a href="#"><span class= 'fa fa-line-chart'></span><span style = "padding-left: 6px;" >Trending</span></a></li>
+                      <li><a href = "${createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending'])}" ><span class= 'fa fa-book'></span><span style = "padding-left: 6px;" >Browse Categories</span></a></li>
                   </g:else>
                </ul>
                <g:if test="${session.name}">
@@ -76,18 +73,18 @@
                         ${session.name}
                         <span class="fa fa-caret-down"></span></a>
                         <ul class="dropdown-menu">
-                           <li><a href = "${createLink(controller: 'User', action: 'myProfile', params: [category: 'My Questions'])}"><span class= 'fa fa-leaf'></span><span style = "padding-left: 5px;" >My Profile</span></a></li>                           
-                           <li><a href = "${createLink(controller: 'ShouldI', action: 'category', params: [cat: 'trending'])}" ><span class= 'fa fa-globe'></span><span style = "padding-left: 5px;" >Categories</span></a></li>
-                           <li><a href = "${createLink(controller: 'Question', action: 'askShouldI')}" ><span class= 'fa fa-pencil-square-o'></span><span style = "padding-left: 6px;" >Ask</span></a></li>
+                           <li><a href = "${createLink(controller: 'User', action: 'myProfile', params: [category: 'My Questions'])}"><span class= 'fa  fa-user'></span><span style = "padding-left: 5px;" >My Profile</span></a></li>                           
+                 		    <li><a href = "${createLink(controller: 'ShouldI', action: 'home')}" ><span class= 'fa fa-home'></span><span style = "padding-left: 6px;" >Home</span></a></li>                         
+                            <li><a href = "${createLink(controller: 'ShouldI', action: 'help')}" ><span class= 'fa fa-info-circle'></span><span style = "padding-left: 6px;" >Help</span></a></li>
                            <li role="separator" class="divider"></li>
-                           <li><a  onClick = "logoutFaceBook()" href="#"><span class= 'fa fa-sign-out'></span><span style = "padding-left: 5px;" >Log Out</span></a></li>
+                           <li><a  onClick = "logoutFaceBook('${createLink(controller: 'ShouldI', action: 'home')}', '${createLink(controller: 'Authentication', action: 'logout')}' )" href="#"><span class= 'fa fa-sign-out'></span><span style = "padding-left: 5px;" >Log Out</span></a></li>
                         </ul>
                      </li>
                   </ul>
                </g:if>
                <g:else>
                   <ul class="nav navbar-nav navbar-right">
-                     <li><a id = "facebookLoginMenu" href = "#"  style = ""  onClick = "loginFacebook()">Log in with <span href="#about" style = "padding-left: 4px; color:#5BC0DE;" class='fa fa-facebook-official'></span> </a></li>
+                     <li><a id = "facebookLoginMenu" href = "#"  style = ""  onClick = "loginFacebook('${createLink(controller: 'Authentication', action: 'loginFaceBook')}')">Log in with <span href="#about" style = "padding-left: 4px; color:#5BC0DE;" class='fa fa-facebook-official'></span> </a></li>
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
                   </ul>
@@ -97,7 +94,7 @@
          </div>
       </nav>
       
-      <div class="container" style = "padding-top: 65px; max-width: 825px;">
+      <div class="container" style = "padding-top: 50px; max-width: 825px;">
       
       <div  class="contentContainer">
       
@@ -356,19 +353,19 @@
          </div>
          <!-- QUESTION -->	
          <!-- MAIN -->	
-         <div   class="contentContainer next " style="overflow: auto;  text-align: center; display: block; height: 44px;  padding-top: 11px; padding-bottom: 0px;">
+         <div  onClick = "openNext('${createLink(controller: 'Question', action: 'nextInCat', params: [category: question.category])}')" class="contentContainer next " style="overflow: auto;  text-align: center; display: block; height: 44px;  padding-top: 11px; padding-bottom: 0px;">
 		<span class = "" style = "margin: auto; width: 100px; color: #888888; font-size: 17px;">Next in 
-		<span style = "color:#61B7FE;">Hot Or Not</span></span><span style = "color: #9D9D9D; margin-left: 8px;" class = "fa fa-chevron-right"> </span></span>
+		<span style = "color:#61B7FE;">${question.category}</span></span><span style = "color: #9D9D9D; margin-left: 8px;" class = "fa fa-chevron-right"> </span>
 		</div>
           
       <div style = "width: 100%; ">
          <div  class="contentContainer">
             <div class="contentContainerTitle">
-               <p class = "fa  fa-random" > <span>Randomly Awesome</span> </p>
+               <p class = "fa  fa-random"> <span>Randomly Awesome</span> </p>
             </div>
             <div class = "scrollCon">
-               <g:each in="${questionArray}">
-                  <div style = "overflow: hidden; text-align: center; " onmouseover="glow(this)" onmouseout="unGlow(this)"  onClick = "loadQuestionURL('${it.questionID}')"  class="col-xs-6 col-md-4">
+               <g:each in="${questionPromo1}">
+                  <div style = "overflow: hidden; text-align: center; " onmouseover="glow(this)" onmouseout="unGlow(this)"  onClick = "loadQuestionURL('${createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID])}')"  class="col-xs-6 col-md-4">
                      <div  class="row" style = "cursor: default; ">
                         <g:if test="${it.answerOneImage}">
                            <img class = "bigViewImg"  src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1'])}"  />	
@@ -439,7 +436,7 @@
          }
          
          function loadQuestionURL(url) {
-         	window.location.href = "/ShouldIorV1/Question/shouldi/" + url;
+         	window.location.href =  url;
          }
          
          function displayPageLink() {
@@ -489,7 +486,9 @@
 
           	}
          
-    
+    function openNext(url) {
+    	window.location.href = url;
+    }
          
       </script>
    </body>

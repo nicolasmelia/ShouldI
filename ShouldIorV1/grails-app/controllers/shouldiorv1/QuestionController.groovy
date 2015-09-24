@@ -12,21 +12,18 @@ class QuestionController {
 		
 		def question = Question.findByQuestionID(params.id)
 		
-		// Return a max of 10 comments, offset returns starting at palce 0, sort by votes desc
-		def comments = Comment.findAllByQuestionID(params.id, [max: 10, offset: 0, sort: "upVotes", order: "desc"])
-		if (question != null) {			
+		if (question != null ) {	
+			
 			String percentDif = (calcHighDiffPercent(question)).toString().replace(".", "")
-			// Did they vote on this question?
-			String vote
-			def votes = Vote.findByUserIDAndItemID(session["userID"], question.questionID)
-		if (votes !=null) {
-			vote = votes.vote + ""	
-		} else {
-			vote = "NONE"
-		}
-		
-		// add one to the questions views
-		
+			
+			String vote = "NONE"
+			if (session["userID"] != null)	{	
+				// Did they vote on this question?
+				def votes = Vote.findByUserIDAndItemID(session["userID"], question.questionID)
+				if (votes !=null) {
+					vote = votes.vote + ""	
+				} 
+			} 
 		
 		// add one to the OPs view count
 		User user = User.findByUserID(question.UserID)
@@ -63,14 +60,15 @@ class QuestionController {
 			}
 		}
 		
+		// gets the top answer for the question
 		String topAnswer = getTopVote(question)
 		
 		def opQuestionCount = Question.countByUserID(question.UserID)
 		def questions = Question.findAllByTotalVotesGreaterThan(-1)
-				
-		render(view: "shouldi", model: ["question": question, "questionID": question.questionID, "questionArray" : questions,
+		
+		render(view: "shouldi", model: ["question": question, "questionID": question.questionID, "questionPromo1" : getRandomQuestions(question.category, question.questionID),
 			 "thisUserPost": thisUserPost, "percentDiff": percentDif, "vote": vote, "totalViews" : question.totalViews, "hasQuestionImage": hasQuestionImage, "topAnswer": topAnswer,
-			 "peopleReached" : user.peopleReached, "opQuestionCount" : opQuestionCount])
+			 "peopleReached" : user.peopleReached, "opQuestionCount" : opQuestionCount, "notifyCount": getNotifyCount()])
 		
 		} else {
 		render "Error finding this question"
@@ -91,15 +89,15 @@ class QuestionController {
 	
 	def askShouldI () {
 		if (session["userID"] != null) {
-		render(view: "askShouldi")
+		render(view: "askShouldi", model:[ "notifyCount": getNotifyCount()])
 		} else {
 			render "Please log in bitch"
 		}
 	}        
 	
-	def postShouldI () {
+	def postShouldI () { 
 		Question question = new Question()
-			print(params.category)
+
 		// Generate a unique ID
 		while(true) {
 			// Create a UUID and cut it in half for easier reading
@@ -129,9 +127,9 @@ class QuestionController {
 			question.requireLoginToVote = false
 		}
 		
-		
 		question.question = params.question
 		question.questionTitle = params.title
+		question.category = params.category
 		question.tags = params.tags
 		question.date = new Date()
 		
@@ -168,7 +166,7 @@ class QuestionController {
 	
 	def askShouldICustom() {
 		if (session["userID"] != null) {
-		render(view: "askshouldiCustom")
+		render(view: "askshouldiCustom", model:[ "notifyCount": getNotifyCount()])
 		} else {
 			render "Please log in bitch"
 		}
@@ -209,6 +207,7 @@ class QuestionController {
 		
 		question.question = params.question
 		question.questionTitle = params.title
+		question.category = params.category
 		question.tags = params.tags
 		question.date = new Date()
 		
@@ -474,6 +473,61 @@ class QuestionController {
 		return topAnswer
 	}
 	
+	def getNotifyCount() {
+		// get the op notification count
+		def notifyCount = "";
+		if (session["userID"] != null) {
+		 def notifyCountResult =  Question.executeQuery("select COUNT(*) from Question a where a.opNotifyVoteCount > 0 AND a.userID = ?", [session['userID']])
+		 notifyCount = notifyCountResult.toString().replaceAll("\\[", "").replaceAll("\\]","");
+		}
+		return notifyCount
+	}
 	
+	def getRandomQuestions(String category, String questionID) {
+		ArrayList<Question> questions = new ArrayList<Question>()
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.MONTH, -1);
+		Date date = cal.getTime();
+		
+		// ******** Half from this category and half from other categories **********
+		
+		// From this category
+		def questionSet1 = Question.executeQuery("FROM Question a WHERE a.category = ? AND date > ? AND a.questionID <> ? ORDER BY RANDOM()", [category, date, questionID], [max: 5])
+		
+		// Random from other categories
+		def questionSet2 = Question.executeQuery("FROM Question a WHERE date > ? AND a.questionID <> ? ORDER BY RANDOM()", [date, questionID], [max: 5])
+		
+		// List of id's to not allow duplicates
+		ArrayList<String> questionIds = new ArrayList<String>()
+
+		for (Question question : questionSet1){
+			questionIds.add(question.questionID)
+			questions.add(question)
+			}
+		
+		for (Question question : questionSet2) {
+			
+			boolean allowAdd = true
+			
+			for (String QuestionID : questionIds) {
+				if (question.questionID.matches(QuestionID)) {
+					allowAdd = false
+				}
+			}
+			
+			if (allowAdd) {
+				questionIds.add(question.questionID)
+				questions.add(question)
+			}			
+		}	
+		return questions
+		}
 	
+	def nextInCat() {
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.MONTH, -1);
+		Date date = cal.getTime();
+		def question = Question.executeQuery("FROM Question a WHERE a.category = ? AND date > ? ORDER BY RANDOM()", [params.category, date], [max: 1])
+		redirect(action: "shouldi", params: [id: question[0].questionID])
+	}
 }
