@@ -40,18 +40,22 @@ class UserController {
 			def questions
 			switch (params.category) {
 				case "My Questions": 
-					questions = Question.findAll("from Question as q where q.userID =" + session['userID'],  [max: 10, offset: offset])
+					questions = Question.findAll("from Question as q where q.userID  = ? order by date DESC", [session['userID']], [max: 10, offset: offset])
 				break;
 				case "My Notifications":
-					questions = Question.findAll("from Question as q where q.userID =" + session['userID'] + "and q.opNotifyVoteCount > 0 order by q.opNotifyVoteCount DESC",  [max: 10, offset: offset])		
+					questions = Question.findAll("from Question as q where q.userID = ? and q.opNotifyVoteCount > 0 order by q.opNotifyVoteCount DESC", [session['userID']], [max: 10, offset: offset])		
 				break;	
 				case "My Favorites":
-					questions = Question.findAll("from Question as q where q.userID =" + session['userID'],  [max: 10, offset: offset])
+				questions = new ArrayList<Question>()
+				def favorites = Favorite.findAll("from Favorite as f where f.userID = ? order by f.dateAdded DESC", [session["userID"]])
+				for (Favorite favorite : favorites) {
+					def question = Question.findByQuestionID(favorite.questionID)
+					questions.add(question)
+				}	
 				break;	
 			}
 			
 			def opQuestionCount = Question.countByUserID(session['userID'])
-			
 			render (view: "myProfile", model: ["question": questions, "offset" : offset, "category" : params.category, "opQuestionCount" : opQuestionCount, "user" : user, "notifyCount": getNotifyCount()])	
 	}
 		
@@ -87,10 +91,10 @@ class UserController {
 		def questions
 		switch (params.category) {
 			case "New Questions":
-				questions = Question.findAll("from Question as q where q.userID =" + user.userID,  [max: 10, offset: offset])
+				questions = Question.findAll("from Question as q where q.userID = ?", [user.userID], [max: 10, offset: offset])
 			break;
 			case "Top Questions":
-				questions = Question.findAll("from Question as q where q.userID =" + user.userID + "and q.opNotifyVoteCount > 0 order by q.opNotifyVoteCount DESC",  [max: 10, offset: offset])
+				questions = Question.findAll("from Question as q where q.userID = ? and q.opNotifyVoteCount > 0 order by q.opNotifyVoteCount DESC", [user.userID], [max: 10, offset: offset])
 			break;
 		}
 		
@@ -138,7 +142,9 @@ class UserController {
 				// if user account is from facebook
 				response.outputStream << ImgURLToByte("https://graph.facebook.com/" + user.userID + "/picture?type=large")
 				response.outputStream.flush()
-			} else {
+			} else if (user.accountType.matches("Reddit")) {				
+				response.outputStream << grailsAttributes.getApplicationContext().getResource("images/blankAv.png").getFile().bytes
+				response.outputStream.flush()
 				// TODO: twitter, ect
 			}
 			

@@ -77,7 +77,7 @@
                  		    <li><a href = "${createLink(controller: 'ShouldI', action: 'home')}" ><span class= 'fa fa-home'></span><span style = "padding-left: 6px;" >Home</span></a></li>                         
                             <li><a href = "${createLink(controller: 'ShouldI', action: 'help')}" ><span class= 'fa fa-info-circle'></span><span style = "padding-left: 6px;" >Help</span></a></li>
                            <li role="separator" class="divider"></li>
-                           <li><a  onClick = "logoutFaceBook('${createLink(controller: 'ShouldI', action: 'home')}', '${createLink(controller: 'Authentication', action: 'logout')}' )" href="#"><span class= 'fa fa-sign-out'></span><span style = "padding-left: 5px;" >Log Out</span></a></li>
+                           <li><a  onClick = "logout('${createLink(controller: 'ShouldI', action: 'home')}', '${createLink(controller: 'Authentication', action: 'logout')}' )" href="#"><span class= 'fa fa-sign-out'></span><span style = "padding-left: 5px;" >Log Out</span></a></li>
                         </ul>
                      </li>
                   </ul>
@@ -132,7 +132,7 @@
                      <div style = "display: inline-block; padding-bottom:0px; margin-right: 4px; margin-left: 4px; vertical-align: top;  ">
                         <span style = "margin-left: 1px; color: #5C5C5C; display: block; font-size: 15px;"><b><span class = "fa fa-eye-slash"></span> Anonymous</b></span>
                         <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px;  display: block; font-size: 15px;">Questions: <span class='fa fa-question'></span></span>
-                        <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Reached: <span class='fa fa-question'></span>       
+                        <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Reached: <span class='fa fa-question'></span>  </span>                                                      
                      </div>
                      
                      </g:else>
@@ -169,20 +169,45 @@
                      <span style = 'text-align: left; font-size: 18px; color: #4A4A4A; padding-left: 12px; padding-top:6px; display: inline-block;'>
   
                   
-                      <span  id = "" style = "color: #8D8D8D; font-size: 14px; ">Votes: ${it.totalVotes}</span>             
+                     <span  id = "" style = "display: block; color: #8D8D8D; font-size: 14px; "><g:formatDate format="MM-dd-yyyy" date="${it.date}"/></span>             
+                  
+                      <span  id = "voteCount" style = " display: block; color: #8D8D8D; font-size: 14px; ">Votes: ${it.totalVotes}</span>             
 
                      
                      </span>
                      <div style = "padding-bottom: -10px; float:right; display: inline-block; vertical-align: top;">
-                        <div  class = 'favsharButtion' onClick = "share()" style = " cursor: default; text-align: center; width: 65px; padding: 2px; padding-left: 2px; color: #4DAEFF; font-size: 13px; margin-right: 7px; margin-top:9px; ">
-                           <div style = "margin: auto; padding: 0px; margin: 0px;"><span style = ' ' class='fa fa-facebook'></span> Share</div>
+                        <div  onClick = "share()" style = " cursor: default; text-align: center; width: 65px; padding: 2px; padding-left: 2px; color: #4DAEFF; font-size: 13px; margin-right: 7px; margin-top:9px; ">
+                           <div class = 'favsharButtion' style = "margin: auto; padding: 0px; margin: 0px;"><span style = ' ' class='fa fa-facebook'></span> Share</div>
                         </div>
                      </div>
-                     <div class = 'favsharButtion' style = "padding-bottom: -10px; float:right; display: inline-block; vertical-align: top;">
-                        <div  onClick = "test()" style = "cursor: default; text-align: center; width: 70px; padding: 2px; padding-left: 0px; color: #4DAEFF; font-size: 13px; margin-right: 0px; margin-top:9px; ">
-                           <div style = "margin: auto; padding: 0px; margin: 0px;"><span style = ' ' class='fa fa-star'></span> Favorite</div>
+                     
+                     <div style = "padding-bottom: -10px; float:right; display: inline-block; vertical-align: top;">
+                       
+                        <g:if test="${session.name}">                 
+                        <div  onClick = "addToFavorites('${createLink(controller: 'Question', action: 'addToFavorites')}', '${it.questionID}')" style = "cursor: default; text-align: center; width: 70px; padding: 2px; padding-left: 0px; color: #4DAEFF; font-size: 13px; margin-right: 0px; margin-top:9px; ">				
+						</g:if>
+						<g:else>
+                        <div    onClick = "showNoLogin()" style = "cursor: default; text-align: center; width: 70px; padding: 2px; padding-left: 0px; color: #4DAEFF; font-size: 13px; margin-right: 0px; margin-top:9px; ">
+						</g:else>
+
+                           <div class = 'favsharButtion' style = "margin: auto; padding: 0px; margin: 0px;">
+                                 
+                        <g:if test = "${favorite == null}">
+                           <span id = "starEmpty" style = '' class='fa fa-star-o'></span>                           
+                           <span id = "starFull" style = 'display:none ' class='fa fa-star'> </span>  
+                           Favorite
+						</g:if>
+						<g:else>
+                           <span id = "starEmpty" style = 'display:none' class='fa fa-star-o'></span>                           
+                           <span id = "starFull" style = ' ' class='fa fa-star'> </span> 
+                           Favorite
+						</g:else>
+						
+						
+                           </div>
                         </div>
                      </div>
+                     
                   </div>
                   <span id = "titleText" style = 'text-align: center; margin: center; margin-top: 0px; padding: 0px 8px 0 8px; color: #545252; font-size: 20px; display: block;' >${it.questionTitle}</span>
                   <hr style = "margin-top: 8px; width: 85%; margin-bottom: 0px; padding-top: 0px;">
@@ -395,6 +420,28 @@
       <span style = "font-size: 15		px; color: #79cce5;"><a style = "color: #79cce5;" href = "">About</a></span>   
       </div>   
   	  </footer>
+  	  
+  	     <!-- LOGIN Modal -->
+   <div class="modal fade" id="noLogin" role="dialog">
+      <div class="modal-dialog">
+         <!-- Modal content-->
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+               <h4 class="modal-title"><span href="#about" style = "padding-left: 4px;" class='fa fa-sign-in'> </span> Easy Login</h4>
+            </div>
+            <div class="modal-body">
+               <p>Please login. Choose a network below to login with:</p>
+               <button onClick = "loginFacebook('${createLink(controller: 'Authentication', action: 'loginFaceBook')}')" style = "" type="button" class="btn btn-default" data-dismiss="modal">Facebook <span class = "fa fa-facebook"></span></button>
+               <button  onClick = "loginReddit('${createLink(controller: 'Authentication', action: 'loginReddit')}')"style = "" type="button" class="btn btn-default" data-dismiss="modal">Reddit <span class = "fa fa-reddit"></span></button>
+
+            </div>
+            <div class="modal-footer">
+               <button style = "" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+         </div>
+      </div>
+   </div>
   	  	
      </div>
   

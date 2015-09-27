@@ -135,7 +135,7 @@
       <div  class="contentContainer">
     
     <div style = "width: 100%; padding: 8px; border-bottom: solid 1px; border-color:#b2b2b2;   text-align: center;">
-     <span style = "color:#79cce5;   margin: auto;   font-size: 20px;" ><b>${category}</b></span>
+     <span style = "color:#79cce5;   margin: auto;   font-size: 18px;" ><b>${category}</b></span>
       </div>   
 
       <div class = "scrollCon" style = "height: 450px; " >  

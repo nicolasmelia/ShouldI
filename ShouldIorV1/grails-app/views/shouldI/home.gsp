@@ -19,7 +19,7 @@
       <script src="<g:resource dir="js" file="bootstrap.min.js" />"></script>
       <!-- facebook login -->
       <g:javascript src="facebookLogin.js" />
-      <g:javascript src="dataRequest.js" />
+      <g:javascript src="dataAccess.js" />
       <!-- font-awesome -->
       <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
       <link rel="stylesheet" type="text/css" href="<g:resource dir='css' file='typehead-searchBar.css'/>">
@@ -205,12 +205,12 @@
          <div class="modal-content">
             <div class="modal-header">
                <button type="button" class="close" data-dismiss="modal">&times;</button>
-               <h4 class="modal-title"><span href="#about" style = "padding-left: 4px;" class='fa fa-exclamation-circle'> </span>Easy Login</h4>
+               <h4 class="modal-title"><span href="#about" style = "padding-left: 4px;" class='fa fa-sign-in'> </span> Easy Login</h4>
             </div>
             <div class="modal-body">
-               <p>Please login to start a poll. Choose a network below to login with -  </p>
-               <button onClick = "loginFacebook()" style = "" type="button" class="btn btn-default" data-dismiss="modal">Facebook <span class = "fa fa-facebook"></span></button>
-               <button style = "" type="button" class="btn btn-default" data-dismiss="modal">Reddit <span class = "fa fa-reddit"></span></button>
+               <p>Please login to start a poll. Choose a network below to login with</p>
+               <button onClick = "loginFacebook('${createLink(controller: 'Authentication', action: 'loginFaceBook')}')" style = "" type="button" class="btn btn-default" data-dismiss="modal">Facebook <span class = "fa fa-facebook"></span></button>
+               <button  onClick = "loginReddit('${createLink(controller: 'Authentication', action: 'loginReddit')}')"style = "" type="button" class="btn btn-default" data-dismiss="modal">Reddit <span class = "fa fa-reddit"></span></button>
 
             </div>
             <div class="modal-footer">
@@ -252,27 +252,23 @@
    
       </div>
       
-
+            <input id = "yesCount" type="hidden" name="country" value="${yesCount}">
+            <input id = "noCount" type="hidden" name="country" value="${noCount}">
       
-   <!-- LOGIN Modal -->
-   <script>
-
+</div>
+      
+	<script>
    
-   $( document ).ready(function() {
-	  preparePieChart();
-	});
-	   
-      function showNoLogin() {
-      	$('#noLogin').modal('show'); 
-      }
-      
-      
+	   $( document ).ready(function() {
+		  preparePieChart($("#yesCount").val(), $("#noCount").val());
+		});
+	  
       function glow(id) {
-      $(id).css("background-color","#F7FBFF");
+    	  $(id).css("background-color","#F7FBFF");
       }
          
       function unGlow(id) {
-      $(id).css("background-color","");
+     	 $(id).css("background-color","");
       }
       
       function loadQuestionURL(url) {
@@ -281,7 +277,7 @@
       	 
        $(function(){
              $(".element").typed({
-                 strings: ["Start a Poll"],
+                 strings: ["^1700 Start a Poll"],
                  typeSpeed: 90,
       		cursorChar: "|",			  
       		backDelay: 500,
@@ -292,16 +288,16 @@
          });
 
 
-       function preparePieChart() {
+       function preparePieChart(value1, value2) {
      		var pieData = [
      	   					{
-     	   						value: 508977,
+     	   						value: value1,
      	   						color: "#46BFBD",
      	   						highlight: "#5AD3D1",
      	   						label: "Yes"
      	   					},
      	   					{
-     	   						value: 300678,
+     	   						value: value2,
      	   						color:"#F7464A",
      	   						highlight: "#FF5A5E",
      	   						label: "No"

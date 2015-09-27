@@ -54,8 +54,12 @@ class QuestionController {
 		}
 		
 		boolean thisUserPost = false;
+		Favorite favorite;
 		if (session["userID"] != null) {
-			if (session["userID"].matches(question.userID)) {
+			// Check if the viewing user has favorited this question
+			 favorite = Favorite.findByUserIDAndQuestionID(session["userID"], question.questionID)
+			// Check if this is the viewing users own post
+			if (session["userID"].toString().matches(question.userID)) {
 				thisUserPost = true		
 			}
 		}
@@ -64,11 +68,12 @@ class QuestionController {
 		String topAnswer = getTopVote(question)
 		
 		def opQuestionCount = Question.countByUserID(question.UserID)
-		def questions = Question.findAllByTotalVotesGreaterThan(-1)
+		
+	
 		
 		render(view: "shouldi", model: ["question": question, "questionID": question.questionID, "questionPromo1" : getRandomQuestions(question.category, question.questionID),
 			 "thisUserPost": thisUserPost, "percentDiff": percentDif, "vote": vote, "totalViews" : question.totalViews, "hasQuestionImage": hasQuestionImage, "topAnswer": topAnswer,
-			 "peopleReached" : user.peopleReached, "opQuestionCount" : opQuestionCount, "notifyCount": getNotifyCount()])
+			 "peopleReached" : user.peopleReached, "opQuestionCount" : opQuestionCount, "notifyCount": getNotifyCount(), "favorite": favorite])
 		
 		} else {
 		render "Error finding this question"
@@ -283,6 +288,28 @@ class QuestionController {
 	}
 	
 
+	def addToFavorites() {
+		// Adds question to logged in users favorites
+		if (session["userID"] != null) {
+			User user = User.findByUserID(session["userID"])
+			Favorite favoriteExist = Favorite.findByUserIDAndQuestionID(session["userID"], params.questionID)
+			if (!favoriteExist) {	
+				Favorite favorite = new Favorite();
+				favorite.questionID = params.questionID
+				favorite.userID = session["userID"]
+				favorite.dateAdded = new Date();
+				favorite.save(flush:true)
+				render ("True")
+			} else if (favoriteExist) {
+				favoriteExist.delete(flush:true)
+				render ("Has")			
+			} else {
+				render ("False")  // who knows
+			}
+		} else {
+			render ("False") // Not logged in
+		} 
+	}
 	
 	def questionVote() {
 		if (session["userID"] != null || params.requireLoginToVote.toString().matches("false")) {

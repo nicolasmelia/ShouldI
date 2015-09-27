@@ -35,9 +35,18 @@ function questionVote(vote) {
 				  var totalVotes =  parseInt(answersCount[4]) + parseInt(answersCount[5]) + 
 				  parseInt(answersCount[6]) + parseInt(answersCount[7]);
 
+					$("#voteCount").html("Votes: " + totalVotes);
+
+					// Fade the old percents
 					$("#per1").fadeOut(900);
-					$("#per2").fadeOut(900);
-		
+					$("#per2").fadeOut(900);	
+					if ($("#per3").length) {
+						$("#per3").fadeOut(900);
+					}
+					if ($("#per4").length) {
+						$("#per4").fadeOut(900);
+					}
+							
 					setTimeout(function(){ 
 						  displayMiniGraphs(totalVotes, answersCount[4], answersCount[5],answersCount[6], answersCount[7] );					
 					}, 1000);
@@ -64,6 +73,28 @@ function questionVote(vote) {
 }
 
 
+// Add favorite to users favorites
+function addToFavorites(url, id) {
+	if ($('#sessionCheck').val() == "true") {
+		  $.ajax({
+			  type: 'post',
+			    url: url,
+			    async: true,
+			    data: {questionID : id},
+		  }).done(function(result){
+			  if (result == "True") {
+					$('#starEmpty').css("display", "none");
+					$('#starFull').css("display", "inline-block");
+			  } else if (result == "Has") {
+					$('#starEmpty').css("display", "inline-block");
+					$('#starFull').css("display", "none");
+			  } else {
+				  // Who knows what the hell went wrong prob not logged in.
+			  } 
+		  });
+		}
+}
+
 // Comment to main post
 function postMainComment() {
 	if ($('#sessionCheck').val() == "true") {
@@ -84,3 +115,34 @@ function postMainComment() {
 		}
 }
 
+
+// ******** LOGIN SYSTEMS ********
+function loginReddit(url) {
+	// Simply opens the login page for reddit
+	window.location.href = url;
+}
+
+function showNoLogin() {
+  	$('#noLogin').modal('show'); 
+  }
+  
+
+function logout(urlHome, urlLogout) {
+	  $.ajax({
+		  type: 'post',
+		    url: urlLogout,
+		    async: true,
+		    data: {logout : "true"},
+	  }).done(function(result){
+		  if (result == "Success:Facebook") {
+			// logout of serverfirst then facebook.  
+			  FB.logout(function(response) {
+		         	window.location.href =  urlHome;
+				});
+		  } else if  (result == "Success:Reddit") {
+	         	window.location.href =  urlHome;
+		  } else {
+	         	window.location.href =  urlHome;
+		  } 
+	  });
+}

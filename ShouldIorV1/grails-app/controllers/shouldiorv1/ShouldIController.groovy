@@ -3,15 +3,24 @@ package shouldiorv1
 class ShouldIController {
 
     def index() {	
-		render (view: "home", model: ["trendingQuestions": getPopularQuestions(), "randomQuestions": getRandomQuestions(), "notifyCount": getNotifyCount()])
+		renderHome()	
 	}
 	
 	def home() {
-		render (view: "home", model: ["trendingQuestions": getPopularQuestions(), "randomQuestions": getRandomQuestions(), "notifyCount": getNotifyCount()])
+		renderHome()
 	}
 	
+	def renderHome() {	
+		// Get counts for the pie chart
+		int yesCount = Vote.countByVote("1")
+		int noCount = Vote.countByVote("2")
+		render (view: "home", model: ["yesCount" : yesCount, "noCount" : noCount, "trendingQuestions": getPopularQuestions(), "randomQuestions": getRandomQuestions(), "notifyCount": getNotifyCount()])	
+	}
+	
+	
 	def category() {
-	// Configure off pagination
+		// ********* Category Page ********* 
+		// Configure off pagination
 		if (params.category == null) {
 			params.category = "Trending"
 		}
@@ -38,10 +47,13 @@ class ShouldIController {
 		Date date = cal.getTime();
 		
 		def questions
-		if (!params.category.toString().equals("Trending")){
-			 questions = Question.executeQuery("FROM Question a WHERE date > ? AND category = ? ORDER BY date DESC", [date, params.category], [max: 10, offset: offset])
+		if (params.category.toString().equals("Trending")){
+			questions = Question.executeQuery("FROM Question a WHERE date > ? ORDER BY totalVotes DESC", [date], [max: 10, offset: offset])	
+		} else  if (params.category.toString().equals("Recent")){
+			questions = Question.executeQuery("FROM Question a WHERE date > ? ORDER BY date DESC", [date], [max: 10, offset: offset])
 		} else {
-			 questions = Question.executeQuery("FROM Question a WHERE date > ? ORDER BY totalVotes DESC", [date], [max: 10, offset: offset])
+			// All other categories 
+			 questions = Question.executeQuery("FROM Question a WHERE date > ? AND category = ? ORDER BY date DESC", [date, params.category], [max: 10, offset: offset])
 		}
 		
 		// Query for questions
@@ -79,5 +91,6 @@ class ShouldIController {
 		def questions = Question.executeQuery("FROM Question a WHERE date > ? ORDER BY RANDOM()", [date], [max: 15])
 		return questions	
 	}
+	
 	
 }

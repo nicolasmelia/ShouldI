@@ -122,25 +122,7 @@ function checkFaceBookLogin() {
 	}
 }
 
-function logoutFaceBook(urlHome, urlLogout) {
-	  $.ajax({
-		  type: 'post',
-		    url: urlLogout,
-		    async: true,
-		    data: {logout : "true"},
-	  }).done(function(result){
-		  if (result == "Success") {
-			// logout of serverfirst then facebook.  
-			  FB.logout(function(response) {
-		         	window.location.href =  urlHome;
-				});
-		  } else if  (result == "Fail") {
-			  // Our Server failed to create a session
-		  } else {
-			  // Who knows what the hell went wrong
-		  } 
-	  });
-}
+
 
 
 

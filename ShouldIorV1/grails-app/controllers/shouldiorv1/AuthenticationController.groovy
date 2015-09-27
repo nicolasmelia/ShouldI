@@ -2,6 +2,7 @@ package shouldiorv1
 
 import com.google.gson.Gson
 import com.google.gson.JsonObject
+import java.beans.WeakIdentityMap.Entry
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -83,11 +84,157 @@ class AuthenticationController {
 			return jsonObject.get("name").toString().replaceAll("\""," ").trim(); 
 		  }
 	
+	
+	
+	// ********************* LOGIN USING REDDIT API *********************
+	def loginReddit() {
+		if (!session["userID"]) {
+			render(view: "loginReddit")	
+		} else {
+			redirect(action: "home", controller: "shouldI")	
+		}
+	}
+	
+	def loginRedditAttempt() {
+		boolean loginSuccess = false
+		if (!session["userID"]) {
+			String user = params.username
+			String pw = params.password
+			try {
+				loginSuccess = requestRedditLogin(user, pw)
+			} catch (Exception ex) {
+				// Possible connection error. Try to log in again
+				loginSuccess = requestRedditLogin(user, pw)
+			} finally {
+				if (loginSuccess) {
+					createRedditSession(user) // renders success
+					//render("Success") 
+					redirect(action: "home", controller: "shouldI")
+				} else {
+					render (view: "loginReddit", model:["Success":loginSuccess])
+				}
+			}
+		} else {
+			render (view: "loginReddit", model:["Success":loginSuccess])
+		}
+		
+	}
+	
+	def requestRedditLogin(user, pw){
+		URL url = new URL( "https://ssl.reddit.com/api/login/myusername" );
+		String data = "api_type=json&user=" + user + "&passwd=" + pw;
+		HttpURLConnection ycConnection = null;
+		ycConnection = ( HttpURLConnection ) url.openConnection();
+		ycConnection.setRequestMethod( "POST" );
+		ycConnection.setDoOutput( true );
+		ycConnection.setUseCaches( false );
+		ycConnection.setRequestProperty( "Content-Type",
+			"application/x-www-form-urlencoded; charset=UTF-8" );
+		ycConnection.setRequestProperty( "Content-Length", String.valueOf( data.length() ) );
+
+		DataOutputStream wr = new DataOutputStream(
+			ycConnection.getOutputStream() );
+		wr.writeBytes( data );
+		wr.flush();
+		wr.close();
+		InputStream is = ycConnection.getInputStream();
+		BufferedReader rd = new BufferedReader( new InputStreamReader( is ) );
+		String line;
+		StringBuffer response = new StringBuffer();
+		while ( ( line = rd.readLine() ) != null )
+		{
+			response.append( line );
+			response.append( '\r' );
+		}
+
+		rd.close();
+		
+		Gson gson = new Gson();
+		
+		// Get the wrong password response from reddits response. Yes this is json in json
+		JsonObject jsonObject = gson.fromJson(response.toString(), JsonObject.class);
+		
+		if (jsonObject.get("json").toString().contains("wrong password")) {
+			// wrong password
+			return false
+		} else if (jsonObject.get("json").toString().contains("modhash"))   {
+			// Success login
+			return true
+		} else {
+			// who knows
+			return false
+		} 
+		
+		
+	}
+	
+	def createRedditSession(userName) {
+		User tempUser = new User()
+		User user = User.findByName(userName.toString().toLowerCase())
+		
+		if (user != null) {
+			
+			tempUser = user;
+						
+		} else {
+			// User does not exist in our DB, create them an account
+			User newUser = new User();
+			
+			// Generate a unique ID
+			while(true) {
+				// Create a UUID and cut it in half for easier reading
+				String uniqueID = UUID.randomUUID().toString().replace("-", "");
+				int midpoint = uniqueID.length() / 2;
+				String halfUUID = uniqueID.substring(0, midpoint)
+				int matchCount = Question.countByUserID(halfUUID)
+				if (matchCount == 0) {		
+					newUser.userID = halfUUID
+					break;
+				 }
+			}
+			
+			newUser.token = "REDDITNONE"
+			newUser.accountType = "Reddit"
+			newUser.password = "NONE"
+			newUser.peopleReached = 0
+			newUser.about = ""
+			newUser.dateCreated = new Date()
+			newUser.userName = userName.toString().toLowerCase()
+			newUser.name = userName.toString().toLowerCase()
+			newUser.save(flush:true);
+			tempUser = newUser;
+			print "Created"
+		}
+		
+		// Create their session
+		session["userID"] = tempUser.userID
+		
+		// Check if reddit user has changed name
+		if (!tempUser.userName.toString().toLowerCase().equals(userName.toString().toLowerCase())) {
+			tempUser.userName = userName.toString().toLowerCase()
+			tempUser.save(flush:true)
+		}
+		
+		if (tempUser.userName != null) {
+			// Name has been changed to an alias display name
+			session["name"] = tempUser.userName
+			} else {
+			try {
+			session["name"] = tempUser.name.trim().split(" ")[0]
+			} catch (Exception ex) {
+			session["name"] = tempUser.name.trim()
+			}
+		}
+	}
+	
+	
+	
 
 	// ********************* LOG OUT *********************
 	def logout () {
+		User user = User.findByUserID(session["userID"])
 		session.invalidate()
-		render "Success"
+		render "Success:" + user.accountType
 	}
 	
 	
