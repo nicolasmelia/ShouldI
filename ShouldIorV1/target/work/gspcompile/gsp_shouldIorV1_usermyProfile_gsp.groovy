@@ -120,8 +120,8 @@ if(true && (question.isEmpty())) {
 printHtmlPart(43)
 }
 printHtmlPart(44)
-for( _it789359490 in (question) ) {
-changeItVariable(_it789359490)
+for( _it1330901425 in (question) ) {
+changeItVariable(_it1330901425)
 printHtmlPart(45)
 expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
 printHtmlPart(46)
@@ -158,22 +158,26 @@ printHtmlPart(61)
 createClosureForHtmlPart(62, 2)
 invokeTag('link','g',181,['action':("myProfile"),'params':([offset: offset, up: 'true', category: category]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
 printHtmlPart(63)
-invokeTag('javascript','g',197,['src':("dataAccess.js")],-1)
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
 printHtmlPart(64)
-invokeTag('resource','g',198,['dir':("js"),'file':("bootstrap.min.js")],-1)
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
 printHtmlPart(65)
-invokeTag('javascript','g',199,['src':("buttonAnswerGlow.js")],-1)
+invokeTag('javascript','g',221,['src':("dataAccess.js")],-1)
 printHtmlPart(66)
-})
-invokeTag('captureBody','sitemesh',214,[:],1)
+invokeTag('resource','g',222,['dir':("js"),'file':("bootstrap.min.js")],-1)
 printHtmlPart(67)
+invokeTag('javascript','g',223,['src':("buttonAnswerGlow.js")],-1)
+printHtmlPart(68)
+})
+invokeTag('captureBody','sitemesh',238,[:],1)
+printHtmlPart(69)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1443029481402L
+public static final long LAST_MODIFIED = 1443376176627L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

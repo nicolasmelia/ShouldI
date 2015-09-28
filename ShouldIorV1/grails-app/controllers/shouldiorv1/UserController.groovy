@@ -91,10 +91,10 @@ class UserController {
 		def questions
 		switch (params.category) {
 			case "New Questions":
-				questions = Question.findAll("from Question as q where q.userID = ?", [user.userID], [max: 10, offset: offset])
+				questions = Question.findAll("from Question as q where q.userID = ? ORDER BY q.date DESC", [user.userID], [max: 10, offset: offset])
 			break;
 			case "Top Questions":
-				questions = Question.findAll("from Question as q where q.userID = ? and q.opNotifyVoteCount > 0 order by q.opNotifyVoteCount DESC", [user.userID], [max: 10, offset: offset])
+				questions = Question.findAll("from Question as q where q.userID = ? ORDER BY q.totalVotes DESC", [user.userID], [max: 10, offset: offset])
 			break;
 		}
 		

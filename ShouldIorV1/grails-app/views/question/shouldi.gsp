@@ -84,9 +84,10 @@
                </g:if>
                <g:else>
                   <ul class="nav navbar-nav navbar-right">
-                     <li><a id = "facebookLoginMenu" href = "#"  style = ""  onClick = "loginFacebook('${createLink(controller: 'Authentication', action: 'loginFaceBook')}')">Log in with <span href="#about" style = "padding-left: 4px; color:#5BC0DE;" class='fa fa-facebook-official'></span> </a></li>
+                     <li><a id = "facebookLoginMenu" href = "#"  style = ""  onClick = "loginFacebook('${createLink(controller: 'Authentication', action: 'loginFaceBook')}')">Login with <span href="#about" style = "padding-left: 4px; color:#5BC0DE;" class='fa fa-facebook-official'></span> </a></li>
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
+                      <li><a id = "facebookLoginMenu" href = "#"  style = "" onClick = "showNoLogin()" >Login/Signup</a></li>
                   </ul>
                </g:else>
             </div>
@@ -100,25 +101,24 @@
       
 
             <!-- QUESTION -->	
-            <g:each in="${question}">
-              <input id = "totalVotes" type="hidden" value="${it.totalVotes}">
-                    <input id = "answerOneVotes" type="hidden"  value="${it.answerOneVotes}">
-				      <input id = "answerTwoVotes" type="hidden"  value="${it.answerTwoVotes}">
-				      <input id = "answerThreeVotes" type="hidden"  value="${it.answerThreeVotes}">
-				      <input id = "answerFourVotes" type="hidden" value="${it.answerFourVotes}">
+              <input id = "totalVotes" type="hidden" value="${question.totalVotes}">
+                    <input id = "answerOneVotes" type="hidden"  value="${question.answerOneVotes}">
+				      <input id = "answerTwoVotes" type="hidden"  value="${question.answerTwoVotes}">
+				      <input id = "answerThreeVotes" type="hidden"  value="${question.answerThreeVotes}">
+				      <input id = "answerFourVotes" type="hidden" value="${question.answerFourVotes}">
 				            
-               <input id = "questionID" type="hidden" name="country" value="${it.questionID}">	
+               <input id = "questionID" type="hidden" name="country" value="${question.questionID}">	
                <div style ="display: block; width: 100%; padding-bottom: -5px; " >
                   <!-- MAIN -->	
                   <div  style="display: block;  padding: 10px;  border-bottom: solid 1px; border-color: #f3f3f3;  margin: auto;  ">
                      <!-- PROFILE INFORMATION -->	
                      
-                     <g:if test="${it.anonymous == false}">
+                     <g:if test="${question.anonymous == false}">
                          <div style = "display: inline-block; width: 68px; padding-left: 5px;">
-                        <img  style = "width: 100%;   display: inline-block; border-top-right-radius: 6px; border-top-left-radius: 5px;"  src = "${createLink(controller: 'User', action: 'getProfileImage', params: [id: it.userID])}"   />			
+                        <img  style = "width: 100%;   display: inline-block; border-top-right-radius: 6px; border-top-left-radius: 5px;"  src = "${createLink(controller: 'User', action: 'getProfileImage', params: [id: question.userID])}"   />			
                      </div>
                      <div style = "display: inline-block; padding-bottom:0px; margin-right: 4px; margin-left: 4px; vertical-align: top;  ">
-                        <span style = "margin-left: 1px; color: #5C5C5C; display: block; font-size: 15px;"><a href = "${createLink(controller: 'User', action: 'profile', params: [id: it.userID, category : 'New Questions'])}"><b>${it.userName}</b></a></span>
+                        <span style = "margin-left: 1px; color: #5C5C5C; display: block; font-size: 15px;"><a href = "${createLink(controller: 'User', action: 'profile', params: [id: question.userID, category : 'New Questions'])}"><b>${question.userName}</b></a></span>
                         <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px;  display: block; font-size: 15px;">Questions: ${opQuestionCount}</span>
                         <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Reached: ${peopleReached} </span>
                      </div>
@@ -141,12 +141,12 @@
                   <!-- PROFILE INFORMATION -->	
                   
   
-                     <input id = "requireLoginToVote" type="hidden" name="perdif" value="${it.requireLoginToVote}">    
+                     <input id = "requireLoginToVote" type="hidden" name="perdif" value="${question.requireLoginToVote}">    
                       
-                    <g:if test="${thisUserPost == true || it.requireLoginToVote == false}">
+                    <g:if test="${thisUserPost == true || question.requireLoginToVote == false}">
                         <div class="alert alert-info" role="alert" style = "margin: 10px 10px 0px 10px; padding: 8px; text-align: left; background-color: rgba(41,153,255,0.05);">
                     
-                   <g:if test="${it.requireLoginToVote == false}">
+                   <g:if test="${question.requireLoginToVote == false}">
 	                  <p style = " color: #407b98; margin: 0px; display: block;">
 	                  	<span class = " fa  fa-thumbs-o-up"></span> Login not required to vote.
 	                  </p> 
@@ -155,7 +155,7 @@
                     <g:if test="${thisUserPost == true}">
                      <p style = " display: block; color: #407b98; margin: 0px;">
 						<a style = "cursor: default;" onclick = "share()"><b>Share</b></a> or copy this pages <a onClick = "displayPageLink()" style = "cursor: default;"><b>link</b></a></br>
-						 <span id = "pageLink" style = "display: none; color: #8D8D8D; word-break: break-all;"><u>www.ShouldI.fm/Question/${it.questionID}</u></span>
+						 <span id = "pageLink" style = "display: none; color: #8D8D8D; word-break: break-all;"><u>www.ShouldI.fm/Question/${question.questionID}</u></span>
 					</p>
 					</g:if>
 						
@@ -169,9 +169,9 @@
                      <span style = 'text-align: left; font-size: 18px; color: #4A4A4A; padding-left: 12px; padding-top:6px; display: inline-block;'>
   
                   
-                     <span  id = "" style = "display: block; color: #8D8D8D; font-size: 14px; "><g:formatDate format="MM-dd-yyyy" date="${it.date}"/></span>             
+                     <span  id = "" style = "display: block; color: #8D8D8D; font-size: 14px; "><g:formatDate format="MM-dd-yyyy" date="${question.date}"/></span>             
                   
-                      <span  id = "voteCount" style = " display: block; color: #8D8D8D; font-size: 14px; ">Votes: ${it.totalVotes}</span>             
+                      <span  id = "voteCount" style = " display: block; color: #8D8D8D; font-size: 14px; ">Votes: ${question.totalVotes}</span>             
 
                      
                      </span>
@@ -184,7 +184,7 @@
                      <div style = "padding-bottom: -10px; float:right; display: inline-block; vertical-align: top;">
                        
                         <g:if test="${session.name}">                 
-                        <div  onClick = "addToFavorites('${createLink(controller: 'Question', action: 'addToFavorites')}', '${it.questionID}')" style = "cursor: default; text-align: center; width: 70px; padding: 2px; padding-left: 0px; color: #4DAEFF; font-size: 13px; margin-right: 0px; margin-top:9px; ">				
+                        <div  onClick = "addToFavorites('${createLink(controller: 'Question', action: 'addToFavorites')}', '${question.questionID}')" style = "cursor: default; text-align: center; width: 70px; padding: 2px; padding-left: 0px; color: #4DAEFF; font-size: 13px; margin-right: 0px; margin-top:9px; ">				
 						</g:if>
 						<g:else>
                         <div    onClick = "showNoLogin()" style = "cursor: default; text-align: center; width: 70px; padding: 2px; padding-left: 0px; color: #4DAEFF; font-size: 13px; margin-right: 0px; margin-top:9px; ">
@@ -209,13 +209,13 @@
                      </div>
                      
                   </div>
-                  <span id = "titleText" style = 'text-align: center; margin: center; margin-top: 0px; padding: 0px 8px 0 8px; color: #545252; font-size: 20px; display: block;' >${it.questionTitle}</span>
+                  <span id = "titleText" style = 'text-align: center; margin: center; margin-top: 0px; padding: 0px 8px 0 8px; color: #545252; font-size: 20px; display: block;' >${question.questionTitle}</span>
                   <hr style = "margin-top: 8px; width: 85%; margin-bottom: 0px; padding-top: 0px;">
 
-                  <g:if test="${it.custom.toString().equals('false')}">
-                  		<g:if test="${it.answerOneImage}">
+                  <g:if test="${question.custom.toString().equals('false')}">
+                  		<g:if test="${question.answerOneImage}">
 	                  <div id = "ee" style = "margin-bottom: 30px; padding: 15px;  margin: auto; margin-top: 20px;  width: 50%; min-width: 290px; max-width: 330px; mag-height: 100px; background-color: #F4FAFF; display: block;" >
-	                     <img id="singleImg" src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1'])}"   style ="display: block;  width: 95%;  height: 80%; margin: auto;" alt="UhOh! We cant seem to load the image." />
+	                     <img id="singleImg" src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: question.questionID, imgNum: '1'])}"   style ="display: block;  width: 95%;  height: 80%; margin: auto;" alt="UhOh! We cant seem to load the image." />
 	                  </div>
                 	  </g:if>
                   </g:if>
@@ -223,7 +223,7 @@
                   
                   <div style = "padding: 15px; width: 98%; overflow-y: hidden; margin:auto; padding-top: 18px;   display: block;">
                    <div style = "margin: 0px; padding: 0px; width: 100%;" id = "questiontText">
-                     ${raw(it.question)}		           
+                     ${raw(question.question)}		           
                     </div>
                      
                   </div>
@@ -246,11 +246,11 @@
 
                  <table style="width: 100%; overflow:none; margin-top: 5px; padding:0px; border-top: 1px solid #E1E1E1;">
 
-				<g:if test="${it.custom.toString().equals('true')}">
+				<g:if test="${question.custom.toString().equals('true')}">
 				  <tr style = "height: 100%; width: 50%; margin-top: 5px; ">		  
 				  <td id = "img1"  onClick = "questionVote('1')" style = "height: 100%; width: 50%; text-align: center; border-right: solid 1px #F0F0E1;  " >
-						<g:if test="${it.answerOneImage}">
-							<img  src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1'])}"  style = "width: 55%; padding: 10px 4px 10px 4px; min-width: 150px; "/>
+						<g:if test="${question.answerOneImage}">
+							<img  src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: question.questionID, imgNum: '1'])}"  style = "width: 55%; padding: 10px 4px 10px 4px; min-width: 150px; "/>
 						</g:if>
 						<g:elseif test="${hasQuestionImage.toString().equals('true')}">
 							<img  src="${resource(dir:'images',file:'noImg.png')}" style = "width: 55%; padding: 10px 4px 10px 4px; min-width: 150px; "/>
@@ -258,8 +258,8 @@
 					</td>
 					
 				  <td id = "img2" onClick = "questionVote('2')" style = "height: 100%; width: 50%; text-align: center;" >
-						<g:if test="${it.answerTwoImage}">
-							<img  src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '2'])}"  style = "width: 55%; padding: 10px 4px 10px 4px; min-width: 150px; "/>
+						<g:if test="${question.answerTwoImage}">
+							<img  src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: question.questionID, imgNum: '2'])}"  style = "width: 55%; padding: 10px 4px 10px 4px; min-width: 150px; "/>
 						</g:if>
 						<g:elseif test="${hasQuestionImage.toString().equals('true')}">						
 							<img  src="${resource(dir:'images',file:'noImg.png')}" style = "width: 55%; padding: 10px 4px 10px 4px; min-width: 150px; "/>
@@ -267,14 +267,14 @@
 					</td>
 				  </tr>
 				  </g:if>			  
-				<g:if test="${it.custom.toString().equals('false')}">
+				<g:if test="${question.custom.toString().equals('false')}">
                      <tr style = "width: 100%; ">
                         <td  id = "ans1"  onClick = "questionVote('1')"  class="answerContainer"  style = "border-right: solid 1px #E1E1E1;"   >
                            <div style = " width: 100%; display:block; margin: auto; bottom: 0px; text-align: center; font-size: 19px;  color: #61B7FE; ">
                          <div id = "per1" style = "top: 0px; left: 0px;  display: none; height: 100%; position: absolute;  background-color: rgba(41,153,255,0.15); "></div>  
 							<span id = "option1Check" style = "display: none;" class = "fa fa-check">        
                               </span> Yes <span id = "Answer1Count" style = "color: #8D8D8D;">
-                              (${it.answerOneVotes})
+                              (${question.answerOneVotes})
                               </span>       
                            </div>
                         </td>
@@ -283,7 +283,7 @@
                          <div id = "per2" style = "top: 0px; left: 0px;  display: none; height: 100%; position: absolute;  background-color: rgba(41,153,255,0.15); "></div>                                  
                             <span id = "option2Check"  style = "display: none;" class = "fa fa-check">
                               </span> No <span id = "Answer2Count"  style = "color: #8D8D8D;">
-                              (${it.answerTwoVotes})
+                              (${question.answerTwoVotes})
                               </span>
                            </div>
                         </td>
@@ -296,8 +296,8 @@
                            <div style = " width: 100%; display:block; margin: auto; bottom: 0px; text-align: center; font-size: 19px;  color: #61B7FE; ">
                             <div id = "per1" style = "top: 0px; left: 0px;  display: none; height: 100%; position: absolute;  background-color: rgba(41,153,255,0.15); "></div>   
                               <span id = "option1Check" style = "display: none;" class = "fa fa-check"> 
-                              </span> ${it.answerOne} <span id = "Answer1Count" style = "color: #8D8D8D;">           
-	                              	(${it.answerOneVotes})
+                              </span> ${question.answerOne} <span id = "Answer1Count" style = "color: #8D8D8D;">           
+	                              	(${question.answerOneVotes})
                               </span>           
                            </div>
                            
@@ -306,8 +306,8 @@
                            <div style = " width: 100%; display:block; margin: auto; bottom: 0px; text-align: center; font-size: 19px;  color: #61B7FE; ">
                          <div id = "per2" style = "top: 0px; left: 0px;  display: none; height: 100%; position: absolute;  background-color: rgba(41,153,255,0.15); "></div>  
                             <span id = "option2Check"  style = "display: none;" class = "fa fa-check">
-                              </span> ${it.answerTwo} <span id = "Answer2Count"  style = "color: #8D8D8D;">
-                              			(${it.answerTwoVotes})
+                              </span> ${question.answerTwo} <span id = "Answer2Count"  style = "color: #8D8D8D;">
+                              			(${question.answerTwoVotes})
                               </span>
                            </div>
                         </td>
@@ -319,10 +319,10 @@
                      <table style="width: 100%; overflow:none; margin-top: 0px; padding:0px; border-top: 1px solid #E1E1E1;">
 				  <tr style = "height: 100%; width: 50%; margin-top: 5px; ">		  
 				  
-				 <g:if test="${it.answerThree}">
+				 <g:if test="${question.answerThree}">
 				  <td id = "img3" onClick = "questionVote('3')" style = "height: 100%; width: 50%; text-align: center;  " >
-						<g:if test="${it.answerThreeImage}">
-							<img  src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '3'])}"  style = "width: 55%; max-width: 250px; padding: 10px 4px 10px 4px; min-width: 150px; "/>
+						<g:if test="${question.answerThreeImage}">
+							<img  src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: question.questionID, imgNum: '3'])}"  style = "width: 55%; max-width: 250px; padding: 10px 4px 10px 4px; min-width: 150px; "/>
 						</g:if>
 						<g:elseif test="${hasQuestionImage.toString().equals('true')}">
 							<img  src="${resource(dir:'images',file:'noImg.png')}" style = "width: 55%; padding: 10px 4px 10px 4px; min-width: 150px; "/>
@@ -330,10 +330,10 @@
 					</td>
 					</g:if>
 					
-				 <g:if test="${it.answerFour}">
+				 <g:if test="${question.answerFour}">
 				  <td id = "img4" onClick = "questionVote('4')" style = "height: 100%; width: 50%; text-align: center; border-left: solid 1px #F0F0E1; " >
-						<g:if test="${it.answerFourImage}">
-							<img  src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '4'])}"  style = "width: 55%; padding: 10px 4px 10px 4px; min-width: 150px; "/>
+						<g:if test="${question.answerFourImage}">
+							<img  src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: question.questionID, imgNum: '4'])}"  style = "width: 55%; padding: 10px 4px 10px 4px; min-width: 150px; "/>
 						</g:if> 
 						<g:elseif test="${hasQuestionImage.toString().equals('true')}">
 							<img  src="${resource(dir:'images',file:'noImg.png')}" style = "width: 55%; padding: 10px 4px 10px 4px; min-width: 150px; "/>
@@ -344,25 +344,25 @@
 				  </tr>
 			
                      <tr style = "width: 100%; ">
-                     	<g:if test="${it.answerThree}">
+                     	<g:if test="${question.answerThree}">
                         <td  id = "ans3" onClick = "questionVote('3')" class="answerContainer"  style = "border-right: solid 1px #E1E1E1;"  >
   							<div style = " width: 100%; display:block; margin: auto; bottom: 0px; text-align: center; font-size: 19px;  color: #61B7FE; ">
                          <div id = "per3" style = "top: 0px; left: 0px;  display: none; height: 100%; position: absolute;  background-color: rgba(41,153,255,0.15); "></div>                             
                             <span id = "option3Check" style = "display: none;" class = "fa fa-check"> 
-                              </span> ${it.answerThree} <span id = "Answer3Count" style = "color: #8D8D8D;">
-                           		   (${it.answerThreeVotes})
+                              </span> ${question.answerThree} <span id = "Answer3Count" style = "color: #8D8D8D;">
+                           		   (${question.answerThreeVotes})
                               </span>
                            </div>
                         </td>
                         </g:if>
                         
-                        <g:if test="${it.answerFour}">         
+                        <g:if test="${question.answerFour}">         
                         <td id = "ans4" onClick = "questionVote('4')"   class="answerContainer"  " >
                            <div style = " width: 100%; display:block; margin: auto; bottom: 0px; text-align: center; font-size: 19px;  color: #61B7FE; ">
                          <div id = "per4" style = "top: 0px; left: 0px;  display: none; height: 100%; position: absolute;  background-color: rgba(41,153,255,0.15); "></div>                               
                             <span id = "option4Check"  style = "display: none;" class = "fa fa-check">
-                              </span> ${it.answerFour} <span id = "Answer4Count"  style = "color: #8D8D8D;">
-                          		    (${it.answerFourVotes})
+                              </span> ${question.answerFour} <span id = "Answer4Count"  style = "color: #8D8D8D;">
+                          		    (${question.answerFourVotes})
                               </span>
                            </div>
                         
@@ -373,7 +373,6 @@
 
          
                </div>
-                        </g:each>
                         
          </div>
          <!-- QUESTION -->	
@@ -443,8 +442,7 @@
       </div>
    </div>
   	  	
-     </div>
-  
+</div>  
       
 
       <!-- Bootstrap core JavaScript

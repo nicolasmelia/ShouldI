@@ -120,12 +120,16 @@
          </div>
          
          <div style = "padding: 15px;">
+         
             <h3 style = "text-align: left; color: #6A6A6A; margin:0px;">
-               ShouldI.fm is taking off rapidly!
+             ${messageTitle} 
             </h3>
+            
             <p style = "font-size: 15px; width: 100%; margin-top: 10px; text-align: left;">
-               Just like YouTube you can make extra cash from the audiance you attract to your questions. Each vote earns you money. <a href = "#">Learn More</a>
+               ${raw(messageText)}	
             </p>
+            
+            
             <div>
             </div>
          </div>
@@ -277,7 +281,7 @@
       	 
        $(function(){
              $(".element").typed({
-                 strings: ["^1700 Start a Poll"],
+                 strings: ["^1000 Start a Poll"],
                  typeSpeed: 90,
       		cursorChar: "|",			  
       		backDelay: 500,

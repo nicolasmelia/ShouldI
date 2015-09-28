@@ -17,12 +17,13 @@ class User {
 	int peopleReached
 	int totalVotes
 	
+	boolean deleted
 	
     static constraints = {
 		userName nullable: true
 		avatar nullable: true	
 		about nullable:true
-		
+		deleted nullable:true
 		about maxSize: 20000
 		favorites nullable: true
 		

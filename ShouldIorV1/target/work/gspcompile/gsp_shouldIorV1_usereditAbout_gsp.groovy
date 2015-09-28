@@ -72,22 +72,26 @@ printHtmlPart(23)
 })
 invokeTag('form','g',144,['controller':("User"),'action':("updateAbout"),'enctype':("multipart/form-data")],2)
 printHtmlPart(24)
-invokeTag('resource','g',164,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput-angular.js")],-1)
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
 printHtmlPart(25)
-invokeTag('resource','g',165,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.js")],-1)
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
 printHtmlPart(26)
-invokeTag('resource','g',166,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.css")],-1)
+invokeTag('resource','g',185,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput-angular.js")],-1)
 printHtmlPart(27)
-})
-invokeTag('captureBody','sitemesh',309,['style':("background-color: #f4f4f4; min-width: 330px; ")],1)
+invokeTag('resource','g',186,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.js")],-1)
 printHtmlPart(28)
+invokeTag('resource','g',187,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.css")],-1)
+printHtmlPart(29)
+})
+invokeTag('captureBody','sitemesh',330,['style':("background-color: #f4f4f4; min-width: 330px; ")],1)
+printHtmlPart(30)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1442707851955L
+public static final long LAST_MODIFIED = 1443376176646L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

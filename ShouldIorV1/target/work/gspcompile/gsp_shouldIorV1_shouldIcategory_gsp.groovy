@@ -108,8 +108,8 @@ expressionOut.print(createLink(controller: 'shouldI', action: 'category', params
 printHtmlPart(37)
 expressionOut.print(category)
 printHtmlPart(38)
-for( _it1039629818 in (questions) ) {
-changeItVariable(_it1039629818)
+for( _it955505599 in (questions) ) {
+changeItVariable(_it955505599)
 printHtmlPart(39)
 expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
 printHtmlPart(40)
@@ -143,16 +143,20 @@ printHtmlPart(54)
 createClosureForHtmlPart(55, 2)
 invokeTag('link','g',189,['action':("category"),'params':([offset: offset, up: 'false']),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
 printHtmlPart(56)
-})
-invokeTag('captureBody','sitemesh',262,['style':("margin-bottom: 20px; min-width: 320px;  ")],1)
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
 printHtmlPart(57)
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
+printHtmlPart(58)
+})
+invokeTag('captureBody','sitemesh',264,['style':("margin-bottom: 20px; min-width: 320px;  ")],1)
+printHtmlPart(59)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1443112414896L
+public static final long LAST_MODIFIED = 1443396164013L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

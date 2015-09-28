@@ -149,7 +149,28 @@
 
 		</div>
 		<!-- Question Form -->	
+		
+  	     <!-- LOGIN Modal -->
+   <div class="modal fade" id="noLogin" role="dialog">
+      <div class="modal-dialog">
+         <!-- Modal content-->
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+               <h4 class="modal-title"><span href="#about" style = "padding-left: 4px;" class='fa fa-sign-in'> </span> Easy Login</h4>
+            </div>
+            <div class="modal-body">
+               <p>Please login. Choose a network below to login with:</p>
+               <button onClick = "loginFacebook('${createLink(controller: 'Authentication', action: 'loginFaceBook')}')" style = "" type="button" class="btn btn-default" data-dismiss="modal">Facebook <span class = "fa fa-facebook"></span></button>
+               <button  onClick = "loginReddit('${createLink(controller: 'Authentication', action: 'loginReddit')}')"style = "" type="button" class="btn btn-default" data-dismiss="modal">Reddit <span class = "fa fa-reddit"></span></button>
 
+            </div>
+            <div class="modal-footer">
+               <button style = "" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+         </div>
+      </div>
+   </div>
 		
     </div><!-- /.container -->
 

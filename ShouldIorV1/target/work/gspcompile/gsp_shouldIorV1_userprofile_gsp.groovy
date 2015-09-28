@@ -104,16 +104,16 @@ printHtmlPart(35)
 printHtmlPart(36)
 expressionOut.print(category)
 printHtmlPart(37)
-expressionOut.print(createLink(controller: 'User', action: 'profile', params: [category: 'New Questions']))
+expressionOut.print(createLink(controller: 'User', action: 'profile', params: [category: 'New Questions', id: user.userID]))
 printHtmlPart(38)
-expressionOut.print(createLink(controller: 'User', action: 'profile', params: [category: 'Top Questions']))
+expressionOut.print(createLink(controller: 'User', action: 'profile', params: [category: 'Top Questions', id: user.userID]))
 printHtmlPart(39)
 if(true && (question.isEmpty())) {
 printHtmlPart(40)
 }
 printHtmlPart(41)
-for( _it1150464915 in (question) ) {
-changeItVariable(_it1150464915)
+for( _it1568672342 in (question) ) {
+changeItVariable(_it1568672342)
 printHtmlPart(42)
 expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
 printHtmlPart(43)
@@ -142,22 +142,26 @@ printHtmlPart(54)
 createClosureForHtmlPart(55, 2)
 invokeTag('link','g',173,['action':("profile"),'params':([offset: offset, up: 'true', category: category, id : user.userID]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
 printHtmlPart(56)
-invokeTag('javascript','g',187,['src':("dataAccess.js")],-1)
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
 printHtmlPart(57)
-invokeTag('resource','g',188,['dir':("js"),'file':("bootstrap.min.js")],-1)
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
 printHtmlPart(58)
-invokeTag('javascript','g',189,['src':("buttonAnswerGlow.js")],-1)
+invokeTag('javascript','g',212,['src':("dataAccess.js")],-1)
 printHtmlPart(59)
-})
-invokeTag('captureBody','sitemesh',204,[:],1)
+invokeTag('resource','g',213,['dir':("js"),'file':("bootstrap.min.js")],-1)
 printHtmlPart(60)
+invokeTag('javascript','g',214,['src':("buttonAnswerGlow.js")],-1)
+printHtmlPart(61)
+})
+invokeTag('captureBody','sitemesh',229,[:],1)
+printHtmlPart(62)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1442853579124L
+public static final long LAST_MODIFIED = 1443402695368L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

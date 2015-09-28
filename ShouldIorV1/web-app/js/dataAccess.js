@@ -38,25 +38,25 @@ function questionVote(vote) {
 					$("#voteCount").html("Votes: " + totalVotes);
 
 					// Fade the old percents
-					$("#per1").fadeOut(900);
-					$("#per2").fadeOut(900);	
+					$("#per1").fadeOut(500);
+					$("#per2").fadeOut(500);	
 					if ($("#per3").length) {
-						$("#per3").fadeOut(900);
+						$("#per3").fadeOut(500);
 					}
 					if ($("#per4").length) {
-						$("#per4").fadeOut(900);
+						$("#per4").fadeOut(500);
 					}
 							
 					setTimeout(function(){ 
 						  displayMiniGraphs(totalVotes, answersCount[4], answersCount[5],answersCount[6], answersCount[7] );					
-					}, 1000);
+					}, 600);
 
 			
 			  } else if (result.split(":")[0]  == "False") {					
 				if (result.split(":")[1] == 'voted') {
 					$('#voteWarn').slideDown();
 				} else if (result.split(":")[1] = 'login' )  {
-					alert("LOGIN PLEASE1");
+					showNoLogin();
 				}
 					
 			  } else {
@@ -65,7 +65,7 @@ function questionVote(vote) {
 		  });
 		} else {
 			if (votedFor == false) {
-				alert("LOGIN PLEASE2");
+				showNoLogin();
 			} else {
 				$('#voteWarn').slideDown();
 			}

@@ -14,7 +14,34 @@ class ShouldIController {
 		// Get counts for the pie chart
 		int yesCount = Vote.countByVote("1")
 		int noCount = Vote.countByVote("2")
-		render (view: "home", model: ["yesCount" : yesCount, "noCount" : noCount, "trendingQuestions": getPopularQuestions(), "randomQuestions": getRandomQuestions(), "notifyCount": getNotifyCount()])	
+		
+		// get message of the day from hash
+		DataHash motd = DataHash.findByHashID("motd")
+		
+		render (view: "home", model: ["yesCount" : yesCount, "noCount" : noCount, "trendingQuestions": getPopularQuestions(), 
+			"randomQuestions": getRandomQuestions(), "notifyCount": getNotifyCount(),
+			 "messageTitle" : motd.hash, "messageText" : motd.hash2])	
+	}
+	
+	def editMotd() {		
+		render(view:"editMotd")
+	}
+	
+	def updateMotd() {
+		DataHash motd = DataHash.findByHashID("motd")
+		if (motd) {
+			motd.hash = params.title
+			motd.hash2 = params.text
+			motd.save(flush:true)
+			render(view:"home")
+		} else {
+			DataHash newMotd = new DataHash()
+			newMotd.hashID = "motd"
+			newMotd.hash = params.title
+			newMotd.hash2 = params.text
+			newMotd.save(flush:true)
+			render(view:"home")	
+		}
 	}
 	
 	

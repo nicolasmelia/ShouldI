@@ -102,70 +102,74 @@ printHtmlPart(32)
 printHtmlPart(33)
 expressionOut.print(resource(dir:'images',file:'logoDark.png'))
 printHtmlPart(34)
-for( _it859653366 in (trendingQuestions) ) {
-changeItVariable(_it859653366)
+expressionOut.print(messageTitle)
 printHtmlPart(35)
-expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
+expressionOut.print(raw(messageText))
 printHtmlPart(36)
-if(true && (it.answerOneImage)) {
+for( _it659271212 in (trendingQuestions) ) {
+changeItVariable(_it659271212)
 printHtmlPart(37)
-expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1']))
+expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
 printHtmlPart(38)
-}
-else {
+if(true && (it.answerOneImage)) {
 printHtmlPart(39)
-expressionOut.print(resource(dir:'images',file:'noImg.png'))
+expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1']))
 printHtmlPart(40)
 }
-printHtmlPart(41)
-expressionOut.print(it.userName)
-printHtmlPart(42)
-expressionOut.print(it.questionTitle)
-printHtmlPart(43)
-expressionOut.print(it.totalVotes)
-printHtmlPart(44)
-expressionOut.print(it.totalViews)
-printHtmlPart(45)
-}
-printHtmlPart(46)
-for( _it889961821 in (randomQuestions) ) {
-changeItVariable(_it889961821)
-printHtmlPart(47)
-expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
-printHtmlPart(48)
-if(true && (it.answerOneImage)) {
-printHtmlPart(49)
-expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1']))
-printHtmlPart(50)
-}
 else {
-printHtmlPart(51)
+printHtmlPart(41)
 expressionOut.print(resource(dir:'images',file:'noImg.png'))
+printHtmlPart(42)
+}
+printHtmlPart(43)
+expressionOut.print(it.userName)
+printHtmlPart(44)
+expressionOut.print(it.questionTitle)
+printHtmlPart(45)
+expressionOut.print(it.totalVotes)
+printHtmlPart(46)
+expressionOut.print(it.totalViews)
+printHtmlPart(47)
+}
+printHtmlPart(48)
+for( _it1860905408 in (randomQuestions) ) {
+changeItVariable(_it1860905408)
+printHtmlPart(49)
+expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
+printHtmlPart(50)
+if(true && (it.answerOneImage)) {
+printHtmlPart(51)
+expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1']))
 printHtmlPart(52)
 }
+else {
 printHtmlPart(53)
-expressionOut.print(it.questionTitle)
+expressionOut.print(resource(dir:'images',file:'noImg.png'))
 printHtmlPart(54)
 }
 printHtmlPart(55)
-expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
+expressionOut.print(it.questionTitle)
 printHtmlPart(56)
-expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
+}
 printHtmlPart(57)
-expressionOut.print(yesCount)
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
 printHtmlPart(58)
-expressionOut.print(noCount)
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
 printHtmlPart(59)
-})
-invokeTag('captureBody','sitemesh',314,['style':("background-color: #F6F6F6!important; background-image:url('${resource(dir: "images", file: "wall1.jpg")}'); margin-bottom: 20px; background-size: cover;  background-attachment: fixed; min-width: 320px;  ")],1)
+expressionOut.print(yesCount)
 printHtmlPart(60)
+expressionOut.print(noCount)
+printHtmlPart(61)
+})
+invokeTag('captureBody','sitemesh',318,['style':("background-color: #F6F6F6!important; background-image:url('${resource(dir: "images", file: "wall1.jpg")}'); margin-bottom: 20px; background-size: cover;  background-attachment: fixed; min-width: 320px;  ")],1)
+printHtmlPart(62)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1443321357008L
+public static final long LAST_MODIFIED = 1443401306505L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

@@ -101,11 +101,11 @@
 
    <div style = "width: 100%; ">
    
-	  <div  id = "trendingSelect" onClick = "loadQuestionURL('${createLink(controller: 'shouldI', action: 'category', params: [category: 'Trending'])}')" class = "flatMenuItem"   style= " margin-left: 5px; display:inline-block;   ">
+	  <div  id = "trendingSelect" onClick = "loadQuestionURL('${createLink(controller: 'shouldI', action: 'category', params: [category: 'Trending'])}')" class = "flatMenuItem"   style= " margin-left: 5px; display:inline-block;">
 	  	<span  class = "flatMenuItemText"  style = " font-size: 17px;" >Trending</span>
 	  </div>
 	  
-	  <div  id = "recentSelect"  onClick = "loadQuestionURL('${createLink(controller: 'shouldI', action: 'category', params: [category: 'Recent'])}')" class = "flatMenuItem" style= " margin-left: 5px; display:inline-block; border-bottom: 0px solid #79cce5; " >
+	  <div  id = "recentSelect"  onClick = "loadQuestionURL('${createLink(controller: 'shouldI', action: 'category', params: [category: 'Recent'])}')" class = "flatMenuItem" style= " margin-left: 5px; display:inline-block;" >
 	  	<span   class = "flatMenuItemText"  style = " font-size: 17px;" >Recent</span>
 	  </div>
 	  
@@ -200,19 +200,20 @@
 
    
  
-   <!-- LOGIN Modal -->
+  	     <!-- LOGIN Modal -->
    <div class="modal fade" id="noLogin" role="dialog">
       <div class="modal-dialog">
          <!-- Modal content-->
          <div class="modal-content">
             <div class="modal-header">
                <button type="button" class="close" data-dismiss="modal">&times;</button>
-               <h4 class="modal-title"><span href="#about" style = "padding-left: 4px;" class='fa fa-exclamation-circle'> </span> Login</h4>
+               <h4 class="modal-title"><span href="#about" style = "padding-left: 4px;" class='fa fa-sign-in'> </span> Easy Login</h4>
             </div>
             <div class="modal-body">
-               <p>Please login to ask all the questions your hear desires <span class = "fa fa-heart-o"></span></p>
-               <button style = "" type="button" class="btn btn-default" data-dismiss="modal">Login</button>
-               <button style = "" type="button" class="btn btn-default" data-dismiss="modal">Login with Facebook</button>
+               <p>Please login. Choose a network below to login with:</p>
+               <button onClick = "loginFacebook('${createLink(controller: 'Authentication', action: 'loginFaceBook')}')" style = "" type="button" class="btn btn-default" data-dismiss="modal">Facebook <span class = "fa fa-facebook"></span></button>
+               <button  onClick = "loginReddit('${createLink(controller: 'Authentication', action: 'loginReddit')}')"style = "" type="button" class="btn btn-default" data-dismiss="modal">Reddit <span class = "fa fa-reddit"></span></button>
+
             </div>
             <div class="modal-footer">
                <button style = "" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -220,6 +221,7 @@
          </div>
       </div>
    </div>
+   
       </div>
    <!-- LOGIN Modal -->
    <script>
@@ -249,11 +251,11 @@
 		var category = $("#category").val();
 		console.log(category);
           if (category == "Trending") {
-        	 $("#trendingSelect").css("border-bottom", "2px solid #79cce5");
+        	 $("#trendingSelect").css("border-bottom", "2px solid #36a4ff");
           } else if (category == "Recent") {
-           	$("#recentSelect").css("border-bottom", "2px solid #79cce5");
+           	$("#recentSelect").css("border-bottom", "2px solid #36a4ff");
           } else {
-           		$("#categorySelect").css("border-bottom", "2px solid #79cce5");
+           	$("#categorySelect").css("border-bottom", "2px solid #36a4ff");
         }
       }
       	 

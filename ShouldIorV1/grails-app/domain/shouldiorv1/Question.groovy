@@ -10,6 +10,7 @@ class Question {
 	boolean yesOrNo // if a shouldI, is this a do-dont or yes-no
 	boolean anonymous 
 	boolean requireLoginToVote
+	boolean deleted
 	
 	// Question
 	String question
@@ -56,12 +57,12 @@ class Question {
 		tags(nullable:true)
 		category(nullable:true)
 		opNotifyVoteCount(nullable:true)
+		deleted(nullable:true)
 		
 		answerOneImage(nullable:true, maxSize: 1024 * 1024 * 3 /* 2MB */)
 		answerTwoImage(nullable:true, maxSize: 1024 * 1024 * 3 /* 2MB */)
 		answerThreeImage(nullable:true, maxSize: 1024 * 1024 * 3 /* 2MB */)
 		answerFourImage(nullable:true, maxSize: 1024 * 1024 * 3 /* 2MB */)
-		
 		
 		answerOne(nullable:true)
 		answerTwo(nullable:true)

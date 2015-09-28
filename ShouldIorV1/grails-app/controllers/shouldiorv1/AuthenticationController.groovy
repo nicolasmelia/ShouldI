@@ -104,7 +104,11 @@ class AuthenticationController {
 				loginSuccess = requestRedditLogin(user, pw)
 			} catch (Exception ex) {
 				// Possible connection error. Try to log in again
+				try {
 				loginSuccess = requestRedditLogin(user, pw)
+				} catch(Exception ex2) {
+				 // Do nothing, code 429 thrown
+				}
 			} finally {
 				if (loginSuccess) {
 					createRedditSession(user) // renders success
