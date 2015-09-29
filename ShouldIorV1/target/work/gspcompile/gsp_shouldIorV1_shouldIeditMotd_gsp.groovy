@@ -64,59 +64,67 @@ expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: 
 printHtmlPart(20)
 expressionOut.print(notifyCount)
 printHtmlPart(21)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
+expressionOut.print(createLink(controller: 'Question', action: 'askShouldI'))
 printHtmlPart(22)
-}
-else {
+expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
 printHtmlPart(23)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
-printHtmlPart(22)
-}
-printHtmlPart(24)
-if(true && (session.name)) {
-printHtmlPart(25)
-expressionOut.print(createLink(controller: 'User', action: 'getProfileImage', params: [id: session.userID]))
-printHtmlPart(26)
-expressionOut.print(session.name)
-printHtmlPart(27)
-expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: [category: 'My Questions']))
-printHtmlPart(28)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'home'))
-printHtmlPart(29)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
-printHtmlPart(30)
 }
 else {
-printHtmlPart(31)
+printHtmlPart(24)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
+printHtmlPart(23)
 }
+printHtmlPart(25)
+if(true && (session.name)) {
+printHtmlPart(26)
+expressionOut.print(createLink(controller: 'User', action: 'getProfileImage', params: [id: session.userID]))
+printHtmlPart(27)
+expressionOut.print(session.name)
+printHtmlPart(28)
+expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: [category: 'My Questions']))
+printHtmlPart(29)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'home'))
+printHtmlPart(30)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
+printHtmlPart(31)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'home'))
 printHtmlPart(32)
-createTagBody(2, {->
+expressionOut.print(createLink(controller: 'Authentication', action: 'logout'))
 printHtmlPart(33)
-invokeTag('actionSubmit','g',138,['value':("Update"),'action':("updateMotd"),'style':("margin-top: 1px; width: 100px; display: inline-block;"),'class':("btn btn-default")],-1)
+}
+else {
 printHtmlPart(34)
-})
-invokeTag('form','g',140,['controller':("ShouldI"),'action':("updateMotd"),'enctype':("multipart/form-data")],2)
-printHtmlPart(35)
 expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
+printHtmlPart(35)
+}
 printHtmlPart(36)
-expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
+createTagBody(2, {->
 printHtmlPart(37)
-invokeTag('resource','g',184,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput-angular.js")],-1)
+invokeTag('actionSubmit','g',141,['value':("Update"),'action':("updateMotd"),'style':("margin-top: 1px; width: 100px; display: inline-block;"),'class':("btn btn-default")],-1)
 printHtmlPart(38)
-invokeTag('resource','g',185,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.js")],-1)
-printHtmlPart(39)
-invokeTag('resource','g',186,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.css")],-1)
-printHtmlPart(40)
 })
-invokeTag('captureBody','sitemesh',327,['style':("background-color: #f4f4f4; min-width: 330px; ")],1)
+invokeTag('form','g',143,['controller':("ShouldI"),'action':("updateMotd"),'enctype':("multipart/form-data")],2)
+printHtmlPart(39)
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
+printHtmlPart(40)
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
 printHtmlPart(41)
+invokeTag('resource','g',187,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput-angular.js")],-1)
+printHtmlPart(42)
+invokeTag('resource','g',188,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.js")],-1)
+printHtmlPart(43)
+invokeTag('resource','g',189,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.css")],-1)
+printHtmlPart(44)
+})
+invokeTag('captureBody','sitemesh',330,['style':("background-color: #f4f4f4; min-width: 330px; ")],1)
+printHtmlPart(45)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1443400155270L
+public static final long LAST_MODIFIED = 1443458276349L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

@@ -83,8 +83,11 @@ class ShouldIController {
 			 questions = Question.executeQuery("FROM Question a WHERE date > ? AND category = ? ORDER BY date DESC", [date, params.category], [max: 10, offset: offset])
 		}
 		
+		// get all categories 
+		def categories = Category.findAll()
+		
 		// Query for questions
-		render (view: "category", model: ["questions": questions, "offset" : offset, "category" : params.category, "notifyCount": getNotifyCount()])		
+		render (view: "category", model: ["questions": questions, "offset" : offset, "category" : params.category, "notifyCount": getNotifyCount(), "categories" : categories])		
 	}
 	
 	def help() {

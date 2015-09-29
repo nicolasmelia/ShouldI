@@ -52,46 +52,79 @@ else {
 printHtmlPart(14)
 }
 printHtmlPart(15)
-expressionOut.print(resource(dir:'images',file:'logo.png'))
+expressionOut.print(createLink(controller: 'ShouldI', action: 'home'))
 printHtmlPart(16)
-if(true && (session.name)) {
+expressionOut.print(resource(dir:'images',file:'logo.png'))
 printHtmlPart(17)
-expressionOut.print(session.name)
+if(true && (session.name)) {
 printHtmlPart(18)
+expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: [category: 'My Notifications']))
+printHtmlPart(19)
+expressionOut.print(notifyCount)
+printHtmlPart(20)
+expressionOut.print(createLink(controller: 'Question', action: 'askShouldI'))
+printHtmlPart(21)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
+printHtmlPart(22)
 }
 else {
-printHtmlPart(19)
-}
-printHtmlPart(20)
-createTagBody(2, {->
-printHtmlPart(21)
-expressionOut.print(user.about)
-printHtmlPart(22)
-invokeTag('actionSubmit','g',142,['value':("Update"),'action':("updateAbout"),'style':("margin-top: 1px; width: 100px; display: inline-block;"),'class':("btn btn-default")],-1)
 printHtmlPart(23)
-})
-invokeTag('form','g',144,['controller':("User"),'action':("updateAbout"),'enctype':("multipart/form-data")],2)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
+printHtmlPart(22)
+}
 printHtmlPart(24)
-expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
+if(true && (session.name)) {
 printHtmlPart(25)
-expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
+expressionOut.print(createLink(controller: 'User', action: 'getProfileImage', params: [id: session.userID]))
 printHtmlPart(26)
-invokeTag('resource','g',185,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput-angular.js")],-1)
+expressionOut.print(session.name)
 printHtmlPart(27)
-invokeTag('resource','g',186,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.js")],-1)
+expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: [category: 'My Questions']))
 printHtmlPart(28)
-invokeTag('resource','g',187,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.css")],-1)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'home'))
 printHtmlPart(29)
-})
-invokeTag('captureBody','sitemesh',330,['style':("background-color: #f4f4f4; min-width: 330px; ")],1)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
 printHtmlPart(30)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'home'))
+printHtmlPart(31)
+expressionOut.print(createLink(controller: 'Authentication', action: 'logout'))
+printHtmlPart(32)
+}
+else {
+printHtmlPart(33)
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
+printHtmlPart(34)
+}
+printHtmlPart(35)
+createTagBody(2, {->
+printHtmlPart(36)
+expressionOut.print(user.about)
+printHtmlPart(37)
+invokeTag('actionSubmit','g',157,['value':("Update"),'action':("updateAbout"),'style':("margin-top: 1px; width: 100px; display: inline-block;"),'class':("btn btn-default")],-1)
+printHtmlPart(38)
+})
+invokeTag('form','g',159,['controller':("User"),'action':("updateAbout"),'enctype':("multipart/form-data")],2)
+printHtmlPart(39)
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
+printHtmlPart(40)
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
+printHtmlPart(41)
+invokeTag('resource','g',200,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput-angular.js")],-1)
+printHtmlPart(42)
+invokeTag('resource','g',201,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.js")],-1)
+printHtmlPart(43)
+invokeTag('resource','g',202,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.css")],-1)
+printHtmlPart(44)
+})
+invokeTag('captureBody','sitemesh',345,['style':("background-color: #f4f4f4; min-width: 330px; ")],1)
+printHtmlPart(45)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1443376176646L
+public static final long LAST_MODIFIED = 1443458276318L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

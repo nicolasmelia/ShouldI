@@ -93,36 +93,44 @@ expressionOut.print(session.name)
 printHtmlPart(29)
 expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: [category: 'My Questions']))
 printHtmlPart(30)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
+expressionOut.print(createLink(controller: 'ShouldI', action: 'home'))
 printHtmlPart(31)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
+printHtmlPart(32)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'home'))
+printHtmlPart(33)
+expressionOut.print(createLink(controller: 'Authentication', action: 'logout'))
+printHtmlPart(34)
 }
 else {
-printHtmlPart(32)
-}
-printHtmlPart(33)
-expressionOut.print(resource(dir:'images',file:'logoDark.png'))
-printHtmlPart(34)
-createTagBody(2, {->
 printHtmlPart(35)
-if(true && (Success == false)) {
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
 printHtmlPart(36)
 }
 printHtmlPart(37)
-invokeTag('actionSubmit','g',123,['value':("Login"),'type':("submit"),'action':("loginRedditAttempt"),'style':("margin-top: 5px; width: 100%; "),'class':("btn btn-primary")],-1)
+expressionOut.print(resource(dir:'images',file:'logoDark.png'))
+printHtmlPart(38)
+createTagBody(2, {->
+printHtmlPart(39)
+if(true && (Success == false)) {
+printHtmlPart(40)
+}
+printHtmlPart(41)
+invokeTag('actionSubmit','g',125,['value':("Login"),'type':("submit"),'action':("loginRedditAttempt"),'style':("margin-top: 5px; width: 100%; "),'class':("btn btn-primary")],-1)
 printHtmlPart(1)
 })
-invokeTag('form','g',124,['controller':("Authentication"),'action':("loginRedditAttempt"),'enctype':("multipart/form-data"),'class':("form-signin"),'style':("max-width: 300px; margin: auto;")],2)
-printHtmlPart(38)
+invokeTag('form','g',126,['controller':("Authentication"),'action':("loginRedditAttempt"),'enctype':("multipart/form-data"),'class':("form-signin"),'style':("max-width: 300px; margin: auto;")],2)
+printHtmlPart(42)
 })
-invokeTag('captureBody','sitemesh',139,['style':("background-color: #F6F6F6!important; background-image:url('${resource(dir: "images", file: "wall1.jpg")}'); margin-bottom: 20px; background-size: cover;  background-attachment: fixed; min-width: 320px;  ")],1)
-printHtmlPart(39)
+invokeTag('captureBody','sitemesh',141,['style':("background-color: #F6F6F6!important; background-image:url('${resource(dir: "images", file: "wall1.jpg")}'); margin-bottom: 20px; background-size: cover;  background-attachment: fixed; min-width: 320px;  ")],1)
+printHtmlPart(43)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1443320074969L
+public static final long LAST_MODIFIED = 1443458276065L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

@@ -19,13 +19,14 @@
       <script src="<g:resource dir="js" file="bootstrap.min.js" />"></script>
       <!-- facebook login -->
       <g:javascript src="facebookLogin.js" />
-      <g:javascript src="dataRequest.js" />
+      <g:javascript src="dataAccess.js" />
       <!-- font-awesome -->
       <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
       <link rel="stylesheet" type="text/css" href="<g:resource dir='css' file='typehead-searchBar.css'/>">
       <script src="
       <g:resource dir="js/typedJS" file="typed.min.js" />
       "></script>
+       <g:javascript src="dataAccess.js" />  
       <script src="
       <g:resource dir="js/typeaheadJS" file="typeahead.jquery.min.js" />
       "></script>
@@ -39,13 +40,16 @@
    <input id = "category" type="hidden" value="${category}">
    
    <body style = "margin-bottom: 20px; min-width: 320px;  ">
+   
+     <input id = "facebookLoginLink" type="hidden" name="perdif" value="${createLink(controller: 'Authentication', action: 'loginFaceBook')}">
+   
    <g:if test="${session.name}">
       <input id = "sessionCheck" type="hidden"  value="true">
    </g:if>
    <g:else>
       <input id = "sessionCheck" type="hidden"  value="false">
    </g:else>
-      <nav class="navbar navbar-inverse navbar-fixed-top" >
+ <nav class="navbar navbar-inverse navbar-fixed-top" >
          <div class="container">
             <div class="navbar-header">
                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -59,7 +63,6 @@
             <div id="navbar" class="collapse navbar-collapse">
                <ul class="nav navbar-nav">
                   <g:if test="${session.name}">
-                  
                      <li><a href="${createLink(controller: 'User', action: 'myProfile', params: [category: 'My Notifications'])}"><span class= 'fa fa-bell-o'></span><span style = "padding-left: 6px;" >${notifyCount}</span></a></li>
                      <li><a href = "${createLink(controller: 'Question', action: 'askShouldI')}" ><span class= 'fa fa-pencil-square-o'></span><span style = "padding-left: 6px;" >Ask</span></a></li>
                       <li><a href = "${createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending'])}" ><span class= 'fa fa-book'></span><span style = "padding-left: 6px;" >Browse Categories</span></a></li>
@@ -78,61 +81,68 @@
                         <span class="fa fa-caret-down"></span></a>
                         <ul class="dropdown-menu">
                            <li><a href = "${createLink(controller: 'User', action: 'myProfile', params: [category: 'My Questions'])}"><span class= 'fa  fa-user'></span><span style = "padding-left: 5px;" >My Profile</span></a></li>                           
+                 		    <li><a href = "${createLink(controller: 'ShouldI', action: 'home')}" ><span class= 'fa fa-home'></span><span style = "padding-left: 6px;" >Home</span></a></li>                         
                             <li><a href = "${createLink(controller: 'ShouldI', action: 'help')}" ><span class= 'fa fa-info-circle'></span><span style = "padding-left: 6px;" >Help</span></a></li>
                            <li role="separator" class="divider"></li>
-                           <li><a  onClick = "logoutFaceBook()" href="#"><span class= 'fa fa-sign-out'></span><span style = "padding-left: 5px;" >Log Out</span></a></li>
+                           <li><a  onClick = "logout('${createLink(controller: 'ShouldI', action: 'home')}', '${createLink(controller: 'Authentication', action: 'logout')}' )" href="#"><span class= 'fa fa-sign-out'></span><span style = "padding-left: 5px;" >Log Out</span></a></li>
                         </ul>
                      </li>
                   </ul>
                </g:if>
                <g:else>
                   <ul class="nav navbar-nav navbar-right">
-                     <li><a id = "facebookLoginMenu" href = "#"  style = ""  onClick = "loginFacebook()">Log in with <span href="#about" style = "padding-left: 4px; color:#5BC0DE;" class='fa fa-facebook-official'></span> </a></li>
+                     <li><a id = "facebookLoginMenu" href = "#"  style = ""  onClick = "loginFacebook('${createLink(controller: 'Authentication', action: 'loginFaceBook')}')">Login with <span href="#about" style = "padding-left: 4px; color:#5BC0DE;" class='fa fa-facebook-official'></span> </a></li>
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
+                      <li><a id = "facebookLoginMenu" href = "#"  style = "" onClick = "showNoLogin()" >Login/Signup</a></li>
                   </ul>
                </g:else>
             </div>
             <!--/.nav-collapse -->
          </div>
       </nav>
+      
    
    <div class="container" style = "max-width: 825px; margin-top: 70px; ">
 
    <div style = "width: 100%; ">
    
-	  <div  id = "trendingSelect" onClick = "loadQuestionURL('${createLink(controller: 'shouldI', action: 'category', params: [category: 'Trending'])}')" class = "flatMenuItem"   style= " margin-left: 5px; display:inline-block;">
+	  <div  id = "trendingSelect" onClick = "loadQuestionURL('${createLink(controller: 'shouldI', action: 'category', params: [category: 'Trending'])}')" class = "flatMenuItem"   style= " margin-left: 5px; height: 26px; display:inline-block;">
 	  	<span  class = "flatMenuItemText"  style = " font-size: 17px;" >Trending</span>
 	  </div>
 	  
-	  <div  id = "recentSelect"  onClick = "loadQuestionURL('${createLink(controller: 'shouldI', action: 'category', params: [category: 'Recent'])}')" class = "flatMenuItem" style= " margin-left: 5px; display:inline-block;" >
+	  <div  id = "recentSelect"  onClick = "loadQuestionURL('${createLink(controller: 'shouldI', action: 'category', params: [category: 'Recent'])}')" class = "flatMenuItem" style= " margin-left: 5px; height: 26px;  display:inline-block;" >
 	  	<span   class = "flatMenuItemText"  style = " font-size: 17px;" >Recent</span>
 	  </div>
 	  
 	 <div  class = "flatMenuItem" style= " margin-left: 5px; display:inline-block; border-bottom: 0px solid #79cce5;  " >
 	  	
 	  	     <div class=" dropdown">
-                  <div class="dropdown-toggle" type="button" style = "width: 100%; background-color: rgb(0,0,0, 0);" data-toggle="dropdown">
-	  	<span id = "categorySelect"  class = "flatMenuItemText" style = "font-size: 17px;" >Categories <span class="caret"></span> </span>
+                  <div class="dropdown-toggle" type="button" style = "width: 100%; height: 26px; background-color: rgb(0,0,0, 0);" data-toggle="dropdown">
+	  
+	  	  <div  id = "categorySelect" class = "flatMenuItem" style= " margin-left: 5px; height: 26px;  display:inline-block;" >
+	  		<span   class = "flatMenuItemText"  style = " font-size: 17px;" >Categories <span class="caret"></span></span>
+	  	</div>
+	            
                   </div>
                   <ul class="dropdown-menu" style = "width: 100%; ">
-                     <li><a href="${createLink(controller: 'shouldI', action: 'category', params: [category: 'two'])}">Two</a></li>
-                     <li><a href="#">My Questions</a></li>
-                     <li><a href="#">My Favorites</a></li>
-                     <li class="divider"></li>
-                     <li class="dropdown-header">Follow</li>
-                     <li><a href="#">My Followers</a></li>
-                     <li><a href="#">Following</a></li>
+                     <li class="dropdown-header">Trending in</li> 
+                     <g:each in="${categories}">
+                      <li><a href="${createLink(controller: 'shouldI', action: 'category', params: [category: it.category])}">${it.category}</a></li>
+					</g:each>
+                        
                   </ul>
 
          </div>
 	  	
-	  	
 	  </div>
   
-  
+  <div style = "display: block;"> 
+  	heelo how are you doihg lol
+  </div>
 
       <div  class="contentContainer">
+      	  	
     
     <div style = "width: 100%; padding: 8px; border-bottom: solid 1px; border-color:#b2b2b2;   text-align: center;">
      <span style = "color:#79cce5;   margin: auto;   font-size: 18px;" ><b>${category}</b></span>

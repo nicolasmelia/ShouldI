@@ -49,7 +49,7 @@ function loginFacebook(url) {
 function statusChangeCallback(response) {
 	if (response.status === 'connected') {
 		// Logged into your app and Facebook.
-		loginSuccess(response, 'TEST');
+		loginSuccess(response, $('#facebookLoginLink').val());
 	} else if (response.status === 'not_authorized') {
 		// The person is logged into Facebook, but not your app.
 	} else {

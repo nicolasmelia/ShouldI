@@ -40,8 +40,6 @@
       <input id = "percentDiffHidden" type="hidden" name="perdif" value="${percentDiff}">
       <input id = "vote" type="hidden" name="voted" value="${vote}"> 
 
-   
-   ${createLink(controller: 'Authentication', action: 'loginFaceBook')}
       <nav class="navbar navbar-inverse navbar-fixed-top" >
          <div class="container">
             <div class="navbar-header">
@@ -95,7 +93,7 @@
          </div>
       </nav>
       
-      <div class="container" style = "padding-top: 50px; max-width: 825px;">
+      <div class="container" style = "padding-top: 60px; max-width: 825px;">
       
       <div  class="contentContainer">
       

@@ -94,7 +94,9 @@ class QuestionController {
 	
 	def askShouldI () {
 		if (session["userID"] != null) {
-		render(view: "askShouldi", model:[ "notifyCount": getNotifyCount()])
+			// get all categories
+			def categories = Category.findAll()
+			render(view: "askShouldi", model:[ "notifyCount": getNotifyCount(), "categories" : categories ])
 		} else {
 			render "Please log in bitch"
 		}
@@ -160,6 +162,7 @@ class QuestionController {
 		question.ClientAddress = request.getRemoteAddr().toString()
 		question.save(flush:true)
 		
+		
 		// Render question page for user posting
 		redirect(action: "shouldi", params: [id: question.questionID])
 		
@@ -171,7 +174,9 @@ class QuestionController {
 	
 	def askShouldICustom() {
 		if (session["userID"] != null) {
-		render(view: "askshouldiCustom", model:[ "notifyCount": getNotifyCount()])
+			// get all categories
+			def categories = Category.findAll()
+			render(view: "askshouldiCustom", model:[ "notifyCount": getNotifyCount(), "categorie" : categories ])
 		} else {
 			render "Please log in bitch"
 		}

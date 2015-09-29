@@ -96,6 +96,14 @@ class UserController {
 			case "Top Questions":
 				questions = Question.findAll("from Question as q where q.userID = ? ORDER BY q.totalVotes DESC", [user.userID], [max: 10, offset: offset])
 			break;
+			case "Favorites":
+			questions = new ArrayList<Question>()
+				def favorites = Favorite.findAll("from Favorite as f where f.userID = ? order by f.dateAdded DESC", [user.userID], [max: 10, offset: offset])		
+				for (Favorite favorite : favorites) {
+					def question = Question.findByQuestionID(favorite.questionID)
+					questions.add(question)
+				}
+			break;
 		}
 		
 

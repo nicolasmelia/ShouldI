@@ -25,7 +25,9 @@
       <![endif]-->
    </head>
    <body >
-  <nav class="navbar navbar-inverse navbar-fixed-top" >
+           <input id = "facebookLoginLink" type="hidden" name="perdif" value="${createLink(controller: 'Authentication', action: 'loginFaceBook')}">
+   
+ <nav class="navbar navbar-inverse navbar-fixed-top" >
          <div class="container">
             <div class="navbar-header">
                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -39,7 +41,6 @@
             <div id="navbar" class="collapse navbar-collapse">
                <ul class="nav navbar-nav">
                   <g:if test="${session.name}">
-                  
                      <li><a href="${createLink(controller: 'User', action: 'myProfile', params: [category: 'My Notifications'])}"><span class= 'fa fa-bell-o'></span><span style = "padding-left: 6px;" >${notifyCount}</span></a></li>
                      <li><a href = "${createLink(controller: 'Question', action: 'askShouldI')}" ><span class= 'fa fa-pencil-square-o'></span><span style = "padding-left: 6px;" >Ask</span></a></li>
                       <li><a href = "${createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending'])}" ><span class= 'fa fa-book'></span><span style = "padding-left: 6px;" >Browse Categories</span></a></li>
@@ -58,25 +59,27 @@
                         <span class="fa fa-caret-down"></span></a>
                         <ul class="dropdown-menu">
                            <li><a href = "${createLink(controller: 'User', action: 'myProfile', params: [category: 'My Questions'])}"><span class= 'fa  fa-user'></span><span style = "padding-left: 5px;" >My Profile</span></a></li>                           
-                            <li><a href = "${createLink(controller: 'ShouldI', action: 'home')}" ><span class= 'fa fa-home'></span><span style = "padding-left: 6px;" >Home</span></a></li>                  
-                            <li><a href = "${createLink(controller: 'ShouldI', action: 'help')}" ><span class= 'fa fa-info-circle'></span><span style = "padding-left: 6px;" >Help</span></a></li>                       
+                 		    <li><a href = "${createLink(controller: 'ShouldI', action: 'home')}" ><span class= 'fa fa-home'></span><span style = "padding-left: 6px;" >Home</span></a></li>                         
+                            <li><a href = "${createLink(controller: 'ShouldI', action: 'help')}" ><span class= 'fa fa-info-circle'></span><span style = "padding-left: 6px;" >Help</span></a></li>
                            <li role="separator" class="divider"></li>
-                           <li><a  onClick = "logoutFaceBook()" href="#"><span class= 'fa fa-sign-out'></span><span style = "padding-left: 5px;" >Log Out</span></a></li>
+                           <li><a  onClick = "logout('${createLink(controller: 'ShouldI', action: 'home')}', '${createLink(controller: 'Authentication', action: 'logout')}' )" href="#"><span class= 'fa fa-sign-out'></span><span style = "padding-left: 5px;" >Log Out</span></a></li>
                         </ul>
                      </li>
                   </ul>
                </g:if>
                <g:else>
                   <ul class="nav navbar-nav navbar-right">
-                     <li><a id = "facebookLoginMenu" href = "#"  style = ""  onClick = "loginFacebook()">Log in with <span href="#about" style = "padding-left: 4px; color:#5BC0DE;" class='fa fa-facebook-official'></span> </a></li>
+                     <li><a id = "facebookLoginMenu" href = "#"  style = ""  onClick = "loginFacebook('${createLink(controller: 'Authentication', action: 'loginFaceBook')}')">Login with <span href="#about" style = "padding-left: 4px; color:#5BC0DE;" class='fa fa-facebook-official'></span> </a></li>
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
+                      <li><a id = "facebookLoginMenu" href = "#"  style = "" onClick = "showNoLogin()" >Login/Signup</a></li>
                   </ul>
                </g:else>
             </div>
             <!--/.nav-collapse -->
          </div>
       </nav>
+      
       
       <div class="container" style = "max-width: 825px; margin-top: 70px; margin-bottom: 20px; " >
          <!-- QUESTION BLOCK -->	
@@ -145,10 +148,9 @@
                            <table style="width:100%;  height: 100%; ">
                               <tr  style = "vertical-align: top;" >
                                  <td style = "height: 100%; ">
-                                 
                                     <span style = "display: inline-block;  font-size: 16px;" >${it.userName}</span>
                                     
-                                    <g:if test = "${it.opNotifyVoteCount > 0}">
+                                    <g:if test = "${it.opNotifyVoteCount > 0 && session.userID == it.userID}">
                                      <span class = "fa fa-long-arrow-up" style = " display: inline-block; color: #5BC0DE;   margin-left: 4px;  "  ><b> ${it.opNotifyVoteCount}</b></span>  
                                     </g:if>
                                     
