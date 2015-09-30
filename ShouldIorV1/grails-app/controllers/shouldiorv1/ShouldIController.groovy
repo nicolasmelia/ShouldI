@@ -12,8 +12,16 @@ class ShouldIController {
 	
 	def renderHome() {	
 		// Get counts for the pie chart
-		int yesCount = Vote.countByVote("1")
-		int noCount = Vote.countByVote("2")
+		DataHash dh = DataHash.findByHashID("battleHash");
+		String yesCount = "0"
+		String noCount = "0"
+		if (dh != null){
+		 yesCount = dh.hash
+		 noCount = dh.hash2
+		} 
+		
+		print yesCount
+		print noCount
 		
 		// get message of the day from hash
 		DataHash motd = DataHash.findByHashID("motd")
@@ -73,21 +81,38 @@ class ShouldIController {
 		cal.add(Calendar.MONTH, -1);
 		Date date = cal.getTime();
 		
+		String categorySort = "None"
 		def questions
 		if (params.category.toString().equals("Trending")){
-			questions = Question.executeQuery("FROM Question a WHERE date > ? ORDER BY totalVotes DESC", [date], [max: 10, offset: offset])	
+			questions = Question.executeQuery("FROM Question a WHERE a.category != 'Hot or Not' AND date > ? ORDER BY totalVotes DESC", [date], [max: 10, offset: offset])	
 		} else  if (params.category.toString().equals("Recent")){
-			questions = Question.executeQuery("FROM Question a WHERE date > ? ORDER BY date DESC", [date], [max: 10, offset: offset])
+			questions = Question.executeQuery("FROM Question a WHERE a.category != 'Hot or Not' ORDER BY date DESC", [max: 10, offset: offset])
 		} else {
-			// All other categories 
-			 questions = Question.executeQuery("FROM Question a WHERE date > ? AND category = ? ORDER BY date DESC", [date, params.category], [max: 10, offset: offset])
+			
+			// get the category sort method
+			if (params.categorySort == null) {
+				categorySort = "Trending"
+			} else {
+				categorySort = params.categorySort
+			}
+			
+			if (categorySort.equals("Trending")) {
+				questions = Question.executeQuery("FROM Question a WHERE a.date > ? AND a.category = ? ORDER BY totalVotes DESC", [date, params.category], [max: 10, offset: offset])
+			} else if (categorySort.equals("Recent")) {
+				// All other categories 
+				 questions = Question.executeQuery("FROM Question a WHERE a.category = ? ORDER BY date DESC", [params.category], [max: 10, offset: offset])
+			} else {
+			// Not sure what went wrong... No category is set, load trending.
+				questions = Question.executeQuery("FROM Question a WHERE a.category != 'Hot or Not' AND a.date > ? AND a.category = ? ORDER BY totalVotes DESC", [date, params.category], [max: 10, offset: offset])
+			} 
+			
 		}
 		
 		// get all categories 
 		def categories = Category.findAll()
 		
 		// Query for questions
-		render (view: "category", model: ["questions": questions, "offset" : offset, "category" : params.category, "notifyCount": getNotifyCount(), "categories" : categories])		
+		render (view: "category", model: ["questions": questions, "offset" : offset, "category" : params.category, "notifyCount": getNotifyCount(), "categories" : categories, "categorySort" : categorySort])		
 	}
 	
 	def help() {
@@ -110,7 +135,7 @@ class ShouldIController {
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.MONTH, -1);
 		Date date = cal.getTime();
-		def questions = Question.executeQuery("FROM Question a WHERE totalVotes > 0 AND date > ? ORDER BY totalVotes DESC", [date], [max: 15])
+		def questions = Question.executeQuery("FROM Question a WHERE a.totalVotes > 0 AND a.date > ? AND a.category != 'Hot or Not' ORDER BY a.totalVotes DESC", [date], [max: 15])
 		return questions
 	}
 	
@@ -118,7 +143,7 @@ class ShouldIController {
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.MONTH, -1);
 		Date date = cal.getTime();
-		def questions = Question.executeQuery("FROM Question a WHERE date > ? ORDER BY RANDOM()", [date], [max: 15])
+		def questions = Question.executeQuery("FROM Question a WHERE a.category != 'Hot or Not' AND date > ? ORDER BY RANDOM()", [date], [max: 15])
 		return questions	
 	}
 	

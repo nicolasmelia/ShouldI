@@ -124,8 +124,8 @@ if(true && (question.isEmpty())) {
 printHtmlPart(46)
 }
 printHtmlPart(47)
-for( _it1649665434 in (question) ) {
-changeItVariable(_it1649665434)
+for( _it1319406382 in (question) ) {
+changeItVariable(_it1319406382)
 printHtmlPart(48)
 expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
 printHtmlPart(49)
@@ -146,34 +146,36 @@ expressionOut.print(it.questionTitle)
 printHtmlPart(56)
 expressionOut.print(it.totalVotes)
 printHtmlPart(57)
-}
+expressionOut.print(it.totalViews)
 printHtmlPart(58)
-createClosureForHtmlPart(59, 2)
+}
+printHtmlPart(59)
+createClosureForHtmlPart(60, 2)
 invokeTag('link','g',174,['action':("profile"),'params':([offset: offset, up: 'false', category: category, id: user.userID ]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
-printHtmlPart(60)
-createClosureForHtmlPart(61, 2)
+printHtmlPart(61)
+createClosureForHtmlPart(62, 2)
 invokeTag('link','g',178,['action':("profile"),'params':([offset: offset, up: 'true', category: category, id : user.userID]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
-printHtmlPart(62)
-expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
 printHtmlPart(63)
-expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
 printHtmlPart(64)
-invokeTag('javascript','g',217,['src':("dataAccess.js")],-1)
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
 printHtmlPart(65)
-invokeTag('resource','g',218,['dir':("js"),'file':("bootstrap.min.js")],-1)
+invokeTag('javascript','g',217,['src':("dataAccess.js")],-1)
 printHtmlPart(66)
-invokeTag('javascript','g',219,['src':("buttonAnswerGlow.js")],-1)
+invokeTag('resource','g',218,['dir':("js"),'file':("bootstrap.min.js")],-1)
 printHtmlPart(67)
+invokeTag('javascript','g',219,['src':("buttonAnswerGlow.js")],-1)
+printHtmlPart(68)
 })
 invokeTag('captureBody','sitemesh',234,[:],1)
-printHtmlPart(68)
+printHtmlPart(69)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1443487780855L
+public static final long LAST_MODIFIED = 1443546679702L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

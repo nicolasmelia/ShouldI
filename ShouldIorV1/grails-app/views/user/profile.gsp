@@ -149,14 +149,14 @@
                            <table style="width:100%;  height: 100%; ">
                               <tr  style = "vertical-align: top;" >
                                  <td style = "height: 100%; ">
-                                    <span style = "display: block;  font-size: 16px;" >${it.userName}<span> 
+                                    <span style = "display: block;  font-size: 16px;" >${it.userName}</span> 
                                     <span style = "display:block; font-size: 16px;  color: #6A6A6A; " >${it.questionTitle}</span> 
                                  </td>
                               </tr>
                               <tr  style = "vertical-align: bottom;" >
                                  <td style = "text-align: top;  height: 100%; ">
                                     <span class = "fa fa-line-chart"  style = "color: #5BC0DE; margin-right: 5px;" ></span>${it.totalVotes}
-                                    <span class = "fa fa-comments" style = "color: #5BC0DE;   margin-left: 8px; margin-right: 5px; "  > </span>10k  
+                                    <span class = "fa fa-eye" style = "color: #5BC0DE;   margin-left: 8px; margin-right: 5px; "  > </span>${it.totalViews}
                                  </td>
                               </tr>
                            </table>

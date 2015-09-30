@@ -114,11 +114,11 @@
 	<div style = "width: 100%; margin-top: 60px; margin-bottom: 8px;   ">
    
 	  <div  id = "trendingSelect" onClick = "loadQuestionURL('${createLink(controller: 'Question', action: 'askShouldI', params: [category: 'Trending'])}')" class = "flatMenuItem"   style= " margin-left: 5px; display:inline-block; border-bottom: 0px solid #36a4ff; ">
-	  	<span   class = "flatMenuItemText"  style = " font-size: 19px;" >Yes/No</span>
+	  	<span   class = "flatMenuItemText"  style = " font-size: 18px;" >Yes/No</span>
 	  </div>
 	  
 	  <div  id = "recentSelect"  onClick = "loadQuestionURL('${createLink(controller: 'Question', action: 'askShouldICustom', params: [category: 'Recent'])}')" class = "flatMenuItem" style= " margin-left: 5px; display:inline-block; border-bottom: 2px solid #36a4ff; " >
-	  	<span   class = "flatMenuItemText"  style = " font-size: 19px;" >Custom</span>
+	  	<span   class = "flatMenuItemText"  style = " font-size: 18px;" >Custom</span>
 	  </div>
 	  	
 	  	
@@ -162,7 +162,7 @@
 	 <g:form controller="Question" action="postShouldICutom" enctype="multipart/form-data" >
 	<input type="text" id="title" name = "title" style = "width: 100%;  margin-top: 8px; " class="form-control" placeholder="Title">
 
-	<textarea type="text" name = "question" style = "resize: none; height: 170px; margin-top: 8px; " class="form-control" id="wysihtml5-textarea" placeholder="Should I, or..."></textarea>
+	<textarea type="text" name = "question" style = "resize: none; height: 170px; margin-top: 8px; " class="form-control" id="wysihtml5-textarea" placeholder="Type away..."></textarea>
 
 	
 		<div style = "padding-left: 18px;  border-radius: 5px; padding-right: 18px; padding-top: 8px; margin-top: 10px;  padding-bottom: 1px; margin-bottom: 5px;   background-color: #F9F9F9; ">		
@@ -172,8 +172,8 @@
 		<div class="form-group" style = "margin-top: 12px; " >
 		<label style = "color: #5BC0DE;" ><b>Option 1</b></label>
 		<div id = "imgContainer1" style = "margin-top: 4px; margin-bottom: 9px; padding: 6px; background-color: #EAEAEA; display: none;" >
-		<span onClick = "removePhoto('imgContainer1', 'imageUpload1')" style = 'text-align: right;  right: 0px; float: right; font-color: #606060; font-size: 20px; padding-right: 0px; padding-top:0px; display: inline-block;' class='fa fa fa-minus-square '></span>
-		<img id="image1" src="#" style ="display: none; margin: auto; width: 50%" alt="Error displaying image (Image will still upload)" />
+		<span onClick = "removePhoto('imgContainer1', 'imageUpload1')" style = 'text-align: right;  right: 0px; float: right; color: #d9534f; font-size: 20px; padding-right: 0px; padding-top:0px; display: inline-block;' class='fa fa fa-minus-square '></span>
+		<img id="image1" src="#" style ="display: none; margin: auto; width: 35%" alt="Error displaying image (Image will still upload)" />
 		</div>
 		<input name = "answerOne" type="text" style = "width: 100%;" class="form-control" id="option1" placeholder="Ex. Yes, Black, Fast">
 		<span class="btn btn-default btn-file" style =" margin-top: 10px; height: 25px; padding: 4px; font-size: 12px;">
@@ -186,8 +186,8 @@
 		<div class="form-group" style = "margin-top: 12px; " >
 		<label style = "color: #5BC0DE;" ><b>Option 2</b></label>
 		<div id = "imgContainer2" style = "margin-top: 4px; margin-bottom: 9px; padding: 6px; background-color: #EAEAEA; display: none;" >
-		<span onClick = "removePhoto('imgContainer2', 'imageUpload2')" style = 'text-align: right;  right: 0px; float: right;  font-color: #606060; font-size: 20px; padding-right: 0px; padding-top:0px; display: inline-block;' class='fa fa fa-minus-square '></span>
-		<img id="image2" src="#" style ="display: none; margin: auto; width: 50%" alt="Error displaying image (Image will still upload)" />
+		<span onClick = "removePhoto('imgContainer2', 'imageUpload2')" style = 'text-align: right;  right: 0px; float: right;  color: #d9534f; font-size: 20px; padding-right: 0px; padding-top:0px; display: inline-block;' class='fa fa fa-minus-square '></span>
+		<img id="image2" src="#" style ="display: none; margin: auto; width: 35%" alt="Error displaying image (Image will still upload)" />
 		</div>
 		<input  name = "answerTwo" type="text" style = "width: 100%;" class="form-control" style = "" id="option2" placeholder="Ex. No, White, Slow">
 		<span class="btn btn-default btn-file" style =" margin-top: 10px; height: 25px; padding: 4px; font-size: 12px;">
@@ -201,8 +201,8 @@
     	<div class="form-group" style = "margin-top: 12px; " >
     <label  style = "color: #5BC0DE;" ><b>Option 3</b> <span  onclick = "removeOption('option3Div')" class = 'fa fa-minus-square favsharButtion'></span></label>
 	<div id = "imgContainer3" style = "margin-top: 4px; margin-bottom: 9px; padding: 6px; background-color: #EAEAEA; display: none;" >
-	<span  onClick = "removePhoto('imgContainer3', 'imageUpload3')" style = 'text-align: right;  right: 0px; float: right;  font-color: #606060; font-size: 20px; padding-right: 0px; padding-top:0px; display: inline-block;' class='fa fa fa-minus-square '></span>
-	<img id="image3" src="#" style ="display: none; margin: auto; width: 50%" alt="Error displaying image (Image will still upload)" />
+	<span  onClick = "removePhoto('imgContainer3', 'imageUpload3')" style = 'text-align: right;  right: 0px; float: right;  color: #d9534f; font-size: 20px; padding-right: 0px; padding-top:0px; display: inline-block;' class='fa fa fa-minus-square '></span>
+	<img id="image3" src="#" style ="display: none; margin: auto; width: 35%" alt="Error displaying image (Image will still upload)" />
 	</div>
     <input  name = "answerThree" type="text" style = "width: 100%;" class="form-control" style = "" id="option3" placeholder="Ex. No, White, Slow">
 		<span class="btn btn-default btn-file" style =" margin-top: 10px; height: 25px; padding: 4px; font-size: 12px;">
@@ -216,8 +216,8 @@
     	<div class="form-group" style = "margin-top: 12px; " >
     <label  style = "color: #5BC0DE;" ><b>Option 4</b> <span onclick = "removeOption('option4Div')" class = 'fa fa-minus-square favsharButtion'></span> </label>
 	<div id = "imgContainer4" style = "margin-top: 4px; margin-bottom: 9px; padding: 6px; background-color: #EAEAEA; display: none;" >
-	<span class = "favsharButtion" onClick = "removePhoto('imgContainer4', 'imageUpload4')" style = 'text-align: right;  right: 0px; float: right;  font-color: #606060; font-size: 20px; padding-right: 0px; padding-top:0px; display: inline-block;' class='fa fa fa-minus-square '></span>
-	<img id="image4" src="#" style ="display: none; margin: auto; width: 50%" alt="Error displaying image (Image will still upload)" />
+	<span class = "favsharButtion" onClick = "removePhoto('imgContainer4', 'imageUpload4')" style = 'text-align: right;  right: 0px; float: right;  color: #d9534f; font-size: 20px; padding-right: 0px; padding-top:0px; display: inline-block;' class='fa fa fa-minus-square '></span>
+	<img id="image4" src="#" style ="display: none; margin: auto; width: 35%" alt="Error displaying image (Image will still upload)" />
 	</div>
     <input  name = "answerFour" type="text" style = "width: 100%;" class="form-control" style = "" id="option4" placeholder="Ex. No, White, Slow">
 		<span class="btn btn-default btn-file" style =" margin-top: 10px; height: 25px; padding: 4px; font-size: 12px;">
@@ -235,13 +235,13 @@
 	
   	<select name = "category" class="form-control" style = "margin-top: 6px; margin-bottom: 6px; padding: 5px;   ">
 	     <g:each in="${categories}">
-	      <option value="one">${it.category}</option>
+	      <option value="${it.category}">${it.category}</option>
 		</g:each>
 	</select>
 	
 		<div id = "errorAlertNoLogin"class="alert alert-info" role="alert" style = " display: none; margin-top: 7px; padding: 6px; margin-bottom: 7px; " >
 		 <span id = 'errorMessage' >
-		Disabling logins to vote will mark this question as <b>private</b>. <a href = "${createLink(controller: 'ShouldI', action: 'help')}" ><span style = "" >Learn More</span></a></li>	 
+		Disabling logins to vote will mark this question as <b>private</b>. <a href = "${createLink(controller: 'ShouldI', action: 'help')}" ><span style = "" >Learn More</span></a> 
 		</span>
 		</div>
 

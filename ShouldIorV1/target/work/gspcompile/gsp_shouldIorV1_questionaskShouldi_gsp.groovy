@@ -104,8 +104,8 @@ expressionOut.print(createLink(controller: 'Question', action: 'askShouldICustom
 printHtmlPart(38)
 createTagBody(2, {->
 printHtmlPart(39)
-for( _it501693751 in (categories) ) {
-changeItVariable(_it501693751)
+for( _it489508218 in (categories) ) {
+changeItVariable(_it489508218)
 printHtmlPart(40)
 expressionOut.print(it.category)
 printHtmlPart(41)
@@ -115,7 +115,7 @@ printHtmlPart(42)
 printHtmlPart(43)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
 printHtmlPart(44)
-invokeTag('actionSubmit','g',203,['onclick':("return validate()"),'value':("Ask"),'action':("postShouldI"),'style':("margin-top: 1px; width: 100px; display: inline-block;"),'class':("btn btn-default")],-1)
+invokeTag('actionSubmit','g',203,['onclick':("return validate()"),'value':("Post"),'action':("postShouldI"),'style':("margin-top: 1px; width: 100px; display: inline-block;"),'class':("btn btn-default")],-1)
 printHtmlPart(45)
 })
 invokeTag('form','g',208,['controller':("Question"),'action':("postShouldI"),'enctype':("multipart/form-data")],2)
@@ -139,7 +139,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1443461719533L
+public static final long LAST_MODIFIED = 1443545960254L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

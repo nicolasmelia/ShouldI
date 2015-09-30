@@ -176,7 +176,7 @@ class QuestionController {
 		if (session["userID"] != null) {
 			// get all categories
 			def categories = Category.findAll()
-			render(view: "askshouldiCustom", model:[ "notifyCount": getNotifyCount(), "categorie" : categories ])
+			render(view: "askshouldiCustom", model:[ "notifyCount": getNotifyCount(), "categories" : categories ])
 		} else {
 			render "Please log in bitch"
 		}
@@ -199,8 +199,8 @@ class QuestionController {
 			 }
 		}
 		
-		question.custom = true
-		question.yesOrNo = false // This is a YES/NO question
+		question.custom = true // This is a custom question
+		question.yesOrNo = false 
 		
 		if (params.anonymous != null) {
 			question.anonymous = params.anonymous
@@ -267,7 +267,9 @@ class QuestionController {
 		
 		question.ClientAddress = request.getRemoteAddr().toString()
 		question.save(flush:true, failOnError: true)
-		render "Created"
+		
+		// Render question page for user posting
+		redirect(action: "shouldi", params: [id: question.questionID])
 					
 	}
 	
@@ -356,9 +358,11 @@ class QuestionController {
 			if (params.vote.toString().matches("1")) {
 				vote.vote = 1
 				question.answerOneVotes = question.answerOneVotes + 1
+				addToBattleHash("YES")
 			} else if (params.vote.toString().matches("2")) {
 				vote.vote = 2
 				question.answerTwoVotes = question.answerTwoVotes + 1
+				addToBattleHash("NO")
 			} else if (params.vote.toString().matches("3")) {
 				vote.vote = 3
 				question.answerThreeVotes = question.answerThreeVotes + 1
@@ -527,7 +531,7 @@ class QuestionController {
 		def questionSet1 = Question.executeQuery("FROM Question a WHERE a.category = ? AND date > ? AND a.questionID <> ? ORDER BY RANDOM()", [category, date, questionID], [max: 5])
 		
 		// Random from other categories
-		def questionSet2 = Question.executeQuery("FROM Question a WHERE date > ? AND a.questionID <> ? ORDER BY RANDOM()", [date, questionID], [max: 5])
+		def questionSet2 = Question.executeQuery("FROM Question a WHERE a.category != 'Hot or Not' AND date > ? AND a.questionID <> ? ORDER BY RANDOM()", [date, questionID], [max: 5])
 		
 		// List of id's to not allow duplicates
 		ArrayList<String> questionIds = new ArrayList<String>()
@@ -562,4 +566,32 @@ class QuestionController {
 		def question = Question.executeQuery("FROM Question a WHERE a.category = ? AND date > ? ORDER BY RANDOM()", [params.category, date], [max: 1])
 		redirect(action: "shouldi", params: [id: question[0].questionID])
 	}
-}
+	
+	def addToBattleHash(String answer){
+		try {
+			 DataHash dh = DataHash.findByHashID("battleHash");
+			 
+			 if (dh == null) {
+				 dh = new DataHash()
+				 dh.hashID = "battleHash"
+				 dh.hash = "0"
+				 dh.hash2 = "0"
+				 dh.save(flush:true)
+			 }
+			 
+			 if (answer.equals("YES")) {
+				 int newHashCount = Integer.parseInt(dh.hash) + 1
+				 dh.hash = newHashCount + ""
+				 dh.save(flush:true)
+			 } else {
+			 	// No
+				 int newHashCount = Integer.parseInt(dh.hash2) + 1
+				 dh.hash2 = newHashCount + ""
+				 dh.save(flush:true)
+			 }
+		} catch (Exception ex) {
+			// Do nothing
+		}
+	} 
+	
+} 

@@ -119,11 +119,11 @@
 	<div style = "width: 100%; margin-top: 60px; margin-bottom: 8px;   ">
    
 	  <div  id = "trendingSelect" onClick = "loadQuestionURL('${createLink(controller: 'Question', action: 'askShouldI', params: [category: 'Trending'])}')" class = "flatMenuItem"   style= " margin-left: 5px; display:inline-block; border-bottom: 2px solid #36a4ff; ">
-	  	<span   class = "flatMenuItemText"  style = " font-size: 19px;" >Yes/No</span>
+	  	<span   class = "flatMenuItemText"  style = " font-size: 18px;" >Yes/No</span>
 	  </div>
 	  
 	  <div  id = "recentSelect"  onClick = "loadQuestionURL('${createLink(controller: 'Question', action: 'askShouldICustom', params: [category: 'Recent'])}')" class = "flatMenuItem" style= " margin-left: 5px; display:inline-block; border-bottom: 0px solid #36a4ff; " >
-	  	<span   class = "flatMenuItemText"  style = " font-size: 19px;" >Custom</span>
+	  	<span   class = "flatMenuItemText"  style = " font-size: 18px;" >Custom</span>
 	  </div>
 	  	
 	  	
@@ -135,11 +135,11 @@
 
 	<div class="form-group" style = "padding-left: 16px;  display:block; padding-right: 16px; padding-top: 1px; ">		
 
-		<div id = "errorAlert"class="alert alert-danger" role="alert" style = " display: none; margin-top: 10px; padding: 6px;" >
+		<div id = "errorAlert"class="alert alert-danger" role="alert" style = " display: none; margin-top: 10px;  margin-bottom: 0px;  padding: 6px;" >
 		 <span id = 'errorMessage' ></span>
 		</div>
 		
-			<div id = "imgContainer" style = "margin-top: 22px; margin-bottom: -10px; padding: 6px; background-color: #EAEAEA; display: none;" >
+			<div id = "imgContainer" style = "margin-top: 22px; margin-bottom: 0px; padding: 6px; background-color: #EAEAEA; display: none;" >
 		<span onclick = "resetFormElement1()" style = 'text-align: right;  right: 0px; float: right;  color: #d9534f; font-size: 20px; padding-right: 0px; padding-top:0px; display: inline-block;' class = 'fa fa-minus-square' ></span>
 		 <img id="image1" src="#" style ="display: none; margin: auto; width: 50%; max-width: 200px;" alt="Error displaying image (Image will still upload)" />
 		</div>
@@ -171,7 +171,7 @@
 	 <g:form controller="Question" action="postShouldI" enctype="multipart/form-data" >
 	<input id = 'title' type="text" name = "title" style = "width: 100%;  margin-top: 8px; " class="form-control"  placeholder="Title">
 
-	<textarea type="text" name = "question" style = "resize: none; height: 170px; margin-top: 8px; " class="form-control" id="wysihtml5-textarea" placeholder="Ask away..."></textarea>
+	<textarea type="text" name = "question" style = "resize: none; height: 170px; margin-top: 8px; " class="form-control" id="wysihtml5-textarea" placeholder="Type away..."></textarea>
 
 	<select name = "category" class="form-control" style = "margin-top: 6px; margin-bottom: 6px; ">
 	     <g:each in="${categories}">
@@ -181,7 +181,7 @@
 
 		<div id = "errorAlertNoLogin"class="alert alert-info" role="alert" style = " display: none; margin-top: 7px; padding: 6px; margin-bottom: 7px; " >
 		 <span id = 'errorMessage' >
-		Disabling logins to vote will mark this question as <b>private</b>. <a href = "${createLink(controller: 'ShouldI', action: 'help')}" ><span style = "" >Learn More</span></a></li>	 
+		Disabling logins to vote will mark this question as <b>private</b>. <a href = "${createLink(controller: 'ShouldI', action: 'help')}" ><span style = "" >Learn More</span></a> 
 		</span>
 		</div>
 		
@@ -200,7 +200,7 @@
 		</div> 
 		
 	<div style = "display: block; width: 100%" >
-	<g:actionSubmit  onclick="return validate()" value = "Ask"  action = "postShouldI" style = "margin-top: 1px; width: 100px; display: inline-block;" class="btn btn-default"/>
+	<g:actionSubmit  onclick="return validate()" value = "Post"  action = "postShouldI" style = "margin-top: 1px; width: 100px; display: inline-block;" class="btn btn-default"/>
 		<span class="btn btn-default btn-file">
 			<span class = "fa fa-picture-o"></span> Add Photo  <input id = "imageUpload" name = 'image1' type="file" accept="image/*">
 		</span>

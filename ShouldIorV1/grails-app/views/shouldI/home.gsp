@@ -110,7 +110,14 @@
    
    
    <div class = 'favsharButtion' style = " font-size: 25px;  display: block; width: 100%; text-align: left; margin-top: -5px; margin-bottom: -5px;">
-      <a  style = "color: #79cce5; margin:0px; padding: 0px;" href = "/ShouldIorV1/Question/askShouldI" > <span class= 'fa fa-pencil-square-o'> 
+     
+  	 <g:if test="${session.name}">
+      <a  style = "color: #79cce5;  margin:0px; padding: 0px;" href = "${createLink(controller: 'Question', action: 'askShouldI')}"  > <span class= 'fa fa-pencil-square-o'> 
+     </g:if>
+     <g:else>
+      <a  style = "color: #79cce5;  margin:0px; padding: 0px;" href = '#' onClick = "showNoLogin()"> <span class= 'fa fa-pencil-square-o'> 
+     </g:else>
+     
       <span class = "element"  ></span>
       </span> 
       </a> 
@@ -245,7 +252,7 @@
    
       				 <div  class="contentContainer" style = "text-align: center; width: 100%; padding : 10px; background-color: rgba(0,0,0, 0.5);" >
 
-						<span style = "color:#79cce5; font-size: 15px;" ><b>Background image submitted by <a>Jenna Colucci.</a> Submit your own <a>here</a></b></span>
+						<span style = "color:#79cce5; font-size: 15px;" ><b>Background image submitted by <a>Community</a></b></span>
 			
 			            </div>
 

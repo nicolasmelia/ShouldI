@@ -116,8 +116,8 @@ expressionOut.print(createLink(controller: 'shouldI', action: 'category', params
 printHtmlPart(40)
 expressionOut.print(createLink(controller: 'shouldI', action: 'category', params: [category: 'Recent']))
 printHtmlPart(41)
-for( _it1179799230 in (categories) ) {
-changeItVariable(_it1179799230)
+for( _it140301331 in (categories) ) {
+changeItVariable(_it140301331)
 printHtmlPart(42)
 expressionOut.print(createLink(controller: 'shouldI', action: 'category', params: [category: it.category]))
 printHtmlPart(43)
@@ -127,55 +127,65 @@ printHtmlPart(44)
 printHtmlPart(45)
 expressionOut.print(category)
 printHtmlPart(46)
-for( _it501766514 in (questions) ) {
-changeItVariable(_it501766514)
+if(true && (categorySort != 'None')) {
 printHtmlPart(47)
-expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
+expressionOut.print(categorySort)
 printHtmlPart(48)
-if(true && (it.answerOneImage)) {
+expressionOut.print(createLink(controller: 'shouldI', action: 'category', params: [categorySort: 'Trending', category: category]))
 printHtmlPart(49)
-expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1']))
+expressionOut.print(createLink(controller: 'shouldI', action: 'category', params: [categorySort: 'Recent', category: category]))
 printHtmlPart(50)
 }
-else {
 printHtmlPart(51)
-expressionOut.print(resource(dir:'images',file:'noImg.png'))
+for( _it1754081885 in (questions) ) {
+changeItVariable(_it1754081885)
 printHtmlPart(52)
-}
+expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
 printHtmlPart(53)
-expressionOut.print(it.userName)
+if(true && (it.answerOneImage)) {
 printHtmlPart(54)
-expressionOut.print(it.questionTitle)
+expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1']))
 printHtmlPart(55)
-expressionOut.print(it.totalVotes)
+}
+else {
 printHtmlPart(56)
-expressionOut.print(it.totalViews)
+expressionOut.print(resource(dir:'images',file:'noImg.png'))
 printHtmlPart(57)
 }
 printHtmlPart(58)
-createClosureForHtmlPart(59, 2)
-invokeTag('link','g',189,['action':("category"),'params':([offset: offset, up: 'false', category: category]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
+expressionOut.print(it.userName)
+printHtmlPart(59)
+expressionOut.print(it.questionTitle)
 printHtmlPart(60)
-createClosureForHtmlPart(61, 2)
-invokeTag('link','g',193,['action':("category"),'params':([offset: offset, up: 'true', category: category]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
+expressionOut.print(it.totalVotes)
+printHtmlPart(61)
+expressionOut.print(it.totalViews)
 printHtmlPart(62)
-createClosureForHtmlPart(63, 2)
-invokeTag('link','g',199,['action':("category"),'params':([offset: offset, up: 'false']),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
-printHtmlPart(64)
-expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
+}
+printHtmlPart(63)
+createClosureForHtmlPart(64, 2)
+invokeTag('link','g',209,['action':("category"),'params':([offset: offset, up: 'false', category: category]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
 printHtmlPart(65)
-expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
-printHtmlPart(66)
-})
-invokeTag('captureBody','sitemesh',274,['style':("margin-bottom: 20px; min-width: 320px;  ")],1)
+createClosureForHtmlPart(66, 2)
+invokeTag('link','g',213,['action':("category"),'params':([offset: offset, up: 'true', category: category, categorySort: categorySort]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
 printHtmlPart(67)
+createClosureForHtmlPart(68, 2)
+invokeTag('link','g',219,['action':("category"),'params':([offset: offset, up: 'false', category: category, categorySort: categorySort]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
+printHtmlPart(69)
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
+printHtmlPart(70)
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
+printHtmlPart(71)
+})
+invokeTag('captureBody','sitemesh',294,['style':("margin-bottom: 20px; min-width: 320px;  ")],1)
+printHtmlPart(72)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1443489912855L
+public static final long LAST_MODIFIED = 1443546139733L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

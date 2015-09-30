@@ -108,11 +108,11 @@
    <div style = "width: 100%; ">
    
 	  <div  id = "trendingSelect" onClick = "loadQuestionURL('${createLink(controller: 'shouldI', action: 'category', params: [category: 'Trending'])}')" class = "flatMenuItem"   style= " margin-left: 5px; height: 26px; display:inline-block;">
-	  	<span  class = "flatMenuItemText"  style = " font-size: 17px;" >Trending</span>
+	  	<span  class = "flatMenuItemText"  style = " font-size: 16px;" >Trending</span>
 	  </div>
 	  
 	  <div  id = "recentSelect"  onClick = "loadQuestionURL('${createLink(controller: 'shouldI', action: 'category', params: [category: 'Recent'])}')" class = "flatMenuItem" style= " margin-left: 5px; height: 26px;  display:inline-block;" >
-	  	<span   class = "flatMenuItemText"  style = " font-size: 17px;" >Recent</span>
+	  	<span   class = "flatMenuItemText"  style = " font-size: 16px;" >Recent</span>
 	  </div>
 	  
 	 <div  class = "flatMenuItem" style= " margin-left: 5px; display:inline-block; border-bottom: 0px solid #79cce5;  " >
@@ -121,12 +121,11 @@
                   <div class="dropdown-toggle" type="button" style = "width: 100%; height: 26px; background-color: rgb(0,0,0, 0);" data-toggle="dropdown">
 	  
 	  	  <div  id = "categorySelect" class = "flatMenuItem" style= " margin-left: 5px; height: 26px;  display:inline-block;" >
-	  		<span   class = "flatMenuItemText"  style = " font-size: 17px;" >Categories <span class="caret"></span></span>
+	  		<span   class = "flatMenuItemText"  style = " font-size: 16px;" >Categories <span class="caret"></span></span>
 	  	</div>
 	            
                   </div>
                   <ul class="dropdown-menu" style = "width: 100%; ">
-                     <li class="dropdown-header">Trending in</li> 
                      <g:each in="${categories}">
                       <li><a href="${createLink(controller: 'shouldI', action: 'category', params: [category: it.category])}">${it.category}</a></li>
 					</g:each>
@@ -138,14 +137,35 @@
 	  </div>
   
   <div style = "display: block;"> 
-  	heelo how are you doihg lol
+  	
+  	
+  	
+  	
+  	
+  	
   </div>
 
       <div  class="contentContainer">
       	  	
     
     <div style = "width: 100%; padding: 8px; border-bottom: solid 1px; border-color:#b2b2b2;   text-align: center;">
-     <span style = "color:#79cce5;   margin: auto;   font-size: 18px;" ><b>${category}</b></span>
+     <span style = "color:#61B7FE; margin: auto; font-size: 18px;" ><b>${category}</b></span>
+     
+         <g:if test="${categorySort != 'None'}">
+       	<div class=" dropdown">
+                  <div class="dropdown-toggle" type="button" style = "width: 100%; height: 26px; background-color: rgb(0,0,0, 0);" data-toggle="dropdown">
+	  	  <div  id = "categorySelect" class = "flatMenuItem" style= " margin-left: 5px; height: 26px;  display:inline-block;" >
+	  		 <span   class = "flatMenuItemText"  style = " font-size: 14px;" >Sorted by ${categorySort} <span class="caret"></span></span>
+	  	</div>     
+              </div>
+                  <ul class="dropdown-menu" style = "width: 100%; ">
+                      <li><a href="${createLink(controller: 'shouldI', action: 'category', params: [categorySort: 'Trending', category: category])}">Trending</a></li>
+                      <li><a href="${createLink(controller: 'shouldI', action: 'category', params: [categorySort: 'Recent', category: category])}">Recent</a></li>            
+                  </ul>
+         </div>
+     </g:if>
+     
+     
       </div>   
 
       <div class = "scrollCon" style = "height: 450px; " >  
@@ -188,13 +208,13 @@
                    		  <span class="fa fa-angle-double-left"></span> Back 
                 </g:link>
 
-                 <g:link  action="category"  params="[offset: offset, up: 'true', category: category]" style = "padding-top: 2px; padding-bottom: 2px;" class="btn btn-default">
+                 <g:link  action="category"  params="[offset: offset, up: 'true', category: category, categorySort: categorySort]" style = "padding-top: 2px; padding-bottom: 2px;" class="btn btn-default">
                    		   Next <span class="fa fa-angle-double-right"></span>
                 </g:link>
             </div> 
             
                   		<div class="btn-group" style = "margin: 10px 0px 10px 0px;   " >
-                 <g:link  action="category"  params="[offset: offset, up: 'false']"  style = "padding-top: 2px; padding-bottom: 2px;" class="btn btn-default">
+                 <g:link  action="category"  params="[offset: offset, up: 'false', category: category, categorySort: categorySort]"  style = "padding-top: 2px; padding-bottom: 2px;" class="btn btn-default">
                    		  <span class="fa fa-random"></span>  
                 </g:link>
             </div>  
