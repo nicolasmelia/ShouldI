@@ -168,7 +168,12 @@
      
       </div>   
 
-      <div class = "scrollCon" style = "height: 450px; " >  
+      <div class = "scrollCon" style = "height: 450px; " > 
+      
+      	 <g:if test="${questions.isEmpty()}">
+		     <p style =  "display: block; color: #d3d3d3; font-size: 15px;  margin: auto; margin-top: 10px; width: 100%; text-align: center;">Nothing to show here...</p>
+		</g:if>
+       
          <g:each in="${questions}">
             <table class = "longViewTable" onmouseover="glow(this)" onmouseout="unGlow(this)"  onClick = "loadQuestionURL('${createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID])}')" >
                <tr class = 'imgTR'>
@@ -204,7 +209,7 @@
                  
            <div style = "border-top: solid 1px #b2b2b2;  width: 100%;">  
       		<div class="btn-group" style = "margin: 10px 0px 10px 10px;    " >
-                 <g:link  action="category"  params="[offset: offset, up: 'false', category: category]"  style = "padding-top: 2px; padding-bottom: 2px;" class="btn btn-default">
+                 <g:link  action="category"  params="[offset: offset, up: 'false', category: category, categorySort: categorySort]"  style = "padding-top: 2px; padding-bottom: 2px;" class="btn btn-default">
                    		  <span class="fa fa-angle-double-left"></span> Back 
                 </g:link>
 
@@ -212,14 +217,6 @@
                    		   Next <span class="fa fa-angle-double-right"></span>
                 </g:link>
             </div> 
-            
-                  		<div class="btn-group" style = "margin: 10px 0px 10px 0px;   " >
-                 <g:link  action="category"  params="[offset: offset, up: 'false', category: category, categorySort: categorySort]"  style = "padding-top: 2px; padding-bottom: 2px;" class="btn btn-default">
-                   		  <span class="fa fa-random"></span>  
-                </g:link>
-            </div>  
-            
-            
               
         </div>      
             

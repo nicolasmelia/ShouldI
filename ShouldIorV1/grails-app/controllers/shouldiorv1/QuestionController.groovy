@@ -438,7 +438,7 @@ class QuestionController {
 				}
 						
 				int q4Per
-				if (question.answerThreeVotes){
+				if (question.answerFourVotes){
 				q4Per = Math.round((question.answerFourVotes / question.totalVotes * 100))
 				} else {
 				q4Per = 0;
@@ -465,7 +465,7 @@ class QuestionController {
 					diff = q3q4diff	
 				}		
 						
-			}
+			}			
 			return diff
 			} else {
 			return 0

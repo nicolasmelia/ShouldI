@@ -116,8 +116,7 @@ class ShouldIController {
 	}
 	
 	def help() {
-		def question = Question.findAllByTotalVotesGreaterThan(-1)
-		render (view: "category", model: ["question": question, "notifyCount": getNotifyCount()])
+		render (view: "help", model: ["notifyCount": getNotifyCount()])
 	}
 	
 	

@@ -47,7 +47,7 @@ class UserController {
 				break;	
 				case "My Favorites":
 				questions = new ArrayList<Question>()
-				def favorites = Favorite.findAll("from Favorite as f where f.userID = ? order by f.dateAdded DESC", [session["userID"]])
+				def favorites = Favorite.findAll("from Favorite as f where f.userID = ? order by f.dateAdded DESC", [session["userID"]], [max: 10, offset: offset])
 				for (Favorite favorite : favorites) {
 					def question = Question.findByQuestionID(favorite.questionID)
 					questions.add(question)
@@ -181,6 +181,7 @@ class UserController {
 		  e.printStackTrace ();
 		  // Perform any other exception handling that's appropriate.
 		}
+		
 		finally {
 		  if (is != null) { is.close(); }
 		}

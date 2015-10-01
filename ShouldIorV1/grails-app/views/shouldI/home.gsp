@@ -243,18 +243,16 @@
 					<p style = " display: block; margin-top: 8px;color:#f3f3f3;  font-size: 19px;">
 						<span  style = "color:#46BFBD;"  class = "fa fa-line-chart"></span> 
 						<span style = "color:#79cce5; font-size: 21px;" ><b>Yes</b></span> <b>vs.</b> 
-						<span style = "color:#F7464A; font-size: 21px; " ><b>No</b></span> this month
+						<span style = "color:#F7464A; font-size: 21px; " ><b>No</b></span>
 					</p>
 
+									<span style = "color:#79cce5; font-size: 15px;" ><b>BattleStat&trade; this month: <span style = "color: #337ab7;" >Yes vs. No</span></b></span>
 			
 			            </div>
    
    
-      				 <div  class="contentContainer" style = "text-align: center; width: 100%; padding : 10px; background-color: rgba(0,0,0, 0.5);" >
-
-						<span style = "color:#79cce5; font-size: 15px;" ><b>Background image submitted by <a>Community</a></b></span>
-			
-			            </div>
+      				 <div  class="contentContainer" style = "display: none; text-align: center; width: 100%; padding : 10px; background-color: rgba(0,0,0, 0.5);" >
+			         </div>
 
         <footer class="footer" style = "margin-top: 10px; width: 100%;" >
       <div class="container" style = "width: 100%; text-align: left; padding: 0px; ">

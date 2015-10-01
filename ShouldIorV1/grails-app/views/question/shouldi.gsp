@@ -100,8 +100,8 @@
 
             <!-- QUESTION -->	
               <input id = "totalVotes" type="hidden" value="${question.totalVotes}">
-                    <input id = "answerOneVotes" type="hidden"  value="${question.answerOneVotes}">
-				      <input id = "answerTwoVotes" type="hidden"  value="${question.answerTwoVotes}">
+                      <input id = "answerOneVotes" type="hidden"  value="${question.answerOneVotes}">
+                      <input id = "answerTwoVotes" type="hidden"  value="${question.answerTwoVotes}">
 				      <input id = "answerThreeVotes" type="hidden"  value="${question.answerThreeVotes}">
 				      <input id = "answerFourVotes" type="hidden" value="${question.answerFourVotes}">
 				            
@@ -128,7 +128,7 @@
                         <img  style = "width: 100%;   display: inline-block; border-top-right-radius: 6px; border-top-left-radius: 5px;"  src="${resource(dir:'images',file:'blankAv.png')}"   />			
                      </div>
                      <div style = "display: inline-block; padding-bottom:0px; margin-right: 4px; margin-left: 4px; vertical-align: top;  ">
-                        <span style = "margin-left: 1px; color: #5C5C5C; display: block; font-size: 15px;"><b><span class = "fa fa-eye-slash"></span> Anonymous</b></span>
+                        <span style = "margin-left: 1px; color: #5C5C5C; display: block; font-size: 15px;"><b><span class = "fa fa-user-secret"></span> Anonymous</b></span>
                         <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px;  display: block; font-size: 15px;">Questions: <span class='fa fa-question'></span></span>
                         <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Reached: <span class='fa fa-question'></span>  </span>                                                      
                      </div>
@@ -175,7 +175,7 @@
                      </span>
                      <div style = "padding-bottom: -10px; float:right; display: inline-block; vertical-align: top;">
                         <div  onClick = "share()" style = " cursor: default; text-align: center; width: 65px; padding: 2px; padding-left: 2px; color: #4DAEFF; font-size: 13px; margin-right: 7px; margin-top:9px; ">
-                           <div class = 'favsharButtion' style = "margin: auto; padding: 0px; margin: 0px;"><span style = ' ' class='fa fa-facebook'></span> Share</div>
+                           <div class = 'favsharButtion' style = "margin: auto; padding: 0px; margin: 0px;"><span style = ' ' class='fa fa-facebook-square'></span> Share</div>
                         </div>
                      </div>
                      
@@ -383,7 +383,7 @@
       <div style = "width: 100%; ">
          <div  class="contentContainer">
             <div class="contentContainerTitle">
-               <p class = "fa  fa-random"> <span>Randomly Awesome</span> </p>
+               <p class = "fa  fa-check-square-o"><span> Suggested Polls</span> </p>
             </div>
             <div class = "scrollCon">
                <g:each in="${questionPromo1}">
@@ -412,9 +412,9 @@
          
         <footer class="footer" style = "margin-top: 10px; width: 100%;" >
       <div class="container" style = "width: 100%; text-align: left; padding: 0px; ">
-      <span style = "font-size: 15px; color: #79cce5;"><a style = "color: #79cce5;" href = "">Privacy Policy</a> | </span>
-            <span style = "font-size: 15px; color: #79cce5;"><a style = "color: #79cce5;" href = "">How To</a> | </span>
-      <span style = "font-size: 15		px; color: #79cce5;"><a style = "color: #79cce5;" href = "">About</a></span>   
+      <span style = "font-size: 15px; color: #79cce5;"><a style = "color: #79cce5;"  href = "${createLink(controller: 'ShouldI', action: 'privacyPolicy')}"  >Privacy Policy</a> | </span>
+      <span style = "font-size: 15px; color: #79cce5;"><a style = "color: #79cce5;" href = "${createLink(controller: 'ShouldI', action: 'help')}"  >How To</a> | </span>
+      <span style = "font-size: 15px; color: #79cce5;"><a style = "color: #79cce5;" href = "${createLink(controller: 'ShouldI', action: 'aboutPollaris')}">Pollaris LLC</a></span>   
       </div>   
   	  </footer>
   	  
@@ -506,7 +506,6 @@
 
 				var ans1per = (ans1 / totalVotes * 100);
 				var ans2per = (ans2 / totalVotes * 100);
-
 
 				$("#per1").width(ans1per + '%');
 				$("#per2").width(ans2per + '%');

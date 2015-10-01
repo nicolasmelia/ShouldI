@@ -46,7 +46,7 @@ function questionVote(vote) {
 					if ($("#per4").length) {
 						$("#per4").fadeOut(500);
 					}
-							
+												
 					setTimeout(function(){ 
 						  displayMiniGraphs(totalVotes, answersCount[4], answersCount[5],answersCount[6], answersCount[7] );					
 					}, 600);

@@ -116,8 +116,8 @@ expressionOut.print(createLink(controller: 'shouldI', action: 'category', params
 printHtmlPart(40)
 expressionOut.print(createLink(controller: 'shouldI', action: 'category', params: [category: 'Recent']))
 printHtmlPart(41)
-for( _it140301331 in (categories) ) {
-changeItVariable(_it140301331)
+for( _it1140684760 in (categories) ) {
+changeItVariable(_it1140684760)
 printHtmlPart(42)
 expressionOut.print(createLink(controller: 'shouldI', action: 'category', params: [category: it.category]))
 printHtmlPart(43)
@@ -137,47 +137,48 @@ expressionOut.print(createLink(controller: 'shouldI', action: 'category', params
 printHtmlPart(50)
 }
 printHtmlPart(51)
-for( _it1754081885 in (questions) ) {
-changeItVariable(_it1754081885)
+if(true && (questions.isEmpty())) {
 printHtmlPart(52)
-expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
-printHtmlPart(53)
-if(true && (it.answerOneImage)) {
-printHtmlPart(54)
-expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1']))
-printHtmlPart(55)
 }
-else {
+printHtmlPart(53)
+for( _it1519451306 in (questions) ) {
+changeItVariable(_it1519451306)
+printHtmlPart(54)
+expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
+printHtmlPart(55)
+if(true && (it.answerOneImage)) {
 printHtmlPart(56)
-expressionOut.print(resource(dir:'images',file:'noImg.png'))
+expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1']))
 printHtmlPart(57)
 }
+else {
 printHtmlPart(58)
-expressionOut.print(it.userName)
+expressionOut.print(resource(dir:'images',file:'noImg.png'))
 printHtmlPart(59)
-expressionOut.print(it.questionTitle)
-printHtmlPart(60)
-expressionOut.print(it.totalVotes)
-printHtmlPart(61)
-expressionOut.print(it.totalViews)
-printHtmlPart(62)
 }
+printHtmlPart(60)
+expressionOut.print(it.userName)
+printHtmlPart(61)
+expressionOut.print(it.questionTitle)
+printHtmlPart(62)
+expressionOut.print(it.totalVotes)
 printHtmlPart(63)
-createClosureForHtmlPart(64, 2)
-invokeTag('link','g',209,['action':("category"),'params':([offset: offset, up: 'false', category: category]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
+expressionOut.print(it.totalViews)
+printHtmlPart(64)
+}
 printHtmlPart(65)
 createClosureForHtmlPart(66, 2)
-invokeTag('link','g',213,['action':("category"),'params':([offset: offset, up: 'true', category: category, categorySort: categorySort]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
+invokeTag('link','g',214,['action':("category"),'params':([offset: offset, up: 'false', category: category, categorySort: categorySort]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
 printHtmlPart(67)
 createClosureForHtmlPart(68, 2)
-invokeTag('link','g',219,['action':("category"),'params':([offset: offset, up: 'false', category: category, categorySort: categorySort]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
+invokeTag('link','g',218,['action':("category"),'params':([offset: offset, up: 'true', category: category, categorySort: categorySort]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
 printHtmlPart(69)
 expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
 printHtmlPart(70)
 expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
 printHtmlPart(71)
 })
-invokeTag('captureBody','sitemesh',294,['style':("margin-bottom: 20px; min-width: 320px;  ")],1)
+invokeTag('captureBody','sitemesh',291,['style':("margin-bottom: 20px; min-width: 320px;  ")],1)
 printHtmlPart(72)
 }
 public static final Map JSP_TAGS = new HashMap()
@@ -185,7 +186,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1443546139733L
+public static final long LAST_MODIFIED = 1443631811705L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

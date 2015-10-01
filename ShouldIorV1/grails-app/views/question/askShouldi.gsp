@@ -202,7 +202,7 @@
 	<div style = "display: block; width: 100%" >
 	<g:actionSubmit  onclick="return validate()" value = "Post"  action = "postShouldI" style = "margin-top: 1px; width: 100px; display: inline-block;" class="btn btn-default"/>
 		<span class="btn btn-default btn-file">
-			<span class = "fa fa-picture-o"></span> Add Photo  <input id = "imageUpload" name = 'image1' type="file" accept="image/*">
+			<span class = "fa fa-picture-o"></span> Add Image  <input id = "imageUpload" name = 'image1' type="file" accept="image/*">
 		</span>
 	</div>
 			</g:form>

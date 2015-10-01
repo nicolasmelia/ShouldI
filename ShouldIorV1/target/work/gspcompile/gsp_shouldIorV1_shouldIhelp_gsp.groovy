@@ -5,8 +5,8 @@ import org.codehaus.groovy.grails.web.taglib.exceptions.GrailsTagException
 import org.springframework.web.util.*
 import grails.util.GrailsUtil
 
-class gsp_shouldIorV1_questionaskShouldi_gsp extends GroovyPage {
-public String getGroovyPageFileName() { "/WEB-INF/grails-app/views/question/askShouldi.gsp" }
+class gsp_shouldIorV1_shouldIhelp_gsp extends GroovyPage {
+public String getGroovyPageFileName() { "/WEB-INF/grails-app/views/shouldI/help.gsp" }
 public Object run() {
 Writer out = getOut()
 Writer expressionOut = getExpressionOut()
@@ -98,48 +98,33 @@ expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceB
 printHtmlPart(35)
 }
 printHtmlPart(36)
-expressionOut.print(createLink(controller: 'Question', action: 'askShouldI', params: [category: 'Trending']))
-printHtmlPart(37)
-expressionOut.print(createLink(controller: 'Question', action: 'askShouldICustom', params: [category: 'Recent']))
-printHtmlPart(38)
 createTagBody(2, {->
+printHtmlPart(37)
+invokeTag('actionSubmit','g',141,['value':("Update"),'action':("updateMotd"),'style':("margin-top: 1px; width: 100px; display: inline-block;"),'class':("btn btn-default")],-1)
+printHtmlPart(38)
+})
+invokeTag('form','g',143,['controller':("ShouldI"),'action':("updateMotd"),'enctype':("multipart/form-data")],2)
 printHtmlPart(39)
-for( _it471395945 in (categories) ) {
-changeItVariable(_it471395945)
-printHtmlPart(40)
-expressionOut.print(it.category)
-printHtmlPart(41)
-expressionOut.print(it.category)
-printHtmlPart(42)
-}
-printHtmlPart(43)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
-printHtmlPart(44)
-invokeTag('actionSubmit','g',203,['onclick':("return validate()"),'value':("Post"),'action':("postShouldI"),'style':("margin-top: 1px; width: 100px; display: inline-block;"),'class':("btn btn-default")],-1)
-printHtmlPart(45)
-})
-invokeTag('form','g',208,['controller':("Question"),'action':("postShouldI"),'enctype':("multipart/form-data")],2)
-printHtmlPart(46)
 expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
-printHtmlPart(47)
+printHtmlPart(40)
 expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
-printHtmlPart(48)
-invokeTag('resource','g',252,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput-angular.js")],-1)
-printHtmlPart(49)
-invokeTag('resource','g',253,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.js")],-1)
-printHtmlPart(50)
-invokeTag('resource','g',254,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.css")],-1)
-printHtmlPart(51)
+printHtmlPart(41)
+invokeTag('resource','g',187,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput-angular.js")],-1)
+printHtmlPart(42)
+invokeTag('resource','g',188,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.js")],-1)
+printHtmlPart(43)
+invokeTag('resource','g',189,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.css")],-1)
+printHtmlPart(44)
 })
-invokeTag('captureBody','sitemesh',395,['style':("background-color: #f4f4f4; min-width: 330px; ")],1)
-printHtmlPart(52)
+invokeTag('captureBody','sitemesh',330,['style':("background-color: #f4f4f4; min-width: 330px; ")],1)
+printHtmlPart(45)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1443630891717L
+public static final long LAST_MODIFIED = 1443458276349L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

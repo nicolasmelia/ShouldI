@@ -241,7 +241,7 @@
 	
 		<div id = "errorAlertNoLogin"class="alert alert-info" role="alert" style = " display: none; margin-top: 7px; padding: 6px; margin-bottom: 7px; " >
 		 <span id = 'errorMessage' >
-		Disabling logins to vote will mark this question as <b>private</b>. <a href = "${createLink(controller: 'ShouldI', action: 'help')}" ><span style = "" >Learn More</span></a> 
+			Disabling logins to vote will mark this question as <b>private</b>. <a href = "${createLink(controller: 'ShouldI', action: 'help')}" ><span style = "" >Learn More</span></a> 
 		</span>
 		</div>
 
