@@ -109,7 +109,7 @@
       
        
 		<!-- COMMENT BOX -->	
-    <div class="container" style = "max-width: 725px; ">
+    <div class="container" style = "max-width: 725px; margin-bottom: 15px; ">
 
 	<div style = "width: 100%; margin-top: 60px; margin-bottom: 8px;   ">
    
@@ -294,7 +294,14 @@
       </div>
    </div>
 
-		
+	   <footer class="footer" style = "margin-top: -12px;  width: 100%;" >
+      <div class="container" style = "width: 100%; text-align: left; padding: 0px; ">
+      <span style = "font-size: 13px; color: #79cce5;"><a style = "color: #79cce5;"  href = "${createLink(controller: 'ShouldI', action: 'privacyPolicy')}"  >Privacy Policy</a> | </span>
+      <span style = "font-size: 13px; color: #79cce5;"><a style = "color: #79cce5;" href = "${createLink(controller: 'ShouldI', action: 'help')}"  >How To</a> | </span>
+      <span style = "font-size: 13px; color: #79cce5;"><a style = "color: #79cce5;" href = "${createLink(controller: 'ShouldI', action: 'aboutPollaris')}">Pollaris LLC</a></span>   
+      </div>   
+  	  </footer>	
+	
     </div><!-- /.container -->
 
 

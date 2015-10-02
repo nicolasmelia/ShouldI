@@ -142,9 +142,15 @@ class ShouldIController {
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.MONTH, -1);
 		Date date = cal.getTime();
-		def questions = Question.executeQuery("FROM Question a WHERE a.category != 'Hot or Not' AND date > ? ORDER BY RANDOM()", [date], [max: 15])
+		def questions = Question.executeQuery("FROM Question a WHERE a.category != 'Hot or Not' AND date > ? ORDER BY RAND()", [date], [max: 15])
 		return questions	
 	}
+	
+	def thisIsNotGood() {
+		render (view:"errorPage404")
+	}
+	
+	
 	
 	
 }

@@ -104,8 +104,8 @@ expressionOut.print(createLink(controller: 'Question', action: 'askShouldICustom
 printHtmlPart(38)
 createTagBody(2, {->
 printHtmlPart(39)
-for( _it471395945 in (categories) ) {
-changeItVariable(_it471395945)
+for( _it130529255 in (categories) ) {
+changeItVariable(_it130529255)
 printHtmlPart(40)
 expressionOut.print(it.category)
 printHtmlPart(41)
@@ -120,26 +120,32 @@ printHtmlPart(45)
 })
 invokeTag('form','g',208,['controller':("Question"),'action':("postShouldI"),'enctype':("multipart/form-data")],2)
 printHtmlPart(46)
-expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
+expressionOut.print(createLink(controller: 'ShouldI', action: 'privacyPolicy'))
 printHtmlPart(47)
-expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
+expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
 printHtmlPart(48)
-invokeTag('resource','g',252,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput-angular.js")],-1)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'aboutPollaris'))
 printHtmlPart(49)
-invokeTag('resource','g',253,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.js")],-1)
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
 printHtmlPart(50)
-invokeTag('resource','g',254,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.css")],-1)
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
 printHtmlPart(51)
-})
-invokeTag('captureBody','sitemesh',395,['style':("background-color: #f4f4f4; min-width: 330px; ")],1)
+invokeTag('resource','g',261,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput-angular.js")],-1)
 printHtmlPart(52)
+invokeTag('resource','g',262,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.js")],-1)
+printHtmlPart(53)
+invokeTag('resource','g',263,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.css")],-1)
+printHtmlPart(54)
+})
+invokeTag('captureBody','sitemesh',404,['style':("background-color: #f4f4f4; min-width: 330px; ")],1)
+printHtmlPart(55)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1443630891717L
+public static final long LAST_MODIFIED = 1443718286922L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

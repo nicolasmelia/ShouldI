@@ -76,7 +76,7 @@ class QuestionController {
 			 "peopleReached" : user.peopleReached, "opQuestionCount" : opQuestionCount, "notifyCount": getNotifyCount(), "favorite": favorite])
 		
 		} else {
-		render "Error finding this question"
+			showErrorPage()
 		}
 	}
 	
@@ -98,7 +98,7 @@ class QuestionController {
 			def categories = Category.findAll()
 			render(view: "askShouldi", model:[ "notifyCount": getNotifyCount(), "categories" : categories ])
 		} else {
-			render "Please log in bitch"
+			showErrorPage()
 		}
 	}        
 	
@@ -178,7 +178,7 @@ class QuestionController {
 			def categories = Category.findAll()
 			render(view: "askshouldiCustom", model:[ "notifyCount": getNotifyCount(), "categories" : categories ])
 		} else {
-			render "Please log in bitch"
+			showErrorPage()
 		}
 	}
 	
@@ -528,10 +528,10 @@ class QuestionController {
 		// ******** Half from this category and half from other categories **********
 		
 		// From this category
-		def questionSet1 = Question.executeQuery("FROM Question a WHERE a.category = ? AND date > ? AND a.questionID <> ? ORDER BY RANDOM()", [category, date, questionID], [max: 5])
+		def questionSet1 = Question.executeQuery("FROM Question a WHERE a.category = ? AND date > ? AND a.questionID <> ? ORDER BY RAND()", [category, date, questionID], [max: 5])
 		
 		// Random from other categories
-		def questionSet2 = Question.executeQuery("FROM Question a WHERE a.category != 'Hot or Not' AND date > ? AND a.questionID <> ? ORDER BY RANDOM()", [date, questionID], [max: 5])
+		def questionSet2 = Question.executeQuery("FROM Question a WHERE a.category != 'Hot or Not' AND date > ? AND a.questionID <> ? ORDER BY RAND()", [date, questionID], [max: 5])
 		
 		// List of id's to not allow duplicates
 		ArrayList<String> questionIds = new ArrayList<String>()
@@ -563,7 +563,7 @@ class QuestionController {
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.MONTH, -1);
 		Date date = cal.getTime();
-		def question = Question.executeQuery("FROM Question a WHERE a.category = ? AND date > ? ORDER BY RANDOM()", [params.category, date], [max: 1])
+		def question = Question.executeQuery("FROM Question a WHERE a.category = ? AND date > ? ORDER BY RAND()", [params.category, date], [max: 1])
 		redirect(action: "shouldi", params: [id: question[0].questionID])
 	}
 	
@@ -592,6 +592,10 @@ class QuestionController {
 		} catch (Exception ex) {
 			// Do nothing
 		}
-	} 
+	}
+	
+	def showErrorPage() {
+		redirect(controller: "shouldI", action: "thisIsNotGood")
+	}
 	
 } 

@@ -116,8 +116,8 @@ expressionOut.print(createLink(controller: 'shouldI', action: 'category', params
 printHtmlPart(40)
 expressionOut.print(createLink(controller: 'shouldI', action: 'category', params: [category: 'Recent']))
 printHtmlPart(41)
-for( _it1140684760 in (categories) ) {
-changeItVariable(_it1140684760)
+for( _it1148798076 in (categories) ) {
+changeItVariable(_it1148798076)
 printHtmlPart(42)
 expressionOut.print(createLink(controller: 'shouldI', action: 'category', params: [category: it.category]))
 printHtmlPart(43)
@@ -141,8 +141,8 @@ if(true && (questions.isEmpty())) {
 printHtmlPart(52)
 }
 printHtmlPart(53)
-for( _it1519451306 in (questions) ) {
-changeItVariable(_it1519451306)
+for( _it2100125580 in (questions) ) {
+changeItVariable(_it2100125580)
 printHtmlPart(54)
 expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
 printHtmlPart(55)
@@ -173,20 +173,26 @@ printHtmlPart(67)
 createClosureForHtmlPart(68, 2)
 invokeTag('link','g',218,['action':("category"),'params':([offset: offset, up: 'true', category: category, categorySort: categorySort]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
 printHtmlPart(69)
-expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
+expressionOut.print(createLink(controller: 'ShouldI', action: 'privacyPolicy'))
 printHtmlPart(70)
-expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
+expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
 printHtmlPart(71)
-})
-invokeTag('captureBody','sitemesh',291,['style':("margin-bottom: 20px; min-width: 320px;  ")],1)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'aboutPollaris'))
 printHtmlPart(72)
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
+printHtmlPart(73)
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
+printHtmlPart(74)
+})
+invokeTag('captureBody','sitemesh',299,['style':("margin-bottom: 20px; min-width: 320px;  ")],1)
+printHtmlPart(75)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1443631811705L
+public static final long LAST_MODIFIED = 1443717924585L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

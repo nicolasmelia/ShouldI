@@ -125,8 +125,8 @@ expressionOut.print(messageTitle)
 printHtmlPart(45)
 expressionOut.print(raw(messageText))
 printHtmlPart(46)
-for( _it306370923 in (trendingQuestions) ) {
-changeItVariable(_it306370923)
+for( _it748741486 in (trendingQuestions) ) {
+changeItVariable(_it748741486)
 printHtmlPart(47)
 expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
 printHtmlPart(48)
@@ -151,8 +151,8 @@ expressionOut.print(it.totalViews)
 printHtmlPart(57)
 }
 printHtmlPart(58)
-for( _it785249576 in (randomQuestions) ) {
-changeItVariable(_it785249576)
+for( _it1615272740 in (randomQuestions) ) {
+changeItVariable(_it1615272740)
 printHtmlPart(59)
 expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
 printHtmlPart(60)
@@ -175,20 +175,26 @@ expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceB
 printHtmlPart(68)
 expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
 printHtmlPart(69)
-expressionOut.print(yesCount)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'privacyPolicy'))
 printHtmlPart(70)
-expressionOut.print(noCount)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
 printHtmlPart(71)
-})
-invokeTag('captureBody','sitemesh',329,['style':("background-color: #F6F6F6!important; background-image:url('${resource(dir: "images", file: "wall1.jpg")}'); margin-bottom: 20px; background-size: cover;  background-attachment: fixed; min-width: 320px;  ")],1)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'aboutPollaris'))
 printHtmlPart(72)
+expressionOut.print(yesCount)
+printHtmlPart(73)
+expressionOut.print(noCount)
+printHtmlPart(74)
+})
+invokeTag('captureBody','sitemesh',327,['style':("background-color: #F6F6F6!important; background-image:url('${resource(dir: "images", file: "wall1.jpg")}'); margin-bottom: 20px; background-size: cover;  background-attachment: fixed; min-width: 320px;  ")],1)
+printHtmlPart(75)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1443576831066L
+public static final long LAST_MODIFIED = 1443718429236L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

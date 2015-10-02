@@ -282,8 +282,8 @@ expressionOut.print(createLink(controller: 'Question', action: 'nextInCat', para
 printHtmlPart(110)
 expressionOut.print(question.category)
 printHtmlPart(111)
-for( _it1480931687 in (questionPromo1) ) {
-changeItVariable(_it1480931687)
+for( _it1684242414 in (questionPromo1) ) {
+changeItVariable(_it1684242414)
 printHtmlPart(112)
 expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
 printHtmlPart(113)
@@ -304,26 +304,32 @@ printHtmlPart(118)
 printHtmlPart(119)
 expressionOut.print(questionID)
 printHtmlPart(120)
-expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
+expressionOut.print(createLink(controller: 'ShouldI', action: 'privacyPolicy'))
 printHtmlPart(121)
-expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
+expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
 printHtmlPart(122)
-invokeTag('javascript','g',449,['src':("dataAccess.js")],-1)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'aboutPollaris'))
 printHtmlPart(123)
-invokeTag('resource','g',450,['dir':("js"),'file':("bootstrap.min.js")],-1)
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
 printHtmlPart(124)
-invokeTag('javascript','g',451,['src':("buttonAnswerGlow.js")],-1)
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
 printHtmlPart(125)
+invokeTag('javascript','g',449,['src':("dataAccess.js")],-1)
+printHtmlPart(126)
+invokeTag('resource','g',450,['dir':("js"),'file':("bootstrap.min.js")],-1)
+printHtmlPart(127)
+invokeTag('javascript','g',451,['src':("buttonAnswerGlow.js")],-1)
+printHtmlPart(128)
 })
 invokeTag('captureBody','sitemesh',536,['style':(" margin-bottom: 20px;  ")],1)
-printHtmlPart(126)
+printHtmlPart(129)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1443658299348L
+public static final long LAST_MODIFIED = 1443718380049L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'
