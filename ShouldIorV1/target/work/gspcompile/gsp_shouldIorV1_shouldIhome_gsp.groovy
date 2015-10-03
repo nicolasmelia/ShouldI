@@ -125,8 +125,8 @@ expressionOut.print(messageTitle)
 printHtmlPart(45)
 expressionOut.print(raw(messageText))
 printHtmlPart(46)
-for( _it566860479 in (trendingQuestions) ) {
-changeItVariable(_it566860479)
+for( _it865088580 in (trendingQuestions) ) {
+changeItVariable(_it865088580)
 printHtmlPart(47)
 expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
 printHtmlPart(48)
@@ -151,8 +151,8 @@ expressionOut.print(it.totalViews)
 printHtmlPart(57)
 }
 printHtmlPart(58)
-for( _it1836018857 in (randomQuestions) ) {
-changeItVariable(_it1836018857)
+for( _it1632218606 in (randomQuestions) ) {
+changeItVariable(_it1632218606)
 printHtmlPart(59)
 expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
 printHtmlPart(60)

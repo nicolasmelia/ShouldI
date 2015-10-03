@@ -116,8 +116,8 @@ expressionOut.print(createLink(controller: 'shouldI', action: 'category', params
 printHtmlPart(40)
 expressionOut.print(createLink(controller: 'shouldI', action: 'category', params: [category: 'Recent']))
 printHtmlPart(41)
-for( _it1148798076 in (categories) ) {
-changeItVariable(_it1148798076)
+for( _it2061719835 in (categories) ) {
+changeItVariable(_it2061719835)
 printHtmlPart(42)
 expressionOut.print(createLink(controller: 'shouldI', action: 'category', params: [category: it.category]))
 printHtmlPart(43)
@@ -141,8 +141,8 @@ if(true && (questions.isEmpty())) {
 printHtmlPart(52)
 }
 printHtmlPart(53)
-for( _it2100125580 in (questions) ) {
-changeItVariable(_it2100125580)
+for( _it1737837937 in (questions) ) {
+changeItVariable(_it1737837937)
 printHtmlPart(54)
 expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
 printHtmlPart(55)

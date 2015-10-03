@@ -8,7 +8,6 @@
 /shouldiorv1/
 /spring/
 /uglifyjs/
-/DefaultCacheConfig$_run_closure1.class
 /AssetPipelineBootStrap$_closure1.class
 /AssetPipelineBootStrap.class
 /AssetUrlMappings$__clinit__closure1.class
@@ -44,6 +43,7 @@
 /DataSource.class
 /DbdocUrlMappings$__clinit__closure1.class
 /DbdocUrlMappings.class
+/DefaultCacheConfig$_run_closure1.class
 /DefaultCacheConfig$_run_closure1_closure2.class
 /DefaultCacheConfig$_run_closure1_closure3.class
 /DefaultCacheConfig.class

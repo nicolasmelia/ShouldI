@@ -138,7 +138,7 @@
                      <tr style = "display:block; max-height: 105px; width: 100%; margin-top: 0px; ">
                         <td style = "min-width: 125px;  height: 100%; text-align:center; vertical-align:top; ">
                            <g:if test="${it.answerOneImage}">
-                              <img  style = "max-width:110px; max-height:100px; width: auto; height: auto; margin: auto;   padding: 0px;"    src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1'])}"/>	
+                              <img  style = "max-width:110px; max-height:100px; width: auto; height: auto; margin: auto;   padding: 0px;"    src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1', thumb: 'True'])}"/>	
                            </g:if>
                            <g:else>
                               <img  style = "max-width:110px; max-height:100px; width: auto; height: auto; margin: auto;   padding: 0px;  " src="${resource(dir:'images',file:'noImg.png')}"  />	

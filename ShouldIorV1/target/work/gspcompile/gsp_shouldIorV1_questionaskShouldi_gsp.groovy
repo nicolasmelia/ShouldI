@@ -104,8 +104,8 @@ expressionOut.print(createLink(controller: 'Question', action: 'askShouldICustom
 printHtmlPart(38)
 createTagBody(2, {->
 printHtmlPart(39)
-for( _it959718932 in (categories) ) {
-changeItVariable(_it959718932)
+for( _it649932157 in (categories) ) {
+changeItVariable(_it649932157)
 printHtmlPart(40)
 expressionOut.print(it.category)
 printHtmlPart(41)

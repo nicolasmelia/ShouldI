@@ -173,9 +173,9 @@ printHtmlPart(68)
 printHtmlPart(69)
 expressionOut.print(question.questionTitle)
 printHtmlPart(70)
-if(true && (question.custom.toString().equals('false'))) {
+if(true && (question.custom == false)) {
 printHtmlPart(71)
-if(true && (question.answerOneImage)) {
+if(true && (question.answerOneImage == true)) {
 printHtmlPart(72)
 expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: question.questionID, imgNum: '1']))
 printHtmlPart(73)
@@ -282,8 +282,8 @@ expressionOut.print(createLink(controller: 'Question', action: 'nextInCat', para
 printHtmlPart(110)
 expressionOut.print(question.category)
 printHtmlPart(111)
-for( _it948070788 in (questionPromo1) ) {
-changeItVariable(_it948070788)
+for( _it2086582412 in (questionPromo1) ) {
+changeItVariable(_it2086582412)
 printHtmlPart(112)
 expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
 printHtmlPart(113)
@@ -329,7 +329,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1443826971913L
+public static final long LAST_MODIFIED = 1443890898296L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

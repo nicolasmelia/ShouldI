@@ -179,7 +179,7 @@
                <tr class = 'imgTR'>
                   <td class = 'imgTD'>
                      <g:if test="${it.answerOneImage}">
-                        <img  class = "SmallViewImg" src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1'])}" />	
+                        <img  class = "SmallViewImg" src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1', thumb: 'True'])}" />	
                      </g:if>
                      <g:else>
                         <img  class = "SmallViewImg"  src="${resource(dir:'images',file:'noImg.png')}"  />	

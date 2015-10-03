@@ -210,10 +210,10 @@
                   <span id = "titleText" style = 'text-align: center; margin: center; margin-top: 0px; padding: 0px 8px 0 8px; color: #545252; font-size: 20px; display: block;' >${question.questionTitle}</span>
                   <hr style = "margin-top: 8px; width: 85%; margin-bottom: 0px; padding-top: 0px;">
 
-                  <g:if test="${question.custom.toString().equals('false')}">
-                  		<g:if test="${question.answerOneImage}">
+                  <g:if test="${question.custom == false}">
+                  		<g:if test="${question.answerOneImage == true}">
 	                  <div id = "ee" style = "margin-bottom: 30px; padding: 15px;  margin: auto; margin-top: 20px;  width: 50%; min-width: 290px; max-width: 330px; mag-height: 100px; background-color: #F4FAFF; display: block;" >
-	                     <img id="singleImg" src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: question.questionID, imgNum: '1'])}"   style ="display: block;  width: 95%;  height: 80%; margin: auto;" alt="UhOh! We cant seem to load the image." />
+	                     <img id="singleImg" src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: question.questionID, imgNum: '1', thumb: 'False'])}"   style ="display: block;  width: 95%;  height: 80%; margin: auto;" alt="UhOh! We cant seem to load the image." />
 	                  </div>
                 	  </g:if>
                   </g:if>
@@ -221,8 +221,8 @@
                   
                   <div style = "padding: 15px; width: 98%; overflow-y: hidden; margin:auto; padding-top: 18px;   display: block;">
                    <div style = "margin: 0px; padding: 0px; width: 100%;" id = "questiontText">
-                     ${raw(question.question)}		           
-                    </div>
+                     ${raw(question.question)}	    
+                     </div>
                      
                   </div>
                   
@@ -248,7 +248,7 @@
 				  <tr style = "height: 100%; width: 50%; margin-top: 5px; ">		  
 				  <td id = "img1"  onClick = "questionVote('1')" style = "height: 100%; width: 50%; text-align: center; border-right: solid 1px #F0F0E1;  " >
 						<g:if test="${question.answerOneImage  == true}">
-							<img  src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: question.questionID, imgNum: '1'])}"  style = "width: 55%; padding: 10px 4px 10px 4px; min-width: 150px; "/>
+							<img  src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: question.questionID, imgNum: '1', thumb: 'False'])}"  style = "width: 55%; padding: 10px 4px 10px 4px; min-width: 150px; "/>
 						</g:if>
 						<g:elseif test="${hasQuestionImage.toString().equals('true')}">
 							<img  src="${resource(dir:'images',file:'noImg.png')}" style = "width: 55%; padding: 10px 4px 10px 4px; min-width: 150px; "/>
@@ -257,7 +257,7 @@
 					
 				  <td id = "img2" onClick = "questionVote('2')" style = "height: 100%; width: 50%; text-align: center;" >
 						<g:if test="${question.answerTwoImage  == true}">
-							<img  src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: question.questionID, imgNum: '2'])}"  style = "width: 55%; padding: 10px 4px 10px 4px; min-width: 150px; "/>
+							<img  src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: question.questionID, imgNum: '2', thumb: 'False'])}"  style = "width: 55%; padding: 10px 4px 10px 4px; min-width: 150px; "/>
 						</g:if>
 						<g:elseif test="${hasQuestionImage.toString().equals('true')}">						
 							<img  src="${resource(dir:'images',file:'noImg.png')}" style = "width: 55%; padding: 10px 4px 10px 4px; min-width: 150px; "/>
@@ -320,7 +320,7 @@
 				 <g:if test="${question.answerThree}">
 				  <td id = "img3" onClick = "questionVote('3')" style = "height: 100%; width: 50%; text-align: center;  " >
 						<g:if test="${question.answerThreeImage == true}">
-							<img  src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: question.questionID, imgNum: '3'])}"  style = "width: 55%; max-width: 250px; padding: 10px 4px 10px 4px; min-width: 150px; "/>
+							<img  src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: question.questionID, imgNum: '3', thumb: 'False'])}"  style = "width: 55%; max-width: 250px; padding: 10px 4px 10px 4px; min-width: 150px; "/>
 						</g:if>
 						<g:elseif test="${hasQuestionImage.toString().equals('true')}">
 							<img  src="${resource(dir:'images',file:'noImg.png')}" style = "width: 55%; padding: 10px 4px 10px 4px; min-width: 150px; "/>
@@ -331,7 +331,7 @@
 				 <g:if test="${question.answerFour}">
 				  <td id = "img4" onClick = "questionVote('4')" style = "height: 100%; width: 50%; text-align: center; border-left: solid 1px #F0F0E1; " >
 						<g:if test="${question.answerFourImage  == true}">
-							<img  src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: question.questionID, imgNum: '4'])}"  style = "width: 55%; padding: 10px 4px 10px 4px; min-width: 150px; "/>
+							<img  src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: question.questionID, imgNum: '4', thumb: 'False'])}"  style = "width: 55%; padding: 10px 4px 10px 4px; min-width: 150px; "/>
 						</g:if> 
 						<g:elseif test="${hasQuestionImage.toString().equals('true')}">
 							<img  src="${resource(dir:'images',file:'noImg.png')}" style = "width: 55%; padding: 10px 4px 10px 4px; min-width: 150px; "/>
@@ -390,7 +390,7 @@
                   <div style = "overflow: hidden; text-align: center; " onmouseover="glow(this)" onmouseout="unGlow(this)"  onClick = "loadQuestionURL('${createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID])}')"  class="col-xs-6 col-md-4">
                      <div  class="row" style = "cursor: default; ">
                         <g:if test="${it.answerOneImage}">
-                           <img class = "bigViewImg"  src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1'])}"  />	
+                           <img class = "bigViewImg"  src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1', thumb: 'True'])}"  />	
                         </g:if>
                         <g:else>
                            <img  class = "bigViewImg" src="${resource(dir:'images',file:'noImg.png')}"  />	

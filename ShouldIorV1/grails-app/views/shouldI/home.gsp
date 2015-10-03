@@ -157,7 +157,7 @@
                <tr class = 'imgTR'>
                   <td class = 'imgTD'>
                      <g:if test="${it.answerOneImage}">
-                        <img  class = "SmallViewImg" src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1'])}" />	
+                        <img  class = "SmallViewImg" src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1', thumb: 'True'])}" />	
                      </g:if>
                      <g:else>
                         <img  class = "SmallViewImg"  src="${resource(dir:'images',file:'noImg.png')}"  />	
@@ -199,7 +199,7 @@
                   <div style = "overflow: hidden; text-align: center; " onmouseover="glow(this)" onmouseout="unGlow(this)"  onClick = "loadQuestionURL('${createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID])}')"  class="col-xs-6 col-md-4">
                      <div  class="row" style = "cursor: default; ">
                         <g:if test="${it.answerOneImage}">
-                           <img class = "bigViewImg"  src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1'])}" />	
+                           <img class = "bigViewImg"  src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1', thumb: 'True'])}" />	
                         </g:if>
                         <g:else>
                            <img  class = "bigViewImg" src="${resource(dir:'images',file:'noImg.png')}"  />	

@@ -1,6 +1,13 @@
 package shouldiorv1
 
+import java.awt.Color
+import java.awt.image.BufferedImage
+import java.awt.image.DataBufferByte
 import java.util.Date;
+import javax.imageio.*
+import org.apache.commons.io.IOUtils
+import org.imgscalr.*
+import org.omg.CORBA.portable.ApplicationException
 
 class QuestionController {
 	// This allows us to config database from url
@@ -120,7 +127,6 @@ class QuestionController {
 		question.custom = false
 		question.yesOrNo = true // This is a YES/NO question
 		
-		print params.anonymous + ": ddd"
 		if (params.anonymous != null) {
 			question.anonymous = true
 		} else {
@@ -142,12 +148,12 @@ class QuestionController {
 		question.answerOne = params.answerOne
 		question.answerTwo = params.answerOne
 		
-		if (params.image1 != null) {
-			def f = request.getFile('image1')
-			saveImage(question.questionID, 1, f.bytes)
+		def f = request.getFile('image1')
+		if (f.bytes.length > 0) {
+			saveImage(question.questionID, 1, f)
 			question.answerOneImage = true	
-		}
-	
+		}  
+		
 		question.answerOneVotes = 0
 		question.answerTwoVotes = 0
 		
@@ -227,16 +233,16 @@ class QuestionController {
 		question.answerOneVotes = 0
 		question.answerTwoVotes = 0
 		
-		if (params.image1 != null) {
-			def f = request.getFile('image1')
-				saveImage(question.questionID, 1, f.bytes)
+		def f1 = request.getFile('image1')
+			if (f1.bytes.length > 0) {
+				saveImage(question.questionID, 1, f1)
 				question.answerOneImage = true
 		}
 		
 		
-		if (params.image2 != null) {
-			def f = request.getFile('image2')
-				saveImage(question.questionID, 2, f.bytes)
+		def f2 = request.getFile('image2')
+			if (f2.bytes.length > 0) {
+				saveImage(question.questionID, 2, f2)
 				question.answerTwoImage = true
 				
 		}
@@ -244,9 +250,9 @@ class QuestionController {
 		
 		if (params.answerThree != null) {
 			question.answerThree = params.answerThree
-			if (params.image3 != null) {
-				def f = request.getFile('image3')
-				saveImage(question.questionID, 3, f.bytes)
+			def f3 = request.getFile('image3')
+			if (f3.bytes.length > 0) {
+				saveImage(question.questionID, 3, f3)
 				question.answerThreeImage = true
 				
 			}
@@ -256,9 +262,9 @@ class QuestionController {
 		
 		if (params.answerFour != null) {
 			question.answerFour = params.answerFour
-			if (params.image4 != null) {
-				def f = request.getFile('image4')
-				saveImage(question.questionID, 4, f.bytes)
+			def f4 = request.getFile('image4')
+			if (f4.bytes.length > 0) {
+				saveImage(question.questionID, 4, f4)
 				question.answerFourImage = true
 				
 			}
@@ -282,9 +288,22 @@ class QuestionController {
 	
 	// ********************* Get answer image by ID and numset *********************
 	def getAnswerImageById() {
-		// param is split by question id then number of question using :
-				response.outputStream << Image.findByQuestionIDAndAnswerNum(params.id, Integer.parseInt(params.imgNum)).image  // write the photo to the outputstream
+		try {
+			if (params.thumb.equals("True")) {
+				// get image thumbnail
+				response.outputStream << QuestionImage.findByQuestionIDAndAnswerNum(params.id, Integer.parseInt(params.imgNum)).imageThumbNail  // write the photo to the outputstream
 				response.outputStream.flush()
+			} else if (params.thumb.equals("False"))  {
+				// get full image 
+				response.outputStream << QuestionImage.findByQuestionIDAndAnswerNum(params.id, Integer.parseInt(params.imgNum)).image  // write the photo to the outputstream
+				response.outputStream.flush()
+			} else {
+				// Return nothing
+			}
+		}
+		catch(Exception ex) {
+			// Return nothing			
+		}
 	} 
 		
 	def addToFavorites() {
@@ -590,14 +609,33 @@ class QuestionController {
 		redirect(controller: "shouldI", action: "thisIsNotGood")
 	}
 	
-	def saveImage(questionID, answerNum, imageBytes){
-		Image image = new Image()
+	def saveImage(questionID, answerNum, imgFile){
+
+		// ************ Save full size image ************
+		QuestionImage image = new QuestionImage()
 		image.questionID = questionID
 		image.answerNum = answerNum
-		image.image = imageBytes
+		image.image = imgFile.bytes
+			
+		// ************ Create the thumbnail ************
+		ByteArrayInputStream bais = new ByteArrayInputStream(imgFile.bytes);
+		BufferedImage orginalImage = ImageIO.read(bais)
+		
+		BufferedImage thumbnail =
+			Scalr.resize(orginalImage, Scalr.Method.BALANCED, Scalr.Mode.FIT_TO_WIDTH,
+			150, 150, Scalr.OP_ANTIALIAS);
+
+		String fileExt = imgFile.originalFilename.toString().substring(imgFile.originalFilename.lastIndexOf(".") + 1).replace(".", "");		 
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		ImageIO.write(thumbnail, fileExt, baos);
+		byte[] thumbNailbytes = baos.toByteArray();		 
+		image.imageThumbNail = thumbNailbytes
+
+		// ************ Save the image to the DB ************
 		image.save(flush:true)
+		
 	}
-	
+
 	
 	
 } 
