@@ -2,7 +2,7 @@ package shouldiorv1
 
 class CategoryController {
 
-	static scaffold = true
+	//static scaffold = true
 	
 	def addCategory() {
 		render(view:"addCategory")	

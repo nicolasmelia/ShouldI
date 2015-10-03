@@ -277,7 +277,7 @@
 		});
 	  
       function glow(id) {
-    	  $(id).css("background-color","#F7FBFF");
+    	  $(id).css("background-color","rgba(80,185,255,0.05)");
       }
          
       function unGlow(id) {

@@ -9,7 +9,7 @@ import org.apache.commons.compress.utils.*;
 
 class UserController {
 	// This allows us to config database from url
-	static scaffold = true
+	//static scaffold = true
 
 	
 		def myProfile() {	
@@ -140,6 +140,7 @@ class UserController {
 	
 	
 	def getProfileImage() {
+	try {
 		User user = User.findByUserID(params.id);	
 		if (user != null) {
 			if (user.avatar != null) {
@@ -158,8 +159,13 @@ class UserController {
 			
 		} else {
 			// Render no profile image	
-		print "OUCH"
+			response.outputStream << grailsAttributes.getApplicationContext().getResource("images/blankAv.png").getFile().bytes
+			response.outputStream.flush()
 		}		
+	} catch (Exception ex) {
+		response.outputStream << grailsAttributes.getApplicationContext().getResource("images/blankAv.png").getFile().bytes
+		response.outputStream.flush()
+	}
 	}
 	
 	def ImgURLToByte(String urlString) {

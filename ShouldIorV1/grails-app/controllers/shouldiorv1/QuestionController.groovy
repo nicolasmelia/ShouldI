@@ -3,27 +3,26 @@ package shouldiorv1
 import java.util.Date;
 
 class QuestionController {
-	
 	// This allows us to config database from url
-	static scaffold = true
+	//static scaffold = true
 	
 	// View of a single question with comments
 	def shouldi(String questionID) {
 		
 		def question = Question.findByQuestionID(params.id)
 		
-		if (question != null ) {	
+		if (question != null ) {
 			
 			String percentDif = (calcHighDiffPercent(question)).toString().replace(".", "")
 			
 			String vote = "NONE"
-			if (session["userID"] != null)	{	
+			if (session["userID"] != null)	{
 				// Did they vote on this question?
 				def votes = Vote.findByUserIDAndItemID(session["userID"], question.questionID)
 				if (votes !=null) {
-					vote = votes.vote + ""	
-				} 
-			} 
+					vote = votes.vote + ""
+				}
+			}
 		
 		// add one to the OPs view count
 		User user = User.findByUserID(question.UserID)
@@ -35,7 +34,7 @@ class QuestionController {
 				user.save(flush:true)
 			}
 		} catch (Exception ex) {
-			// Do nothing. User is either deleted or banned. 
+			// Do nothing. User is either deleted or banned.
 		}
 		
 		question.totalViews = question.totalViews + 1
@@ -48,7 +47,7 @@ class QuestionController {
 		} else if (question.answerTwoImage) {
 			hasQuestionImage = true;
 		} else if (question.answerThreeImage) {
-			hasQuestionImage = true;	
+			hasQuestionImage = true;
 		} else if (question.answerFourImage) {
 			hasQuestionImage = true;
 		}
@@ -60,7 +59,7 @@ class QuestionController {
 			 favorite = Favorite.findByUserIDAndQuestionID(session["userID"], question.questionID)
 			// Check if this is the viewing users own post
 			if (session["userID"].toString().matches(question.userID)) {
-				thisUserPost = true		
+				thisUserPost = true
 			}
 		}
 		
@@ -87,7 +86,7 @@ class QuestionController {
 		// Return a max of 10 comments, offset returns starting at palce 0, sort by votes desc
 		def comments = Comment.findAllByQuestionID(params.id, [max: 10, offset: 0, sort: "upVotes", order: "desc"])
 		render(view: "shouldi", model: ["question": question, "comments": comments])
-	}	
+	}
 	
 	
 	// ********************* ASK SHOULD I *********************
@@ -100,9 +99,9 @@ class QuestionController {
 		} else {
 			showErrorPage()
 		}
-	}        
+	}
 	
-	def postShouldI () { 
+	def postShouldI () {
 		Question question = new Question()
 
 		// Generate a unique ID
@@ -116,12 +115,12 @@ class QuestionController {
 				question.questionID = halfUUID
 				break;
 			 }
-		} 
+		}
 	
 		question.custom = false
 		question.yesOrNo = true // This is a YES/NO question
 		
-		print params.anonymous + ": ddd" 
+		print params.anonymous + ": ddd"
 		if (params.anonymous != null) {
 			question.anonymous = true
 		} else {
@@ -145,7 +144,8 @@ class QuestionController {
 		
 		if (params.image1 != null) {
 			def f = request.getFile('image1')
-				question.answerOneImage = f.bytes
+			saveImage(question.questionID, 1, f.bytes)
+			question.answerOneImage = true	
 		}
 	
 		question.answerOneVotes = 0
@@ -200,7 +200,7 @@ class QuestionController {
 		}
 		
 		question.custom = true // This is a custom question
-		question.yesOrNo = false 
+		question.yesOrNo = false
 		
 		if (params.anonymous != null) {
 			question.anonymous = params.anonymous
@@ -229,37 +229,44 @@ class QuestionController {
 		
 		if (params.image1 != null) {
 			def f = request.getFile('image1')
-				question.answerOneImage = f.bytes
+				saveImage(question.questionID, 1, f.bytes)
+				question.answerOneImage = true
 		}
 		
 		
 		if (params.image2 != null) {
 			def f = request.getFile('image2')
-				question.answerTwoImage = f.bytes
+				saveImage(question.questionID, 2, f.bytes)
+				question.answerTwoImage = true
+				
 		}
-		
+	
 		
 		if (params.answerThree != null) {
-			question.answerThree = params.answerThree	
+			question.answerThree = params.answerThree
 			if (params.image3 != null) {
 				def f = request.getFile('image3')
-					question.answerThreeImage = f.bytes
-			}		
+				saveImage(question.questionID, 3, f.bytes)
+				question.answerThreeImage = true
+				
+			}
 			
 			question.answerThreeVotes = 0
-		} 
+		}
 		
 		if (params.answerFour != null) {
 			question.answerFour = params.answerFour
 			if (params.image4 != null) {
 				def f = request.getFile('image4')
-					question.answerFourImage = f.bytes
-			}		
-			question.answerFourVotes = 0	
+				saveImage(question.questionID, 4, f.bytes)
+				question.answerFourImage = true
+				
+			}
+			question.answerFourVotes = 0
 		}
 		
 		question.totalVotes = 0
-		question.totalViews = 0	
+		question.totalViews = 0
 		question.totalComments = 0
 		question.opNotifyVoteCount = 0
 		question.userName = session["name"]
@@ -276,31 +283,16 @@ class QuestionController {
 	// ********************* Get answer image by ID and numset *********************
 	def getAnswerImageById() {
 		// param is split by question id then number of question using :
-		Question question = Question.findByQuestionID(params.id)
-		if (question != null) {
-			String imageSetNum = params.imgNum
-			if (imageSetNum.matches("1")) {
-                response.outputStream << question.answerOneImage  // write the photo to the outputstream  
-			} else if (imageSetNum.matches("2")) {
-				response.outputStream << question.answerTwoImage  // write the photo to the outputstream
-			} else if (imageSetNum.matches("3")) {
-				response.outputStream << question.answerThreeImage  // write the photo to the outputstream
-			} else if (imageSetNum.matches("4")) {
-			response.outputStream << question.answerFourImage  // write the photo to the outputstream
-			}
-			response.outputStream.flush() 
-		} else {
-			render "NONE"
-		}
-	}
-	
-
+				response.outputStream << Image.findByQuestionIDAndAnswerNum(params.id, Integer.parseInt(params.imgNum)).image  // write the photo to the outputstream
+				response.outputStream.flush()
+	} 
+		
 	def addToFavorites() {
 		// Adds question to logged in users favorites
 		if (session["userID"] != null) {
 			User user = User.findByUserID(session["userID"])
 			Favorite favoriteExist = Favorite.findByUserIDAndQuestionID(session["userID"], params.questionID)
-			if (!favoriteExist) {	
+			if (!favoriteExist) {
 				Favorite favorite = new Favorite();
 				favorite.questionID = params.questionID
 				favorite.userID = session["userID"]
@@ -309,13 +301,13 @@ class QuestionController {
 				render ("True")
 			} else if (favoriteExist) {
 				favoriteExist.delete(flush:true)
-				render ("Has")			
+				render ("Has")
 			} else {
 				render ("False")  // who knows
 			}
 		} else {
 			render ("False") // Not logged in
-		} 
+		}
 	}
 	
 	def questionVote() {
@@ -344,7 +336,7 @@ class QuestionController {
 				vote.userID = 'NOT_REQUIRED'
 			} else {
 				// Umm.. Something went wrong.
-				vote.userID = 'NOT_REQUIRED'		
+				vote.userID = 'NOT_REQUIRED'
 			}
 			
 			vote.itemID = params.questionID
@@ -397,41 +389,41 @@ class QuestionController {
 			// Get top asnwer
 			String topAnswer = getTopVote(question)
 			
-			render ("True" + ":" + percentDif + ":" + topAnswer + ":" + question.totalVotes + ":" + question.answerOneVotes + ":" + 
+			render ("True" + ":" + percentDif + ":" + topAnswer + ":" + question.totalVotes + ":" + question.answerOneVotes + ":" +
 				question.answerTwoVotes + ":" + question.answerThreeVotes + ":" + question.answerFourVotes  + ":")
 			
 			
 		} else {
 			// User already voted
 			render ("False" + ":" + "voted")
-		}	
+		}
 		
 		} else {
 			// Login required to vote
-			render ("False" + ":" + "login")	
+			render ("False" + ":" + "login")
 		}
 		
 		
 	}
 	
 	def calcHighDiffPercent (Question question) {
-		// Returns the highest percentage of the difference 
+		// Returns the highest percentage of the difference
 		if (question.totalVotes > 0) {
 			int diff
 			if (question.yesOrNo) {
 				int q1Per = Math.round((question.answerOneVotes / question.totalVotes * 100))
-				int q2Per = Math.round((question.answerTwoVotes / question.totalVotes * 100))		
+				int q2Per = Math.round((question.answerTwoVotes / question.totalVotes * 100))
 				if (q1Per > q2Per) {
-					diff = q1Per	
+					diff = q1Per
 				} else {
 					diff = q2Per
-				} 
-			} else {		
+				}
+			} else {
 				int q1Per = Math.round((question.answerOneVotes / question.totalVotes * 100))
 				int q2Per = Math.round((question.answerTwoVotes / question.totalVotes * 100))
 				
 				int q3Per
-				if (question.answerThreeVotes){	
+				if (question.answerThreeVotes){
 				q3Per = Math.round((question.answerThreeVotes / question.totalVotes * 100))
 				} else {
 				q3Per = 0;
@@ -442,7 +434,7 @@ class QuestionController {
 				q4Per = Math.round((question.answerFourVotes / question.totalVotes * 100))
 				} else {
 				q4Per = 0;
-				}				
+				}
 					
 				int q1q2diff
 				int q3q4diff
@@ -451,7 +443,7 @@ class QuestionController {
 					q1q2diff = q1Per
 				} else {
 					q1q2diff = q2Per
-				}	
+				}
 				
 				if (q3Per > q4Per) {
 					q3q4diff = q3Per
@@ -459,13 +451,13 @@ class QuestionController {
 					q3q4diff = q4Per
 				}
 				
-				if (q1q2diff > q3q4diff) {	
+				if (q1q2diff > q3q4diff) {
 					diff = q1q2diff
 				} else {
-					diff = q3q4diff	
-				}		
+					diff = q3q4diff
+				}
 						
-			}			
+			}
 			return diff
 			} else {
 			return 0
@@ -554,8 +546,8 @@ class QuestionController {
 			if (allowAdd) {
 				questionIds.add(question.questionID)
 				questions.add(question)
-			}			
-		}	
+			}
+		}
 		return questions
 		}
 	
@@ -584,7 +576,7 @@ class QuestionController {
 				 dh.hash = newHashCount + ""
 				 dh.save(flush:true)
 			 } else {
-			 	// No
+				 // No
 				 int newHashCount = Integer.parseInt(dh.hash2) + 1
 				 dh.hash2 = newHashCount + ""
 				 dh.save(flush:true)
@@ -597,5 +589,15 @@ class QuestionController {
 	def showErrorPage() {
 		redirect(controller: "shouldI", action: "thisIsNotGood")
 	}
+	
+	def saveImage(questionID, answerNum, imageBytes){
+		Image image = new Image()
+		image.questionID = questionID
+		image.answerNum = answerNum
+		image.image = imageBytes
+		image.save(flush:true)
+	}
+	
+	
 	
 } 

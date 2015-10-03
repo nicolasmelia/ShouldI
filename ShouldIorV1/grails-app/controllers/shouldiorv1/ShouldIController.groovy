@@ -20,11 +20,13 @@ class ShouldIController {
 		 noCount = dh.hash2
 		} 
 		
-		print yesCount
-		print noCount
-		
 		// get message of the day from hash
 		DataHash motd = DataHash.findByHashID("motd")
+		if (motd == null)  {
+			motd = new DataHash()
+			motd.hash = ""
+			motd.hash2 = ""
+		}
 		
 		render (view: "home", model: ["yesCount" : yesCount, "noCount" : noCount, "trendingQuestions": getPopularQuestions(), 
 			"randomQuestions": getRandomQuestions(), "notifyCount": getNotifyCount(),

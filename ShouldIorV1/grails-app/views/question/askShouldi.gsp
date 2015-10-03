@@ -20,7 +20,7 @@
 			
 	 <!-- facebook login -->
 	<g:javascript src="facebookLogin.js" />
-	<g:javascript src="dataRequest.js" />
+	<g:javascript src="dataAccess.js" />
 	
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
@@ -246,6 +246,26 @@
       </div>
    </div>
 
+  	     <!-- Loading Modal -->
+   <div class="modal fade" id="loadingSpinner" role="dialog"  data-backdrop="static" data-keyboard="false">
+      <div class="modal-dialog">
+         <!-- Modal content-->
+         <div class="modal-content">
+            <div class="modal-header">
+               <h4 class="modal-title"><span href="#about" style = "padding-left: 4px;" class='fa fa-bar-chart'> </span> Creating Your Poll.</h4>
+            </div>
+            <div class="modal-body">
+            
+            <div style = "width: 100%; text-align: center;">
+            <span style = "color: #61B7FE; font-size: 60px;" class="fa fa-spinner fa-pulse"></span>
+               <p id = "loadingText" style = "  margin: auto;  margin-top: 15px;width: 80%;"></p> 
+            
+            </div>
+            
+            </div>
+         </div>
+      </div>
+   </div>
 
 		
     </div><!-- /.container -->
@@ -379,6 +399,7 @@
 			return false;
 		} else {
 		// Validate success
+			displayLoadingSpinner();
 			return true; 
 		}	
 	}
@@ -387,6 +408,20 @@
       	window.location.href = url;
       }
 
+	function displayLoadingSpinner(){
+	$('#loadingSpinner').modal('show'); 
+	var saying = ["The last time I tried this the monkey didn't survive. Let's hope it works better this time.", 
+	"My other load screen is much faster. You should try that one instead.", 
+	"My other load screen is much faster. You should try that one instead.", 
+	"The bits are breeding.",
+	"Don't think of purple hippos.",
+	"at least you're not on hold...",
+	"Hum something loud while others stare.",
+	"QUIET! I'm trying to think here!"];
+	
+	$("#loadingText").text(saying[Math.floor(Math.random() * saying.length) + 0  ]);
+	
+	}
 	
 	</script>
 	

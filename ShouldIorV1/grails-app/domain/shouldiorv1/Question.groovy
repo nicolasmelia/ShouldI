@@ -28,10 +28,10 @@ class Question {
 	String answerFour
 	
 	// Image for answer
-	byte[] answerOneImage
-	byte[] answerTwoImage
-	byte[] answerThreeImage
-	byte[] answerFourImage
+	boolean answerOneImage
+	boolean answerTwoImage
+	boolean answerThreeImage
+	boolean answerFourImage
 	
 	// Votes for answers
 	int answerOneVotes
@@ -59,10 +59,10 @@ class Question {
 		opNotifyVoteCount(nullable:true)
 		deleted(nullable:true)
 		
-		answerOneImage(nullable:true, maxSize: 1024 * 1024 * 3 /* 2MB */)
-		answerTwoImage(nullable:true, maxSize: 1024 * 1024 * 3 /* 2MB */)
-		answerThreeImage(nullable:true, maxSize: 1024 * 1024 * 3 /* 2MB */)
-		answerFourImage(nullable:true, maxSize: 1024 * 1024 * 3 /* 2MB */)
+		answerOneImage(nullable:true)
+		answerTwoImage(nullable:true)
+		answerThreeImage(nullable:true)
+		answerFourImage(nullable:true)
 		
 		answerOne(nullable:true)
 		answerTwo(nullable:true)

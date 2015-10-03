@@ -6,7 +6,7 @@ class CommentController {
 
     def index() { }
 	
-	static scaffold = true
+	//static scaffold = true
 	
 	def postMainComment() {	
 		// Get the user creating the comment

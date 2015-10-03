@@ -189,7 +189,7 @@ expressionOut.print(topAnswer)
 printHtmlPart(77)
 if(true && (question.custom.toString().equals('true'))) {
 printHtmlPart(78)
-if(true && (question.answerOneImage)) {
+if(true && (question.answerOneImage  == true)) {
 printHtmlPart(79)
 expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: question.questionID, imgNum: '1']))
 printHtmlPart(80)
@@ -200,7 +200,7 @@ expressionOut.print(resource(dir:'images',file:'noImg.png'))
 printHtmlPart(82)
 }
 printHtmlPart(83)
-if(true && (question.answerTwoImage)) {
+if(true && (question.answerTwoImage  == true)) {
 printHtmlPart(79)
 expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: question.questionID, imgNum: '2']))
 printHtmlPart(80)
@@ -234,7 +234,7 @@ printHtmlPart(89)
 printHtmlPart(94)
 if(true && (question.answerThree)) {
 printHtmlPart(95)
-if(true && (question.answerThreeImage)) {
+if(true && (question.answerThreeImage == true)) {
 printHtmlPart(79)
 expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: question.questionID, imgNum: '3']))
 printHtmlPart(96)
@@ -249,7 +249,7 @@ printHtmlPart(97)
 printHtmlPart(98)
 if(true && (question.answerFour)) {
 printHtmlPart(99)
-if(true && (question.answerFourImage)) {
+if(true && (question.answerFourImage  == true)) {
 printHtmlPart(79)
 expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: question.questionID, imgNum: '4']))
 printHtmlPart(80)
@@ -282,8 +282,8 @@ expressionOut.print(createLink(controller: 'Question', action: 'nextInCat', para
 printHtmlPart(110)
 expressionOut.print(question.category)
 printHtmlPart(111)
-for( _it1684242414 in (questionPromo1) ) {
-changeItVariable(_it1684242414)
+for( _it948070788 in (questionPromo1) ) {
+changeItVariable(_it948070788)
 printHtmlPart(112)
 expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
 printHtmlPart(113)
@@ -329,7 +329,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1443718380049L
+public static final long LAST_MODIFIED = 1443826971913L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

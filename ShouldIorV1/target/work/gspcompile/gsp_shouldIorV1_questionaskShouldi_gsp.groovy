@@ -34,7 +34,7 @@ invokeTag('resource','g',19,['dir':("js"),'file':("bootstrap.min.js")],-1)
 printHtmlPart(6)
 invokeTag('javascript','g',22,['src':("facebookLogin.js")],-1)
 printHtmlPart(7)
-invokeTag('javascript','g',23,['src':("dataRequest.js")],-1)
+invokeTag('javascript','g',23,['src':("dataAccess.js")],-1)
 printHtmlPart(8)
 invokeTag('resource','g',35,['dir':("js/wysihtml5"),'file':("advanced.js")],-1)
 printHtmlPart(9)
@@ -104,8 +104,8 @@ expressionOut.print(createLink(controller: 'Question', action: 'askShouldICustom
 printHtmlPart(38)
 createTagBody(2, {->
 printHtmlPart(39)
-for( _it130529255 in (categories) ) {
-changeItVariable(_it130529255)
+for( _it959718932 in (categories) ) {
+changeItVariable(_it959718932)
 printHtmlPart(40)
 expressionOut.print(it.category)
 printHtmlPart(41)
@@ -130,14 +130,14 @@ expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceB
 printHtmlPart(50)
 expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
 printHtmlPart(51)
-invokeTag('resource','g',261,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput-angular.js")],-1)
+invokeTag('resource','g',281,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput-angular.js")],-1)
 printHtmlPart(52)
-invokeTag('resource','g',262,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.js")],-1)
+invokeTag('resource','g',282,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.js")],-1)
 printHtmlPart(53)
-invokeTag('resource','g',263,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.css")],-1)
+invokeTag('resource','g',283,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.css")],-1)
 printHtmlPart(54)
 })
-invokeTag('captureBody','sitemesh',404,['style':("background-color: #f4f4f4; min-width: 330px; ")],1)
+invokeTag('captureBody','sitemesh',439,['style':("background-color: #f4f4f4; min-width: 330px; ")],1)
 printHtmlPart(55)
 }
 public static final Map JSP_TAGS = new HashMap()
@@ -145,7 +145,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1443718286922L
+public static final long LAST_MODIFIED = 1443806072765L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

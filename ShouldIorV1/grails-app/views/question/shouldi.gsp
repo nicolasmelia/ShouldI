@@ -247,7 +247,7 @@
 				<g:if test="${question.custom.toString().equals('true')}">
 				  <tr style = "height: 100%; width: 50%; margin-top: 5px; ">		  
 				  <td id = "img1"  onClick = "questionVote('1')" style = "height: 100%; width: 50%; text-align: center; border-right: solid 1px #F0F0E1;  " >
-						<g:if test="${question.answerOneImage}">
+						<g:if test="${question.answerOneImage  == true}">
 							<img  src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: question.questionID, imgNum: '1'])}"  style = "width: 55%; padding: 10px 4px 10px 4px; min-width: 150px; "/>
 						</g:if>
 						<g:elseif test="${hasQuestionImage.toString().equals('true')}">
@@ -256,7 +256,7 @@
 					</td>
 					
 				  <td id = "img2" onClick = "questionVote('2')" style = "height: 100%; width: 50%; text-align: center;" >
-						<g:if test="${question.answerTwoImage}">
+						<g:if test="${question.answerTwoImage  == true}">
 							<img  src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: question.questionID, imgNum: '2'])}"  style = "width: 55%; padding: 10px 4px 10px 4px; min-width: 150px; "/>
 						</g:if>
 						<g:elseif test="${hasQuestionImage.toString().equals('true')}">						
@@ -319,7 +319,7 @@
 				  
 				 <g:if test="${question.answerThree}">
 				  <td id = "img3" onClick = "questionVote('3')" style = "height: 100%; width: 50%; text-align: center;  " >
-						<g:if test="${question.answerThreeImage}">
+						<g:if test="${question.answerThreeImage == true}">
 							<img  src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: question.questionID, imgNum: '3'])}"  style = "width: 55%; max-width: 250px; padding: 10px 4px 10px 4px; min-width: 150px; "/>
 						</g:if>
 						<g:elseif test="${hasQuestionImage.toString().equals('true')}">
@@ -330,7 +330,7 @@
 					
 				 <g:if test="${question.answerFour}">
 				  <td id = "img4" onClick = "questionVote('4')" style = "height: 100%; width: 50%; text-align: center; border-left: solid 1px #F0F0E1; " >
-						<g:if test="${question.answerFourImage}">
+						<g:if test="${question.answerFourImage  == true}">
 							<img  src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: question.questionID, imgNum: '4'])}"  style = "width: 55%; padding: 10px 4px 10px 4px; min-width: 150px; "/>
 						</g:if> 
 						<g:elseif test="${hasQuestionImage.toString().equals('true')}">
@@ -383,7 +383,7 @@
       <div style = "width: 100%; ">
          <div  class="contentContainer">
             <div class="contentContainerTitle">
-               <p class = "fa  fa-check-square-o"><span> Suggested Polls</span> </p>
+               <p class = "fa  fa-bar-chart"><span> Suggested Polls</span> </p>
             </div>
             <div class = "scrollCon">
                <g:each in="${questionPromo1}">
