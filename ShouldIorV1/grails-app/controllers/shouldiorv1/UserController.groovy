@@ -47,7 +47,7 @@ class UserController {
 				break;	
 				case "My Favorites":
 				questions = new ArrayList<Question>()
-				def favorites = Favorite.findAll("from Favorite as f where f.userID = ? order by f.dateAdded DESC", [session["userID"]], [max: 10, offset: offset])
+				def favorites = Favorite.findAll("from Favorite as f where f.userID = ? AND f.favType = ? order by f.dateAdded DESC", [session["userID"], 'Question'], [max: 10, offset: offset])
 				for (Favorite favorite : favorites) {
 					def question = Question.findByQuestionID(favorite.questionID)
 					questions.add(question)
@@ -98,7 +98,7 @@ class UserController {
 			break;
 			case "Favorites":
 			questions = new ArrayList<Question>()
-				def favorites = Favorite.findAll("from Favorite as f where f.userID = ? order by f.dateAdded DESC", [user.userID], [max: 10, offset: offset])		
+				def favorites = Favorite.findAll("from Favorite as f where f.userID = ? and f.favType = ? order by f.dateAdded DESC", [user.userID, 'Question'], [max: 10, offset: offset])		
 				for (Favorite favorite : favorites) {
 					def question = Question.findByQuestionID(favorite.questionID)
 					questions.add(question)
@@ -203,6 +203,29 @@ class UserController {
 		 notifyCount = notifyCountResult.toString().replaceAll("\\[", "").replaceAll("\\]","");
 		}
 		return notifyCount
+	}
+	
+	def followUser() {
+		// Adds question to logged in users favorites
+		if (session["userID"] != null) {
+			User user = User.findByUserID(session["userID"])
+			Favorite favoriteExist = Favorite.findByUserIDAndQuestionID(session["userID"], params.questionID)
+			if (!favoriteExist) {
+				Favorite favorite = new Favorite();
+				favorite.questionID = params.questionID
+				favorite.userID = session["userID"]
+				favorite.dateAdded = new Date();
+				favorite.save(flush:true)
+				render ("True")
+			} else if (favoriteExist) {
+				favoriteExist.delete(flush:true)
+				render ("Has")
+			} else {
+				render ("False")  // who knows
+			}
+		} else {
+			render ("False") // Not logged in
+		}
 	}
 	
 }

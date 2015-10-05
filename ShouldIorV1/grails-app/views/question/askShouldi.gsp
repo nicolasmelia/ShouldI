@@ -336,12 +336,12 @@
 	$("#imageUpload").change(function(){
 		errors = [];
 		
-		 if (this.files[0].size <= 2000000) {	
+		 if (this.files[0].size <= 8000000) {	
 			$("#imgError").css('display', 'none');
 			readImg(this);
 		 } else {
 			$("#imgError").css('display', 'none');
-			errors.push("Images must be under 2mb.");
+			errors.push("Images must be under 8mb.");
 			
 			$("#errorMessage").html("");
 			for (i = 0; i < errors.length; i++) { 

@@ -104,8 +104,8 @@
                       <input id = "answerTwoVotes" type="hidden"  value="${question.answerTwoVotes}">
 				      <input id = "answerThreeVotes" type="hidden"  value="${question.answerThreeVotes}">
 				      <input id = "answerFourVotes" type="hidden" value="${question.answerFourVotes}">
-				            
-               <input id = "questionID" type="hidden" name="country" value="${question.questionID}">	
+              		  <input id = "questionID" type="hidden" name="country" value="${question.questionID}">	
+              		 
                <div style ="display: block; width: 100%; padding-bottom: -5px; " >
                   <!-- MAIN -->	
                   <div  style="display: block;  padding: 10px;  border-bottom: solid 1px; border-color: #f3f3f3;  margin: auto;  ">
@@ -212,7 +212,7 @@
 
                   <g:if test="${question.custom == false}">
                   		<g:if test="${question.answerOneImage == true}">
-	                  <div id = "ee" style = "margin-bottom: 30px; padding: 15px;  margin: auto; margin-top: 20px;  width: 50%; min-width: 290px; max-width: 330px; mag-height: 100px; background-color: #F4FAFF; display: block;" >
+	                  <div id = "singleImgCon" style = "margin-bottom: 30px; padding: 15px;  margin: auto; margin-top: 20px;  width: 50%; min-width: 290px; max-width: 330px;  background-color: #F4FAFF; display: block;" >
 	                     <img id="singleImg" src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: question.questionID, imgNum: '1', thumb: 'False'])}"   style ="display: block;  width: 95%;  height: 80%; margin: auto;" alt="UhOh! We cant seem to load the image." />
 	                  </div>
                 	  </g:if>
@@ -220,7 +220,7 @@
                   
                   
                   <div style = "padding: 15px; width: 98%; overflow-y: hidden; margin:auto; padding-top: 18px;   display: block;">
-                   <div style = "margin: 0px; padding: 0px; width: 100%;" id = "questiontText">
+                   <div style = "margin: 0px; padding: 0px; width: 100%;" id = "questionText">
                      ${raw(question.question)}	    
                      </div>
                      
@@ -248,19 +248,19 @@
 				  <tr style = "height: 100%; width: 50%; margin-top: 5px; ">		  
 				  <td id = "img1"  onClick = "questionVote('1')" style = "height: 100%; width: 50%; text-align: center; border-right: solid 1px #F0F0E1;  " >
 						<g:if test="${question.answerOneImage  == true}">
-							<img  src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: question.questionID, imgNum: '1', thumb: 'False'])}"  style = "width: 55%; padding: 10px 4px 10px 4px; min-width: 150px; "/>
+							<img  src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: question.questionID, imgNum: '1', thumb: 'False'])}"  style = "width: 55%; padding: 10px 4px 10px 4px; min-width: 150px; max-width: 300px; "/>
 						</g:if>
 						<g:elseif test="${hasQuestionImage.toString().equals('true')}">
-							<img  src="${resource(dir:'images',file:'noImg.png')}" style = "width: 55%; padding: 10px 4px 10px 4px; min-width: 150px; "/>
+							<img  src="${resource(dir:'images',file:'noImg.png')}" style = "width: 55%; padding: 10px 4px 10px 4px; min-width: 150px; max-width: 300px; "/>
 						</g:elseif>	
 					</td>
 					
 				  <td id = "img2" onClick = "questionVote('2')" style = "height: 100%; width: 50%; text-align: center;" >
 						<g:if test="${question.answerTwoImage  == true}">
-							<img  src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: question.questionID, imgNum: '2', thumb: 'False'])}"  style = "width: 55%; padding: 10px 4px 10px 4px; min-width: 150px; "/>
+							<img  src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: question.questionID, imgNum: '2', thumb: 'False'])}"  style = "width: 55%; padding: 10px 4px 10px 4px; min-width: 150px; max-width: 300px; "/>
 						</g:if>
 						<g:elseif test="${hasQuestionImage.toString().equals('true')}">						
-							<img  src="${resource(dir:'images',file:'noImg.png')}" style = "width: 55%; padding: 10px 4px 10px 4px; min-width: 150px; "/>
+							<img  src="${resource(dir:'images',file:'noImg.png')}" style = "width: 55%; padding: 10px 4px 10px 4px; min-width: 150px; max-width: 300px; "/>
 						</g:elseif>	
 					</td>
 				  </tr>
@@ -318,12 +318,12 @@
 				  <tr style = "height: 100%; width: 50%; margin-top: 5px; ">		  
 				  
 				 <g:if test="${question.answerThree}">
-				  <td id = "img3" onClick = "questionVote('3')" style = "height: 100%; width: 50%; text-align: center;  " >
+				  <td id = "img3" onClick = "questionVote('3')" style = "height: 100%; width: 50%;  text-align: center;  " >
 						<g:if test="${question.answerThreeImage == true}">
-							<img  src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: question.questionID, imgNum: '3', thumb: 'False'])}"  style = "width: 55%; max-width: 250px; padding: 10px 4px 10px 4px; min-width: 150px; "/>
+							<img  src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: question.questionID, imgNum: '3', thumb: 'False'])}"  style = "width: 55%; max-width: 250px; padding: 10px 4px 10px 4px; min-width: 150px; max-width: 300px;  "/>
 						</g:if>
 						<g:elseif test="${hasQuestionImage.toString().equals('true')}">
-							<img  src="${resource(dir:'images',file:'noImg.png')}" style = "width: 55%; padding: 10px 4px 10px 4px; min-width: 150px; "/>
+							<img  src="${resource(dir:'images',file:'noImg.png')}" style = "width: 55%; padding: 10px 4px 10px 4px; min-width: 150px; max-width: 300px; "/>
 						</g:elseif>	
 					</td>
 					</g:if>
@@ -331,10 +331,10 @@
 				 <g:if test="${question.answerFour}">
 				  <td id = "img4" onClick = "questionVote('4')" style = "height: 100%; width: 50%; text-align: center; border-left: solid 1px #F0F0E1; " >
 						<g:if test="${question.answerFourImage  == true}">
-							<img  src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: question.questionID, imgNum: '4', thumb: 'False'])}"  style = "width: 55%; padding: 10px 4px 10px 4px; min-width: 150px; "/>
+							<img  src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: question.questionID, imgNum: '4', thumb: 'False'])}"  style = "width: 55%; padding: 10px 4px 10px 4px; min-width: 150px; max-width: 300px;"/>
 						</g:if> 
 						<g:elseif test="${hasQuestionImage.toString().equals('true')}">
-							<img  src="${resource(dir:'images',file:'noImg.png')}" style = "width: 55%; padding: 10px 4px 10px 4px; min-width: 150px; "/>
+							<img  src="${resource(dir:'images',file:'noImg.png')}" style = "width: 55%; padding: 10px 4px 10px 4px; min-width: 150px; max-width: 300px; "/>
 						</g:elseif>			
 					</td>
 				</g:if>
@@ -383,7 +383,7 @@
       <div style = "width: 100%; ">
          <div  class="contentContainer">
             <div class="contentContainerTitle">
-               <p class = "fa  fa-bar-chart"><span> Suggested Polls</span> </p>
+               <p class = "fa  fa-bar-chart"><span> Suggested Polls - </span> <a href = "${createLink(controller: 'ShouldI', action: 'category', params: [category: question.category, categorySort: 'Trending'])}">More</a> </p>
             </div>
             <div class = "scrollCon">
                <g:each in="${questionPromo1}">
@@ -454,7 +454,7 @@
       <script>
          $(document).ready(function() {
          	// Show item that has been voted on already by logged in user
-         	       		$("#option" + $("#vote").val()  + "Check").css("display","inline-block");
+         	   $("#option" + $("#vote").val()  + "Check").css("display","inline-block");
          		
         	 	// Show servers calculated question diff
       		   	$("#diffPercent").text($("#percentDiffHidden").val() + "%");
@@ -463,10 +463,10 @@
     			  displayMiniGraphs($("#totalVotes").val(), $("#answerOneVotes").val(),$("#answerTwoVotes").val(),$("#answerThreeVotes").val(),$("#answerFourVotes").val());
       		   	}
       		   	
-         	if ($("#vote").val() != "NONE") {
-         	} else {
-         		// Nothing for now
-         	}
+	         	if ($("#vote").val() != "NONE") {
+	         	} else {
+	         		// Nothing for now
+	         	}
          	
          });
            
@@ -475,7 +475,7 @@
          }
             
          function unGlow(id) {
-       	  $(id).css("background-color","");
+       	 	 $(id).css("background-color","");
          }
          
          function loadQuestionURL(url) {
@@ -486,10 +486,13 @@
         	 $("#pageLink").slideDown("1000");
          }
          
+         
+         // ************* SHARE (FACEBOOK) FUNCTION ************* 
          function share() {
              var link = $(location).attr('href');
-             var description = $("#questionText").html();
+             var description = $("#questionText").text();
 			 var caption = $("#titleText").html();
+			 var questionID = $("#questionID").val();
              
          	FB.ui({
          		  method: 'feed',
@@ -498,7 +501,7 @@
          		  link: link,
          		  caption: caption,
          		  description: description,
-         		  picture: 'https://upload.wikimedia.org/wikipedia/commons/9/95/Burning_Yellow_Sunset.jpg',
+         		  picture: 'http://shouldiBeta.elasticbeanstalk.com/Question/getShareImageById/' + questionID,
          		}, function(response){});
          	}
 

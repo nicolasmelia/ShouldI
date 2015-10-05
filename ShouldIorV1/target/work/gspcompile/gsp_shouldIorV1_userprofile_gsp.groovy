@@ -124,14 +124,14 @@ if(true && (question.isEmpty())) {
 printHtmlPart(46)
 }
 printHtmlPart(47)
-for( _it787028959 in (question) ) {
-changeItVariable(_it787028959)
+for( _it17435166 in (question) ) {
+changeItVariable(_it17435166)
 printHtmlPart(48)
 expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
 printHtmlPart(49)
 if(true && (it.answerOneImage)) {
 printHtmlPart(50)
-expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1']))
+expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1', thumb: 'True']))
 printHtmlPart(51)
 }
 else {
@@ -175,7 +175,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1443546679702L
+public static final long LAST_MODIFIED = 1443899653610L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

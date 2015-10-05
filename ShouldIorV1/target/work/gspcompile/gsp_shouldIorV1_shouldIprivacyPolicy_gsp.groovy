@@ -5,8 +5,8 @@ import org.codehaus.groovy.grails.web.taglib.exceptions.GrailsTagException
 import org.springframework.web.util.*
 import grails.util.GrailsUtil
 
-class gsp_shouldIorV1_questionaskShouldi_gsp extends GroovyPage {
-public String getGroovyPageFileName() { "/WEB-INF/grails-app/views/question/askShouldi.gsp" }
+class gsp_shouldIorV1_shouldIprivacyPolicy_gsp extends GroovyPage {
+public String getGroovyPageFileName() { "/WEB-INF/grails-app/views/shouldI/privacyPolicy.gsp" }
 public Object run() {
 Writer out = getOut()
 Writer expressionOut = getExpressionOut()
@@ -34,7 +34,7 @@ invokeTag('resource','g',19,['dir':("js"),'file':("bootstrap.min.js")],-1)
 printHtmlPart(6)
 invokeTag('javascript','g',22,['src':("facebookLogin.js")],-1)
 printHtmlPart(7)
-invokeTag('javascript','g',23,['src':("dataAccess.js")],-1)
+invokeTag('javascript','g',23,['src':("dataRequest.js")],-1)
 printHtmlPart(8)
 invokeTag('resource','g',35,['dir':("js/wysihtml5"),'file':("advanced.js")],-1)
 printHtmlPart(9)
@@ -98,54 +98,28 @@ expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceB
 printHtmlPart(35)
 }
 printHtmlPart(36)
-expressionOut.print(createLink(controller: 'Question', action: 'askShouldI', params: [category: 'Trending']))
-printHtmlPart(37)
-expressionOut.print(createLink(controller: 'Question', action: 'askShouldICustom', params: [category: 'Recent']))
-printHtmlPart(38)
-createTagBody(2, {->
-printHtmlPart(39)
-for( _it214761486 in (categories) ) {
-changeItVariable(_it214761486)
-printHtmlPart(40)
-expressionOut.print(it.category)
-printHtmlPart(41)
-expressionOut.print(it.category)
-printHtmlPart(42)
-}
-printHtmlPart(43)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
-printHtmlPart(44)
-invokeTag('actionSubmit','g',203,['onclick':("return validate()"),'value':("Post"),'action':("postShouldI"),'style':("margin-top: 1px; width: 100px; display: inline-block;"),'class':("btn btn-default")],-1)
-printHtmlPart(45)
-})
-invokeTag('form','g',208,['controller':("Question"),'action':("postShouldI"),'enctype':("multipart/form-data")],2)
-printHtmlPart(46)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'privacyPolicy'))
-printHtmlPart(47)
+printHtmlPart(37)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
-printHtmlPart(48)
+printHtmlPart(38)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'aboutPollaris'))
-printHtmlPart(49)
-expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
-printHtmlPart(50)
-expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
-printHtmlPart(51)
-invokeTag('resource','g',281,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput-angular.js")],-1)
-printHtmlPart(52)
-invokeTag('resource','g',282,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.js")],-1)
-printHtmlPart(53)
-invokeTag('resource','g',283,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.css")],-1)
-printHtmlPart(54)
+printHtmlPart(39)
+invokeTag('resource','g',231,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput-angular.js")],-1)
+printHtmlPart(40)
+invokeTag('resource','g',232,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.js")],-1)
+printHtmlPart(41)
+invokeTag('resource','g',233,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.css")],-1)
+printHtmlPart(42)
 })
-invokeTag('captureBody','sitemesh',439,['style':("background-color: #f4f4f4; min-width: 330px; ")],1)
-printHtmlPart(55)
+invokeTag('captureBody','sitemesh',265,['style':("background-color: #f4f4f4; min-width: 330px; ")],1)
+printHtmlPart(43)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1443928617717L
+public static final long LAST_MODIFIED = 1443661969586L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

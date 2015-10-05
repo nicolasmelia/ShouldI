@@ -149,7 +149,7 @@
    <div style = "width: 100%; ">
       <div  class="contentContainer">
          <div class="contentContainerTitle">
-            <p  style = "color: #E73116;" class = "fa  fa-fire" > <span>Trending</span> </p>
+            <p  style = "color: #E73116;" class = "fa  fa-fire" > <span>Trending - </span> <a href = "${createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending'])}">More</a> </p>
          </div>
                      <div class = "scrollCon" style = "height: 310px; " >  
          <g:each in="${trendingQuestions}">
@@ -192,7 +192,7 @@
       <div style = "width: 100%; ">
          <div  class="contentContainer">
             <div class="contentContainerTitle">
-               <p class = "fa  fa-random" > <span>Randomly Awesome</span> </p>
+               <p class = "fa  fa-random" > <span>Randomly Awesome - </span> <a href = "${createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending'])}">More</a></p>
             </div>
             <div class = "scrollCon">
                <g:each in="${randomQuestions}">
@@ -246,7 +246,7 @@
 						<span style = "color:#F7464A; font-size: 21px; " ><b>No</b></span>
 					</p>
 
-									<span style = "color:#79cce5; font-size: 15px;" ><b>BattleStat&trade; this month: <span style = "color: #337ab7;" >Yes vs. No</span></b></span>
+							<span style = "color:#79cce5; font-size: 15px;" ><b>BattleStat&trade; this month: <span style = "color: #337ab7;" >Yes vs. No</span></b></span>
 			
 			            </div>
    

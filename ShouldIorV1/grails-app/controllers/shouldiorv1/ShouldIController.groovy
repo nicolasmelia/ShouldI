@@ -117,9 +117,7 @@ class ShouldIController {
 		render (view: "category", model: ["questions": questions, "offset" : offset, "category" : params.category, "notifyCount": getNotifyCount(), "categories" : categories, "categorySort" : categorySort])		
 	}
 	
-	def help() {
-		render (view: "help", model: ["notifyCount": getNotifyCount()])
-	}
+
 	
 	
 	def getNotifyCount() {
@@ -144,7 +142,7 @@ class ShouldIController {
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.MONTH, -1);
 		Date date = cal.getTime();
-		def questions = Question.executeQuery("FROM Question a WHERE a.category != 'Hot or Not' AND date > ? ORDER BY RAND()", [date], [max: 15])
+		def questions = Question.executeQuery("FROM Question a WHERE a.category != 'Hot or Not' AND date > ? ORDER BY RAND()", [date], [max: 10])
 		return questions	
 	}
 	
@@ -152,7 +150,17 @@ class ShouldIController {
 		render (view:"errorPage404")
 	}
 	
+	def help() {
+		render (view: "help", model: ["notifyCount": getNotifyCount()])
+	}
 	
+	def privacyPolicy() {
+		render (view: "privacyPolicy", model: ["notifyCount": getNotifyCount()])	
+	}
+	
+	def aboutPollaris() {
+		render (view: "privacyPolicy", model: ["notifyCount": getNotifyCount()])
+	}
 	
 	
 }

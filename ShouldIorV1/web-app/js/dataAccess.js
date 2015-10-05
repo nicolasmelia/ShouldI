@@ -83,14 +83,18 @@ function questionVote(vote) {
 
 
 // Add favorite to users favorites
+var allowFav = true;
 function addToFavorites(url, id) {
 	if ($('#sessionCheck').val() == "true") {
+		if (allowFav) { // dont allow button press twice without a response
+			allowFav = false;
 		  $.ajax({
 			  type: 'post',
 			    url: url,
 			    async: true,
 			    data: {questionID : id},
 		  }).done(function(result){
+				allowFav = true;
 			  if (result == "True") {
 					$('#starEmpty').css("display", "none");
 					$('#starFull').css("display", "inline-block");
@@ -102,6 +106,7 @@ function addToFavorites(url, id) {
 			  } 
 		  });
 		}
+	}
 }
 
 // Comment to main post
@@ -109,7 +114,7 @@ function postMainComment() {
 	if ($('#sessionCheck').val() == "true") {
 		  $.ajax({
 			  type: 'post',
-			    url: "../../Comment/postMainComment",
+			    url: "NONEFORNOW:TODO",
 			    async: true,
 			    data: {questionID : $("#questionID").val(), comment: $("#commentText").val()},
 		  }).done(function(result){

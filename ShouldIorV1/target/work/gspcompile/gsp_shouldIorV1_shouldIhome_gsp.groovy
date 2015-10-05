@@ -125,76 +125,80 @@ expressionOut.print(messageTitle)
 printHtmlPart(45)
 expressionOut.print(raw(messageText))
 printHtmlPart(46)
-for( _it865088580 in (trendingQuestions) ) {
-changeItVariable(_it865088580)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
 printHtmlPart(47)
-expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
+for( _it695650897 in (trendingQuestions) ) {
+changeItVariable(_it695650897)
 printHtmlPart(48)
-if(true && (it.answerOneImage)) {
-printHtmlPart(49)
-expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1']))
-printHtmlPart(50)
-}
-else {
-printHtmlPart(51)
-expressionOut.print(resource(dir:'images',file:'noImg.png'))
-printHtmlPart(52)
-}
-printHtmlPart(53)
-expressionOut.print(it.userName)
-printHtmlPart(54)
-expressionOut.print(it.questionTitle)
-printHtmlPart(55)
-expressionOut.print(it.totalVotes)
-printHtmlPart(56)
-expressionOut.print(it.totalViews)
-printHtmlPart(57)
-}
-printHtmlPart(58)
-for( _it1632218606 in (randomQuestions) ) {
-changeItVariable(_it1632218606)
-printHtmlPart(59)
 expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
-printHtmlPart(60)
+printHtmlPart(49)
 if(true && (it.answerOneImage)) {
-printHtmlPart(61)
-expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1']))
-printHtmlPart(62)
+printHtmlPart(50)
+expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1', thumb: 'True']))
+printHtmlPart(51)
 }
 else {
-printHtmlPart(63)
+printHtmlPart(52)
 expressionOut.print(resource(dir:'images',file:'noImg.png'))
+printHtmlPart(53)
+}
+printHtmlPart(54)
+expressionOut.print(it.userName)
+printHtmlPart(55)
+expressionOut.print(it.questionTitle)
+printHtmlPart(56)
+expressionOut.print(it.totalVotes)
+printHtmlPart(57)
+expressionOut.print(it.totalViews)
+printHtmlPart(58)
+}
+printHtmlPart(59)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
+printHtmlPart(60)
+for( _it1795758738 in (randomQuestions) ) {
+changeItVariable(_it1795758738)
+printHtmlPart(61)
+expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
+printHtmlPart(62)
+if(true && (it.answerOneImage)) {
+printHtmlPart(63)
+expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1', thumb: 'True']))
 printHtmlPart(64)
 }
+else {
 printHtmlPart(65)
-expressionOut.print(it.questionTitle)
+expressionOut.print(resource(dir:'images',file:'noImg.png'))
 printHtmlPart(66)
 }
 printHtmlPart(67)
-expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
+expressionOut.print(it.questionTitle)
 printHtmlPart(68)
-expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
+}
 printHtmlPart(69)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'privacyPolicy'))
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
 printHtmlPart(70)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
 printHtmlPart(71)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'aboutPollaris'))
+expressionOut.print(createLink(controller: 'ShouldI', action: 'privacyPolicy'))
 printHtmlPart(72)
-expressionOut.print(yesCount)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
 printHtmlPart(73)
-expressionOut.print(noCount)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'aboutPollaris'))
 printHtmlPart(74)
+expressionOut.print(yesCount)
+printHtmlPart(75)
+expressionOut.print(noCount)
+printHtmlPart(76)
 })
 invokeTag('captureBody','sitemesh',327,['style':("background-color: #F6F6F6!important; background-image:url('${resource(dir: "images", file: "wall1.jpg")}'); margin-bottom: 20px; background-size: cover;  background-attachment: fixed; min-width: 320px;  ")],1)
-printHtmlPart(75)
+printHtmlPart(77)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1443830359737L
+public static final long LAST_MODIFIED = 1443978693164L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

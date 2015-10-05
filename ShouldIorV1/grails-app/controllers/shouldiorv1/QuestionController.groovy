@@ -1,5 +1,6 @@
 package shouldiorv1
 
+import com.mysql.jdbc.Blob
 import java.awt.Color
 import java.awt.image.BufferedImage
 import java.awt.image.DataBufferByte
@@ -63,7 +64,7 @@ class QuestionController {
 		Favorite favorite;
 		if (session["userID"] != null) {
 			// Check if the viewing user has favorited this question
-			 favorite = Favorite.findByUserIDAndQuestionID(session["userID"], question.questionID)
+			 favorite = Favorite.findByUserIDAndQuestionIDAndFavType(session["userID"], question.questionID, "Question")
 			// Check if this is the viewing users own post
 			if (session["userID"].toString().matches(question.userID)) {
 				thisUserPost = true
@@ -291,11 +292,11 @@ class QuestionController {
 		try {
 			if (params.thumb.equals("True")) {
 				// get image thumbnail
-				response.outputStream << QuestionImage.findByQuestionIDAndAnswerNum(params.id, Integer.parseInt(params.imgNum)).imageThumbNail  // write the photo to the outputstream
+				response.outputStream << QuestionImage.executeQuery("select imageThumbNail from QuestionImage where questionID = ? and answerNum = ?", [params.id, Integer.parseInt(params.imgNum)]).get(0) 
 				response.outputStream.flush()
 			} else if (params.thumb.equals("False"))  {
 				// get full image 
-				response.outputStream << QuestionImage.findByQuestionIDAndAnswerNum(params.id, Integer.parseInt(params.imgNum)).image  // write the photo to the outputstream
+				response.outputStream << QuestionImage.executeQuery("select image from QuestionImage where questionID = ? and answerNum = ?", [params.id, Integer.parseInt(params.imgNum)]).get(0)
 				response.outputStream.flush()
 			} else {
 				// Return nothing
@@ -305,6 +306,16 @@ class QuestionController {
 			// Return nothing			
 		}
 	} 
+	
+	def getShareImageById() {
+		try {
+				// get full image
+				response.outputStream << QuestionImage.executeQuery("select image from QuestionImage where questionID = ? and answerNum = ?", [params.id, 1]).get(0)
+				response.outputStream.flush()
+			}  catch(Exception ex) {
+			// Return nothing
+		}
+	}
 		
 	def addToFavorites() {
 		// Adds question to logged in users favorites
@@ -314,6 +325,7 @@ class QuestionController {
 			if (!favoriteExist) {
 				Favorite favorite = new Favorite();
 				favorite.questionID = params.questionID
+				favorite.favType = "Question"
 				favorite.userID = session["userID"]
 				favorite.dateAdded = new Date();
 				favorite.save(flush:true)
@@ -539,10 +551,10 @@ class QuestionController {
 		// ******** Half from this category and half from other categories **********
 		
 		// From this category
-		def questionSet1 = Question.executeQuery("FROM Question a WHERE a.category = ? AND date > ? AND a.questionID <> ? ORDER BY RAND()", [category, date, questionID], [max: 5])
+		def questionSet1 = Question.executeQuery("FROM Question a WHERE a.category = ? AND date > ? AND a.questionID <> ? ORDER BY RAND()", [category, date, questionID], [max: 8])
 		
 		// Random from other categories
-		def questionSet2 = Question.executeQuery("FROM Question a WHERE a.category != 'Hot or Not' AND date > ? AND a.questionID <> ? ORDER BY RAND()", [date, questionID], [max: 5])
+		def questionSet2 = Question.executeQuery("FROM Question a WHERE a.category != 'Hot or Not' AND date > ? AND a.questionID <> ? ORDER BY RAND()", [date, questionID], [max: 3])
 		
 		// List of id's to not allow duplicates
 		ArrayList<String> questionIds = new ArrayList<String>()
@@ -611,25 +623,41 @@ class QuestionController {
 	
 	def saveImage(questionID, answerNum, imgFile){
 
-		// ************ Save full size image ************
 		QuestionImage image = new QuestionImage()
 		image.questionID = questionID
 		image.answerNum = answerNum
-		image.image = imgFile.bytes
+		String fileExt = imgFile.originalFilename.toString().substring(imgFile.originalFilename.lastIndexOf(".") + 1).replace(".", "");
+		// ************ Save full size image ************
+		// Get length of file in bytes
+		long fileSizeInBytes = imgFile.bytes.length / 1024;
+		if (fileSizeInBytes > 1500 && !fileExt.matches("gif") && !fileExt.matches("Gif")) { // if file size is over 1.5mb compress the image
+			ByteArrayInputStream bais1 = new ByteArrayInputStream(imgFile.bytes);
+			BufferedImage orginalImage1 = ImageIO.read(bais1)
 			
+			BufferedImage compresedImg =
+				Scalr.resize(orginalImage1, Scalr.Method.QUALITY, Scalr.Mode.FIT_TO_WIDTH,
+				900, 900, Scalr.OP_ANTIALIAS);
+
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			ImageIO.write(compresedImg, fileExt, baos);
+			byte[] compresedImgBytes = baos.toByteArray();
+			image.image = compresedImgBytes		
+		} else {
+			image.image = imgFile.bytes
+		}
+					
 		// ************ Create the thumbnail ************
 		ByteArrayInputStream bais = new ByteArrayInputStream(imgFile.bytes);
 		BufferedImage orginalImage = ImageIO.read(bais)
 		
 		BufferedImage thumbnail =
 			Scalr.resize(orginalImage, Scalr.Method.BALANCED, Scalr.Mode.FIT_TO_WIDTH,
-			150, 150, Scalr.OP_ANTIALIAS);
+			200, 200, Scalr.OP_ANTIALIAS);
 
-		String fileExt = imgFile.originalFilename.toString().substring(imgFile.originalFilename.lastIndexOf(".") + 1).replace(".", "");		 
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		ImageIO.write(thumbnail, fileExt, baos);
-		byte[] thumbNailbytes = baos.toByteArray();		 
-		image.imageThumbNail = thumbNailbytes
+		byte[] thumbNailBytes = baos.toByteArray();		 
+		image.imageThumbNail = thumbNailBytes
 
 		// ************ Save the image to the DB ************
 		image.save(flush:true)

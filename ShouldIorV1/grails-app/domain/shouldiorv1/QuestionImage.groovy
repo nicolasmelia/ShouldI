@@ -9,7 +9,7 @@ class QuestionImage {
 	
 	
     static constraints = {
-		image(nullable:true, maxSize: 1024 * 1024 * 3 /* 2MB */)
-		imageThumbNail(nullable:true, maxSize: 1024 * 1024 * 3 /* 2MB */)
+		image(nullable:true, maxSize: 1024 * 1024 * 8 /* 8MB */)
+		imageThumbNail(nullable:true, maxSize: 1024 * 1024 * 8 /* 8MB */)
     }
 }
