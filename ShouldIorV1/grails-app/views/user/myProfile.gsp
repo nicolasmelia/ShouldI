@@ -27,6 +27,13 @@
    <body >
            <input id = "facebookLoginLink" type="hidden" name="perdif" value="${createLink(controller: 'Authentication', action: 'loginFaceBook')}">
    
+         <g:if test="${session.name}">
+         <input id = "sessionCheck" type="hidden" name="sess" value="true">
+      </g:if>
+      <g:else>
+         <input id = "sessionCheck" type="hidden" name="sess" value="false">
+      </g:else>
+      
  <nav class="navbar navbar-inverse navbar-fixed-top" >
          <div class="container">
             <div class="navbar-header">
@@ -86,15 +93,21 @@
          <div  class="contentContainer">
             <!-- PROFILE INFORMATION -->	
             <div  class="contentContainer" style = "padding: 10px 10px 0px 10px; box-shadow:0 0 0px rgba(0, 0, 0, 0.0); " >
-               <span style = "margin: auto; width: 100%; text-align: center; color: #5C5C5C; display: block; font-size: 18px; margin-bottom: 0px; margin-top: 2px;"><b>${user.userName}</b>
+               <span style = "margin: auto; width: 100%; text-align: center; color: #5C5C5C; display: block; font-size: 18px; margin-bottom: 0px; margin-top: 2px;">
+            
+             <g:if test = "${user.certified == true}" >
+          	   <span style = "color: #FFD700;" class = "fa fa-certificate" ></span> 
+             </g:if>
+             
+             <b>${user.userName}</b>
+               
                </span>
                <hr style = "padding:0px; margin-top: 8px; margin-bottom: 14px; ">
                <div style = "display: inline-block; width: 80px; height: 80px; background-image: url('${createLink(controller: 'User', action: 'getProfileImage', params: [id: user.userID])}'); background-size: cover; background-repeat: no-repeat;   background-position: center center; padding-left: 5px;"> </div>
                <div style = "display: inline-block; padding-bottom:0px; margin-right: 4px; margin-left: 4px; vertical-align: top;  ">
-                    <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Member Since: <g:formatDate format="MM-dd-yyyy" date="${user.dateCreated}"/> </span>  
+                    <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Member Since: <g:formatDate format="MM-dd-yyyy" date="${user.dateCreated}"/> </span>
+                    <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Followers: ${user.followerCount}</span>         
                     <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Reached: ${user.peopleReached} People</span>             
-                    <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Questions: ${opQuestionCount}</span>                 
-                    <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Votes: ${user.totalVotes}</span>
                </div>
                	             
                <div style = "width: 100%; margin: auto; padding: 0px; " >
@@ -121,7 +134,8 @@
                   <ul class="dropdown-menu" style = "width: 100%; ">
 	                  <li><a href = "${createLink(controller: 'User', action: 'myProfile', params: [category: 'My Questions'])}"><span style = "padding-left: 5px;" >My Questions</span></a></li>                           
 	                  <li><a href = "${createLink(controller: 'User', action: 'myProfile', params: [category: 'My Notifications'])}"><span style = "padding-left: 5px;" >My Notifications</span></a></li>                           
-	                  <li><a href = "${createLink(controller: 'User', action: 'myProfile', params: [category: 'My Favorites'])}"><span style = "padding-left: 5px;" >My Favorites</span></a></li>                           
+	                  <li><a href = "${createLink(controller: 'User', action: 'myProfile', params: [category: 'My Favorites'])}"><span style = "padding-left: 5px;" >My Favorites</span></a></li> 
+	                  <li><a href = "${createLink(controller: 'User', action: 'myProfile', params: [category: 'Following'])}"><span style = "padding-left: 5px;" >Following</span></a></li>                                                    
 	               </ul>	               
                </div>
             </div>
@@ -129,47 +143,62 @@
             <div  class="contentContainer" style = "box-shadow:0 0 0px rgba(0, 0, 0, 0.0);" >
               <div class = "scrollCon" style = "height: 310px; " >
          
-	         <g:if test="${question.isEmpty()}">
+	         <g:if test="${question.isEmpty() && users.isEmpty()}">
 			     <p style =  "display: block; color: #d3d3d3; font-size: 15px;  margin: auto; margin-top: 7px; width: 100%; text-align: center;">Nothing to show here...</p>
 			</g:if>
-		
-               <g:each in="${question}">
-                  <table onmouseover="glow(this)" onmouseout="unGlow(this)"  onClick = "loadQuestionURL('${createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID])}')" style="cursor: default; width: 100%; padding: 8px 4px 8px 4px; display:block;">
-                     <tr style = "display:block; max-height: 105px; width: 100%; margin-top: 0px; ">
-                        <td style = "min-width: 125px;  height: 100%; text-align:center; vertical-align:top; ">
-                           <g:if test="${it.answerOneImage}">
-                              <img  style = "max-width:110px; max-height:100px; width: auto; height: auto; margin: auto;   padding: 0px;"    src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1', thumb: 'True'])}"/>	
-                           </g:if>
-                           <g:else>
-                              <img  style = "max-width:110px; max-height:100px; width: auto; height: auto; margin: auto;   padding: 0px;  " src="${resource(dir:'images',file:'noImg.png')}"  />	
-                           </g:else>
-                        </td>
-                        <td style = "width: 100%; height:1px; ">
-                           <table style="width:100%;  height: 100%; ">
-                              <tr  style = "vertical-align: top;" >
-                                 <td style = "height: 100%; ">
-                                    <span style = "display: inline-block;  font-size: 16px;" >${it.userName}</span>
-                                    
-                                    <g:if test = "${it.opNotifyVoteCount > 0 && session.userID == it.userID}">
-                                     <span class = "fa fa-long-arrow-up" style = " display: inline-block; color: #5BC0DE;   margin-left: 4px;  "  ><b> ${it.opNotifyVoteCount}</b></span>  
-                                    </g:if>
-                                    
-                                    <span style = "display:block; font-size: 16px;  color: #6A6A6A; " >${it.questionTitle}</span> 
-                                 </td>
-                              </tr>
-                              <tr  style = "vertical-align: bottom;" >
-                                 <td style = "text-align: top;  height: 100%; ">
-                                    <span class = "fa fa-line-chart"  style = "color: #5BC0DE; margin-right: 5px;" ></span>${it.totalVotes}
-                                    <span class = "fa fa-eye" style = "color: #5BC0DE;   margin-left: 8px; margin-right: 5px; "  > </span>${it.totalViews}
-                                    
-                                 </td>
-                              </tr>
-                           </table>
-                        </td>
-                     </tr>
-                  </table>
-                  <hr style = "padding: 0px; margin: 0px;"/>
-               </g:each>
+			
+			<g:if test = "${category != 'Following' }">
+	               <g:each in="${question}">
+	                  <table onmouseover="glow(this)" onmouseout="unGlow(this)"  onClick = "loadQuestionURL('${createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID])}')" style="cursor: default; width: 100%; padding: 8px 4px 8px 4px; display:block;">
+	                     <tr style = "display:block; max-height: 105px; width: 100%; margin-top: 0px; ">
+	                        <td style = "min-width: 125px;  height: 100%; text-align:center; vertical-align:top; ">
+	                           <g:if test="${it.answerOneImage}">
+	                              <img  style = "max-width:110px; max-height:100px; width: auto; height: auto; margin: auto;   padding: 0px;"    src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1', thumb: 'True'])}"/>	
+	                           </g:if>
+	                           <g:else>
+	                              <img  style = "max-width:110px; max-height:100px; width: auto; height: auto; margin: auto;   padding: 0px;  " src="${resource(dir:'images',file:'noImg.png')}"  />	
+	                           </g:else>
+	                        </td>
+	                        <td style = "width: 100%; height:1px; ">
+	                           <table style="width:100%;  height: 100%; ">
+	                              <tr  style = "vertical-align: top;" >
+	                                 <td style = "height: 100%; ">
+	                                    <span style = "display: inline-block;  font-size: 16px;" >${it.userName}</span>
+	                                    
+	                                    <g:if test = "${it.opNotifyVoteCount > 0 && session.userID == it.userID}">
+	                                     <span class = "fa fa-long-arrow-up" style = " display: inline-block; color: #5BC0DE;   margin-left: 4px;  "  ><b> ${it.opNotifyVoteCount}</b></span>  
+	                                    </g:if>
+	                                    
+	                                    <span style = "display:block; font-size: 16px;  color: #6A6A6A; " >${it.questionTitle}</span> 
+	                                 </td>
+	                              </tr>
+	                              <tr  style = "vertical-align: bottom;" >
+	                                 <td style = "text-align: top;  height: 100%; ">
+	                                    <span class = "fa fa-line-chart"  style = "color: #5BC0DE; margin-right: 5px;" ></span>${it.totalVotes}
+	                                    <span class = "fa fa-eye" style = "color: #5BC0DE;   margin-left: 8px; margin-right: 5px; "  > </span>${it.totalViews}
+	                                    
+	                                 </td>
+	                              </tr>
+	                           </table>
+	                        </td>
+	                     </tr>
+	                  </table>
+	                  <hr style = "padding: 0px; margin: 0px;"/>
+	               </g:each>
+              </g:if>
+              
+              <g:else>
+              	  <g:each in="${users}">
+              	   <div style = "overflow: hidden; text-align: center; " onmouseover="glow(this)" onmouseout="unGlow(this)"  onClick = "loadQuestionURL('${createLink(controller: 'User', action: 'profile', params: [id: it.userID, category : 'New Questions'])}')"  class="col-xs-6 col-md-4">
+                     <div  class="row" style = "cursor: default; ">
+                           <img class = "bigViewImg"  src = "${createLink(controller: 'User', action: 'getProfileImage', params: [id: it.userID])}"/>	
+                        <div class = "questionTitle" >${it.name}</div>
+                     </div>
+                  </div> 
+              	  </g:each>
+              </g:else>
+               
+               
             </div>
             
             

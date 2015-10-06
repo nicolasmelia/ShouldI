@@ -185,7 +185,7 @@
                         <div  onClick = "addToFavorites('${createLink(controller: 'Question', action: 'addToFavorites')}', '${question.questionID}')" style = "cursor: default; text-align: center; width: 70px; padding: 2px; padding-left: 0px; color: #4DAEFF; font-size: 13px; margin-right: 0px; margin-top:9px; ">				
 						</g:if>
 						<g:else>
-                        <div    onClick = "showNoLogin()" style = "cursor: default; text-align: center; width: 70px; padding: 2px; padding-left: 0px; color: #4DAEFF; font-size: 13px; margin-right: 0px; margin-top:9px; ">
+                        <div onClick = "showNoLogin()" style = "cursor: default; text-align: center; width: 70px; padding: 2px; padding-left: 0px; color: #4DAEFF; font-size: 13px; margin-right: 0px; margin-top:9px; ">
 						</g:else>
 
                            <div class = 'favsharButtion' style = "margin: auto; padding: 0px; margin: 0px;">

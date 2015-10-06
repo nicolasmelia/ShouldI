@@ -27,6 +27,13 @@
    <body >
            <input id = "facebookLoginLink" type="hidden" name="perdif" value="${createLink(controller: 'Authentication', action: 'loginFaceBook')}">
    
+      <g:if test="${session.name}">
+         <input id = "sessionCheck" type="hidden" name="sess" value="true">
+      </g:if>
+      <g:else>
+         <input id = "sessionCheck" type="hidden" name="sess" value="false">
+      </g:else>
+   
  <nav class="navbar navbar-inverse navbar-fixed-top" >
          <div class="container">
             <div class="navbar-header">
@@ -85,15 +92,41 @@
          <div  class="contentContainer">
             <!-- PROFILE INFORMATION -->	
             <div  class="contentContainer" style = "padding: 10px 10px 0px 10px; box-shadow:0 0 0px rgba(0, 0, 0, 0.0); " >
-               <span style = "margin: auto; width: 100%; text-align: center; color: #5C5C5C; display: block; font-size: 18px; margin-bottom: 0px; margin-top: 2px;"><b>${user.name}</b>
+               <span style = "margin: auto; width: 100%; text-align: center; color: #5C5C5C; display: block; font-size: 18px; margin-bottom: 0px; margin-top: 2px;">
+             
+              <g:if test = "${user.certified == true}" >
+          	   <span style = "color: #FFD700;" class = "fa fa-certificate" ></span> 
+             </g:if>
+             
+               <b>${user.name}</b>
+               
                </span>
                <hr style = "padding:0px; margin-top: 8px; margin-bottom: 14px; ">
-               <div style = "display: inline-block; width: 80px; height: 80px; background-image: url('${createLink(controller: 'User', action: 'getProfileImage', params: [id: user.userID])}'); background-size: cover; background-repeat: no-repeat;   background-position: center center; padding-left: 5px;"> </div>
+               
+               <div style = "text-align: left; display: inline-block; width: 80px; height: 80px;">
+               <div style = "display: block; width: 80px; height: 80px; background-image: url('${createLink(controller: 'User', action: 'getProfileImage', params: [id: user.userID])}'); background-size: cover; background-repeat: no-repeat;   background-position: center center; padding-left: 5px;"> 
+               </div>
+               </div>
+             
                <div style = "display: inline-block; padding-bottom:0px; margin-right: 4px; margin-left: 4px; vertical-align: top;  ">
-                    <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Member Since: <g:formatDate format="MM-dd-yyyy" date="${user.dateCreated}"/> </span>  
+                 
+                
+                 <g:if test = "${following == true}" >
+                   <a  style = "margin-left: 1px; cursor: pointer;  margin-top: -2px; display: block; font-size: 15px;" id = "followLink" onClick = "followUser('${createLink(controller: 'User', action: 'followUser')}', '${user.userID}')" ><span class = "fa fa-check-circle-o" ></span>  Following</a>
+                 </g:if>
+                 <g:else>
+                   <g:if test="${session.name}">                 
+                    <a style = "margin-left: 1px; cursor: pointer; margin-top: -2px; display: block; font-size: 15px;" id = "followLink" onClick = "followUser('${createLink(controller: 'User', action: 'followUser')}', '${user.userID}')"  ><span class = "fa fa-user-plus" ></span> Follow</a>  
+                	</g:if>
+                	<g:else>
+                	 <a style = "margin-left: 1px; cursor: pointer; margin-top: -2px; display: block; font-size: 15px;" id = "followLink" onClick = "showNoLogin()"  ><span class = "fa fa-user-plus" ></span> Follow</a>           	
+                	</g:else>
+                 </g:else>
+                 
+                 
+                  <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Member Since: <g:formatDate format="MM-dd-yyyy" date="${user.dateCreated}"/> </span>  
+                  <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Followers: ${user.followerCount}</span>
                   <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Reached: ${user.peopleReached} People</span>               
-                   <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Questions: ${opQuestionCount}</span>                 
-                  <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Votes: ${user.totalVotes}</span>
               
                </div>
                               	             
@@ -239,6 +272,9 @@
              function loadQuestionURL(url) {
              	window.location.href = url;
              }
+
+           
+             
       </script>
    </body>
 </html>

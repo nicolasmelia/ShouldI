@@ -88,6 +88,8 @@ function addToFavorites(url, id) {
 	if ($('#sessionCheck').val() == "true") {
 		if (allowFav) { // dont allow button press twice without a response
 			allowFav = false;
+			$('#starEmpty').css("display", "none");
+			$('#starFull').css("display", "inline-block");
 		  $.ajax({
 			  type: 'post',
 			    url: url,
@@ -95,39 +97,47 @@ function addToFavorites(url, id) {
 			    data: {questionID : id},
 		  }).done(function(result){
 				allowFav = true;
-			  if (result == "True") {
+			  if (result == "Added") {
 					$('#starEmpty').css("display", "none");
 					$('#starFull').css("display", "inline-block");
-			  } else if (result == "Has") {
+			  } else if (result == "Deleted") {
 					$('#starEmpty').css("display", "inline-block");
 					$('#starFull').css("display", "none");
 			  } else {
-				  // Who knows what the hell went wrong prob not logged in.
+				  // Who knows what the hell went wrong.
+				  // Do nothing for now.
 			  } 
 		  });
 		}
 	}
 }
 
-// Comment to main post
-function postMainComment() {
+var allowfollow = true;
+function followUser(url, id) {
 	if ($('#sessionCheck').val() == "true") {
+		if (allowfollow) { // dont allow button press twice without a response
+			$("#followLink").html("<span class = 'fa fa-check-circle-o' ></span> Following");
+			allowfollow = false;
 		  $.ajax({
 			  type: 'post',
-			    url: "NONEFORNOW:TODO",
+			    url: url,
 			    async: true,
-			    data: {questionID : $("#questionID").val(), comment: $("#commentText").val()},
+			    data: {favUserID : id},
 		  }).done(function(result){
-			  if (result == "True") {
-				  	alert("RELOAD");
-			  } else if (result == "False") {
-					$('#voteWarn').css('display', 'block');
+			  allowfollow = true;
+			  if (result == "Added") {
+					$("#followLink").html("<span class = 'fa fa-check-circle-o ' ></span> Following");
+			  } else if (result == "Deleted") {
+					$("#followLink").html("<span class = 'fa fa-user-plus' ></span> Follow");
 			  } else {
-				  // Who knows what the hell went wrong
+				  // Who knows what the hell went wrong.
+				  // Do nothing for now.
 			  } 
 		  });
 		}
+	}
 }
+
 
 
 // ******** LOGIN SYSTEMS ********

@@ -40,6 +40,9 @@ class AuthenticationController {
 			newUser.password = "NONE"
 			newUser.peopleReached = 0
 			newUser.about = ""
+			newUser.deleted = false
+			newUser.followerCount = 0
+			newUser.certified = false
 			newUser.dateCreated = new Date()
 			newUser.userName = getFaceBookName(params.userID, params.token)
 			newUser.name = getFaceBookName(params.userID, params.token)
@@ -203,6 +206,9 @@ class AuthenticationController {
 			newUser.peopleReached = 0
 			newUser.about = ""
 			newUser.dateCreated = new Date()
+			newUser.followerCount = 0
+			newUser.deleted = false
+			newUser.certified = false
 			newUser.userName = userName.toString().toLowerCase()
 			newUser.name = userName.toString().toLowerCase()
 			newUser.save(flush:true);

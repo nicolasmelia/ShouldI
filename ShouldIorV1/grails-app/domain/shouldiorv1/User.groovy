@@ -16,14 +16,21 @@ class User {
 	
 	int peopleReached
 	int totalVotes
+	int followerCount
 	
+	boolean certified
 	boolean deleted
 	
     static constraints = {
 		userName nullable: true
+		followerCount nullable:true
+		
 		avatar nullable: true	
 		about nullable:true
+		
 		deleted nullable:true
+		certified nullable: true
+		
 		about maxSize: 20000
 		favorites nullable: true
 		

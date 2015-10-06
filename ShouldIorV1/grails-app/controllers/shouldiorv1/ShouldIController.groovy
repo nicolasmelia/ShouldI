@@ -117,9 +117,6 @@ class ShouldIController {
 		render (view: "category", model: ["questions": questions, "offset" : offset, "category" : params.category, "notifyCount": getNotifyCount(), "categories" : categories, "categorySort" : categorySort])		
 	}
 	
-
-	
-	
 	def getNotifyCount() {
 		// get the op notification count
 		def notifyCount = "";

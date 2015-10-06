@@ -329,10 +329,10 @@ class QuestionController {
 				favorite.userID = session["userID"]
 				favorite.dateAdded = new Date();
 				favorite.save(flush:true)
-				render ("True")
+				render ("Added")
 			} else if (favoriteExist) {
 				favoriteExist.delete(flush:true)
-				render ("Has")
+				render ("Deleted")
 			} else {
 				render ("False")  // who knows
 			}
@@ -622,7 +622,6 @@ class QuestionController {
 	}
 	
 	def saveImage(questionID, answerNum, imgFile){
-
 		QuestionImage image = new QuestionImage()
 		image.questionID = questionID
 		image.answerNum = answerNum
@@ -660,8 +659,7 @@ class QuestionController {
 		image.imageThumbNail = thumbNailBytes
 
 		// ************ Save the image to the DB ************
-		image.save(flush:true)
-		
+		image.save(flush:true)		
 	}
 
 	

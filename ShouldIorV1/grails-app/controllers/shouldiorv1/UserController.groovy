@@ -12,8 +12,7 @@ class UserController {
 	//static scaffold = true
 
 	
-		def myProfile() {	
-					
+		def myProfile() {						
 			User user = User.findByUserID(session['userID']);
 			// Configure off pagination 
 			if (params.category == null) {
@@ -37,7 +36,8 @@ class UserController {
 				offset = 0
 			} 
 			
-			def questions
+			def users = new ArrayList<User>()
+			def questions = new ArrayList<Question>()
 			switch (params.category) {
 				case "My Questions": 
 					questions = Question.findAll("from Question as q where q.userID  = ? order by date DESC", [session['userID']], [max: 10, offset: offset])
@@ -46,23 +46,28 @@ class UserController {
 					questions = Question.findAll("from Question as q where q.userID = ? and q.opNotifyVoteCount > 0 order by q.opNotifyVoteCount DESC", [session['userID']], [max: 10, offset: offset])		
 				break;	
 				case "My Favorites":
-				questions = new ArrayList<Question>()
 				def favorites = Favorite.findAll("from Favorite as f where f.userID = ? AND f.favType = ? order by f.dateAdded DESC", [session["userID"], 'Question'], [max: 10, offset: offset])
 				for (Favorite favorite : favorites) {
 					def question = Question.findByQuestionID(favorite.questionID)
 					questions.add(question)
 				}	
 				break;	
+				case "Following":
+					def favorites = Favorite.findAll("from Favorite as f where f.userID = ? and f.favType = ? order by f.dateAdded DESC", [session["userID"], 'User'], [max: 10, offset: offset])
+					for (Favorite favorite : favorites) {
+						def userCash = User.findByUserID(favorite.userIDFollowing)
+						users.add(userCash)
+					}
+				break;	
 			}
 			
 			def opQuestionCount = Question.countByUserID(session['userID'])
-			render (view: "myProfile", model: ["question": questions, "offset" : offset, "category" : params.category, "opQuestionCount" : opQuestionCount, "user" : user, "notifyCount": getNotifyCount()])	
+			render (view: "myProfile", model: ["question": questions, "users": users, "offset" : offset, "category" : params.category, "user" : user, "notifyCount": getNotifyCount()])	
 	}
 		
 
 		// View others profiles
-	def profile() {		
-		
+	def profile() {				
 		// Get profile information
 		User user = User.findByUserID(params.id);
 		
@@ -88,7 +93,8 @@ class UserController {
 			offset = 0
 		}
 		
-		def questions
+		def users = new ArrayList<User>()
+		def questions = new ArrayList<Question>()
 		switch (params.category) {
 			case "New Questions":
 				questions = Question.findAll("from Question as q where q.userID = ? ORDER BY q.date DESC", [user.userID], [max: 10, offset: offset])
@@ -96,21 +102,33 @@ class UserController {
 			case "Top Questions":
 				questions = Question.findAll("from Question as q where q.userID = ? ORDER BY q.totalVotes DESC", [user.userID], [max: 10, offset: offset])
 			break;
-			case "Favorites":
-			questions = new ArrayList<Question>()
-				def favorites = Favorite.findAll("from Favorite as f where f.userID = ? and f.favType = ? order by f.dateAdded DESC", [user.userID, 'Question'], [max: 10, offset: offset])		
+			case "Favorites":	 
+				def favorites = Favorite.findAll("from Favorite as f where f.userID = ? AND f.favType = ? order by f.dateAdded DESC", [user.userID, 'User'], [max: 10, offset: offset])
 				for (Favorite favorite : favorites) {
-					def question = Question.findByQuestionID(favorite.questionID)
+					def question = User.findByQuestionID(favorite.questionID)
 					questions.add(question)
 				}
+				break;	
+			case "Favorites":
+			def favorites = Favorite.findAll("from Favorite as f where f.userID = ? and f.favType = ? order by f.dateAdded DESC", [user.userID, 'User'], [max: 10, offset: offset])
+			for (Favorite favorite : favorites) {
+				def userCash = Question.findByUserID(favorite.userIDFollowing)
+				users.add(userCash)
+			}
 			break;
 		}
 		
-
-		def opQuestionCount = Question.countByUserID(params.id)
+		// See is user is being followed by session user viewing
+		boolean following = false		
+		if (session['userID'] != null) {
+			def favoriteUser = Favorite.findByUserIDAndFavTypeAndUserIDFollowing(session['userID'], "User", user.userID)
+			if (favoriteUser != null) {
+					following = true
+				}
+		} 
 		
 		// Query for questions
-		render (view: "profile", model: ["question": questions, "offset" : offset, "category" : params.category, "user" : user, "opQuestionCount" : opQuestionCount, "notifyCount": getNotifyCount()])
+		render (view: "profile", model: ["question": questions, "users": users, "offset" : offset, "category" : params.category, "user" : user, "notifyCount": getNotifyCount(), "following": following])
 
 }
 	
@@ -135,7 +153,6 @@ class UserController {
 		
 		// Renders user profile
 		redirect(action: "myProfile")
-
 	}
 	
 	
@@ -205,21 +222,41 @@ class UserController {
 		return notifyCount
 	}
 	
+	// Follow a user
 	def followUser() {
 		// Adds question to logged in users favorites
 		if (session["userID"] != null) {
 			User user = User.findByUserID(session["userID"])
-			Favorite favoriteExist = Favorite.findByUserIDAndQuestionID(session["userID"], params.questionID)
+			Favorite favoriteExist = Favorite.findByFavTypeAndUserIDAndUserIDFollowing("User", session["userID"], params.favUserID)
 			if (!favoriteExist) {
+				
+				// increment favuserIds follow count
+				User favedUser = User.findByUserID(params.favUserID)
+				favedUser.followerCount = favedUser.followerCount + 1
+				favedUser.save(flush:true)
+				
+				// Add fav
 				Favorite favorite = new Favorite();
-				favorite.questionID = params.questionID
+				favorite.userIDFollowing = params.favUserID
+				favorite.favType = "User"
 				favorite.userID = session["userID"]
 				favorite.dateAdded = new Date();
 				favorite.save(flush:true)
-				render ("True")
+
+			
+				render ("Added")
 			} else if (favoriteExist) {
+			
 				favoriteExist.delete(flush:true)
-				render ("Has")
+				
+				// increment favuserIds follow count
+				User favedUser = User.findByUserID(params.favUserID)
+				if (favedUser.followerCount > 0) {
+				favedUser.followerCount = favedUser.followerCount - 1
+				favedUser.save(flush:true)
+				}
+				
+				render ("Deleted")
 			} else {
 				render ("False")  // who knows
 			}
@@ -228,4 +265,5 @@ class UserController {
 		}
 	}
 	
+
 }

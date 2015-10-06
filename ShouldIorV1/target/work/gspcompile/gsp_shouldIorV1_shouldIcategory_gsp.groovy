@@ -116,8 +116,8 @@ expressionOut.print(createLink(controller: 'shouldI', action: 'category', params
 printHtmlPart(40)
 expressionOut.print(createLink(controller: 'shouldI', action: 'category', params: [category: 'Recent']))
 printHtmlPart(41)
-for( _it893734010 in (categories) ) {
-changeItVariable(_it893734010)
+for( _it276060674 in (categories) ) {
+changeItVariable(_it276060674)
 printHtmlPart(42)
 expressionOut.print(createLink(controller: 'shouldI', action: 'category', params: [category: it.category]))
 printHtmlPart(43)
@@ -141,8 +141,8 @@ if(true && (questions.isEmpty())) {
 printHtmlPart(52)
 }
 printHtmlPart(53)
-for( _it1358150250 in (questions) ) {
-changeItVariable(_it1358150250)
+for( _it1043170851 in (questions) ) {
+changeItVariable(_it1043170851)
 printHtmlPart(54)
 expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
 printHtmlPart(55)
@@ -192,7 +192,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1443899653666L
+public static final long LAST_MODIFIED = 1444004336546L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

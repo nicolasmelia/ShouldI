@@ -284,8 +284,8 @@ expressionOut.print(question.category)
 printHtmlPart(112)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: question.category, categorySort: 'Trending']))
 printHtmlPart(113)
-for( _it1657624109 in (questionPromo1) ) {
-changeItVariable(_it1657624109)
+for( _it2033117926 in (questionPromo1) ) {
+changeItVariable(_it2033117926)
 printHtmlPart(114)
 expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
 printHtmlPart(115)
@@ -331,7 +331,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1444001483414L
+public static final long LAST_MODIFIED = 1444084199014L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'
