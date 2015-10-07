@@ -20,187 +20,209 @@ invokeTag('captureMeta','sitemesh',5,['gsp_sm_xmlClosingForEmptyTag':(""),'http-
 printHtmlPart(1)
 invokeTag('captureMeta','sitemesh',6,['gsp_sm_xmlClosingForEmptyTag':(""),'name':("viewport"),'content':("width=device-width, initial-scale=1")],-1)
 printHtmlPart(2)
-invokeTag('captureMeta','sitemesh',8,['gsp_sm_xmlClosingForEmptyTag':(""),'name':("description"),'content':("")],-1)
+invokeTag('captureMeta','sitemesh',8,['gsp_sm_xmlClosingForEmptyTag':(""),'name':("description"),'content':("ShouldI.fm is a place where you can ask the world questions and get honest answers. Start a poll, it's free and easy!")],-1)
 printHtmlPart(1)
-invokeTag('captureMeta','sitemesh',9,['gsp_sm_xmlClosingForEmptyTag':(""),'name':("author"),'content':("")],-1)
-printHtmlPart(1)
-createTagBody(2, {->
-createClosureForHtmlPart(3, 3)
-invokeTag('captureTitle','sitemesh',10,[:],3)
-})
-invokeTag('wrapTitleTag','sitemesh',10,[:],2)
+invokeTag('captureMeta','sitemesh',9,['gsp_sm_xmlClosingForEmptyTag':(""),'name':("author"),'content':("ShouldI.fm")],-1)
+printHtmlPart(3)
+expressionOut.print(resource(dir:'images',file:'logoBrowser.png'))
 printHtmlPart(4)
-invokeTag('resource','g',12,['dir':("css"),'file':("bootstrap.css")],-1)
-printHtmlPart(5)
-invokeTag('resource','g',13,['dir':("css"),'file':("customBoot.css")],-1)
-printHtmlPart(5)
-invokeTag('resource','g',14,['dir':("css"),'file':("buttons.css")],-1)
-printHtmlPart(6)
-invokeTag('resource','g',16,['dir':("css"),'file':("awesome-bootstrap-checkbox.css")],-1)
-printHtmlPart(7)
-invokeTag('javascript','g',18,['src':("facebookLogin.js")],-1)
-printHtmlPart(8)
+createTagBody(2, {->
+createClosureForHtmlPart(5, 3)
+invokeTag('captureTitle','sitemesh',11,[:],3)
 })
-invokeTag('captureHead','sitemesh',26,[:],1)
+invokeTag('wrapTitleTag','sitemesh',11,[:],2)
+printHtmlPart(6)
+invokeTag('resource','g',15,['dir':("css"),'file':("bootstrap.css")],-1)
+printHtmlPart(7)
+invokeTag('resource','g',16,['dir':("css"),'file':("customBoot.css")],-1)
+printHtmlPart(7)
+invokeTag('resource','g',17,['dir':("css"),'file':("buttons.css")],-1)
+printHtmlPart(8)
+invokeTag('resource','g',19,['dir':("css"),'file':("awesome-bootstrap-checkbox.css")],-1)
 printHtmlPart(9)
-createTagBody(1, {->
+invokeTag('javascript','g',21,['src':("facebookLogin.js")],-1)
 printHtmlPart(10)
-expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
+})
+invokeTag('captureHead','sitemesh',29,[:],1)
 printHtmlPart(11)
-if(true && (session.name)) {
+createTagBody(1, {->
 printHtmlPart(12)
-}
-else {
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
 printHtmlPart(13)
-}
-printHtmlPart(14)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'home'))
-printHtmlPart(15)
-expressionOut.print(resource(dir:'images',file:'logo.png'))
-printHtmlPart(16)
 if(true && (session.name)) {
-printHtmlPart(17)
-expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: [category: 'My Notifications']))
-printHtmlPart(18)
-expressionOut.print(notifyCount)
-printHtmlPart(19)
-expressionOut.print(createLink(controller: 'Question', action: 'askShouldI'))
-printHtmlPart(20)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
-printHtmlPart(21)
+printHtmlPart(14)
 }
 else {
+printHtmlPart(15)
+}
+printHtmlPart(16)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'home'))
+printHtmlPart(17)
+expressionOut.print(resource(dir:'images',file:'logo.png'))
+printHtmlPart(18)
+if(true && (session.name)) {
+printHtmlPart(19)
+expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: [category: 'My Notifications']))
+printHtmlPart(20)
+expressionOut.print(notifyCount)
+printHtmlPart(21)
+expressionOut.print(createLink(controller: 'Question', action: 'askShouldI'))
 printHtmlPart(22)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
-printHtmlPart(21)
-}
 printHtmlPart(23)
-if(true && (session.name)) {
+}
+else {
 printHtmlPart(24)
-expressionOut.print(createLink(controller: 'User', action: 'getProfileImage', params: [id: session.userID]))
+expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
+printHtmlPart(23)
+}
 printHtmlPart(25)
-expressionOut.print(session.name)
+if(true && (session.name)) {
 printHtmlPart(26)
-expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: [category: 'My Questions']))
+expressionOut.print(createLink(controller: 'User', action: 'getProfileImage', params: [id: session.userID]))
 printHtmlPart(27)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'home'))
+expressionOut.print(session.name)
 printHtmlPart(28)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
+expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: [category: 'My Questions']))
 printHtmlPart(29)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'home'))
 printHtmlPart(30)
-expressionOut.print(createLink(controller: 'Authentication', action: 'logout'))
+expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
 printHtmlPart(31)
-}
-else {
+expressionOut.print(createLink(controller: 'ShouldI', action: 'home'))
 printHtmlPart(32)
-expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
+expressionOut.print(createLink(controller: 'Authentication', action: 'logout'))
 printHtmlPart(33)
 }
+else {
 printHtmlPart(34)
-if(true && (user.certified == true)) {
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
 printHtmlPart(35)
 }
 printHtmlPart(36)
-expressionOut.print(user.userName)
+if(true && (user.certified == true)) {
 printHtmlPart(37)
-expressionOut.print(createLink(controller: 'User', action: 'getProfileImage', params: [id: user.userID]))
-printHtmlPart(38)
-invokeTag('formatDate','g',108,['format':("MM-dd-yyyy"),'date':(user.dateCreated)],-1)
-printHtmlPart(39)
-expressionOut.print(user.followerCount)
-printHtmlPart(40)
-expressionOut.print(user.peopleReached)
-printHtmlPart(41)
-if(true && (user.about != '')) {
-printHtmlPart(42)
-expressionOut.print(createLink(controller:'User', action: 'editAbout'))
-printHtmlPart(43)
-expressionOut.print(raw(user.about))
-printHtmlPart(44)
 }
-else {
+printHtmlPart(38)
+expressionOut.print(user.userName)
+printHtmlPart(39)
+expressionOut.print(createLink(controller: 'User', action: 'getProfileImage', params: [id: user.userID]))
+printHtmlPart(40)
+invokeTag('formatDate','g',111,['format':("MM-dd-yyyy"),'date':(user.dateCreated)],-1)
+printHtmlPart(41)
+expressionOut.print(user.followerCount)
 printHtmlPart(42)
+expressionOut.print(user.peopleReached)
+printHtmlPart(43)
+if(true && (user.about != '')) {
+printHtmlPart(44)
 expressionOut.print(createLink(controller:'User', action: 'editAbout'))
 printHtmlPart(45)
-}
+expressionOut.print(raw(user.about))
 printHtmlPart(46)
-expressionOut.print(category)
-printHtmlPart(47)
-expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: [category: 'My Questions']))
-printHtmlPart(48)
-expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: [category: 'My Notifications']))
-printHtmlPart(49)
-expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: [category: 'My Favorites']))
-printHtmlPart(50)
-if(true && (question.isEmpty())) {
-printHtmlPart(51)
-}
-printHtmlPart(52)
-for( _it902753409 in (question) ) {
-changeItVariable(_it902753409)
-printHtmlPart(53)
-expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
-printHtmlPart(54)
-if(true && (it.answerOneImage)) {
-printHtmlPart(55)
-expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1', thumb: 'True']))
-printHtmlPart(56)
 }
 else {
-printHtmlPart(57)
-expressionOut.print(resource(dir:'images',file:'noImg.png'))
-printHtmlPart(58)
+printHtmlPart(44)
+expressionOut.print(createLink(controller:'User', action: 'editAbout'))
+printHtmlPart(47)
 }
+printHtmlPart(48)
+expressionOut.print(category)
+printHtmlPart(49)
+expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: [category: 'My Questions']))
+printHtmlPart(50)
+expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: [category: 'My Notifications']))
+printHtmlPart(51)
+expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: [category: 'My Favorites']))
+printHtmlPart(52)
+expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: [category: 'Following']))
+printHtmlPart(53)
+if(true && (question.isEmpty() && users.isEmpty())) {
+printHtmlPart(54)
+}
+printHtmlPart(55)
+if(true && (category != 'Following')) {
+printHtmlPart(56)
+for( _it688239976 in (question) ) {
+changeItVariable(_it688239976)
+printHtmlPart(57)
+expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
+printHtmlPart(58)
+if(true && (it.answerOneImage)) {
 printHtmlPart(59)
-expressionOut.print(it.userName)
+expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1', thumb: 'True']))
 printHtmlPart(60)
-if(true && (it.opNotifyVoteCount > 0 && session.userID == it.userID)) {
+}
+else {
 printHtmlPart(61)
-expressionOut.print(it.opNotifyVoteCount)
+expressionOut.print(resource(dir:'images',file:'noImg.png'))
 printHtmlPart(62)
 }
 printHtmlPart(63)
-expressionOut.print(it.questionTitle)
+expressionOut.print(it.userName)
 printHtmlPart(64)
-expressionOut.print(it.totalVotes)
+if(true && (it.opNotifyVoteCount > 0 && session.userID == it.userID)) {
 printHtmlPart(65)
-expressionOut.print(it.totalViews)
+expressionOut.print(it.opNotifyVoteCount)
 printHtmlPart(66)
 }
 printHtmlPart(67)
-createClosureForHtmlPart(68, 2)
-invokeTag('link','g',192,['action':("myProfile"),'params':([offset: offset, up: 'false', category: category]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
+expressionOut.print(it.questionTitle)
+printHtmlPart(68)
+expressionOut.print(it.totalVotes)
 printHtmlPart(69)
-createClosureForHtmlPart(70, 2)
-invokeTag('link','g',196,['action':("myProfile"),'params':([offset: offset, up: 'true', category: category]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
+expressionOut.print(it.totalViews)
+printHtmlPart(70)
+}
 printHtmlPart(71)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'privacyPolicy'))
+}
+else {
 printHtmlPart(72)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
+for( _it1040079319 in (users) ) {
+changeItVariable(_it1040079319)
 printHtmlPart(73)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'aboutPollaris'))
+expressionOut.print(createLink(controller: 'User', action: 'profile', params: [id: it.userID, category : 'New Questions']))
 printHtmlPart(74)
-expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
+expressionOut.print(createLink(controller: 'User', action: 'getProfileImage', params: [id: it.userID]))
 printHtmlPart(75)
-expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
+expressionOut.print(it.name)
 printHtmlPart(76)
-invokeTag('javascript','g',248,['src':("dataAccess.js")],-1)
+}
+printHtmlPart(71)
+}
 printHtmlPart(77)
-invokeTag('resource','g',249,['dir':("js"),'file':("bootstrap.min.js")],-1)
-printHtmlPart(78)
-invokeTag('javascript','g',250,['src':("buttonAnswerGlow.js")],-1)
+createClosureForHtmlPart(78, 2)
+invokeTag('link','g',211,['action':("myProfile"),'params':([offset: offset, up: 'false', category: category]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
 printHtmlPart(79)
+createClosureForHtmlPart(80, 2)
+invokeTag('link','g',215,['action':("myProfile"),'params':([offset: offset, up: 'true', category: category]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
+printHtmlPart(81)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'privacyPolicy'))
+printHtmlPart(82)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
+printHtmlPart(83)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'aboutPollaris'))
+printHtmlPart(84)
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
+printHtmlPart(85)
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
+printHtmlPart(86)
+invokeTag('javascript','g',267,['src':("dataAccess.js")],-1)
+printHtmlPart(87)
+invokeTag('resource','g',268,['dir':("js"),'file':("bootstrap.min.js")],-1)
+printHtmlPart(88)
+invokeTag('javascript','g',269,['src':("buttonAnswerGlow.js")],-1)
+printHtmlPart(89)
 })
-invokeTag('captureBody','sitemesh',265,[:],1)
-printHtmlPart(80)
+invokeTag('captureBody','sitemesh',284,[:],1)
+printHtmlPart(90)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1444090003775L
+public static final long LAST_MODIFIED = 1444179759321L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

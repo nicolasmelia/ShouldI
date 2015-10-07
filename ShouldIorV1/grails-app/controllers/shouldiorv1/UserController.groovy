@@ -102,17 +102,17 @@ class UserController {
 			case "Top Questions":
 				questions = Question.findAll("from Question as q where q.userID = ? ORDER BY q.totalVotes DESC", [user.userID], [max: 10, offset: offset])
 			break;
-			case "Favorites":	 
-				def favorites = Favorite.findAll("from Favorite as f where f.userID = ? AND f.favType = ? order by f.dateAdded DESC", [user.userID, 'User'], [max: 10, offset: offset])
+				case "Favorites":
+				def favorites = Favorite.findAll("from Favorite as f where f.userID = ? AND f.favType = ? order by f.dateAdded DESC", [user.userID, 'Question'], [max: 10, offset: offset])
 				for (Favorite favorite : favorites) {
-					def question = User.findByQuestionID(favorite.questionID)
+					def question = Question.findByQuestionID(favorite.questionID)
 					questions.add(question)
-				}
-				break;	
-			case "Favorites":
+				}	
+				break;
+			case "Following":
 			def favorites = Favorite.findAll("from Favorite as f where f.userID = ? and f.favType = ? order by f.dateAdded DESC", [user.userID, 'User'], [max: 10, offset: offset])
 			for (Favorite favorite : favorites) {
-				def userCash = Question.findByUserID(favorite.userIDFollowing)
+				def userCash = User.findByUserID(favorite.userIDFollowing)
 				users.add(userCash)
 			}
 			break;

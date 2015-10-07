@@ -14,6 +14,10 @@ class QuestionController {
 	// This allows us to config database from url
 	//static scaffold = true
 	
+	def index() {
+		shouldi()
+	}
+	
 	// View of a single question with comments
 	def shouldi(String questionID) {
 		
@@ -74,13 +78,12 @@ class QuestionController {
 		// gets the top answer for the question
 		String topAnswer = getTopVote(question)
 		
-		def opQuestionCount = Question.countByUserID(question.UserID)
 		
 	
 		
 		render(view: "shouldi", model: ["question": question, "questionID": question.questionID, "questionPromo1" : getRandomQuestions(question.category, question.questionID),
 			 "thisUserPost": thisUserPost, "percentDiff": percentDif, "vote": vote, "totalViews" : question.totalViews, "hasQuestionImage": hasQuestionImage, "topAnswer": topAnswer,
-			 "peopleReached" : user.peopleReached, "opQuestionCount" : opQuestionCount, "notifyCount": getNotifyCount(), "favorite": favorite])
+			 "user" : user, "notifyCount": getNotifyCount(), "favorite": favorite])
 		
 		} else {
 			showErrorPage()
@@ -168,7 +171,6 @@ class QuestionController {
 		
 		question.ClientAddress = request.getRemoteAddr().toString()
 		question.save(flush:true)
-		
 		
 		// Render question page for user posting
 		redirect(action: "shouldi", params: [id: question.questionID])

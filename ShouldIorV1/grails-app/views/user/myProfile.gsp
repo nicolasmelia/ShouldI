@@ -5,9 +5,12 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-      <meta name="description" content="">
-      <meta name="author" content="">
-      <title>ShouldI.fm</title>
+      <meta name="description" content="ShouldI.fm is a place where you can ask the world questions and get honest answers. Start a poll, it's free and easy!">
+      <meta name="author" content="ShouldI.fm">
+      <link rel="shortcut icon" href="${resource(dir:'images',file:'logoBrowser.png')}">
+      <title>ShouldI.fm - My Profile</title>
+       <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+      
       <!-- Bootstrap core CSS -->
       <link rel="stylesheet" type="text/css" href="<g:resource dir='css' file='bootstrap.css'/>">
       <link rel="stylesheet" type="text/css" href="<g:resource dir='css' file='customBoot.css'/>">
@@ -96,7 +99,7 @@
                <span style = "margin: auto; width: 100%; text-align: center; color: #5C5C5C; display: block; font-size: 18px; margin-bottom: 0px; margin-top: 2px;">
             
              <g:if test = "${user.certified == true}" >
-          	   <span style = "color: #FFD700;" class = "fa fa-certificate" ></span> 
+          	   <span style = "color: #61B7FE;" class = "fa fa-check-square-o" ></span> 
              </g:if>
              
              <b>${user.userName}</b>

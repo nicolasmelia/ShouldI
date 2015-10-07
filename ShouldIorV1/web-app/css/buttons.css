@@ -2,7 +2,6 @@
 body {background-color: #F5F5F5!important;  min-width: 330px;}
 
 
-			
 	.answerContainer {
 	position: relative;  
 	cursor: default;  
@@ -23,7 +22,6 @@ body {background-color: #F5F5F5!important;  min-width: 330px;}
 	 
 	background-color: rgba(41,153,255,0.15); 
 	}
-
 
 
 
@@ -64,8 +62,8 @@ body {background-color: #F5F5F5!important;  min-width: 330px;}
    
    
    
-     .comment .left{
-    float:left;
+  .comment .left{
+   float:left;
     width:100px;
   }
   .comment .right{
@@ -100,26 +98,23 @@ body {background-color: #F5F5F5!important;  min-width: 330px;}
 	 background-color: #ffffff;
    }
    
-       .single{
-	  cursor: default; 
-	  border-bottom: solid 2px #d3d3d3;
-
-	 background-color: #F7FBFF;
-
+   .single{
+	cursor: default; 
+	border-bottom: solid 2px #d3d3d3;
+	background-color: #F7FBFF;
    }
   
  
-     .single:hover{
-	  cursor: default; 
-
-	  border-bottom: solid 2px #5BC0DE;
+   .single:hover{
+	 cursor: default; 
+	 border-bottom: solid 2px #5BC0DE;
 	 background-color: #F7FBFF;
    }
    
-       .custom:hover{
-	  cursor: default; 
+   .custom:hover{
+	cursor: default; 
 	border-bottom: solid 2px #5BC0DE;
-	 background-color: #F7FBFF;
+	background-color: #F7FBFF;
    }
   
 .modal-open {

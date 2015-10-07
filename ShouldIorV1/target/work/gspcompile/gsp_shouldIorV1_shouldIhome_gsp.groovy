@@ -20,185 +20,187 @@ invokeTag('captureMeta','sitemesh',5,['gsp_sm_xmlClosingForEmptyTag':(""),'http-
 printHtmlPart(1)
 invokeTag('captureMeta','sitemesh',6,['gsp_sm_xmlClosingForEmptyTag':(""),'name':("viewport"),'content':("width=device-width, initial-scale=1")],-1)
 printHtmlPart(2)
-invokeTag('captureMeta','sitemesh',8,['gsp_sm_xmlClosingForEmptyTag':(""),'name':("description"),'content':("")],-1)
+invokeTag('captureMeta','sitemesh',9,['gsp_sm_xmlClosingForEmptyTag':(""),'name':("description"),'content':("ShouldI.fm is a place where you can ask the world questions and get honest answers. Start a poll, it's free and easy!")],-1)
 printHtmlPart(1)
-invokeTag('captureMeta','sitemesh',9,['gsp_sm_xmlClosingForEmptyTag':(""),'name':("author"),'content':("")],-1)
+invokeTag('captureMeta','sitemesh',10,['gsp_sm_xmlClosingForEmptyTag':(""),'name':("author"),'content':("ShouldI.fm")],-1)
 printHtmlPart(3)
+expressionOut.print(resource(dir:'images',file:'logoBrowser.png'))
+printHtmlPart(4)
 createTagBody(2, {->
-createClosureForHtmlPart(4, 3)
-invokeTag('captureTitle','sitemesh',11,[:],3)
+createClosureForHtmlPart(5, 3)
+invokeTag('captureTitle','sitemesh',12,[:],3)
 })
-invokeTag('wrapTitleTag','sitemesh',11,[:],2)
-printHtmlPart(5)
-invokeTag('resource','g',14,['dir':("css"),'file':("bootstrap.css")],-1)
+invokeTag('wrapTitleTag','sitemesh',12,[:],2)
 printHtmlPart(6)
-invokeTag('resource','g',15,['dir':("css"),'file':("buttons.css")],-1)
-printHtmlPart(6)
-invokeTag('resource','g',16,['dir':("css"),'file':("customBoot.css")],-1)
-printHtmlPart(6)
-invokeTag('resource','g',17,['dir':("css"),'file':("awesome-bootstrap-checkbox.css")],-1)
+invokeTag('resource','g',17,['dir':("css"),'file':("bootstrap.css")],-1)
 printHtmlPart(7)
-invokeTag('resource','g',19,['dir':("js"),'file':("bootstrap.min.js")],-1)
+invokeTag('resource','g',18,['dir':("css"),'file':("buttons.css")],-1)
+printHtmlPart(7)
+invokeTag('resource','g',19,['dir':("css"),'file':("customBoot.css")],-1)
+printHtmlPart(7)
+invokeTag('resource','g',20,['dir':("css"),'file':("awesome-bootstrap-checkbox.css")],-1)
 printHtmlPart(8)
-invokeTag('javascript','g',21,['src':("facebookLogin.js")],-1)
-printHtmlPart(1)
-invokeTag('javascript','g',22,['src':("dataAccess.js")],-1)
+invokeTag('resource','g',22,['dir':("js"),'file':("bootstrap.min.js")],-1)
 printHtmlPart(9)
-invokeTag('resource','g',25,['dir':("css"),'file':("typehead-searchBar.css")],-1)
+invokeTag('javascript','g',24,['src':("facebookLogin.js")],-1)
+printHtmlPart(1)
+invokeTag('javascript','g',25,['src':("dataAccess.js")],-1)
 printHtmlPart(10)
-invokeTag('resource','g',26,['dir':("js/typedJS"),'file':("typed.min.js")],-1)
+invokeTag('resource','g',28,['dir':("css"),'file':("typehead-searchBar.css")],-1)
 printHtmlPart(11)
-invokeTag('resource','g',28,['dir':("js/typeaheadJS"),'file':("typeahead.jquery.min.js")],-1)
+invokeTag('resource','g',29,['dir':("js/typedJS"),'file':("typed.min.js")],-1)
 printHtmlPart(12)
-invokeTag('resource','g',31,['dir':("js/chart"),'file':("Chart.min.js")],-1)
+invokeTag('resource','g',31,['dir':("js/typeaheadJS"),'file':("typeahead.jquery.min.js")],-1)
 printHtmlPart(13)
-})
-invokeTag('captureHead','sitemesh',39,[:],1)
+invokeTag('resource','g',34,['dir':("js/chart"),'file':("Chart.min.js")],-1)
 printHtmlPart(14)
-createTagBody(1, {->
+})
+invokeTag('captureHead','sitemesh',42,[:],1)
 printHtmlPart(15)
-expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
+createTagBody(1, {->
 printHtmlPart(16)
-if(true && (session.name)) {
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
 printHtmlPart(17)
-}
-else {
+if(true && (session.name)) {
 printHtmlPart(18)
 }
+else {
 printHtmlPart(19)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'home'))
+}
 printHtmlPart(20)
-expressionOut.print(resource(dir:'images',file:'logo.png'))
+expressionOut.print(createLink(controller: 'ShouldI', action: 'home'))
 printHtmlPart(21)
-if(true && (session.name)) {
+expressionOut.print(resource(dir:'images',file:'logo.png'))
 printHtmlPart(22)
-expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: [category: 'My Notifications']))
+if(true && (session.name)) {
 printHtmlPart(23)
-expressionOut.print(notifyCount)
+expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: [category: 'My Notifications']))
 printHtmlPart(24)
-expressionOut.print(createLink(controller: 'Question', action: 'askShouldI'))
+expressionOut.print(notifyCount)
 printHtmlPart(25)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
-printHtmlPart(26)
-}
-else {
-printHtmlPart(27)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
-printHtmlPart(26)
-}
-printHtmlPart(28)
-if(true && (session.name)) {
-printHtmlPart(29)
-expressionOut.print(createLink(controller: 'User', action: 'getProfileImage', params: [id: session.userID]))
-printHtmlPart(30)
-expressionOut.print(session.name)
-printHtmlPart(31)
-expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: [category: 'My Questions']))
-printHtmlPart(32)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'home'))
-printHtmlPart(33)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
-printHtmlPart(34)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'home'))
-printHtmlPart(35)
-expressionOut.print(createLink(controller: 'Authentication', action: 'logout'))
-printHtmlPart(36)
-}
-else {
-printHtmlPart(37)
-expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
-printHtmlPart(38)
-}
-printHtmlPart(39)
-expressionOut.print(resource(dir:'images',file:'logoDark.png'))
-printHtmlPart(40)
-if(true && (session.name)) {
-printHtmlPart(41)
 expressionOut.print(createLink(controller: 'Question', action: 'askShouldI'))
-printHtmlPart(42)
+printHtmlPart(26)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
+printHtmlPart(27)
 }
 else {
+printHtmlPart(28)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
+printHtmlPart(27)
+}
+printHtmlPart(29)
+if(true && (session.name)) {
+printHtmlPart(30)
+expressionOut.print(createLink(controller: 'User', action: 'getProfileImage', params: [id: session.userID]))
+printHtmlPart(31)
+expressionOut.print(session.name)
+printHtmlPart(32)
+expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: [category: 'My Questions']))
+printHtmlPart(33)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'home'))
+printHtmlPart(34)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
+printHtmlPart(35)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'home'))
+printHtmlPart(36)
+expressionOut.print(createLink(controller: 'Authentication', action: 'logout'))
+printHtmlPart(37)
+}
+else {
+printHtmlPart(38)
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
+printHtmlPart(39)
+}
+printHtmlPart(40)
+expressionOut.print(resource(dir:'images',file:'logoDark.png'))
+printHtmlPart(41)
+if(true && (session.name)) {
+printHtmlPart(42)
+expressionOut.print(createLink(controller: 'Question', action: 'askShouldI'))
 printHtmlPart(43)
 }
+else {
 printHtmlPart(44)
-expressionOut.print(messageTitle)
+}
 printHtmlPart(45)
-expressionOut.print(raw(messageText))
+expressionOut.print(messageTitle)
 printHtmlPart(46)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
+expressionOut.print(raw(messageText))
 printHtmlPart(47)
-for( _it695650897 in (trendingQuestions) ) {
-changeItVariable(_it695650897)
-printHtmlPart(48)
-expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
-printHtmlPart(49)
-if(true && (it.answerOneImage)) {
-printHtmlPart(50)
-expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1', thumb: 'True']))
-printHtmlPart(51)
-}
-else {
-printHtmlPart(52)
-expressionOut.print(resource(dir:'images',file:'noImg.png'))
-printHtmlPart(53)
-}
-printHtmlPart(54)
-expressionOut.print(it.userName)
-printHtmlPart(55)
-expressionOut.print(it.questionTitle)
-printHtmlPart(56)
-expressionOut.print(it.totalVotes)
-printHtmlPart(57)
-expressionOut.print(it.totalViews)
-printHtmlPart(58)
-}
-printHtmlPart(59)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
-printHtmlPart(60)
-for( _it1795758738 in (randomQuestions) ) {
-changeItVariable(_it1795758738)
-printHtmlPart(61)
+printHtmlPart(48)
+for( _it2012011563 in (trendingQuestions) ) {
+changeItVariable(_it2012011563)
+printHtmlPart(49)
 expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
-printHtmlPart(62)
+printHtmlPart(50)
 if(true && (it.answerOneImage)) {
-printHtmlPart(63)
+printHtmlPart(51)
 expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1', thumb: 'True']))
-printHtmlPart(64)
+printHtmlPart(52)
 }
 else {
-printHtmlPart(65)
+printHtmlPart(53)
 expressionOut.print(resource(dir:'images',file:'noImg.png'))
-printHtmlPart(66)
+printHtmlPart(54)
 }
-printHtmlPart(67)
+printHtmlPart(55)
+expressionOut.print(it.userName)
+printHtmlPart(56)
 expressionOut.print(it.questionTitle)
-printHtmlPart(68)
+printHtmlPart(57)
+expressionOut.print(it.totalVotes)
+printHtmlPart(58)
+expressionOut.print(it.totalViews)
+printHtmlPart(59)
 }
+printHtmlPart(60)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
+printHtmlPart(61)
+for( _it1901009476 in (randomQuestions) ) {
+changeItVariable(_it1901009476)
+printHtmlPart(62)
+expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
+printHtmlPart(63)
+if(true && (it.answerOneImage)) {
+printHtmlPart(64)
+expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1', thumb: 'True']))
+printHtmlPart(65)
+}
+else {
+printHtmlPart(66)
+expressionOut.print(resource(dir:'images',file:'noImg.png'))
+printHtmlPart(67)
+}
+printHtmlPart(68)
+expressionOut.print(it.questionTitle)
 printHtmlPart(69)
-expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
+}
 printHtmlPart(70)
-expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
 printHtmlPart(71)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'privacyPolicy'))
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
 printHtmlPart(72)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
+expressionOut.print(createLink(controller: 'ShouldI', action: 'privacyPolicy'))
 printHtmlPart(73)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'aboutPollaris'))
+expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
 printHtmlPart(74)
-expressionOut.print(yesCount)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'aboutPollaris'))
 printHtmlPart(75)
-expressionOut.print(noCount)
+expressionOut.print(yesCount)
 printHtmlPart(76)
-})
-invokeTag('captureBody','sitemesh',327,['style':("background-color: #F6F6F6!important; background-image:url('${resource(dir: "images", file: "wall1.jpg")}'); margin-bottom: 20px; background-size: cover;  background-attachment: fixed; min-width: 320px;  ")],1)
+expressionOut.print(noCount)
 printHtmlPart(77)
+})
+invokeTag('captureBody','sitemesh',330,['style':("background-color: #F6F6F6!important; background-image:url('${resource(dir: "images", file: "wall1.jpg")}'); margin-bottom: 20px; background-size: cover;  background-attachment: fixed; min-width: 320px;  ")],1)
+printHtmlPart(78)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1443978693164L
+public static final long LAST_MODIFIED = 1444179927202L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

@@ -5,10 +5,12 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-      <meta name="description" content="">
-      <meta name="author" content="">
-      <link rel="icon" href="../../favicon.ico">
-      <title>Starter Template for Bootstrap</title>
+      <meta name="description" content="ShouldI.fm is a place where you can ask the world questions and get honest answers. Start a poll, it's free and easy!">
+      <meta name="author" content="ShouldI.fm">
+      <link rel="shortcut icon" href="${resource(dir:'images',file:'logoBrowser.png')}">
+      <title>ShouldI.fm - Categories</title>
+       <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+      
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
       <!-- Bootstrap core CSS -->
       <link rel="stylesheet" type="text/css" href="<g:resource dir='css' file='bootstrap.css'/>">

@@ -5,9 +5,12 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-      <meta name="description" content="">
-      <meta name="author" content="">
-      <title>ShouldI.fm</title>
+      <meta name="description" content="ShouldI.fm is a place where you can ask the world questions and get honest answers. Start a poll, it's free and easy!">
+      <meta name="author" content="ShouldI.fm">
+      <link rel="shortcut icon" href="${resource(dir:'images',file:'logoBrowser.png')}">
+      <title>ShouldI.fm - Profile</title>
+       <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+      
       <!-- Bootstrap core CSS -->
       <link rel="stylesheet" type="text/css" href="<g:resource dir='css' file='bootstrap.css'/>">
       <link rel="stylesheet" type="text/css" href="<g:resource dir='css' file='customBoot.css'/>">
@@ -95,7 +98,7 @@
                <span style = "margin: auto; width: 100%; text-align: center; color: #5C5C5C; display: block; font-size: 18px; margin-bottom: 0px; margin-top: 2px;">
              
               <g:if test = "${user.certified == true}" >
-          	   <span style = "color: #FFD700;" class = "fa fa-certificate" ></span> 
+          	   <span style = "color: #61B7FE;" class = "fa fa-check-square-o" ></span> 
              </g:if>
              
                <b>${user.name}</b>
@@ -151,7 +154,8 @@
                   <ul class="dropdown-menu" style = "width: 100%; ">
 	                  <li><a href = "${createLink(controller: 'User', action: 'profile', params: [category: 'New Questions', id: user.userID])}"><span style = "padding-left: 5px;" >New Questions</span></a></li>                           
 	                  <li><a href = "${createLink(controller: 'User', action: 'profile', params: [category: 'Top Questions', id: user.userID])}"><span style = "padding-left: 5px;" >Top Questions</span></a></li>                           
-	              	  <li><a href = "${createLink(controller: 'User', action: 'profile', params: [category: 'Favorites', id: user.userID])}"><span style = "padding-left: 5px;" >Favorites</span></a></li>                           
+	              	  <li><a href = "${createLink(controller: 'User', action: 'profile', params: [category: 'Favorites', id: user.userID])}"><span style = "padding-left: 5px;" >Favorites</span></a></li> 
+	              	  <li><a href = "${createLink(controller: 'User', action: 'profile', params: [category: 'Following', id: user.userID])}"><span style = "padding-left: 5px;" >Following</span></a></li>                                                                            
 	               </ul>
                </div>
             </div>
@@ -161,9 +165,11 @@
              
               <div class = "scrollCon" style = "height: 310px; " >
        
-	    <g:if test="${question.isEmpty()}">
+	    <g:if test="${question.isEmpty() && users.isEmpty()}">
 		     <p style =  "display: block; color: #d3d3d3; font-size: 15px;  margin: auto; margin-top: 7px; width: 100%; text-align: center;">Nothing to show here...</p>
 		</g:if>
+               
+              <g:if test = "${category != 'Following' }">
                
                <g:each in="${question}">
                
@@ -198,6 +204,26 @@
                   </table>
                   <hr style = "padding: 0px; margin: 0px;"/>
                </g:each>
+               </g:if>
+               
+               <g:else>
+               
+                <g:each in="${users}">
+              	   <div style = "overflow: hidden; text-align: center; " onmouseover="glow(this)" onmouseout="unGlow(this)"  onClick = "loadQuestionURL('${createLink(controller: 'User', action: 'profile', params: [id: it.userID, category : 'New Questions'])}')"  class="col-xs-6 col-md-4">
+                     <div  class="row" style = "cursor: default; ">
+                           <img class = "bigViewImg"  src = "${createLink(controller: 'User', action: 'getProfileImage', params: [id: it.userID])}"/>	
+                        <div class = "questionTitle" >${it.name}</div>
+                     </div>
+                  </div> 
+              	  </g:each>
+               
+               </g:else>
+               
+               
+               
+               
+               
+               
             </div>
             
             
