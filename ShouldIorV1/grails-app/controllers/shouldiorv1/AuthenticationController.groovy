@@ -44,7 +44,7 @@ class AuthenticationController {
 			newUser.followerCount = 0
 			newUser.certified = false
 			newUser.dateCreated = new Date()
-			newUser.userName = getFaceBookName(params.userID, params.token)
+			newUser.loginName = getFaceBookName(params.userID, params.token)
 			newUser.name = getFaceBookName(params.userID, params.token)
 			newUser.save(flush:true);
 			tempUser = newUser;
@@ -53,17 +53,7 @@ class AuthenticationController {
 		
 		// Create their session
 		session["userID"] = tempUser.userID
-		
-		if (tempUser.userName != null) {
-			// Name has been changed to an alias display name
-			session["name"] = tempUser.userName
-			} else {
-			try {
-			session["name"] = tempUser.name.trim().split(" ")[0]
-			} catch (Exception ex) {
-			session["name"] = tempUser.name.trim()
-			}
-		}
+		session["name"] = tempUser.name.trim()
 		
 		if  (session["name"]) {
 		render "Success"
@@ -175,9 +165,9 @@ class AuthenticationController {
 		
 	}
 	
-	def createRedditSession(userName) {
+	def createRedditSession(name) {
 		User tempUser = new User()
-		User user = User.findByName(userName.toString().toLowerCase())
+		User user = User.findByLoginName(name.toString().toLowerCase()) // Should be userID!!!! REDDIT IS NOT COMPLETE!!!
 		
 		if (user != null) {
 			
@@ -209,8 +199,8 @@ class AuthenticationController {
 			newUser.followerCount = 0
 			newUser.deleted = false
 			newUser.certified = false
-			newUser.userName = userName.toString().toLowerCase()
-			newUser.name = userName.toString().toLowerCase()
+			newUser.loginName = name.toString().toLowerCase()
+			newUser.name = name.toString().toLowerCase()
 			newUser.save(flush:true);
 			tempUser = newUser;
 			print "Created"
@@ -218,23 +208,8 @@ class AuthenticationController {
 		
 		// Create their session
 		session["userID"] = tempUser.userID
-		
-		// Check if reddit user has changed name
-		if (!tempUser.userName.toString().toLowerCase().equals(userName.toString().toLowerCase())) {
-			tempUser.userName = userName.toString().toLowerCase()
-			tempUser.save(flush:true)
-		}
-		
-		if (tempUser.userName != null) {
-			// Name has been changed to an alias display name
-			session["name"] = tempUser.userName
-			} else {
-			try {
-			session["name"] = tempUser.name.trim().split(" ")[0]
-			} catch (Exception ex) {
-			session["name"] = tempUser.name.trim()
-			}
-		}
+		session["name"] = tempUser.name
+
 	}
 	
 	

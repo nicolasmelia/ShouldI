@@ -77,10 +77,7 @@ class QuestionController {
 		
 		// gets the top answer for the question
 		String topAnswer = getTopVote(question)
-		
-		
-	
-		
+			
 		render(view: "shouldi", model: ["question": question, "questionID": question.questionID, "questionPromo1" : getRandomQuestions(question.category, question.questionID),
 			 "thisUserPost": thisUserPost, "percentDiff": percentDif, "vote": vote, "totalViews" : question.totalViews, "hasQuestionImage": hasQuestionImage, "topAnswer": topAnswer,
 			 "user" : user, "notifyCount": getNotifyCount(), "favorite": favorite])
@@ -114,7 +111,10 @@ class QuestionController {
 	
 	def postShouldI () {
 		Question question = new Question()
-
+		
+		// Get the user who is creating this post
+		User user = User.findByUserID(session["userID"])
+		
 		// Generate a unique ID
 		while(true) {
 			// Create a UUID and cut it in half for easier reading
@@ -165,10 +165,9 @@ class QuestionController {
 		question.totalViews = 0
 		question.totalComments = 0
 		
-		question.UserID = session["userID"]
-		question.userName = session["name"]
-		
-		
+		question.UserID = user.userID
+		question.userName = user.name
+			
 		question.ClientAddress = request.getRemoteAddr().toString()
 		question.save(flush:true)
 		
@@ -182,6 +181,9 @@ class QuestionController {
 	// ********************* ASK SHOULD I CUSTOM *********************
 	
 	def askShouldICustom() {
+		
+		User user = User.findByUserID(session["userID"])
+		
 		if (session["userID"] != null) {
 			// get all categories
 			def categories = Category.findAll()
@@ -194,7 +196,10 @@ class QuestionController {
 	
 	def postShouldICutom() {
 		Question question = new Question()
-				
+		
+		// Get the user who is creating this post
+		User user = User.findByUserID(session["userID"])
+		
 		// Generate a unique ID
 		while(true) {
 			// Create a UUID and cut it in half for easier reading
@@ -278,8 +283,8 @@ class QuestionController {
 		question.totalViews = 0
 		question.totalComments = 0
 		question.opNotifyVoteCount = 0
-		question.userName = session["name"]
-		question.UserID = session["userID"]
+		question.userName = user.name
+		question.UserID = user.userID
 		
 		question.ClientAddress = request.getRemoteAddr().toString()
 		question.save(flush:true, failOnError: true)

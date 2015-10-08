@@ -508,9 +508,14 @@ var errors = [];
 	$("#errorAlert").css("display", "none");
 	errors = [];
 	
-		if (title == "" || title.length < 5 || title.length > 55) {
+		if (title == "" || title.length < 5) {
 			hasErrors = true;
 			errors.push("Please enter a valid title.");
+		} 
+
+		if (title.length > 60) {
+			hasErrors = true;
+			errors.push("title too long. 60 character max.");
 		} 
 
 		if (question == "" || question.length < 10) {

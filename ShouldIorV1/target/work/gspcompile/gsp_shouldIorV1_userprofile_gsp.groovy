@@ -161,8 +161,8 @@ printHtmlPart(61)
 printHtmlPart(62)
 if(true && (category != 'Following')) {
 printHtmlPart(63)
-for( _it1810327249 in (question) ) {
-changeItVariable(_it1810327249)
+for( _it1149801201 in (question) ) {
+changeItVariable(_it1149801201)
 printHtmlPart(64)
 expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
 printHtmlPart(65)
@@ -177,7 +177,7 @@ expressionOut.print(resource(dir:'images',file:'noImg.png'))
 printHtmlPart(69)
 }
 printHtmlPart(70)
-expressionOut.print(it.userName)
+expressionOut.print(it.name)
 printHtmlPart(71)
 expressionOut.print(it.questionTitle)
 printHtmlPart(72)
@@ -190,8 +190,8 @@ printHtmlPart(75)
 }
 else {
 printHtmlPart(76)
-for( _it2061164686 in (users) ) {
-changeItVariable(_it2061164686)
+for( _it693317265 in (users) ) {
+changeItVariable(_it693317265)
 printHtmlPart(77)
 expressionOut.print(createLink(controller: 'User', action: 'profile', params: [id: it.userID, category : 'New Questions']))
 printHtmlPart(78)
@@ -234,7 +234,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1444179768206L
+public static final long LAST_MODIFIED = 1444238540552L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

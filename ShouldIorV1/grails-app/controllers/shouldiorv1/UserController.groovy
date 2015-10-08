@@ -127,12 +127,14 @@ class UserController {
 				}
 		} 
 		
+		
+		
 		// Query for questions
 		render (view: "profile", model: ["question": questions, "users": users, "offset" : offset, "category" : params.category, "user" : user, "notifyCount": getNotifyCount(), "following": following])
 
 }
 	
-	def editAbout () {
+	def editProfile() {
 		User user = User.findByUserID(session['userID'])
 		
 		// About may not have been set
@@ -140,22 +142,51 @@ class UserController {
 			user.about = ""
 		}
 		
-		render(view: "editAbout", model: ["user": user])		
+		render(view: "editProfile", model: ["user": user, "notifyCount": getNotifyCount()])		
 	}
 	
-	def updateAbout() {
+	def updateProfile() {
 		User user = User.findByUserID(session['userID']);			
 		user.about = params.aboutText	
-		
-		if (params.aboutText.toString().length() > 5) {
-			user.save(flush:true)	
+		boolean nameChange = false
+		if (!user.name.equals(params.name.toString().trim())){
+			user.name = params.name.toString().trim()
+			nameChange = true
+			//Update all questions the user has posted with their new username
+			def questions = Question.findAllByUserID(user.userID)	
+			for (Question question : questions){
+				question.userName = params.name.toString().trim()
+				question.save(flush:true)
+			}
 		}
 		
+		if (params.aboutText.toString().length() > 5 &&
+			params.username.toString().length() > 3) {
+			
+			if (nameChange)	{
+				user.save(flush:true)	
+			}
+			
+			// Update the session name after change
+			session["name"] = user.name			
+		}	
 		// Renders user profile
 		redirect(action: "myProfile")
 	}
 	
-	
+	def checkUserName() {
+		int userCount = User.countByName(params.name.toString().trim());
+		if (userCount == 0) {
+				render "True"	
+		} else {
+			if (params.name.toString().trim().equals(session["name"])) {
+				render "True" // Its their username!
+			} else {
+				render "False" 
+			}	
+		}
+	}
+		
 	def getProfileImage() {
 	try {
 		User user = User.findByUserID(params.id);	

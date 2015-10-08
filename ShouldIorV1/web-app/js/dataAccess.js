@@ -138,6 +138,30 @@ function followUser(url, id) {
 	}
 }
 
+	var allowUserNameCheck = true;
+	function checkUserName(url, userName) {
+		if ($('#sessionCheck').val() == "true") {
+			if (allowfollow) { // dont allow button press twice without a response
+				allowUserNameCheck = false;
+				// to checkUserName
+			  $.ajax({
+				  type: 'post',
+				    url: url,
+				    async: true,
+				    data: {userName : userName},
+			  }).done(function(result){
+				  allowUserNameCheck = true;
+				  if (result == "True") {
+					  return true;
+				  } else if (result == "False") {
+					  return false;
+				  } else {
+					  return false;
+				  } 
+			  });
+			}
+		}	
+	}
 
 
 // ******** LOGIN SYSTEMS ********

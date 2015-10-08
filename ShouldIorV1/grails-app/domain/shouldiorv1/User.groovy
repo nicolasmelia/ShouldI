@@ -9,20 +9,22 @@ class User {
 	String about // bio or whatever
 	Date dateCreated
 	
-	String name
-	String userName
+	String name // Username
+	
+	String loginName
 	String password
 	String favorites
 	
 	int peopleReached
 	int totalVotes
+	int totalQuestions
 	int followerCount
 	
 	boolean certified
 	boolean deleted
 	
     static constraints = {
-		userName nullable: true
+		name nullable: true
 		followerCount nullable:true
 		
 		avatar nullable: true	

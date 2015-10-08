@@ -102,21 +102,26 @@
           	   <span style = "color: #61B7FE;" class = "fa fa-check-square-o" ></span> 
              </g:if>
              
-             <b>${user.userName}</b>
-               
+             <b>${user.name}</b>
                </span>
                <hr style = "padding:0px; margin-top: 8px; margin-bottom: 14px; ">
+             
+               <div style = "text-align: left; display: inline-block; width: 80px; height: 80px;">
                <div style = "display: inline-block; width: 80px; height: 80px; background-image: url('${createLink(controller: 'User', action: 'getProfileImage', params: [id: user.userID])}'); background-size: cover; background-repeat: no-repeat;   background-position: center center; padding-left: 5px;"> </div>
+               
+               </div>
+
+               
                <div style = "display: inline-block; padding-bottom:0px; margin-right: 4px; margin-left: 4px; vertical-align: top;  ">
+                    <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;"><a href = '${createLink(controller:'User', action: 'editProfile')}' class = "fa fa-edit" style = "cursor: default; display: block;"> Edit </a></span>                                   
                     <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Member Since: <g:formatDate format="MM-dd-yyyy" date="${user.dateCreated}"/> </span>
                     <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Followers: ${user.followerCount}</span>         
-                    <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Reached: ${user.peopleReached} People</span>             
+                    <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Reached: ${user.peopleReached}</span> 
                </div>
                	             
                <div style = "width: 100%; margin: auto; padding: 0px; " >
                	<p style =  "display: block; font-size: 15px;  margin: auto; margin-top: 7px; width: 100%;">
                	    <g:if test="${user.about != ''}">
-               		  <a href = '${createLink(controller:'User', action: 'editAbout')}' class = "fa fa-edit" style = "cursor: default; display: block;"> Edit About </a> 
                		  ${raw(user.about)}		           
                	    </g:if>
                	    <g:else>

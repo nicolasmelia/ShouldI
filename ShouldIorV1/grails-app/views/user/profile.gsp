@@ -188,7 +188,7 @@
                            <table style="width:100%;  height: 100%; ">
                               <tr  style = "vertical-align: top;" >
                                  <td style = "height: 100%; ">
-                                    <span style = "display: block;  font-size: 16px;" >${it.userName}</span> 
+                                    <span style = "display: block;  font-size: 16px;" >${it.name}</span> 
                                     <span style = "display:block; font-size: 16px;  color: #6A6A6A; " >${it.questionTitle}</span> 
                                  </td>
                               </tr>
