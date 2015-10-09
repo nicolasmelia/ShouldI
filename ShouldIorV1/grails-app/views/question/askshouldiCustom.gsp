@@ -182,7 +182,7 @@
 		</div>
 		<input name = "answerOne" type="text" style = "width: 100%;" class="form-control" id="option1" placeholder="Ex. Yes, Black, Fast">
 		<span class="btn btn-default btn-file" style =" margin-top: 10px; height: 25px; padding: 4px; font-size: 12px;">
-			<span class = "fa fa-picture-o"></span> Add Image <input id = "imageUpload1" name = 'image1' type="file">
+			<span class = "fa fa-picture-o"></span> Add Image <input id = "imageUpload1" name = 'image1' type="file" accept="image/*">
 		</span>
 		</div>
 	</div>
@@ -196,7 +196,7 @@
 		</div>
 		<input  name = "answerTwo" type="text" style = "width: 100%;" class="form-control" style = "" id="option2" placeholder="Ex. No, White, Slow">
 		<span class="btn btn-default btn-file" style =" margin-top: 10px; height: 25px; padding: 4px; font-size: 12px;">
-			<span class = "fa fa-picture-o"></span> Add Image <input id = "imageUpload2" name = 'image2' type="file">
+			<span class = "fa fa-picture-o"></span> Add Image <input id = "imageUpload2" name = 'image2' type="file" accept="image/*">
 		</span>
 	  </div>
     </div>
@@ -211,7 +211,7 @@
 	</div>
     <input  name = "answerThree" type="text" style = "width: 100%;" class="form-control" style = "" id="option3" placeholder="Ex. No, White, Slow">
 		<span class="btn btn-default btn-file" style =" margin-top: 10px; height: 25px; padding: 4px; font-size: 12px;">
-			<span class = "fa fa-picture-o"></span> Add Image <input id = "imageUpload3" name = 'image3' type="file">
+			<span class = "fa fa-picture-o"></span> Add Image <input id = "imageUpload3" name = 'image3' type="file" accept="image/*">
 		</span>
   </div>
   </div>
@@ -226,7 +226,7 @@
 	</div>
     <input  name = "answerFour" type="text" style = "width: 100%;" class="form-control" style = "" id="option4" placeholder="Ex. No, White, Slow">
 		<span class="btn btn-default btn-file" style =" margin-top: 10px; height: 25px; padding: 4px; font-size: 12px;">
-			<span class = "fa fa-picture-o"></span> Add Image <input id = "imageUpload4" name = 'image4' type="file">
+			<span class = "fa fa-picture-o"></span> Add Image <input id = "imageUpload4" name = 'image4' type="file" accept="image/*">
 		</span>
   </div>
   </div>

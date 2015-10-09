@@ -146,12 +146,19 @@ class UserController {
 	}
 	
 	def updateProfile() {
-		User user = User.findByUserID(session['userID']);			
-		user.about = params.aboutText	
-		boolean nameChange = false
-		if (!user.name.equals(params.name.toString().trim())){
+		User user = User.findByUserID(session['userID']);	
+		
+		if (params.aboutText.toString().length() < 300 ) {		
+			if (params.aboutText.toString().trim().length() < 3){
+				user.about = "Apparently, this user prefers to keep an air of mystery about them."
+			} else {
+				user.about = params.aboutText.toString().trim()			
+			}
+		}	
+		
+		if (!user.name.equals(params.name.toString().trim()) && params.username.toString().length() <= 25 && params.username.toString().length() > 3) {
 			user.name = params.name.toString().trim()
-			nameChange = true
+			session["name"] = user.name
 			//Update all questions the user has posted with their new username
 			def questions = Question.findAllByUserID(user.userID)	
 			for (Question question : questions){
@@ -160,16 +167,8 @@ class UserController {
 			}
 		}
 		
-		if (params.aboutText.toString().length() > 5 &&
-			params.username.toString().length() > 3) {
-			
-			if (nameChange)	{
-				user.save(flush:true)	
-			}
-			
-			// Update the session name after change
-			session["name"] = user.name			
-		}	
+		user.save(flush:true)		
+		
 		// Renders user profile
 		redirect(action: "myProfile")
 	}

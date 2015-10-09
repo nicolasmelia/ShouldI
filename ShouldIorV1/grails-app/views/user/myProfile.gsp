@@ -98,9 +98,16 @@
             <div  class="contentContainer" style = "padding: 10px 10px 0px 10px; box-shadow:0 0 0px rgba(0, 0, 0, 0.0); " >
                <span style = "margin: auto; width: 100%; text-align: center; color: #5C5C5C; display: block; font-size: 18px; margin-bottom: 0px; margin-top: 2px;">
             
+     
+             
+              <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: inline-block;"><a href = '${createLink(controller:'User', action: 'editProfile')}' class = "fa fa-edit" style = "cursor: default; display: block;"></a></span>                                   
+             
+             
              <g:if test = "${user.certified == true}" >
-          	   <span style = "color: #61B7FE;" class = "fa fa-check-square-o" ></span> 
+          	   <span style = "color: #FFD700;" class = "fa fa-check-square-o" ></span> 
              </g:if>
+             
+             
              
              <b>${user.name}</b>
                </span>
@@ -113,10 +120,11 @@
 
                
                <div style = "display: inline-block; padding-bottom:0px; margin-right: 4px; margin-left: 4px; vertical-align: top;  ">
-                    <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;"><a href = '${createLink(controller:'User', action: 'editProfile')}' class = "fa fa-edit" style = "cursor: default; display: block;"> Edit </a></span>                                   
-                    <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Member Since: <g:formatDate format="MM-dd-yyyy" date="${user.dateCreated}"/> </span>
+
+                    <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Questions: ${user.totalQuestions}</span>  
                     <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Followers: ${user.followerCount}</span>         
                     <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Reached: ${user.peopleReached}</span> 
+
                </div>
                	             
                <div style = "width: 100%; margin: auto; padding: 0px; " >
@@ -125,7 +133,6 @@
                		  ${raw(user.about)}		           
                	    </g:if>
                	    <g:else>
-               		  <a href = '${createLink(controller:'User', action: 'editAbout')}' class = "fa fa-edit" style = "cursor: default; display: block;"> Edit About </a> 
                		  Apparently, this user prefers to keep an air of mystery about them.       
                	   	</g:else>
 				 </p>
@@ -274,9 +281,10 @@
       <g:javascript src="buttonAnswerGlow.js" />
       <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
       <script>
-         function glow(id) {
-             $(id).css("background-color","#F7FBFF");
-             }
+		      
+		      function glow(id) {
+		          	  $(id).css("background-color","rgba(80,185,255,0.05");        
+		      }
                 
              function unGlow(id) {
              $(id).css("background-color","");

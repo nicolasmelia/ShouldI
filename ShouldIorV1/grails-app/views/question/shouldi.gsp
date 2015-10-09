@@ -119,7 +119,14 @@
                         <img  style = "width: 100%;   display: inline-block; border-top-right-radius: 6px; border-top-left-radius: 5px;"  src = "${createLink(controller: 'User', action: 'getProfileImage', params: [id: question.userID])}"   />			
                      </div>
                      <div style = "display: inline-block; padding-bottom:0px; margin-right: 4px; margin-left: 4px; vertical-align: top;  ">
-                        <span style = "margin-left: 1px; color: #5C5C5C; display: block; font-size: 15px;"><a href = "${createLink(controller: 'User', action: 'profile', params: [id: question.userID, category : 'New Questions'])}"><b>${question.userName}</b></a></span>
+                     
+                        <span style = "margin-left: 1px; color: #5C5C5C; display: block; font-size: 15px;">
+                              <g:if test = "${user.certified == true}" >
+				          	   <span style = "color: #FFD700!important;" class = "fa fa-check-square-o" ></span> 
+				             </g:if>
+                        <a href = "${createLink(controller: 'User', action: 'profile', params: [id: question.userID, category : 'New Questions'])}"><b>${question.userName}</b></a>
+                        </span>
+                        
                         <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px;  display: block; font-size: 15px;">Followers: ${user.followerCount}</span>
                         <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Reached: ${user.peopleReached} </span>
                      </div>
@@ -156,7 +163,7 @@
                     <g:if test="${thisUserPost == true}">
                      <p style = " display: block; color: #407b98; margin: 0px;">
 						<a style = "cursor: default;" onclick = "share()"><b>Share</b></a> or copy this pages <a onClick = "displayPageLink()" style = "cursor: default;"><b>link</b></a></br>
-						 <span id = "pageLink" style = "display: none; color: #8D8D8D; word-break: break-all;"><u>www.ShouldI.fm/Question/${question.questionID}</u></span>
+						 <span id = "pageLink" style = "display: none; color: #8D8D8D; word-break: break-all;"><u>www.ShouldI.fm/question/shouldi/${question.questionID}</u></span>
 					</p>
 					</g:if>
 						
@@ -390,16 +397,38 @@
             </div>
             <div class = "scrollCon">
                <g:each in="${questionPromo1}">
-                  <div style = "overflow: hidden; text-align: center; " onmouseover="glow(this)" onmouseout="unGlow(this)"  onClick = "loadQuestionURL('${createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID])}')"  class="col-xs-6 col-md-4">
+                  <div style = "overflow: hidden; text-align: center; min-height: 120px; " onmouseover="glow(this)" onmouseout="unGlow(this)"  onClick = "loadQuestionURL('${createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID])}')"  class="col-xs-6 col-md-4">
+  
                      <div  class="row" style = "cursor: default; ">
+                     
+                                   
+                <table style = "width: 100%; height: 100%; min-height: 120px; ">
+                <tr style = "width: 100%;">
+                
+                     <td style = "vertical-align:middle; margin: auto;" >
                         <g:if test="${it.answerOneImage}">
-                           <img class = "bigViewImg"  src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1', thumb: 'True'])}"  />	
+                           <img style = " vertical-align:middle; padding: 3px; margin: auto; max-width: 150px; " class = "bigViewImg"  src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1', thumb: 'True'])}"  />	
                         </g:if>
                         <g:else>
-                           <img  class = "bigViewImg" src="${resource(dir:'images',file:'noImg.png')}"  />	
+                           <img  style = "padding: 3px; margin: auto; "  class = "bigViewImg" src="${resource(dir:'images',file:'noImg.png')}"  />	
                         </g:else>
-                        <div class = "questionTitle" >${it.questionTitle}</div>
+                        
+                        </td>
+                        </tr>
+                        
+                        <tr>
+                        <td valign="bottom">
+          			<div style = "display: block; margin-top: 0px;" >
+                        <div  style = "padding: 3px; bottom: 0px; right: 0; left: 0; margin: auto;" class = "questionTitle" >${it.questionTitle}</div>
+                    </div>
+                    </td>
+                    </tr>
+                    
+                                       </table>  
+                    
                      </div>
+                     
+                     
                   </div>
                </g:each>
             </div>
@@ -474,7 +503,7 @@
          });
            
          function glow(id) {
-             	  $(id).css("background-color","rgba(80,185,255,0.1");        
+             	  $(id).css("background-color","rgba(80,185,255,0.075");        
          }
             
          function unGlow(id) {

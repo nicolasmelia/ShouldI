@@ -39,12 +39,13 @@ class AuthenticationController {
 			newUser.accountType = "Facebook"
 			newUser.password = "NONE"
 			newUser.peopleReached = 0
-			newUser.about = ""
+			newUser.totalQuestions = 0
+			newUser.about = "Apparently, this user prefers to keep an air of mystery about them."
 			newUser.deleted = false
 			newUser.followerCount = 0
 			newUser.certified = false
 			newUser.dateCreated = new Date()
-			newUser.loginName = getFaceBookName(params.userID, params.token)
+			newUser.loginName = ""
 			newUser.name = getFaceBookName(params.userID, params.token)
 			newUser.save(flush:true);
 			tempUser = newUser;
@@ -194,7 +195,8 @@ class AuthenticationController {
 			newUser.accountType = "Reddit"
 			newUser.password = "NONE"
 			newUser.peopleReached = 0
-			newUser.about = ""
+			newUser.totalQuestions = 0
+			newUser.about = "Apparently, this user prefers to keep an air of mystery about them."
 			newUser.dateCreated = new Date()
 			newUser.followerCount = 0
 			newUser.deleted = false

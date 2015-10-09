@@ -129,8 +129,8 @@ expressionOut.print(raw(messageText))
 printHtmlPart(47)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
 printHtmlPart(48)
-for( _it2012011563 in (trendingQuestions) ) {
-changeItVariable(_it2012011563)
+for( _it877788296 in (trendingQuestions) ) {
+changeItVariable(_it877788296)
 printHtmlPart(49)
 expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
 printHtmlPart(50)
@@ -157,50 +157,54 @@ printHtmlPart(59)
 printHtmlPart(60)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
 printHtmlPart(61)
-for( _it1901009476 in (randomQuestions) ) {
-changeItVariable(_it1901009476)
+for( _it809615027 in (randomQuestions) ) {
+changeItVariable(_it809615027)
 printHtmlPart(62)
 expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
 printHtmlPart(63)
 if(true && (it.answerOneImage)) {
 printHtmlPart(64)
-expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1', thumb: 'True']))
+expressionOut.print(it.totalVotes)
 printHtmlPart(65)
+expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1', thumb: 'True']))
+printHtmlPart(66)
 }
 else {
-printHtmlPart(66)
-expressionOut.print(resource(dir:'images',file:'noImg.png'))
+printHtmlPart(64)
+expressionOut.print(it.totalVotes)
 printHtmlPart(67)
-}
+expressionOut.print(resource(dir:'images',file:'noImg.png'))
 printHtmlPart(68)
-expressionOut.print(it.questionTitle)
-printHtmlPart(69)
 }
+printHtmlPart(69)
+expressionOut.print(it.questionTitle)
 printHtmlPart(70)
-expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
+}
 printHtmlPart(71)
-expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
 printHtmlPart(72)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'privacyPolicy'))
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
 printHtmlPart(73)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
+expressionOut.print(createLink(controller: 'ShouldI', action: 'privacyPolicy'))
 printHtmlPart(74)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'aboutPollaris'))
+expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
 printHtmlPart(75)
-expressionOut.print(yesCount)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'aboutPollaris'))
 printHtmlPart(76)
-expressionOut.print(noCount)
+expressionOut.print(yesCount)
 printHtmlPart(77)
-})
-invokeTag('captureBody','sitemesh',330,['style':("background-color: #F6F6F6!important; background-image:url('${resource(dir: "images", file: "wall1.jpg")}'); margin-bottom: 20px; background-size: cover;  background-attachment: fixed; min-width: 320px;  ")],1)
+expressionOut.print(noCount)
 printHtmlPart(78)
+})
+invokeTag('captureBody','sitemesh',333,['style':("background-color: #F6F6F6!important; background-image:url('${resource(dir: "images", file: "wall1.jpg")}'); margin-bottom: 20px; background-size: cover;  background-attachment: fixed; min-width: 320px;  ")],1)
+printHtmlPart(79)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1444179927202L
+public static final long LAST_MODIFIED = 1444350234294L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

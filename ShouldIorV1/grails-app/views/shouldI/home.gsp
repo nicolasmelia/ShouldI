@@ -104,10 +104,10 @@
       </nav>
       
    
-   <div class="container" style = "max-width: 825px; margin-top: 70px;">
+   <div class="container" style = "max-width: 825px; margin-top: 80px;">
 
 					
-            	<div style = "text-align: center; width: 100%; margin-top: 10px;  margin-bottom: 20px; " >
+            	<div style = "text-align: center; display: none; width: 100%; margin-top: 10px;  margin-bottom: 20px; " >
 					<img style = "width:50%; vertical-align: top;  display:  block;  margin: auto;  padding:0px; min-width: 285px; " src="${resource(dir:'images',file:'logoDark.png')}"   />				
 				</div>
    
@@ -115,13 +115,13 @@
    <div class = 'favsharButtion' style = " font-size: 25px;  display: block; width: 100%; text-align: left; margin-top: -5px; margin-bottom: -5px;">
      
   	 <g:if test="${session.name}">
-      <a  style = "color: #79cce5;  margin:0px; padding: 0px;" href = "${createLink(controller: 'Question', action: 'askShouldI')}"  > <span class= 'fa fa-pencil-square-o'> 
+      <a  style = "color: #79cce5; text-shadow: 1px 1px #000000;  margin:0px; padding: 0px;" href = "${createLink(controller: 'Question', action: 'askShouldI')}"  > <span class= 'fa fa-pencil-square-o'> 
      </g:if>
      <g:else>
-      <a  style = "color: #79cce5;  margin:0px; padding: 0px;" href = '#' onClick = "showNoLogin()"> <span class= 'fa fa-pencil-square-o'> 
+      <a  style = "color: #79cce5;  text-shadow: 1px 1px #000000;  margin:0px; padding: 0px;" href = '#' onClick = "showNoLogin()"> <span class= 'fa fa-pencil-square-o'> 
      </g:else>
      
-      <span class = "element"  ></span>
+      <span  style = " text-shadow: 1px 1px #000000;" class = "element"  ></span>
       </span> 
       </a> 
    </div>
@@ -199,16 +199,19 @@
             </div>
             <div class = "scrollCon">
                <g:each in="${randomQuestions}">
-                  <div style = "overflow: hidden; text-align: center; " onmouseover="glow(this)" onmouseout="unGlow(this)"  onClick = "loadQuestionURL('${createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID])}')"  class="col-xs-6 col-md-4">
+                  <div style = "overflow: hidden; text-align: center; min-height: 110px;  " onmouseover="glow(this)" onmouseout="unGlow(this)"  onClick = "loadQuestionURL('${createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID])}')"  class="col-xs-6 col-md-4">
                      <div  class="row" style = "cursor: default; ">
                         <g:if test="${it.answerOneImage}">
+                         <div style = "opacity: 0.7; padding: 5px; position: absolute; "><span class = "fa fa-line-chart"  style = "color: #5BC0DE; margin-right: 5px;" > ${it.totalVotes} </span></div>
                            <img class = "bigViewImg"  src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1', thumb: 'True'])}" />	
                         </g:if>
                         <g:else>
+                         <div style = "opacity: 0.7; padding: 5px; position: absolute; "><span class = "fa fa-line-chart"  style = "color: #5BC0DE; margin-right: 5px;" > ${it.totalVotes} </span></div>
                            <img  class = "bigViewImg" src="${resource(dir:'images',file:'noImg.png')}"  />	
                         </g:else>
-                        <div class = "questionTitle" >${it.questionTitle}</div>
                      </div>
+                        <div class = "questionTitle" >${it.questionTitle}</div>
+                     
                   </div>
                </g:each>
             </div>
@@ -280,7 +283,7 @@
 		});
 	  
       function glow(id) {
-    	  $(id).css("background-color","rgba(80,185,255,0.13)");
+    	  $(id).css("background-color","rgba(80,185,255,0.075)");
       }
          
       function unGlow(id) {

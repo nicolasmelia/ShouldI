@@ -130,7 +130,7 @@ printHtmlPart(46)
 printHtmlPart(47)
 }
 printHtmlPart(48)
-invokeTag('formatDate','g',130,['format':("MM-dd-yyyy"),'date':(user.dateCreated)],-1)
+expressionOut.print(user.totalQuestions)
 printHtmlPart(49)
 expressionOut.print(user.followerCount)
 printHtmlPart(50)
@@ -161,8 +161,8 @@ printHtmlPart(61)
 printHtmlPart(62)
 if(true && (category != 'Following')) {
 printHtmlPart(63)
-for( _it1149801201 in (question) ) {
-changeItVariable(_it1149801201)
+for( _it468154998 in (question) ) {
+changeItVariable(_it468154998)
 printHtmlPart(64)
 expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
 printHtmlPart(65)
@@ -177,7 +177,7 @@ expressionOut.print(resource(dir:'images',file:'noImg.png'))
 printHtmlPart(69)
 }
 printHtmlPart(70)
-expressionOut.print(it.name)
+expressionOut.print(it.userName)
 printHtmlPart(71)
 expressionOut.print(it.questionTitle)
 printHtmlPart(72)
@@ -190,8 +190,8 @@ printHtmlPart(75)
 }
 else {
 printHtmlPart(76)
-for( _it693317265 in (users) ) {
-changeItVariable(_it693317265)
+for( _it828174704 in (users) ) {
+changeItVariable(_it828174704)
 printHtmlPart(77)
 expressionOut.print(createLink(controller: 'User', action: 'profile', params: [id: it.userID, category : 'New Questions']))
 printHtmlPart(78)
@@ -204,10 +204,10 @@ printHtmlPart(63)
 }
 printHtmlPart(81)
 createClosureForHtmlPart(82, 2)
-invokeTag('link','g',233,['action':("profile"),'params':([offset: offset, up: 'false', category: category, id: user.userID ]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
+invokeTag('link','g',232,['action':("profile"),'params':([offset: offset, up: 'false', category: category, id: user.userID ]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
 printHtmlPart(83)
 createClosureForHtmlPart(84, 2)
-invokeTag('link','g',237,['action':("profile"),'params':([offset: offset, up: 'true', category: category, id : user.userID]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
+invokeTag('link','g',236,['action':("profile"),'params':([offset: offset, up: 'true', category: category, id : user.userID]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
 printHtmlPart(85)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'privacyPolicy'))
 printHtmlPart(86)
@@ -219,11 +219,11 @@ expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceB
 printHtmlPart(89)
 expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
 printHtmlPart(90)
-invokeTag('javascript','g',285,['src':("dataAccess.js")],-1)
+invokeTag('javascript','g',284,['src':("dataAccess.js")],-1)
 printHtmlPart(91)
-invokeTag('resource','g',286,['dir':("js"),'file':("bootstrap.min.js")],-1)
+invokeTag('resource','g',285,['dir':("js"),'file':("bootstrap.min.js")],-1)
 printHtmlPart(92)
-invokeTag('javascript','g',287,['src':("buttonAnswerGlow.js")],-1)
+invokeTag('javascript','g',286,['src':("buttonAnswerGlow.js")],-1)
 printHtmlPart(93)
 })
 invokeTag('captureBody','sitemesh',305,[:],1)
@@ -234,7 +234,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1444238540552L
+public static final long LAST_MODIFIED = 1444348265821L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

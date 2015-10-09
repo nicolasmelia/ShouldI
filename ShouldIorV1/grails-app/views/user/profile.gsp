@@ -98,7 +98,7 @@
                <span style = "margin: auto; width: 100%; text-align: center; color: #5C5C5C; display: block; font-size: 18px; margin-bottom: 0px; margin-top: 2px;">
              
               <g:if test = "${user.certified == true}" >
-          	   <span style = "color: #61B7FE;" class = "fa fa-check-square-o" ></span> 
+          	   <span style = "color: #FFD700;" class = "fa fa-check-square-o" ></span> 
              </g:if>
              
                <b>${user.name}</b>
@@ -126,10 +126,9 @@
                 	</g:else>
                  </g:else>
                  
-                 
-                  <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Member Since: <g:formatDate format="MM-dd-yyyy" date="${user.dateCreated}"/> </span>  
+                  <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Questions: ${user.totalQuestions}</span>
                   <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Followers: ${user.followerCount}</span>
-                  <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Reached: ${user.peopleReached} People</span>               
+                  <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Reached: ${user.peopleReached}</span>               
               
                </div>
                               	             
@@ -188,7 +187,7 @@
                            <table style="width:100%;  height: 100%; ">
                               <tr  style = "vertical-align: top;" >
                                  <td style = "height: 100%; ">
-                                    <span style = "display: block;  font-size: 16px;" >${it.name}</span> 
+                                    <span style = "display: block;  font-size: 16px;" >${it.userName}</span> 
                                     <span style = "display:block; font-size: 16px;  color: #6A6A6A; " >${it.questionTitle}</span> 
                                  </td>
                               </tr>
@@ -287,12 +286,13 @@
       <g:javascript src="buttonAnswerGlow.js" />
       <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
       <script>
-         function glow(id) {
-             $(id).css("background-color","#F7FBFF");
-             }
+      
+		     function glow(id) {
+		      	$(id).css("background-color","rgba(80,185,255,0.05");        
+		     }
                 
              function unGlow(id) {
-             $(id).css("background-color","");
+           		$(id).css("background-color","");
              }
              
              function loadQuestionURL(url) {

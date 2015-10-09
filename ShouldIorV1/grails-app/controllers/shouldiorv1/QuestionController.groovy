@@ -171,6 +171,9 @@ class QuestionController {
 		question.ClientAddress = request.getRemoteAddr().toString()
 		question.save(flush:true)
 		
+		user.totalQuestions = user.totalQuestions + 1
+		user.save(flush:true)
+		
 		// Render question page for user posting
 		redirect(action: "shouldi", params: [id: question.questionID])
 		
@@ -288,6 +291,9 @@ class QuestionController {
 		
 		question.ClientAddress = request.getRemoteAddr().toString()
 		question.save(flush:true, failOnError: true)
+		
+		user.totalQuestions = user.totalQuestions + 1
+		user.save(flush:true)
 		
 		// Render question page for user posting
 		redirect(action: "shouldi", params: [id: question.questionID])
@@ -586,6 +592,14 @@ class QuestionController {
 				questions.add(question)
 			}
 		}
+		
+		
+		for (Question question : questions) {
+			if (question.questionTitle.length()  > 30)
+			question.questionTitle = question.questionTitle.substring(0, 30) + "..."
+		}
+		
+		
 		return questions
 		}
 	
@@ -633,40 +647,49 @@ class QuestionController {
 		image.questionID = questionID
 		image.answerNum = answerNum
 		String fileExt = imgFile.originalFilename.toString().substring(imgFile.originalFilename.lastIndexOf(".") + 1).replace(".", "");
-		// ************ Save full size image ************
-		// Get length of file in bytes
-		long fileSizeInBytes = imgFile.bytes.length / 1024;
-		if (fileSizeInBytes > 1500 && !fileExt.matches("gif") && !fileExt.matches("Gif")) { // if file size is over 1.5mb compress the image
-			ByteArrayInputStream bais1 = new ByteArrayInputStream(imgFile.bytes);
-			BufferedImage orginalImage1 = ImageIO.read(bais1)
+		if (fileExt.toLowerCase().equals("gif") || 
+			fileExt.toLowerCase().equals("jpg") ||
+			fileExt.toLowerCase().equals("jpeg")||
+			fileExt.toLowerCase().equals("tif") ||
+			fileExt.toLowerCase().equals("tiff")||
+			fileExt.toLowerCase().equals("png") ||
+			fileExt.toLowerCase().equals("jpeg")||
+			fileExt.toLowerCase().equals("jp2")) {
+			// ************ Save full size image ************
+			// Get length of file in bytes	
+			long fileSizeInBytes = imgFile.bytes.length / 1024;
+			if (fileSizeInBytes > 1500 && !fileExt.toLowerCase().matches("gif")) { // if file size is over 1.5mb compress the image
+				ByteArrayInputStream bais1 = new ByteArrayInputStream(imgFile.bytes);
+				BufferedImage orginalImage1 = ImageIO.read(bais1)
+				
+				BufferedImage compresedImg =
+					Scalr.resize(orginalImage1, Scalr.Method.QUALITY, Scalr.Mode.FIT_TO_WIDTH,
+					900, 900, Scalr.OP_ANTIALIAS);
+	
+				ByteArrayOutputStream baos = new ByteArrayOutputStream();
+				ImageIO.write(compresedImg, fileExt, baos);
+				byte[] compresedImgBytes = baos.toByteArray();
+				image.image = compresedImgBytes		
+			} else {
+				image.image = imgFile.bytes
+			}
+						
+			// ************ Create the thumbnail ************
+			ByteArrayInputStream bais = new ByteArrayInputStream(imgFile.bytes);
+			BufferedImage orginalImage = ImageIO.read(bais)
 			
-			BufferedImage compresedImg =
-				Scalr.resize(orginalImage1, Scalr.Method.QUALITY, Scalr.Mode.FIT_TO_WIDTH,
-				900, 900, Scalr.OP_ANTIALIAS);
-
+			BufferedImage thumbnail =
+				Scalr.resize(orginalImage, Scalr.Method.BALANCED, Scalr.Mode.FIT_TO_WIDTH,
+				200, 200, Scalr.OP_ANTIALIAS);
+	
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			ImageIO.write(compresedImg, fileExt, baos);
-			byte[] compresedImgBytes = baos.toByteArray();
-			image.image = compresedImgBytes		
-		} else {
-			image.image = imgFile.bytes
-		}
-					
-		// ************ Create the thumbnail ************
-		ByteArrayInputStream bais = new ByteArrayInputStream(imgFile.bytes);
-		BufferedImage orginalImage = ImageIO.read(bais)
-		
-		BufferedImage thumbnail =
-			Scalr.resize(orginalImage, Scalr.Method.BALANCED, Scalr.Mode.FIT_TO_WIDTH,
-			200, 200, Scalr.OP_ANTIALIAS);
-
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		ImageIO.write(thumbnail, fileExt, baos);
-		byte[] thumbNailBytes = baos.toByteArray();		 
-		image.imageThumbNail = thumbNailBytes
-
-		// ************ Save the image to the DB ************
-		image.save(flush:true)		
+			ImageIO.write(thumbnail, fileExt, baos);
+			byte[] thumbNailBytes = baos.toByteArray();		 
+			image.imageThumbNail = thumbNailBytes
+	
+			// ************ Save the image to the DB ************
+			image.save(flush:true)
+		}		
 	}
 
 	

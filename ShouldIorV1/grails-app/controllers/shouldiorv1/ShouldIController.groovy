@@ -132,6 +132,13 @@ class ShouldIController {
 		cal.add(Calendar.MONTH, -1);
 		Date date = cal.getTime();
 		def questions = Question.executeQuery("FROM Question a WHERE a.totalVotes > 0 AND a.date > ? AND a.category != 'Hot or Not' ORDER BY a.totalVotes DESC", [date], [max: 15])
+		
+		for (Question question : questions) {
+			if (question.questionTitle.length()  > 30) 
+			question.questionTitle = question.questionTitle.substring(0, 30) + "..."
+		}
+		
+		
 		return questions
 	}
 	
@@ -140,6 +147,12 @@ class ShouldIController {
 		cal.add(Calendar.MONTH, -1);
 		Date date = cal.getTime();
 		def questions = Question.executeQuery("FROM Question a WHERE a.category != 'Hot or Not' AND date > ? ORDER BY RAND()", [date], [max: 10])
+		
+		for (Question question : questions) {
+			if (question.questionTitle.length()  > 30)
+			question.questionTitle = question.questionTitle.substring(0, 30) + "..."
+		}
+		
 		return questions	
 	}
 	

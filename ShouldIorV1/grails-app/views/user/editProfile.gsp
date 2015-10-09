@@ -133,7 +133,7 @@
 			<h3 style = "margin-bottom: 10px; margin-top: 0px; width: 100%; text-align: center;  display; block; display:inline-block;">Edit Profile</h3>
 
 			<p id = "saveWarnning"class="bg-danger" style = "display: none; font-size: 14px; padding: 4px; color: #3d3d3d; border: solid 1px; border-color: #db6565; "> <span style = "margin: 0px 3px 0px 3px;" class = "fa fa-exclamation-circle" ></span> Dont forget to save your changes by clicking the "<i>Save Changes</i>" button</p>
-
+	<div style = "display:none;">
 					<div id = "imgContainer" style = "margin-top: 0px; margin: auto; width: 100%;  margin-bottom: 9px; padding: 6px; position: relative; background-color: #EAEAEA; display: block;" >
 
 					<div id = "imgContainer" style = "margin-top: 0px; text-align: center; margin: auto; width: 100%; max-width: 230px; margin-bottom: 9px; padding: 6px; position: relative; background-color: #EAEAEA; display: block;" >
@@ -148,6 +148,7 @@
 		<button type="button" onClick = "resetFormElement()" style = "margin-top: 1px; display: inline-block;" class="btn btn-default fa fa-times"> Remove</button>				
 			
 			<hr>
+			</div>
 			
 			
 		<div id = "errorAlert"class="alert alert-danger" role="alert" style = " display: none; margin-top: 0px;  padding: 6px;" >
@@ -159,6 +160,7 @@
 		<label for="exampleInputEmail1">Display Name</label>
 			<input id = 'userNameTxt' type="text"  name = "name" class="form-control" id="exampleInputEmail1" value = "${user.name}" placeholder="Username">
 		</div>
+		
 		
 		                                          
 	<div id="wysihtml5-toolbar" style="display: none;  margin-top: 10px; ">
@@ -350,6 +352,7 @@
 	var errorMessage;
 	var hasErrors = false;
 	var name = $("#userNameTxt").val();
+	var about = $("#wysihtml5-textarea").val();
 
 	
 	$("#errorAlert").css("display", "none");
@@ -363,6 +366,11 @@
 		if (name.length > 25) {
 			hasErrors = true;
 			errors.push("Username too long. 25 character max.");
+		} 
+		
+		if (about.length > 300) {
+			hasErrors = true;
+			errors.push("About is too long. 200 character max.");
 		} 
 
 		if (checkUserName($('#checkUserLink').val(), $('#userID').val())) {
