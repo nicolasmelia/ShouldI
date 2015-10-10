@@ -293,58 +293,54 @@ expressionOut.print(question.category)
 printHtmlPart(116)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: question.category, categorySort: 'Trending']))
 printHtmlPart(117)
-for( _it1242489018 in (questionPromo1) ) {
-changeItVariable(_it1242489018)
+for( _it1740687627 in (questionPromo1) ) {
+changeItVariable(_it1740687627)
 printHtmlPart(118)
 expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
 printHtmlPart(119)
 if(true && (it.answerOneImage)) {
 printHtmlPart(120)
-expressionOut.print(it.totalVotes)
-printHtmlPart(121)
 expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1', thumb: 'True']))
-printHtmlPart(122)
+printHtmlPart(121)
 }
 else {
-printHtmlPart(123)
-expressionOut.print(it.totalVotes)
-printHtmlPart(124)
-expressionOut.print(resource(dir:'images',file:'noImg.png'))
 printHtmlPart(122)
+expressionOut.print(resource(dir:'images',file:'noImg.png'))
+printHtmlPart(121)
+}
+printHtmlPart(123)
+expressionOut.print(it.questionTitle)
+printHtmlPart(124)
 }
 printHtmlPart(125)
-expressionOut.print(it.questionTitle)
-printHtmlPart(126)
-}
-printHtmlPart(127)
 expressionOut.print(questionID)
-printHtmlPart(128)
+printHtmlPart(126)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'privacyPolicy'))
-printHtmlPart(129)
+printHtmlPart(127)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
-printHtmlPart(130)
+printHtmlPart(128)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'aboutPollaris'))
-printHtmlPart(131)
+printHtmlPart(129)
 expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
-printHtmlPart(132)
+printHtmlPart(130)
 expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
+printHtmlPart(131)
+invokeTag('javascript','g',471,['src':("dataAccess.js")],-1)
+printHtmlPart(132)
+invokeTag('resource','g',472,['dir':("js"),'file':("bootstrap.min.js")],-1)
 printHtmlPart(133)
-invokeTag('javascript','g',472,['src':("dataAccess.js")],-1)
+invokeTag('javascript','g',473,['src':("buttonAnswerGlow.js")],-1)
 printHtmlPart(134)
-invokeTag('resource','g',473,['dir':("js"),'file':("bootstrap.min.js")],-1)
-printHtmlPart(135)
-invokeTag('javascript','g',474,['src':("buttonAnswerGlow.js")],-1)
-printHtmlPart(136)
 })
-invokeTag('captureBody','sitemesh',562,['style':(" margin-bottom: 20px;  ")],1)
-printHtmlPart(137)
+invokeTag('captureBody','sitemesh',561,['style':(" margin-bottom: 20px;  ")],1)
+printHtmlPart(135)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1444350948196L
+public static final long LAST_MODIFIED = 1444408422712L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

@@ -161,8 +161,8 @@ printHtmlPart(61)
 printHtmlPart(62)
 if(true && (category != 'Following')) {
 printHtmlPart(63)
-for( _it468154998 in (question) ) {
-changeItVariable(_it468154998)
+for( _it800026186 in (question) ) {
+changeItVariable(_it800026186)
 printHtmlPart(64)
 expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
 printHtmlPart(65)
@@ -190,8 +190,8 @@ printHtmlPart(75)
 }
 else {
 printHtmlPart(76)
-for( _it828174704 in (users) ) {
-changeItVariable(_it828174704)
+for( _it1135281753 in (users) ) {
+changeItVariable(_it1135281753)
 printHtmlPart(77)
 expressionOut.print(createLink(controller: 'User', action: 'profile', params: [id: it.userID, category : 'New Questions']))
 printHtmlPart(78)
@@ -234,7 +234,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1444348265821L
+public static final long LAST_MODIFIED = 1444408422666L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

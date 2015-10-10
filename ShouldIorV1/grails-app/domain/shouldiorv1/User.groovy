@@ -27,7 +27,8 @@ class User {
 		name nullable: true
 		followerCount nullable:true
 		
-		avatar nullable: true	
+		avatar(nullable:true, maxSize: 1024 * 1024 * 2 /* 2MB */)
+	
 		about nullable:true
 		
 		deleted nullable:true

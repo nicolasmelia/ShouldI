@@ -208,7 +208,7 @@
                <g:else>
                
                 <g:each in="${users}">
-              	   <div style = "overflow: hidden; text-align: center; " onmouseover="glow(this)" onmouseout="unGlow(this)"  onClick = "loadQuestionURL('${createLink(controller: 'User', action: 'profile', params: [id: it.userID, category : 'New Questions'])}')"  class="col-xs-6 col-md-4">
+              	   <div style = "overflow: hidden; text-align: center; " onmouseover="glow(this)" onmouseout="unGlow(this)"  onClick = "loadQuestionURL('${createLink(controller: 'User', action: 'profile', params: [id: it.userID, category : 'New Questions'])}')"  class="col-xs-6 col-md-2">
                      <div  class="row" style = "cursor: default; ">
                            <img class = "bigViewImg"  src = "${createLink(controller: 'User', action: 'getProfileImage', params: [id: it.userID])}"/>	
                         <div class = "questionTitle" >${it.name}</div>

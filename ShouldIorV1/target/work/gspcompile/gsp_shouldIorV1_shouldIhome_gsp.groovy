@@ -129,8 +129,8 @@ expressionOut.print(raw(messageText))
 printHtmlPart(47)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
 printHtmlPart(48)
-for( _it877788296 in (trendingQuestions) ) {
-changeItVariable(_it877788296)
+for( _it878765293 in (trendingQuestions) ) {
+changeItVariable(_it878765293)
 printHtmlPart(49)
 expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
 printHtmlPart(50)
@@ -157,54 +157,50 @@ printHtmlPart(59)
 printHtmlPart(60)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
 printHtmlPart(61)
-for( _it809615027 in (randomQuestions) ) {
-changeItVariable(_it809615027)
+for( _it1246052237 in (randomQuestions) ) {
+changeItVariable(_it1246052237)
 printHtmlPart(62)
 expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
 printHtmlPart(63)
 if(true && (it.answerOneImage)) {
 printHtmlPart(64)
-expressionOut.print(it.totalVotes)
-printHtmlPart(65)
 expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1', thumb: 'True']))
-printHtmlPart(66)
+printHtmlPart(65)
 }
 else {
-printHtmlPart(64)
-expressionOut.print(it.totalVotes)
-printHtmlPart(67)
+printHtmlPart(66)
 expressionOut.print(resource(dir:'images',file:'noImg.png'))
+printHtmlPart(65)
+}
+printHtmlPart(67)
+expressionOut.print(it.questionTitle)
 printHtmlPart(68)
 }
 printHtmlPart(69)
-expressionOut.print(it.questionTitle)
-printHtmlPart(70)
-}
-printHtmlPart(71)
 expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
-printHtmlPart(72)
+printHtmlPart(70)
 expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
-printHtmlPart(73)
+printHtmlPart(71)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'privacyPolicy'))
-printHtmlPart(74)
+printHtmlPart(72)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
-printHtmlPart(75)
+printHtmlPart(73)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'aboutPollaris'))
-printHtmlPart(76)
+printHtmlPart(74)
 expressionOut.print(yesCount)
-printHtmlPart(77)
+printHtmlPart(75)
 expressionOut.print(noCount)
-printHtmlPart(78)
+printHtmlPart(76)
 })
-invokeTag('captureBody','sitemesh',333,['style':("background-color: #F6F6F6!important; background-image:url('${resource(dir: "images", file: "wall1.jpg")}'); margin-bottom: 20px; background-size: cover;  background-attachment: fixed; min-width: 320px;  ")],1)
-printHtmlPart(79)
+invokeTag('captureBody','sitemesh',342,['style':("background-color: #F6F6F6!important; background-image:url('${resource(dir: "images", file: "wall1.jpg")}'); margin-bottom: 20px; background-size: cover;  background-attachment: fixed; min-width: 320px;  ")],1)
+printHtmlPart(77)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1444350234294L
+public static final long LAST_MODIFIED = 1444409033044L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

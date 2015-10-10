@@ -9,7 +9,7 @@
       <meta name="description" content="ShouldI.fm is a place where you can ask the world questions and get honest answers. Start a poll, it's free and easy!">
       <meta name="author" content="ShouldI.fm">
       <link rel="shortcut icon" href="${resource(dir:'images',file:'logoBrowser.png')}">
-      <title>ShouldI.fm - Home</title>
+      <title>ShouldI.fm</title>
        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
       
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -199,19 +199,28 @@
             </div>
             <div class = "scrollCon">
                <g:each in="${randomQuestions}">
-                  <div style = "overflow: hidden; text-align: center; min-height: 110px;  " onmouseover="glow(this)" onmouseout="unGlow(this)"  onClick = "loadQuestionURL('${createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID])}')"  class="col-xs-6 col-md-4">
-                     <div  class="row" style = "cursor: default; ">
+                  <div style = "overflow: hidden; text-align: center; min-height: 120px; " onmouseover="glow(this)" onmouseout="unGlow(this)"  onClick = "loadQuestionURL('${createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID])}')"  class="col-xs-6 col-md-3">
+                     <div  class="row" style = "cursor: default; ">               
+                <table style = "width: 100%; height: 100%; min-height: 120px; ">
+                <tr style = "width: 100%;">
+                     <td style = "vertical-align:middle; margin: auto;" >
                         <g:if test="${it.answerOneImage}">
-                         <div style = "opacity: 0.7; padding: 5px; position: absolute; "><span class = "fa fa-line-chart"  style = "color: #5BC0DE; margin-right: 5px;" > ${it.totalVotes} </span></div>
-                           <img class = "bigViewImg"  src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1', thumb: 'True'])}" />	
+                           <img style = " vertical-align:middle; padding: 3px; margin: auto; max-width: 150px; " class = "bigViewImg"  src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1', thumb: 'True'])}"  />	
                         </g:if>
                         <g:else>
-                         <div style = "opacity: 0.7; padding: 5px; position: absolute; "><span class = "fa fa-line-chart"  style = "color: #5BC0DE; margin-right: 5px;" > ${it.totalVotes} </span></div>
-                           <img  class = "bigViewImg" src="${resource(dir:'images',file:'noImg.png')}"  />	
+                           <img  style = "padding: 3px; margin: auto; "  class = "bigViewImg" src="${resource(dir:'images',file:'noImg.png')}"  />	
                         </g:else>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td valign="bottom">
+          			<div style = "display: block; margin-top: 0px;" >
+                        <div  style = "padding: 3px; bottom: 0px; right: 0; left: 0; margin: auto;" class = "questionTitle" >${it.questionTitle}</div>
+                    </div>
+                    </td>
+                    </tr>
+                     </table>               
                      </div>
-                        <div class = "questionTitle" >${it.questionTitle}</div>
-                     
                   </div>
                </g:each>
             </div>

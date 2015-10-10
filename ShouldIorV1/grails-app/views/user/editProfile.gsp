@@ -128,12 +128,18 @@
 	 <g:form controller="User" action="updateProfile" enctype="multipart/form-data" >
 
 			
+			<input id = "datax" type="hidden" name="datax" value="">
+			<input id = "datay"  type="hidden" name="datay" value="">
+			<input id = "dataw"  type="hidden" name="dataw" value="">
+			<input id = "datah"  type="hidden" name="datah" value="">
+			
 			<div style = "display; block; width: 99%; margin: auto; padding: 10px; margin-top: -5px;">
 
 			<h3 style = "margin-bottom: 10px; margin-top: 0px; width: 100%; text-align: center;  display; block; display:inline-block;">Edit Profile</h3>
 
 			<p id = "saveWarnning"class="bg-danger" style = "display: none; font-size: 14px; padding: 4px; color: #3d3d3d; border: solid 1px; border-color: #db6565; "> <span style = "margin: 0px 3px 0px 3px;" class = "fa fa-exclamation-circle" ></span> Dont forget to save your changes by clicking the "<i>Save Changes</i>" button</p>
-	<div style = "display:none;">
+	
+		<div style = "display:block;">
 					<div id = "imgContainer" style = "margin-top: 0px; margin: auto; width: 100%;  margin-bottom: 9px; padding: 6px; position: relative; background-color: #EAEAEA; display: block;" >
 
 					<div id = "imgContainer" style = "margin-top: 0px; text-align: center; margin: auto; width: 100%; max-width: 230px; margin-bottom: 9px; padding: 6px; position: relative; background-color: #EAEAEA; display: block;" >
@@ -142,7 +148,7 @@
 				</div>
 
 		<span class="btn btn-default btn-file fa fa-photo "  style = "margin-top: 2px; margin-bottom: 0px; display: inline-block;" >
-			Change <input id = "imageUpload" name = 'image' type="file">
+			Change <input id = "imageUpload" name = 'profileImg' type="file" accept="image/*" >
 		</span>
 		
 		<button type="button" onClick = "resetFormElement()" style = "margin-top: 1px; display: inline-block;" class="btn btn-default fa fa-times"> Remove</button>				
@@ -257,9 +263,6 @@
 	  maxChars: 10
 	});
 	
-	
-	
-	
 	$( document ).ready(function() {
 		  $('.single').css('border-bottom', ' solid 2px #5BC0DE');
 
@@ -268,12 +271,16 @@
 			  parserRules:  wysihtml5ParserRules // defined in parser rules set 
 			});
 
-				$('#imgContainer > img').cropper({
-				 guides: false,
-				autoCrop: false,
+		$('#imgContainer > img').cropper({
+		guides: false,
+		autoCrop: false,
 		  aspectRatio: 1,
 		  crop: function(e) {
 		  var $cropper = $(e.target);
+		  	  $("#datax").val(Math.round(e.x));
+			  $("#datay").val(Math.round(e.y));
+			  $("#dataw").val(Math.round(e.width));
+			  $("#datah").val(Math.round(e.height));
 		  }
 		});
 		
@@ -356,7 +363,7 @@
 
 	
 	$("#errorAlert").css("display", "none");
-	errors = [];
+	errors = [];		
 	
 		if (name == "" || name.length < 3) {
 			hasErrors = true;
@@ -393,10 +400,8 @@
 		}	
 	}
 		
-	function openCustom() {
-		 
+	function openCustom() {	 
 		window.location.href = '/ShouldIorV1/Question/askShouldICustom';
-
 	}
 
 	function readImg(input) {
@@ -407,6 +412,7 @@
 			$selector.cropper('clear');
 			$selector.cropper('replace', e.target.result);
 			$selector.cropper('crop');
+
 		}
 }
 reader.readAsDataURL(input.files[0]);

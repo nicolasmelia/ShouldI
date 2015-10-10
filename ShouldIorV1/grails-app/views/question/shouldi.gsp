@@ -397,14 +397,10 @@
             </div>
             <div class = "scrollCon">
                <g:each in="${questionPromo1}">
-                  <div style = "overflow: hidden; text-align: center; min-height: 120px; " onmouseover="glow(this)" onmouseout="unGlow(this)"  onClick = "loadQuestionURL('${createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID])}')"  class="col-xs-6 col-md-4">
-  
-                     <div  class="row" style = "cursor: default; ">
-                     
-                                   
+                  <div style = "overflow: hidden; text-align: center; min-height: 120px; " onmouseover="glow(this)" onmouseout="unGlow(this)"  onClick = "loadQuestionURL('${createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID])}')"  class="col-xs-6 col-md-3">
+                     <div  class="row" style = "cursor: default; ">               
                 <table style = "width: 100%; height: 100%; min-height: 120px; ">
                 <tr style = "width: 100%;">
-                
                      <td style = "vertical-align:middle; margin: auto;" >
                         <g:if test="${it.answerOneImage}">
                            <img style = " vertical-align:middle; padding: 3px; margin: auto; max-width: 150px; " class = "bigViewImg"  src = "${createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1', thumb: 'True'])}"  />	
@@ -412,10 +408,8 @@
                         <g:else>
                            <img  style = "padding: 3px; margin: auto; "  class = "bigViewImg" src="${resource(dir:'images',file:'noImg.png')}"  />	
                         </g:else>
-                        
                         </td>
                         </tr>
-                        
                         <tr>
                         <td valign="bottom">
           			<div style = "display: block; margin-top: 0px;" >
@@ -423,12 +417,8 @@
                     </div>
                     </td>
                     </tr>
-                    
-                                       </table>  
-                    
+                     </table>               
                      </div>
-                     
-                     
                   </div>
                </g:each>
             </div>

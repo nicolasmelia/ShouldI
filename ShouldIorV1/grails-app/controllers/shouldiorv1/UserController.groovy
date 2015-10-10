@@ -3,9 +3,17 @@ package shouldiorv1
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.net.URL;
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage
 import org.apache.commons.compress.utils.*;
+
+import java.awt.Color
+import java.awt.image.DataBufferByte
+import java.util.Date;
+import javax.imageio.*
+import org.apache.commons.io.IOUtils
+import org.imgscalr.*
+import org.omg.CORBA.portable.ApplicationException
+
 
 class UserController {
 	// This allows us to config database from url
@@ -148,6 +156,7 @@ class UserController {
 	def updateProfile() {
 		User user = User.findByUserID(session['userID']);	
 		
+		// ABOUT ME
 		if (params.aboutText.toString().length() < 300 ) {		
 			if (params.aboutText.toString().trim().length() < 3){
 				user.about = "Apparently, this user prefers to keep an air of mystery about them."
@@ -156,6 +165,8 @@ class UserController {
 			}
 		}	
 		
+		
+		// USERNAME
 		if (!user.name.equals(params.name.toString().trim()) && params.username.toString().length() <= 25 && params.username.toString().length() > 3) {
 			user.name = params.name.toString().trim()
 			session["name"] = user.name
@@ -166,6 +177,17 @@ class UserController {
 				question.save(flush:true)
 			}
 		}
+		
+		// PROFILE IMAGE
+		def imgFile = request.getFile('profileImg')
+		if (imgFile.bytes.length > 0) {					
+			int x =  Integer.parseInt(params.datax)
+			int y =  Integer.parseInt(params.datay);
+			int width =  Integer.parseInt(params.dataw)
+			int height =  Integer.parseInt(params.datah)
+			saveProfileImage(user.userID, imgFile, x, y, width, height)
+		}
+				
 		
 		user.save(flush:true)		
 		
@@ -294,6 +316,43 @@ class UserController {
 			render ("False") // Not logged in
 		}
 	}
+	
+	
+	def saveProfileImage(userID, imgFile, x, y, width, height){
+		User user = User.findByUserID(userID)
+		String fileExt = imgFile.originalFilename.toString().substring(imgFile.originalFilename.lastIndexOf(".") + 1).replace(".", "");
+		if (fileExt.toLowerCase().equals("gif") ||
+			fileExt.toLowerCase().equals("jpg") ||
+			fileExt.toLowerCase().equals("jpeg")||
+			fileExt.toLowerCase().equals("tif") ||
+			fileExt.toLowerCase().equals("tiff")||
+			fileExt.toLowerCase().equals("png") ||
+			fileExt.toLowerCase().equals("jpeg")||
+			fileExt.toLowerCase().equals("jp2")) {
+			// ************ Save full size image ************
+			// Get length of file in bytes
+				ByteArrayInputStream bais1 = new ByteArrayInputStream(imgFile.bytes);
+				BufferedImage orginalImage1 = ImageIO.read(bais1)
+				
+				// CROP
+				BufferedImage compresedImg = Scalr.crop(orginalImage1, x , y, width, height);
+				
+				// COMPRESS
+				 compresedImg =
+					Scalr.resize(compresedImg, Scalr.Method.QUALITY, Scalr.Mode.FIT_TO_WIDTH,
+					400, 400, Scalr.OP_ANTIALIAS);
+	
+				ByteArrayOutputStream baos = new ByteArrayOutputStream();
+				ImageIO.write(compresedImg, fileExt, baos);
+				byte[] compresedImgBytes = baos.toByteArray();
+				user.avatar = compresedImgBytes
+			} 
+
+	
+			// ************ Save the image to the DB ************
+			user.save(flush:true)
+		}
+	
 	
 
 }
