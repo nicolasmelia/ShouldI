@@ -41,6 +41,7 @@ class QuestionController {
 		try {
 			if (session["userID"].toString().matches(question.UserID)) {
 				question.opNotifyVoteCount = 0 // OP has seen new votes set notify count to 0
+				question.save(flush:true)
 			} else {
 				user.peopleReached =  user.peopleReached + 1
 				user.save(flush:true)
@@ -49,8 +50,15 @@ class QuestionController {
 			// Do nothing. User is either deleted or banned.
 		}
 		
-		question.totalViews = question.totalViews + 1
-		question.save(flush:true)
+		if (session["userID"] != null) { 
+			if (!session["userID"].toString().equals(question.UserID)){
+				question.totalViews = question.totalViews + 1
+				question.save(flush:true)
+			}
+		} else {
+			question.totalViews = question.totalViews + 1
+			question.save(flush:true)
+		}
 		
 		// Check is question has an image
 		boolean hasQuestionImage = false
@@ -172,7 +180,12 @@ class QuestionController {
 		question.save(flush:true)
 		
 		user.totalQuestions = user.totalQuestions + 1
-		user.save(flush:true)
+		
+		if (user.deleted == false) {
+			user.save(flush:true)
+		} else {
+			// No no... They are banned!
+		}
 		
 		// Render question page for user posting
 		redirect(action: "shouldi", params: [id: question.questionID])
@@ -293,7 +306,12 @@ class QuestionController {
 		question.save(flush:true, failOnError: true)
 		
 		user.totalQuestions = user.totalQuestions + 1
-		user.save(flush:true)
+		
+		if (user.deleted == false) {
+			user.save(flush:true)
+		} else {
+			// No no... They are banned!
+		}
 		
 		// Render question page for user posting
 		redirect(action: "shouldi", params: [id: question.questionID])
@@ -564,10 +582,10 @@ class QuestionController {
 		// ******** Half from this category and half from other categories **********
 		
 		// From this category
-		def questionSet1 = Question.executeQuery("FROM Question a WHERE a.category = ? AND date > ? AND a.questionID <> ? ORDER BY RAND()", [category, date, questionID], [max: 8])
+		def questionSet1 = Question.executeQuery("FROM Question a WHERE a.category = ? AND date > ? AND a.questionID <> ? ORDER BY RAND()", [category, date, questionID], [max: 6])
 		
 		// Random from other categories
-		def questionSet2 = Question.executeQuery("FROM Question a WHERE a.category != 'Hot or Not' AND date > ? AND a.questionID <> ? ORDER BY RAND()", [date, questionID], [max: 3])
+		def questionSet2 = Question.executeQuery("FROM Question a WHERE a.category != 'Hot or Not' AND date > ? AND a.questionID <> ? ORDER BY RAND()", [date, questionID], [max: 6])
 		
 		// List of id's to not allow duplicates
 		ArrayList<String> questionIds = new ArrayList<String>()
@@ -595,8 +613,8 @@ class QuestionController {
 		
 		
 		for (Question question : questions) {
-			if (question.questionTitle.length()  > 30)
-			question.questionTitle = question.questionTitle.substring(0, 30) + "..."
+			if (question.questionTitle.length()  > 32)
+			question.questionTitle = question.questionTitle.substring(0, 32) + "..."
 		}
 		
 		
@@ -664,14 +682,19 @@ class QuestionController {
 				
 				BufferedImage compresedImg =
 					Scalr.resize(orginalImage1, Scalr.Method.QUALITY, Scalr.Mode.FIT_TO_WIDTH,
-					900, 900, Scalr.OP_ANTIALIAS);
+					800, 800, Scalr.OP_ANTIALIAS);
 	
 				ByteArrayOutputStream baos = new ByteArrayOutputStream();
 				ImageIO.write(compresedImg, fileExt, baos);
 				byte[] compresedImgBytes = baos.toByteArray();
 				image.image = compresedImgBytes		
 			} else {
-				image.image = imgFile.bytes
+			if (fileSizeInBytes > 4000 && fileExt.toLowerCase().matches("gif")){
+					// allow for now...TODO: dont allow gif larger than 4mb... 
+					image.image = imgFile.bytes		
+				} else {
+					image.image = imgFile.bytes
+				}
 			}
 						
 			// ************ Create the thumbnail ************

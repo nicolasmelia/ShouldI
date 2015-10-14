@@ -49,17 +49,19 @@ class AuthenticationController {
 			newUser.name = getFaceBookName(params.userID, params.token)
 			newUser.save(flush:true);
 			tempUser = newUser;
-			print "Created"
 		}
 		
-		// Create their session
-		session["userID"] = tempUser.userID
-		session["name"] = tempUser.name.trim()
-		
-		if  (session["name"]) {
-		render "Success"
+		if (tempUser.deleted == false) {
+			// Create their session
+			session["userID"] = tempUser.userID
+			session["name"] = tempUser.name.trim()		
+			if  (session["name"]) {
+			render "Success"
+			} else {
+			render "Fail"
+			}
 		} else {
-		render "Fail"
+			render "Fail"
 		}
 	}
 	
@@ -91,23 +93,31 @@ class AuthenticationController {
 	
 	def loginRedditAttempt() {
 		boolean loginSuccess = false
+		boolean errorThrown = false // for reddits 429
+		
 		if (!session["userID"]) {
 			String user = params.username
 			String pw = params.password
-			try {
-				loginSuccess = requestRedditLogin(user, pw)
+			try {		
+				// Reddit api sends error 429 too often. Attempt 10 times before giving up.
+				for (int i = 0; i < 10; i++) {
+					if (loginSuccess == false) {
+					try {
+						loginSuccess = requestRedditLogin(user, pw)
+						} catch(Exception ex2) {
+							errorThrown = true;
+						 // Do nothing, code 429 thrown
+						}
+					}
+					if (loginSuccess == true || !errorThrown) {
+						break;		
+					}
+				}			
 			} catch (Exception ex) {
-				// Possible connection error. Try to log in again
-				try {
-				loginSuccess = requestRedditLogin(user, pw)
-				} catch(Exception ex2) {
-				 // Do nothing, code 429 thrown
-				}
+				// Nothing right now
 			} finally {
 				if (loginSuccess) {
-					createRedditSession(user) // renders success
-					//render("Success") 
-					redirect(action: "home", controller: "shouldI")
+					createRedditSession(user) // renders success and redirects
 				} else {
 					render (view: "loginReddit", model:["Success":loginSuccess])
 				}
@@ -171,9 +181,7 @@ class AuthenticationController {
 		User user = User.findByLoginName(name.toString().toLowerCase()) // Should be userID!!!! REDDIT IS NOT COMPLETE!!!
 		
 		if (user != null) {
-			
-			tempUser = user;
-						
+			tempUser = user;				
 		} else {
 			// User does not exist in our DB, create them an account
 			User newUser = new User();
@@ -205,12 +213,73 @@ class AuthenticationController {
 			newUser.name = name.toString().toLowerCase()
 			newUser.save(flush:true);
 			tempUser = newUser;
-			print "Created"
+		}
+		
+		if (tempUser.deleted == false) {		
+			// Create their session
+			session["userID"] = tempUser.userID
+			session["name"] = tempUser.name	
+			redirect(action: "home", controller: "shouldI")		
+		} else {
+			redirect(action: "thisIsNotGood", controller: "shouldI")
+		}
+	}
+	
+	
+	
+	// ********** SEED ACCOUNT **********
+	
+	def loginSeed() {
+		render(view:"seedLogin")	
+	}
+	
+	def loginSeedAccount() {
+		String name = params.username.toString().trim()
+		User tempUser = new User()
+		User user = User.findByLoginName(name) // 
+		
+		if (user != null) {
+			
+			tempUser = user;
+						
+		} else {
+			// User does not exist in our DB, create them an account
+			User newUser = new User();
+			
+			// Generate a unique ID
+			while(true) {
+				// Create a UUID and cut it in half for easier reading
+				String uniqueID = UUID.randomUUID().toString().replace("-", "");
+				int midpoint = uniqueID.length() / 2;
+				String halfUUID = uniqueID.substring(0, midpoint)
+				int matchCount = Question.countByUserID(halfUUID)
+				if (matchCount == 0) {
+					newUser.userID = halfUUID
+					break;
+				 }
+			}
+			
+			newUser.token = "SEEDNONE"
+			newUser.accountType = "Seed"
+			newUser.password = "NONE"
+			newUser.peopleReached = 0
+			newUser.totalQuestions = 0
+			newUser.about = "Apparently, this user prefers to keep an air of mystery about them."
+			newUser.dateCreated = new Date()
+			newUser.followerCount = 0
+			newUser.deleted = false
+			newUser.certified = false
+			newUser.loginName = name
+			newUser.name = name
+			newUser.save(flush:true);
+			tempUser = newUser;
 		}
 		
 		// Create their session
 		session["userID"] = tempUser.userID
 		session["name"] = tempUser.name
+		redirect(action: "home", controller: "shouldI")
+		
 
 	}
 	

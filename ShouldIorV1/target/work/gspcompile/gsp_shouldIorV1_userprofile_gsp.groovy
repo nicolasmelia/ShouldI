@@ -161,8 +161,8 @@ printHtmlPart(61)
 printHtmlPart(62)
 if(true && (category != 'Following')) {
 printHtmlPart(63)
-for( _it800026186 in (question) ) {
-changeItVariable(_it800026186)
+for( _it679137498 in (question) ) {
+changeItVariable(_it679137498)
 printHtmlPart(64)
 expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
 printHtmlPart(65)
@@ -190,8 +190,8 @@ printHtmlPart(75)
 }
 else {
 printHtmlPart(76)
-for( _it1135281753 in (users) ) {
-changeItVariable(_it1135281753)
+for( _it454652207 in (users) ) {
+changeItVariable(_it454652207)
 printHtmlPart(77)
 expressionOut.print(createLink(controller: 'User', action: 'profile', params: [id: it.userID, category : 'New Questions']))
 printHtmlPart(78)
@@ -200,41 +200,41 @@ printHtmlPart(79)
 expressionOut.print(it.name)
 printHtmlPart(80)
 }
-printHtmlPart(63)
-}
 printHtmlPart(81)
-createClosureForHtmlPart(82, 2)
-invokeTag('link','g',232,['action':("profile"),'params':([offset: offset, up: 'false', category: category, id: user.userID ]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
-printHtmlPart(83)
-createClosureForHtmlPart(84, 2)
-invokeTag('link','g',236,['action':("profile"),'params':([offset: offset, up: 'true', category: category, id : user.userID]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
-printHtmlPart(85)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'privacyPolicy'))
+}
+printHtmlPart(82)
+createClosureForHtmlPart(83, 2)
+invokeTag('link','g',227,['action':("profile"),'params':([offset: offset, up: 'false', category: category, id: user.userID ]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
+printHtmlPart(84)
+createClosureForHtmlPart(85, 2)
+invokeTag('link','g',231,['action':("profile"),'params':([offset: offset, up: 'true', category: category, id : user.userID]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
 printHtmlPart(86)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
+expressionOut.print(createLink(controller: 'ShouldI', action: 'privacyPolicy'))
 printHtmlPart(87)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'aboutPollaris'))
+expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
 printHtmlPart(88)
-expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
+expressionOut.print(createLink(controller: 'ShouldI', action: 'aboutPollaris'))
 printHtmlPart(89)
-expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
 printHtmlPart(90)
-invokeTag('javascript','g',284,['src':("dataAccess.js")],-1)
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
 printHtmlPart(91)
-invokeTag('resource','g',285,['dir':("js"),'file':("bootstrap.min.js")],-1)
+invokeTag('javascript','g',279,['src':("dataAccess.js")],-1)
 printHtmlPart(92)
-invokeTag('javascript','g',286,['src':("buttonAnswerGlow.js")],-1)
+invokeTag('resource','g',280,['dir':("js"),'file':("bootstrap.min.js")],-1)
 printHtmlPart(93)
-})
-invokeTag('captureBody','sitemesh',305,[:],1)
+invokeTag('javascript','g',281,['src':("buttonAnswerGlow.js")],-1)
 printHtmlPart(94)
+})
+invokeTag('captureBody','sitemesh',300,[:],1)
+printHtmlPart(95)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1444408422666L
+public static final long LAST_MODIFIED = 1444778889267L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

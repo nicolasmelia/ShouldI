@@ -23,6 +23,14 @@ class User {
 	boolean certified
 	boolean deleted
 	
+	String loginKey // used when storing a cookie for the login
+	
+	// Strings for readability of high numbers
+	String totalVotesString
+	String totalQuestionsString
+	String followerCountString
+	String peopleReachedStrring
+
     static constraints = {
 		name nullable: true
 		followerCount nullable:true
@@ -37,6 +45,16 @@ class User {
 		about maxSize: 20000
 		favorites nullable: true
 		
-		token maxSize: 5000	
+		loginKey nullable: true
+		
+		token maxSize: 5000
+		
+		// Strings for readability of high numbers
+		totalVotesString nullable:true
+		totalQuestionsString nullable:true
+		followerCountString nullable:true
+		peopleReachedStrring nullable:true
+		
+			
     }
 }

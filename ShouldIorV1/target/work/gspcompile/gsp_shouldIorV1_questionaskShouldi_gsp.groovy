@@ -44,12 +44,12 @@ invokeTag('javascript','g',27,['src':("facebookLogin.js")],-1)
 printHtmlPart(11)
 invokeTag('javascript','g',28,['src':("dataAccess.js")],-1)
 printHtmlPart(12)
-invokeTag('resource','g',40,['dir':("js/wysihtml5"),'file':("advanced.js")],-1)
+invokeTag('resource','g',38,['dir':("js/wysihtml5"),'file':("advanced.js")],-1)
 printHtmlPart(13)
-invokeTag('resource','g',41,['dir':("js/wysihtml5"),'file':("wysihtml5-0.3.0.min.js")],-1)
+invokeTag('resource','g',39,['dir':("js/wysihtml5"),'file':("wysihtml5-0.3.0.min.js")],-1)
 printHtmlPart(14)
 })
-invokeTag('captureHead','sitemesh',52,[:],1)
+invokeTag('captureHead','sitemesh',50,[:],1)
 printHtmlPart(15)
 createTagBody(1, {->
 printHtmlPart(16)
@@ -112,8 +112,8 @@ expressionOut.print(createLink(controller: 'Question', action: 'askShouldICustom
 printHtmlPart(42)
 createTagBody(2, {->
 printHtmlPart(43)
-for( _it110238970 in (categories) ) {
-changeItVariable(_it110238970)
+for( _it475584446 in (categories) ) {
+changeItVariable(_it475584446)
 printHtmlPart(44)
 expressionOut.print(it.category)
 printHtmlPart(45)
@@ -123,10 +123,10 @@ printHtmlPart(46)
 printHtmlPart(47)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
 printHtmlPart(48)
-invokeTag('actionSubmit','g',208,['onclick':("return validate()"),'value':("Post"),'action':("postShouldI"),'style':("margin-top: 1px; width: 100px; display: inline-block;"),'class':("btn btn-default")],-1)
+invokeTag('actionSubmit','g',206,['onclick':("return validate()"),'value':("Post"),'action':("postShouldI"),'style':("margin-top: 1px; width: 100px; display: inline-block;"),'class':("btn btn-default")],-1)
 printHtmlPart(49)
 })
-invokeTag('form','g',213,['controller':("Question"),'action':("postShouldI"),'enctype':("multipart/form-data")],2)
+invokeTag('form','g',211,['controller':("Question"),'action':("postShouldI"),'enctype':("multipart/form-data")],2)
 printHtmlPart(50)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'privacyPolicy'))
 printHtmlPart(51)
@@ -138,22 +138,16 @@ expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceB
 printHtmlPart(54)
 expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
 printHtmlPart(55)
-invokeTag('resource','g',286,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput-angular.js")],-1)
-printHtmlPart(56)
-invokeTag('resource','g',287,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.js")],-1)
-printHtmlPart(57)
-invokeTag('resource','g',288,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.css")],-1)
-printHtmlPart(58)
 })
-invokeTag('captureBody','sitemesh',450,['style':("background-color: #f4f4f4; min-width: 330px; ")],1)
-printHtmlPart(59)
+invokeTag('captureBody','sitemesh',437,['style':("background-color: #f4f4f4; min-width: 330px; ")],1)
+printHtmlPart(56)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1444409377309L
+public static final long LAST_MODIFIED = 1444775824685L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

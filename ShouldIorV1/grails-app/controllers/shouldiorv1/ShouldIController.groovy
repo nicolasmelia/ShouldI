@@ -28,8 +28,10 @@ class ShouldIController {
 			motd.hash2 = ""
 		}
 		
-		render (view: "home", model: ["yesCount" : yesCount, "noCount" : noCount, "trendingQuestions": getPopularQuestions(), 
-			"randomQuestions": getRandomQuestions(), "notifyCount": getNotifyCount(),
+		def popQuestions = getPopularQuestions()
+		
+		render (view: "home", model: ["yesCount" : yesCount, "noCount" : noCount, "popularQuestions": popQuestions, 
+			 "notifyCount": getNotifyCount(),
 			 "messageTitle" : motd.hash, "messageText" : motd.hash2])	
 	}
 	
@@ -131,14 +133,7 @@ class ShouldIController {
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.MONTH, -1);
 		Date date = cal.getTime();
-		def questions = Question.executeQuery("FROM Question a WHERE a.totalVotes > 0 AND a.date > ? AND a.category != 'Hot or Not' ORDER BY a.totalVotes DESC", [date], [max: 15])
-		
-		for (Question question : questions) {
-			if (question.questionTitle.length()  > 30) 
-			question.questionTitle = question.questionTitle.substring(0, 30) + "..."
-		}
-		
-		
+		def questions = Question.executeQuery("FROM Question a WHERE a.totalVotes > 100 AND a.date > ?  AND a.category != 'Hot or Not' ORDER BY RAND()", [date], [max: 25])
 		return questions
 	}
 	
@@ -146,16 +141,10 @@ class ShouldIController {
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.MONTH, -1);
 		Date date = cal.getTime();
-		def questions = Question.executeQuery("FROM Question a WHERE a.category != 'Hot or Not' AND date > ? ORDER BY RAND()", [date], [max: 10])
-		
-		for (Question question : questions) {
-			if (question.questionTitle.length()  > 30)
-			question.questionTitle = question.questionTitle.substring(0, 30) + "..."
-		}
-		
-		return questions	
+		def questions2 = Question.executeQuery("FROM Question a WHERE a.category != 'Hot or Not' AND date > ? ORDER BY RAND()", [date], [max: 9])
+		return questions2
 	}
-	
+	 
 	def thisIsNotGood() {
 		render (view:"errorPage404")
 	}
@@ -169,7 +158,7 @@ class ShouldIController {
 	}
 	
 	def aboutPollaris() {
-		render (view: "privacyPolicy", model: ["notifyCount": getNotifyCount()])
+		render (view: "pollarisPolls", model: ["notifyCount": getNotifyCount()])
 	}
 	
 	

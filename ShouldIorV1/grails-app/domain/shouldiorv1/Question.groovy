@@ -49,7 +49,12 @@ class Question {
 	String userName
 	String UserID // Either facebooks userid or ours
 	String ClientAddress // Responce IP address
-
+	
+	// Strings for readability of high numbers
+	String totalVotesString
+	String totalViewsString
+	String opNotifyVoteCountString
+	
     static constraints = {
 		
 		userName(nullable:true)
@@ -74,6 +79,11 @@ class Question {
 		answerTwoVotes(nullable:true)		
 		answerThreeVotes(nullable:true)
 		answerFourVotes(nullable:true)
+		
+		// Strings for readability of high numbers
+		totalVotesString(nullable:true)
+		totalViewsString(nullable:true)
+		opNotifyVoteCountString(nullable:true)
 		
     }
 	

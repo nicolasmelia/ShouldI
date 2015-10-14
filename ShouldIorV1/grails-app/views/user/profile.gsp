@@ -162,7 +162,7 @@
             <div  class="contentContainer" style = "box-shadow:0 0 0px rgba(0, 0, 0, 0.0);" >
                
              
-              <div class = "scrollCon" style = "height: 310px; " >
+              <div class = "scrollCon" style = "height: 310px; overflow-x: hidden; " >
        
 	    <g:if test="${question.isEmpty() && users.isEmpty()}">
 		     <p style =  "display: block; color: #d3d3d3; font-size: 15px;  margin: auto; margin-top: 7px; width: 100%; text-align: center;">Nothing to show here...</p>
@@ -205,25 +205,20 @@
                </g:each>
                </g:if>
                
-               <g:else>
-               
-                <g:each in="${users}">
-              	   <div style = "overflow: hidden; text-align: center; " onmouseover="glow(this)" onmouseout="unGlow(this)"  onClick = "loadQuestionURL('${createLink(controller: 'User', action: 'profile', params: [id: it.userID, category : 'New Questions'])}')"  class="col-xs-6 col-md-2">
-                     <div  class="row" style = "cursor: default; ">
-                           <img class = "bigViewImg"  src = "${createLink(controller: 'User', action: 'getProfileImage', params: [id: it.userID])}"/>	
-                        <div class = "questionTitle" >${it.name}</div>
-                     </div>
+              <g:else>
+                  <div  class="row" style = "cursor: default; ">    
+	              	  <g:each in="${users}">
+	              	   <div style = "overflow: hidden; text-align: center; " onmouseover="glow(this)" onmouseout="unGlow(this)"  onClick = "loadQuestionURL('${createLink(controller: 'User', action: 'profile', params: [id: it.userID, category : 'New Questions'])}')"  class="col-xs-6 col-sm-3 col-md-3">
+	                           <img class = "bigViewImg"  src = "${createLink(controller: 'User', action: 'getProfileImage', params: [id: it.userID])}"/>	
+	                    		<div class = "questionTitle" >${it.name}</div>
+	                     </div>
+	              	  </g:each>
                   </div> 
-              	  </g:each>
-               
-               </g:else>
-               
-               
-               
-               
-               
+              </g:else>
                
             </div>
+            
+                            <hr style = "padding:0px; margin-top: 0px; margin-bottom: 0px; ">
             
             
 			<div class="btn-group" style = "margin: 10px; " >

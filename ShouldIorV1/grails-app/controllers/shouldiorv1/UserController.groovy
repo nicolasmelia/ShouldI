@@ -167,28 +167,29 @@ class UserController {
 		
 		
 		// USERNAME
-		if (!user.name.equals(params.name.toString().trim()) && params.username.toString().length() <= 25 && params.username.toString().length() > 3) {
-			user.name = params.name.toString().trim()
-			session["name"] = user.name
-			//Update all questions the user has posted with their new username
-			def questions = Question.findAllByUserID(user.userID)	
-			for (Question question : questions){
-				question.userName = params.name.toString().trim()
-				question.save(flush:true)
+		if (checkUserNameOnServer(params.name)) { // Check to see if username is taken.
+			if (!user.name.equals(params.name.toString().trim()) && params.username.toString().length() <= 25 && params.username.toString().length() > 3) {
+				user.name = params.name.toString().trim()
+				session["name"] = user.name
+				//Update all questions the user has posted with their new username
+				def questions = Question.findAllByUserID(user.userID)	
+				for (Question question : questions){
+					question.userName = params.name.toString().trim()
+					question.save(flush:true)
+				}
 			}
 		}
 		
 		// PROFILE IMAGE
 		def imgFile = request.getFile('profileImg')
-		if (imgFile.bytes.length > 0) {					
+		if (imgFile.bytes.length > 0) {				
 			int x =  Integer.parseInt(params.datax)
-			int y =  Integer.parseInt(params.datay);
+			int y =  Integer.parseInt(params.datay)
 			int width =  Integer.parseInt(params.dataw)
 			int height =  Integer.parseInt(params.datah)
-			saveProfileImage(user.userID, imgFile, x, y, width, height)
+			saveProfileImage(user.userID, imgFile,x,y,width,height)
 		}
 				
-		
 		user.save(flush:true)		
 		
 		// Renders user profile
@@ -205,6 +206,19 @@ class UserController {
 			} else {
 				render "False" 
 			}	
+		}
+	}
+	
+	def checkUserNameOnServer(name) {	
+		int userCount = User.countByName(name.toString().trim());
+		if (userCount == 0) {
+				return "True"
+		} else {
+			if (name.toString().trim().equals(session["name"])) {
+				return "True" // Its their username!
+			} else {
+				return "False"
+			}
 		}
 	}
 		
@@ -224,6 +238,9 @@ class UserController {
 				response.outputStream << grailsAttributes.getApplicationContext().getResource("images/blankAv.png").getFile().bytes
 				response.outputStream.flush()
 				// TODO: twitter, ect
+			} else if (user.accountType.matches("Seed")) {
+				response.outputStream << grailsAttributes.getApplicationContext().getResource("images/blankAv.png").getFile().bytes
+				response.outputStream.flush()
 			}
 			
 		} else {
@@ -333,14 +350,19 @@ class UserController {
 			// Get length of file in bytes
 				ByteArrayInputStream bais1 = new ByteArrayInputStream(imgFile.bytes);
 				BufferedImage orginalImage1 = ImageIO.read(bais1)
+				BufferedImage compresedImg
 				
 				// CROP
-				BufferedImage compresedImg = Scalr.crop(orginalImage1, x , y, width, height);
+				try{
+					compresedImg = Scalr.crop(orginalImage1,x,y,width,height);
+				} catch(Exception ex) {
+					// Dont crop image something went wrong. Still allows upload.
+				}
 				
 				// COMPRESS
 				 compresedImg =
-					Scalr.resize(compresedImg, Scalr.Method.QUALITY, Scalr.Mode.FIT_TO_WIDTH,
-					400, 400, Scalr.OP_ANTIALIAS);
+					Scalr.resize(compresedImg, Scalr.Method.BALANCED, Scalr.Mode.FIT_TO_WIDTH,
+					250, 250, Scalr.OP_ANTIALIAS);
 	
 				ByteArrayOutputStream baos = new ByteArrayOutputStream();
 				ImageIO.write(compresedImg, fileExt, baos);

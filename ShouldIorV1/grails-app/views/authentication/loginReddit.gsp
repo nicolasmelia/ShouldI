@@ -26,14 +26,8 @@
       <!-- font-awesome -->
       <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
       <link rel="stylesheet" type="text/css" href="<g:resource dir='css' file='typehead-searchBar.css'/>">
-      <script src="<g:resource dir="js/typedJS" file="typed.min.js" />"></script>
-      <script src="
-      <g:resource dir="js/typeaheadJS" file="typeahead.jquery.min.js" />
-      "></script>
-      
-            <script src="<g:resource dir="js/chart" file="Chart.min.js" />"></script>
-      
-      
+
+            
       <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
       <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -114,18 +108,25 @@
         <h2 class="form-signin-heading" style = "color: #FFFFFF;     text-shadow: 2px 2px #5e5e5e; ">sign in with <span class = "fa fa-reddit"></span></h2>
        
                      <g:if test="${Success == false}">
-                        <div class="alert alert-danger" role="alert" style = "margin: 10px 0px 10px 0px; padding: 8px; text-align: left; ">   
-	                  <p style = " margin: 0px; display: block;">
-	                  	<span class = " fa  fa-thumbs-o-up"></span> Login unsuccessful. Please try again.
+                        <div id = "alert" class="alert alert-danger" role="alert" style = "margin: 10px 0px 10px 0px; padding: 8px; text-align: left; ">   
+	                  <p  id  = 'alertText' style = " margin: 0px; display: block;">
+	                  	<span class = " fa  fa-thumbs-o-down"></span> Login unsuccessful. Please try again.
 	                  </p> 
 						</div>
 					</g:if>
+					<g:else>
+					   <div id = "alert" class="alert alert-danger" role="alert" style = "display: none; margin: 10px 0px 10px 0px; padding: 8px; text-align: left; ">   
+	                  <p id = 'alertText' style = " margin: 0px; display: block;">
+	                  	
+	                  </p> 
+						</div>
+					</g:else>
        
         <label for="inputEmail" class="sr-only"  >Username</label>
-        <input name = "username" type="text" id="inputEmail" class="form-control" placeholder="Username" required autofocus>
+        <input id = "username"  name = "username" type="text" id="inputEmail" class="form-control" placeholder="Username" required autofocus>
         <label for="inputPassword" class="sr-only" >Password</label>
-        <input style ="margin-top: 3px;"  name = "password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-        <g:actionSubmit value = "Login"   type="submit" action = "loginRedditAttempt" style = "margin-top: 5px; width: 100%; "  class="btn btn-primary"/>
+        <input style ="margin-top: 3px;" id = "password"  name = "password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <g:actionSubmit value = "Login"   onclick="return validate()"   type="submit" action = "loginRedditAttempt" style = "margin-top: 5px; width: 100%; "  class="btn btn-primary"/>
       </g:form>
 
     </div> <!-- /container -->
@@ -137,8 +138,80 @@
       <span style = "font-size: 13px; color: #79cce5;"><a style = "color: #79cce5;" href = "${createLink(controller: 'ShouldI', action: 'aboutPollaris')}">Pollaris LLC</a></span>    
       </div>   
   	  </footer>
-      
+  	  
+  	  
+  	           <!-- Loading Modal -->
+         <div class="modal fade" id="loadingSpinner" role="dialog"  data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog">
+               <!-- Modal content-->
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <h4 class="modal-title"><span href="#about" style = "padding-left: 4px;" class='fa fa-hourglass'> </span> Logging you in...</h4>
+                  </div>
+                  <div class="modal-body">
+                     <div style = "width: 100%; text-align: center;">
+                        <span style = "color: #61B7FE; font-size: 60px;" class="fa fa-spinner fa-pulse"></span>
+                        <p id = "loadingText" style = "  margin: auto;  margin-top: 15px;width: 80%;"></p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         
+  	     <!-- LOGIN Modal -->
+   <div class="modal fade" id="noLogin" role="dialog">
+      <div class="modal-dialog">
+         <!-- Modal content-->
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+               <h4 class="modal-title"><span href="#about" style = "padding-left: 4px;" class='fa fa-sign-in'> </span> Easy Login</h4>
+            </div>
+            <div class="modal-body">
+               <p>Please login. Choose a network below to login with:</p>
+               <button onClick = "loginFacebook('${createLink(controller: 'Authentication', action: 'loginFaceBook')}')" style = "" type="button" class="btn btn-default" data-dismiss="modal">Facebook <span class = "fa fa-facebook"></span></button>
+               <button  onClick = "loginReddit('${createLink(controller: 'Authentication', action: 'loginReddit')}')"style = "" type="button" class="btn btn-default" data-dismiss="modal">Reddit <span class = "fa fa-reddit"></span></button>
 
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+            </div>
+            <div class="modal-footer">
+               <button style = "" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+         </div>
+      </div>
+   </div>
+      
+		<script>
+
+		function validate() {
+			var password = $("#password").val()
+			var username = $("#username").val()
+			if (password != "" && username != "") {
+				displayLoadingSpinner();
+				return true
+			} else {
+				$('#alert').slideDown();
+				$('#alertText').html('<span class = "fa fa-thumbs-o-down"></span> Please enter valid credentials.');
+				return false		
+			}
+		}	
+
+		  function displayLoadingSpinner(){
+		         $('#loadingSpinner').modal('show'); 
+		         var saying = ["The last time I tried this the monkey didn't survive. Let's hope it works better this time.", 
+		         "My other load screen is much faster. You should try that one instead.", 
+		         "My other load screen is much faster. You should try that one instead.", 
+		         "The bits are breeding.",
+		         "Don't think of purple hippos.",
+		         "at least you're not on hold...",
+		         "Hum something loud while others stare.",
+		         "QUIET! I'm trying to think here!"];
+		         
+		         $("#loadingText").text(saying[Math.floor(Math.random() * saying.length) + 0  ]);
+		         
+		         }
+
+		</script>
+   
+
   </body>
 </html>

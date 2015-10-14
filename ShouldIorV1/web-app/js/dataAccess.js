@@ -1,6 +1,6 @@
 var votedFor = false;
 var clicked = false; // Do not allow another click until server responds
-
+var userNameTaken = false; // for username EDIT.
 function questionVote(vote) {
 	if (!clicked) {
 			clicked = true; 
@@ -140,6 +140,7 @@ function followUser(url, id) {
 
 	var allowUserNameCheck = true;
 	function checkUserName(url, userName) {
+		var serverResult = "";
 		if ($('#sessionCheck').val() == "true") {
 			if (allowfollow) { // dont allow button press twice without a response
 				allowUserNameCheck = false;
@@ -148,15 +149,17 @@ function followUser(url, id) {
 				  type: 'post',
 				    url: url,
 				    async: true,
-				    data: {userName : userName},
+				    data: {name : userName},
 			  }).done(function(result){
 				  allowUserNameCheck = true;
+				  serverResult = result;
+				  console.log(result);
 				  if (result == "True") {
-					  return true;
+					  userNameTaken =  false;
 				  } else if (result == "False") {
-					  return false;
+					  userNameTaken =  true;
 				  } else {
-					  return false;
+					  userNameTaken =  true;
 				  } 
 			  });
 			}
@@ -174,7 +177,6 @@ function showNoLogin() {
   	$('#noLogin').modal('show'); 
   }
   
-
 function logout(urlHome, urlLogout) {
 	  $.ajax({
 		  type: 'post',
@@ -193,4 +195,39 @@ function logout(urlHome, urlLogout) {
 	         	window.location.href =  urlHome;
 		  } 
 	  });
+}
+
+
+
+// COOKIE FOR LOGIN
+function setCookie(cname,cvalue,exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires=" + d.toGMTString();
+    document.cookie = cname+"="+cvalue+"; "+expires;
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function checkCookie() {
+    var user=getCookie("username");
+    if (user != "") {
+        alert("Welcome again " + user);
+    } else {
+       user = prompt("Please enter your name:","");
+       if (user != "" && user != null) {
+           setCookie("username", user, 30);
+       }
+    }
 }

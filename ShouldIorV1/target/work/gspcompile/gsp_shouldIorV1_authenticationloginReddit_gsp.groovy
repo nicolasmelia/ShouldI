@@ -48,89 +48,90 @@ invokeTag('javascript','g',25,['src':("dataAccess.js")],-1)
 printHtmlPart(10)
 invokeTag('resource','g',28,['dir':("css"),'file':("typehead-searchBar.css")],-1)
 printHtmlPart(11)
-invokeTag('resource','g',29,['dir':("js/typedJS"),'file':("typed.min.js")],-1)
-printHtmlPart(12)
-invokeTag('resource','g',31,['dir':("js/typeaheadJS"),'file':("typeahead.jquery.min.js")],-1)
-printHtmlPart(13)
-invokeTag('resource','g',34,['dir':("js/chart"),'file':("Chart.min.js")],-1)
-printHtmlPart(14)
 })
-invokeTag('captureHead','sitemesh',42,[:],1)
-printHtmlPart(15)
+invokeTag('captureHead','sitemesh',36,[:],1)
+printHtmlPart(12)
 createTagBody(1, {->
+printHtmlPart(12)
+if(true && (session.name)) {
+printHtmlPart(13)
+}
+else {
+printHtmlPart(14)
+}
 printHtmlPart(15)
-if(true && (session.name)) {
+expressionOut.print(createLink(controller: 'ShouldI', action: 'home'))
 printHtmlPart(16)
-}
-else {
-printHtmlPart(17)
-}
-printHtmlPart(18)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'home'))
-printHtmlPart(19)
 expressionOut.print(resource(dir:'images',file:'logo.png'))
-printHtmlPart(20)
+printHtmlPart(17)
 if(true && (session.name)) {
-printHtmlPart(21)
+printHtmlPart(18)
 expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: [category: 'My Notifications']))
-printHtmlPart(22)
+printHtmlPart(19)
 expressionOut.print(notifyCount)
-printHtmlPart(23)
+printHtmlPart(20)
 expressionOut.print(createLink(controller: 'Question', action: 'askShouldI'))
+printHtmlPart(21)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
+printHtmlPart(22)
+}
+else {
+printHtmlPart(23)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
+printHtmlPart(22)
+}
 printHtmlPart(24)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
-printHtmlPart(25)
-}
-else {
-printHtmlPart(26)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
-printHtmlPart(25)
-}
-printHtmlPart(27)
 if(true && (session.name)) {
-printHtmlPart(28)
+printHtmlPart(25)
 expressionOut.print(createLink(controller: 'User', action: 'getProfileImage', params: [id: session.userID]))
-printHtmlPart(29)
+printHtmlPart(26)
 expressionOut.print(session.name)
-printHtmlPart(30)
+printHtmlPart(27)
 expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: [category: 'My Questions']))
-printHtmlPart(31)
+printHtmlPart(28)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'home'))
-printHtmlPart(32)
+printHtmlPart(29)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
-printHtmlPart(33)
+printHtmlPart(30)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'home'))
-printHtmlPart(34)
+printHtmlPart(31)
 expressionOut.print(createLink(controller: 'Authentication', action: 'logout'))
-printHtmlPart(35)
+printHtmlPart(32)
 }
 else {
-printHtmlPart(36)
+printHtmlPart(33)
 expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
-printHtmlPart(37)
+printHtmlPart(34)
 }
-printHtmlPart(38)
+printHtmlPart(35)
 expressionOut.print(resource(dir:'images',file:'logoDark.png'))
-printHtmlPart(39)
+printHtmlPart(36)
 createTagBody(2, {->
-printHtmlPart(40)
+printHtmlPart(37)
 if(true && (Success == false)) {
-printHtmlPart(41)
+printHtmlPart(38)
 }
-printHtmlPart(42)
-invokeTag('actionSubmit','g',128,['value':("Login"),'type':("submit"),'action':("loginRedditAttempt"),'style':("margin-top: 5px; width: 100%; "),'class':("btn btn-primary")],-1)
+else {
+printHtmlPart(39)
+}
+printHtmlPart(40)
+invokeTag('actionSubmit','g',129,['value':("Login"),'onclick':("return validate()"),'type':("submit"),'action':("loginRedditAttempt"),'style':("margin-top: 5px; width: 100%; "),'class':("btn btn-primary")],-1)
 printHtmlPart(1)
 })
-invokeTag('form','g',129,['controller':("Authentication"),'action':("loginRedditAttempt"),'enctype':("multipart/form-data"),'class':("form-signin"),'style':("max-width: 300px; margin: auto;")],2)
-printHtmlPart(43)
+invokeTag('form','g',130,['controller':("Authentication"),'action':("loginRedditAttempt"),'enctype':("multipart/form-data"),'class':("form-signin"),'style':("max-width: 300px; margin: auto;")],2)
+printHtmlPart(41)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'privacyPolicy'))
-printHtmlPart(44)
+printHtmlPart(42)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
-printHtmlPart(45)
+printHtmlPart(43)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'aboutPollaris'))
+printHtmlPart(44)
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
+printHtmlPart(45)
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
 printHtmlPart(46)
 })
-invokeTag('captureBody','sitemesh',143,['style':("background-color: #F6F6F6!important; background-image:url('${resource(dir: "images", file: "wall1.jpg")}'); margin-bottom: 20px; background-size: cover;  background-attachment: fixed; min-width: 320px;  ")],1)
+invokeTag('captureBody','sitemesh',216,['style':("background-color: #F6F6F6!important; background-image:url('${resource(dir: "images", file: "wall1.jpg")}'); margin-bottom: 20px; background-size: cover;  background-attachment: fixed; min-width: 320px;  ")],1)
 printHtmlPart(47)
 }
 public static final Map JSP_TAGS = new HashMap()
@@ -138,7 +139,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1444179630452L
+public static final long LAST_MODIFIED = 1444670856134L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

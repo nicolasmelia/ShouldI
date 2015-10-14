@@ -29,8 +29,6 @@
 	
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="bootstrap-3.3.5/assets/js/ie-emulation-modes-warning.js"></script>
 
 	<!-- font-awesome -->]
 	<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
@@ -186,7 +184,7 @@
 
 		<div id = "errorAlertNoLogin"class="alert alert-info" role="alert" style = " display: none; margin-top: 7px; padding: 6px; margin-bottom: 7px; " >
 		 <span id = 'errorMessage' >
-		Disabling logins to vote will mark this question as <b>private</b>. <a href = "${createLink(controller: 'ShouldI', action: 'help')}" ><span style = "" >Learn More</span></a> 
+		Disabling logins to vote will yeild untrustworthy results. <a href = "${createLink(controller: 'ShouldI', action: 'help')}" ><span style = "" >Learn More</span></a> 
 		</span>
 		</div>
 		
@@ -222,7 +220,7 @@
 
 	   <footer class="footer" style = "margin-top: -12px;  width: 100%;" >
       <div class="container" style = "width: 100%; text-align: left; padding: 0px; ">
-      <span style = "font-size: 13px; color: #79cce5;"><a style = "color: #79cce5;"  href = "${createLink(controller: 'ShouldI', action: 'privacyPolicy')}"  >Privacy Policy</a> | </span>
+      <span style = "font-size: 13px; color: #79cce5;"><a style = "color: #79cce5;" href = "${createLink(controller: 'ShouldI', action: 'privacyPolicy')}"  >Privacy Policy</a> | </span>
       <span style = "font-size: 13px; color: #79cce5;"><a style = "color: #79cce5;" href = "${createLink(controller: 'ShouldI', action: 'help')}"  >How To</a> | </span>
       <span style = "font-size: 13px; color: #79cce5;"><a style = "color: #79cce5;" href = "${createLink(controller: 'ShouldI', action: 'aboutPollaris')}">Pollaris LLC</a></span>   
       </div>   
@@ -276,22 +274,11 @@
     </div><!-- /.container -->
 
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-  
     
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-    
-	 <script src="<g:resource dir="js/tagsJS" file="bootstrap-tagsinput-angular.js" />"></script>
-	 <script src="<g:resource dir="js/tagsJS" file="bootstrap-tagsinput.js" />"></script>
-     <link rel="stylesheet" type="text/css" href="<g:resource dir='js/tagsJS' file='bootstrap-tagsinput.css'/>">
 	
 	<script>
 	var editor;
-	$('#tagsInput1').tagsinput({
-	  maxChars: 10
-	});
+
 	
 	$( document ).ready(function() {
 		  $('.single').css('border-bottom', ' solid 2px #5BC0DE');
