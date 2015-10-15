@@ -133,7 +133,8 @@ class ShouldIController {
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.MONTH, -1);
 		Date date = cal.getTime();
-		def questions = Question.executeQuery("FROM Question a WHERE a.totalVotes > 100 AND a.date > ?  AND a.category != 'Hot or Not' ORDER BY RAND()", [date], [max: 25])
+		def questions = Question.executeQuery("FROM Question a WHERE a.date > ? AND a.category != 'Hot or Not' ORDER BY  a.totalVotes", [date], [max: 25])
+		// def questions = Question.executeQuery("FROM Question a WHERE a.totalVotes > 100 AND a.date > ?  AND a.category != 'Hot or Not' ORDER BY RAND()", [date], [max: 25])	
 		return questions
 	}
 	

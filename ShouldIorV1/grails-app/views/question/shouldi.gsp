@@ -104,6 +104,7 @@
          </div>
       </nav>
       <div class="container" style = "padding-top: 60px; max-width: 825px;">
+      
       <div  class="contentContainer">
          <!-- QUESTION -->	
          <input id = "totalVotes" type="hidden" value="${question.totalVotes}">
@@ -115,9 +116,12 @@
          <input id = "answerOneImage" type="hidden"  value="${question.answerOneImage}">	
          <div style ="display: block; width: 100%; padding-bottom: -5px; " >
             <!-- MAIN -->	
+            
+            
             <div  style="display: block;  padding: 10px;  border-bottom: solid 1px; border-color: #f3f3f3;  margin: auto;  ">
                <!-- PROFILE INFORMATION -->	
-               <g:if test="${question.anonymous == false}">
+            
+               <g:if test="${question.anonymous == false && question.UserID != 'nonUser'}">
                   <div style = "display: inline-block; width: 68px; padding-left: 5px;">
                      <img  style = "width: 100%;   display: inline-block; border-top-right-radius: 6px; border-top-left-radius: 5px;"  src = "${createLink(controller: 'User', action: 'getProfileImage', params: [id: question.userID])}"   />			
                   </div>
@@ -132,6 +136,18 @@
                      <span style = "margin-left: 1px; color: #5C5C5C; margin-top: -2px; display: block; font-size: 15px;">Reached: ${user.peopleReached} </span>
                   </div>
                </g:if>
+				<g:elseif test="${question.UserID == 'nonUser'}"> 
+				
+               <div style = 'text-align: center; width: 100%; text-align: center;	color: #33A6DD; padding-top: 5px;  font-size: 24px;'>
+                  <span class = "fa  fa-bar-chart"></span> Private Poll 
+               </div> 
+               
+                              <div style = 'text-align: center; width: 100%; text-align: center; color: #33A6DD;  font-size: 14px;'>
+                   Share this pages <a onClick = "displayPageLink()" style = "cursor: default;"><b>link</b></a></br>
+                    <span id = "pageLink" style = "display: none; font-size: 14px; color: #8D8D8D; word-break: break-all;"><u>www.ShouldI.fm/question/shouldi/${question.questionID}</u></span>                                               
+				       </div>          
+                 
+               </g:elseif>
                <g:else>
                   <div style = "display: inline-block; width: 68px; padding-left: 5px;">
                      <img  style = "width: 100%;   display: inline-block; border-top-right-radius: 6px; border-top-left-radius: 5px;"  src="${resource(dir:'images',file:'blankAv.png')}"   />			
@@ -143,10 +159,11 @@
                   </div>
                </g:else>
             </div>
-            <!-- PROFILE INFORMATION -->	
+            <!-- PROFILE INFORMATION -->
+            	
             <input id = "requireLoginToVote" type="hidden" name="perdif" value="${question.requireLoginToVote}">    
             <g:if test="${thisUserPost == true || question.requireLoginToVote == false}">
-               <div class="alert alert-info" role="alert" style = "margin: 10px 10px 0px 10px; padding: 8px; text-align: left; background-color: rgba(41,153,255,0.05);">
+               <div class="alert alert-info" role="alert" style = "margin: 10px 10px 0px 10px; padding: 4px; padding-left: 7px; text-align: left; background-color: rgba(41,153,255,0.05);">
                   <g:if test="${question.requireLoginToVote == false}">
                      <p style = " color: #407b98; margin: 0px; display: block;">
                         <span class = " fa  fa-thumbs-o-up"></span> Login not required to vote.
@@ -174,7 +191,7 @@
                </div>
                <div style = "padding-bottom: -10px; float:right; display: inline-block; vertical-align: top;">
                   <g:if test="${session.name}">
-                     <div  onClick = "addToFavorites('${createLink(controller: 'Question', action: 'addToFavorites')}', '${question.questionID}')" style = "cursor: default; text-align: center; width: 70px; padding: 2px; padding-left: 0px; color: #4DAEFF; font-size: 13px; margin-right: 0px; margin-top:9px; ">
+                  <div  onClick = "addToFavorites('${createLink(controller: 'Question', action: 'addToFavorites')}', '${question.questionID}')" style = "cursor: default; text-align: center; width: 70px; padding: 2px; padding-left: 0px; color: #4DAEFF; font-size: 13px; margin-right: 0px; margin-top:9px; ">
                   </g:if>
                   <g:else>
                   <div onClick = "showNoLogin()" style = "cursor: default; text-align: center; width: 70px; padding: 2px; padding-left: 0px; color: #4DAEFF; font-size: 13px; margin-right: 0px; margin-top:9px; ">
@@ -194,8 +211,12 @@
                   </div>
                   </div>
                </div>
+             
+                <g:if test="${!question.quick}">        
                <span id = "titleText" style = 'text-align: center; margin: center; margin-top: 0px; padding: 0px 8px 0 8px; color: #545252; font-size: 20px; display: block;' >${question.questionTitle}</span>
                <hr style = "margin-top: 8px; width: 85%; margin-bottom: 0px; padding-top: 0px;">
+               </g:if>
+               
                <g:if test="${question.custom == false}">
                   <g:if test="${question.answerOneImage == true}">
                      <div id = "singleImgCon" style = "margin-bottom: 30px; padding: 15px;  margin: auto; margin-top: 20px;  width: 50%; min-width: 290px; max-width: 330px;  background-color: #F4FAFF; display: block;" >
@@ -204,9 +225,18 @@
                   </g:if>
                </g:if>
                <div style = "padding: 15px; width: 98%; overflow-y: hidden; margin:auto; padding-top: 18px;   display: block;">
+               
+               <g:if test="${!question.quick}">        
                   <div style = "margin: 0px; padding: 0px; width: 100%;" id = "questionText">
                      ${raw(question.question)}	    
                   </div>
+               </g:if>
+               <g:else>
+                  <div style = "margin: 0px; text-align: center;  padding: 0px; width: 100%;" id = "questionText">
+                     ${raw(question.question)}	    
+                  </div>   
+               </g:else>
+                  
                </div>
                <div  id = "voteWarn" style = "width: 100%; text-align: center; color: #61B7FE; display:none;  ">  
                   <span class = "fa fa-check"></span> You have already voted on this question.
@@ -236,7 +266,7 @@
                         </td>
                      </tr>
                   </g:if>
-                  <g:if test="${question.custom.toString().equals('false')}">
+                  <g:if test="${question.custom == false && question.quick == false}">
                      <tr style = "width: 100%; ">
                         <td  id = "ans1"  onClick = "questionVote('1')"  class="answerContainer"  style = "border-right: solid 1px #E1E1E1;"   >
                            <div style = " width: 100%; display:block; margin: auto; bottom: 0px; text-align: center; font-size: 19px;  color: #61B7FE; ">

@@ -8,6 +8,7 @@ class Question {
 	// Question type
 	boolean custom // True if a shouldI question, false if an or
 	boolean yesOrNo // if a shouldI, is this a do-dont or yes-no
+	boolean quick //if this question is a quick question
 	boolean anonymous 
 	boolean requireLoginToVote
 	boolean deleted
@@ -63,6 +64,9 @@ class Question {
 		category(nullable:true)
 		opNotifyVoteCount(nullable:true)
 		deleted(nullable:true)
+		quick(nullable:true)
+		
+		
 		
 		answerOneImage(nullable:true)
 		answerTwoImage(nullable:true)

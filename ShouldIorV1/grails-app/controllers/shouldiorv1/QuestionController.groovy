@@ -62,14 +62,16 @@ class QuestionController {
 		
 		// Check is question has an image
 		boolean hasQuestionImage = false
-		if (question.answerOneImage) {
-			hasQuestionImage = true;
-		} else if (question.answerTwoImage) {
-			hasQuestionImage = true;
-		} else if (question.answerThreeImage) {
-			hasQuestionImage = true;
-		} else if (question.answerFourImage) {
-			hasQuestionImage = true;
+		if (!question.quick) {
+			if (question.answerOneImage) {
+				hasQuestionImage = true;
+			} else if (question.answerTwoImage) {
+				hasQuestionImage = true;
+			} else if (question.answerThreeImage) {
+				hasQuestionImage = true;
+			} else if (question.answerFourImage) {
+				hasQuestionImage = true;
+			}
 		}
 		
 		boolean thisUserPost = false;
@@ -318,6 +320,121 @@ class QuestionController {
 					
 	}
 	
+	// ********************* Ask shouldi QUICK *********************
+	def askShouldIQuick() {
+		
+		User user = User.findByUserID(session["userID"])
+		def categories = Category.findAll()
+		render(view: "askshouldiQuick", model:[ "notifyCount": getNotifyCount(), "categories" : categories ])
+
+	}
+	
+	
+	
+	def postShouldIQuick() {
+		Question question = new Question()
+		
+		// Get the user who is creating this post
+		def user = null
+		if (session["name"]) {
+			 user = User.findByUserID(session["userID"])
+		} else {
+		
+		}
+		
+		// Generate a unique ID
+		while(true) {
+			// Create a UUID and cut it in half for easier reading
+			String uniqueID = UUID.randomUUID().toString().replace("-", "");
+			int midpoint = uniqueID.length() / 2;
+			String halfUUID = uniqueID.substring(0, midpoint)
+			int matchCount = Question.countByQuestionID(halfUUID)
+			if (matchCount == 0) {
+				question.questionID = halfUUID
+				break;
+			 }
+		}
+		
+		question.custom = false 
+		question.yesOrNo = false
+		question.quick = true // This is a quick question
+		
+		if (params.anonymous != null) {
+			question.anonymous = params.anonymous
+		} else {
+			question.anonymous = false
+		}
+		
+		if (params.loginToVote != null) {
+			question.requireLoginToVote = true
+		} else {
+			question.requireLoginToVote = false
+		}
+		
+		
+		question.question = params.question
+		
+		String title = params.question
+		if (params.question.toString().length()  > 35) {
+			title = question.question.substring(0, 34) + "..."
+		}
+		
+		question.questionTitle = title	
+		question.category = params.category
+		question.tags = params.tags
+		question.date = new Date()
+		
+		question.answerOne = params.answerOne
+		question.answerTwo = params.answerTwo
+		
+		question.answerOneVotes = 0
+		question.answerTwoVotes = 0
+		
+		def f = request.getFile('image1')
+		if (f.bytes.length > 0) {
+			saveImage(question.questionID, 1, f)
+			question.answerOneImage = true	
+		}  
+		
+		if (params.answerThree != null) {
+			question.answerThree = params.answerThree
+			question.answerThreeVotes = 0
+		}
+		
+		if (params.answerFour != null) {
+			question.answerFour = params.answerFour
+			question.answerFourVotes = 0
+		}
+		
+		question.totalVotes = 0
+		question.totalViews = 0
+		question.totalComments = 0
+		question.opNotifyVoteCount = 0
+		
+		if (user != null) {
+			question.userName = user.name
+			question.UserID = user.userID
+			user.totalQuestions = user.totalQuestions + 1
+		} else {
+			question.userName = "nonUser"
+			question.UserID = "nonUser"
+		}
+		
+		question.ClientAddress = request.getRemoteAddr().toString()
+		question.save(flush:true, failOnError: true)
+		
+		if (user != null) {
+			if (user.deleted == false) {
+				user.save(flush:true)
+			} else {
+				// No no... They are banned!
+			}
+		}
+		
+		// Render question page for user posting
+		redirect(action: "shouldi", params: [id: question.questionID])
+					
+	}
 	// ********************* Get answer image by ID and numset *********************
 	def getAnswerImageById() {
 		try {
@@ -611,10 +728,13 @@ class QuestionController {
 			}
 		}
 		
-		
+	
 		for (Question question : questions) {
-			if (question.questionTitle.length()  > 32)
-			question.questionTitle = question.questionTitle.substring(0, 32) + "..."
+			if (!question.quick) {
+				if (question.questionTitle.length()  > 32) {
+				question.questionTitle = question.questionTitle.substring(0, 32) + "..."
+				}
+			}
 		}
 		
 		

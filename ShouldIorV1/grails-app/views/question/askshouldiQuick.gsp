@@ -101,15 +101,38 @@
       <!-- COMMENT BOX -->	
       <div class="container" style = "max-width: 725px; margin-bottom: 15px; ">
          <div style = "width: 100%; margin-top: 70px; margin-bottom: 8px;   ">
-            <div  id = "CustomSelect" onClick = "loadQuestionURL('${createLink(controller: 'Question', action: 'askShouldIQuick', params: [category: 'Trending'])}')" class = "flatMenuItem"   style= " margin-left: 5px; display:inline-block; border-bottom: 0px solid #36a4ff; ">
+         
+         
+         
+                        <g:if test="${session.name}">
+         
+            <div  id = "CustomSelect" onClick = "loadQuestionURL('${createLink(controller: 'Question', action: 'askShouldIQuick', params: [category: 'Allow'])}')" class = "flatMenuItem"   style= " margin-left: 5px; display:inline-block; border-bottom: 2px solid #36a4ff; ">
                <span   class = "flatMenuItemText"  style = " font-size: 17px;" >Quick</span>
             </div>
-            <div  id = "trendingSelect" onClick = "loadQuestionURL('${createLink(controller: 'Question', action: 'askShouldI', params: [category: 'Trending'])}')" class = "flatMenuItem"   style= " margin-left: 5px; display:inline-block; border-bottom: 0px solid #36a4ff; ">
+            <div  id = "trendingSelect" onClick = "loadQuestionURL('${createLink(controller: 'Question', action: 'askShouldI', params: [category: 'Allow'])}')" class = "flatMenuItem"   style= " margin-left: 5px; display:inline-block; border-bottom: 2px solid #cbe7ff; ">
                <span   class = "flatMenuItemText"  style = " font-size: 17px;" >Yes/No</span>
             </div>
-            <div  id = "recentSelect"  onClick = "loadQuestionURL('${createLink(controller: 'Question', action: 'askShouldICustom', params: [category: 'Recent'])}')" class = "flatMenuItem" style= " margin-left: 5px; display:inline-block; border-bottom: 2px solid #36a4ff; " >
+            <div  id = "recentSelect"  onClick = "loadQuestionURL('${createLink(controller: 'Question', action: 'askShouldICustom', params: [category: 'Allow'])}')" class = "flatMenuItem" style= " margin-left: 5px; display:inline-block; border-bottom: 2px solid #cbe7ff; " >
                <span   class = "flatMenuItemText"  style = " font-size: 17px;" >Custom</span>
             </div>
+            
+            </g:if>
+            
+            <g:else>
+            
+            <div  id = "CustomSelect" onClick = "loadQuestionURL('${createLink(controller: 'Question', action: 'askShouldIQuick', params: [category: 'Allow'])}')" class = "flatMenuItem"   style= " margin-left: 5px; display:inline-block; border-bottom: 2px solid #36a4ff; ">
+               <span   class = "flatMenuItemText"  style = " font-size: 17px;" >Quick</span>
+            </div>
+            <div  id = "trendingSelect" onClick = "showNoLoginQuest()" class = "flatMenuItem"   style= " margin-left: 5px; display:inline-block; border-bottom: 0px solid #36a4ff; ">
+               <span   class = "flatMenuItemText"  style = " font-size: 17px;" >Yes/No</span>
+            </div>
+            <div  id = "recentSelect"  onClick = "showNoLoginQuest()" class = "flatMenuItem" style= " margin-left: 5px; display:inline-block; border-bottom: 0px solid #36a4ff; " >
+               <span   class = "flatMenuItemText"  style = " font-size: 17px;" >Custom</span>
+            </div>
+            
+            </g:else>
+            
+            
          </div>
          <!-- Question form -->	
          <div  class="jumbotron" style="overflow: none;  display: block; box-shadow:0 0 10px rgba(0, 0, 0, 0.15); min-height: 100px; margin: auto; min-width: 200px;  padding-left: 0px; padding-right: 0px; padding-top: 0px; padding-bottom: 1px;  margin-bottom: 20px; background-color: #FDFDFD;  ">
@@ -117,6 +140,12 @@
                <div id = "errorAlert"class="alert alert-danger" role="alert" style = " display: none; padding: 6px; margin-bottom: 10px; margin-top: 10px; " >
                   <span id = 'errorMessage' ></span>
                </div>
+               
+				<div id = "imgContainer" style = "margin-top: 22px; margin-bottom: 0px; padding: 6px; background-color: #EAEAEA; display: none;" >
+			<span onclick = "resetFormElement1()" style = 'text-align: right;  right: 0px; float: right;  color: #d9534f; font-size: 20px; padding-right: 0px; padding-top:0px; display: inline-block;' class = 'fa fa-minus-square' ></span>
+			 <img id="image1" src="#" style ="display: none; margin: auto; width: 50%; max-width: 200px;" alt="Error displaying image (Image will still upload)" />
+			</div>
+               
                <div id="wysihtml5-toolbar" style="display: none;  margin-top: 10px; ">
                   <div class="btn-group">					
                      <a  data-wysihtml5-command="bold" style = "padding-top: 2px; padding-bottom: 2px;"  class="btn btn-default">
@@ -126,69 +155,36 @@
                      <i  style = "color: #5BC0DE;"  class="fa fa-italic"></i>
                      </a>			
                   </div>
-                  <div class="btn-group">
-                     <a data-wysihtml5-command="insertUnorderedList" style = "padding-top: 2px; padding-bottom: 2px;" class="btn btn-default">
-                     <i   style = "color: #5BC0DE;"  class="fa fa-list-ul"></i>
-                     </a>
-                     <a data-wysihtml5-command="insertOrderedList" style = "padding-top: 2px; padding-bottom: 2px;" class="btn btn-default">
-                     <i  style = "color: #5BC0DE;"  class="fa fa-list-ol"></i>
-                     </a>
-                  </div>
                </div>
-               <g:form controller="Question" action="postShouldICutom" enctype="multipart/form-data" >
-                  <input type="text" id="title" name = "title" style = "width: 100%;  margin-top: 8px; " class="form-control" placeholder="Title">
-                  <textarea type="text" name = "question" style = "resize: none; height: 170px; margin-top: 8px; " class="form-control" id="wysihtml5-textarea" placeholder="Type away..."></textarea>
+               <g:form controller="Question" action="postShouldIQuick" enctype="multipart/form-data" >
+                  <textarea type="text" name = "question" style = "resize: none; height: 70px; margin-top: 8px; " class="form-control" id="wysihtml5-textarea" placeholder="Type away..."></textarea>
                   <div style = "padding-left: 18px;  border-radius: 5px; padding-right: 18px; padding-top: 8px; margin-top: 10px;  padding-bottom: 1px; margin-bottom: 5px;   background-color: #F9F9F9; ">
                      <div  id = "option1Div" style = "display: block;">
                         <div class="form-group" style = "margin-top: 12px; " >
                            <label style = "color: #5BC0DE;" ><b>Option 1</b></label>
-                           <div id = "imgContainer1" style = "margin-top: 4px; margin-bottom: 9px; padding: 6px; background-color: #EAEAEA; display: none;" >
-                              <span onClick = "removePhoto('imgContainer1', 'imageUpload1')" style = 'text-align: right;  right: 0px; float: right; color: #d9534f; font-size: 20px; padding-right: 0px; padding-top:0px; display: inline-block;' class='fa fa fa-minus-square '></span>
-                              <img id="image1" src="#" style ="display: none; margin: auto; width: 35%" alt="Error displaying image (Image will still upload)" />
-                           </div>
+                           
                            <input name = "answerOne" type="text" style = "width: 100%;" class="form-control" id="option1" placeholder="Ex. Yes, Black, Fast">
-                           <span class="btn btn-default btn-file" style =" margin-top: 10px; height: 25px; padding: 4px; font-size: 12px;">
-                           <span class = "fa fa-picture-o"></span> Add Image <input id = "imageUpload1" name = 'image1' type="file" accept="image/*">
-                           </span>
                         </div>
                      </div>
                      <div id = "option2Div" style = "display: block;">
                         <div class="form-group" style = "margin-top: 12px; " >
                            <label style = "color: #5BC0DE;" ><b>Option 2</b></label>
-                           <div id = "imgContainer2" style = "margin-top: 4px; margin-bottom: 9px; padding: 6px; background-color: #EAEAEA; display: none;" >
-                              <span onClick = "removePhoto('imgContainer2', 'imageUpload2')" style = 'text-align: right;  right: 0px; float: right;  color: #d9534f; font-size: 20px; padding-right: 0px; padding-top:0px; display: inline-block;' class='fa fa fa-minus-square '></span>
-                              <img id="image2" src="#" style ="display: none; margin: auto; width: 35%" alt="Error displaying image (Image will still upload)" />
-                           </div>
+                          
                            <input  name = "answerTwo" type="text" style = "width: 100%;" class="form-control" style = "" id="option2" placeholder="Ex. No, White, Slow">
-                           <span class="btn btn-default btn-file" style =" margin-top: 10px; height: 25px; padding: 4px; font-size: 12px;">
-                           <span class = "fa fa-picture-o"></span> Add Image <input id = "imageUpload2" name = 'image2' type="file" accept="image/*">
-                           </span>
                         </div>
                      </div>
                      <div id = "option3Div" style = "display: none;">
                         <div class="form-group" style = "margin-top: 12px; " >
                            <label  style = "color: #5BC0DE;" ><b>Option 3</b> <span  onclick = "removeOption('option3Div')" class = 'fa fa-minus-square favsharButtion'></span></label>
-                           <div id = "imgContainer3" style = "margin-top: 4px; margin-bottom: 9px; padding: 6px; background-color: #EAEAEA; display: none;" >
-                              <span  onClick = "removePhoto('imgContainer3', 'imageUpload3')" style = 'text-align: right;  right: 0px; float: right;  color: #d9534f; font-size: 20px; padding-right: 0px; padding-top:0px; display: inline-block;' class='fa fa fa-minus-square '></span>
-                              <img id="image3" src="#" style ="display: none; margin: auto; width: 35%" alt="Error displaying image (Image will still upload)" />
-                           </div>
-                           <input  name = "answerThree" type="text" style = "width: 100%;" class="form-control" style = "" id="option3" placeholder="Ex. No, White, Slow">
-                           <span class="btn btn-default btn-file" style =" margin-top: 10px; height: 25px; padding: 4px; font-size: 12px;">
-                           <span class = "fa fa-picture-o"></span> Add Image <input id = "imageUpload3" name = 'image3' type="file" accept="image/*">
-                           </span>
+                           
+                           <input  name = "answerThree" type="text" style = "width: 100%;" class="form-control" style = "" id="option3" placeholder="Ex. Maybe...">
                         </div>
                      </div>
                      <div id = "option4Div"  style = "display: none;">
                         <div class="form-group" style = "margin-top: 12px; " >
                            <label  style = "color: #5BC0DE;" ><b>Option 4</b> <span onclick = "removeOption('option4Div')" class = 'fa fa-minus-square favsharButtion'></span> </label>
-                           <div id = "imgContainer4" style = "margin-top: 4px; margin-bottom: 9px; padding: 6px; background-color: #EAEAEA; display: none;" >
-                              <span class = "favsharButtion" onClick = "removePhoto('imgContainer4', 'imageUpload4')" style = 'text-align: right;  right: 0px; float: right;  color: #d9534f; font-size: 20px; padding-right: 0px; padding-top:0px; display: inline-block;' class='fa fa fa-minus-square '></span>
-                              <img id="image4" src="#" style ="display: none; margin: auto; width: 35%" alt="Error displaying image (Image will still upload)" />
-                           </div>
-                           <input  name = "answerFour" type="text" style = "width: 100%;" class="form-control" style = "" id="option4" placeholder="Ex. No, White, Slow">
-                           <span class="btn btn-default btn-file" style =" margin-top: 10px; height: 25px; padding: 4px; font-size: 12px;">
-                           <span class = "fa fa-picture-o"></span> Add Image <input id = "imageUpload4" name = 'image4' type="file" accept="image/*">
-                           </span>
+                           
+                           <input  name = "answerFour" type="text" style = "width: 100%;" class="form-control" style = "" id="option4" placeholder="Ex. So...">
                         </div>
                      </div>
                         <a   id = "addOptionButtion" onClick = "addOption()" style = "cursor: default; color: #5BC0DE; margin-bottom: 5px; display:block;"> <span class = 'fa fa-plus-square'>  </span> <b>New Option</b></a>
@@ -198,24 +194,39 @@
                         <option value="${it.category}">${it.category}</option>
                      </g:each>
                   </select>
-                  <div id = "errorAlertNoLogin"class="alert alert-info" role="alert" style = " display: none; margin-top: 7px; padding: 6px; margin-bottom: 7px; " >
+                  
+                        <g:if test="${!session.name}">
+     
+                   <div id = ""class="alert alert-info" role="alert" style = " font-size: 13px; display: block; margin-top: 7px; padding: 6px; margin-bottom: 7px; " >
                      <span id = 'errorMessage' >
-						Disabling logins to vote will yeild untrustworthy results. <a href = "${createLink(controller: 'ShouldI', action: 'help')}" ><span style = "" >Learn More</span></a> 
+						 <b>Tip:</b> Login before posting for increased poll visibility and tracking.
                      </span>
                   </div>
+                  
+                   </g:if>
+                   <g:else>
+                  
+                  
                   <div class="checkbox checkbox-danger"  style = "display: block; margin-top: 0px; margin-left: 2px;" >
                      <input type="checkbox"  name = "anonymous" id="anonymousCheckbox"/>
                      <label  for="anonymousCheckbox">
                      Post as anonymous
                      </label>
                   </div>
+                  
+                  </g:else>
+                  
+                  
                   <div class="checkbox checkbox-default"  style = "display: block; margin-top: 0px; margin-left: 2px;" >
-                     <input type="checkbox"  name = "loginToVote"  id="noLoginCheckbox" checked/>
+                     <input type="checkbox"  name = "loginToVote"  id="noLoginCheckbox"/>
                      <label  for="noLoginCheckbox">
-                     Require login to vote
+                     Require login to vote 
                      </label>
                   </div>
-                  <g:actionSubmit  onclick="return validate()"  value = "Post"  action = "postShouldICutom" style = "margin-top: 1px; width: 100px; display: inline-block;" class="btn btn-default"/>
+                  <g:actionSubmit  onclick="return validate()"  value = "Post"  action = "postShouldIQuick" style = "margin-top: 1px; width: 100px; display: inline-block;" class="btn btn-default"/>
+				<span class="btn btn-default btn-file">
+					<span class = "fa fa-picture-o"></span> Add Image  <input id = "imageUpload" name = 'image1' type="file" accept="image/*">
+				</span>
                </g:form>
             </div>
          </div>
@@ -230,7 +241,7 @@
                      <h4 class="modal-title"><span href="#about" style = "padding-left: 4px;" class='fa fa-sign-in'> </span> Easy Login</h4>
                   </div>
                   <div class="modal-body">
-                     <p>Please login. Choose a network below to login with:</p>
+                     <p>Please login. Choose a network below to login with</p>
                      <button onClick = "loginFacebook('${createLink(controller: 'Authentication', action: 'loginFaceBook')}')" style = "" type="button" class="btn btn-default" data-dismiss="modal">Facebook <span class = "fa fa-facebook"></span></button>
                      <button  onClick = "loginReddit('${createLink(controller: 'Authentication', action: 'loginReddit')}')"style = "" type="button" class="btn btn-default" data-dismiss="modal">Reddit <span class = "fa fa-reddit"></span></button>
                   </div>
@@ -265,6 +276,27 @@
             </div>
          </footer>
       </div>
+               <!-- LOGIN Modal -->
+         <div class="modal fade" id="noLoginQuest" role="dialog">
+            <div class="modal-dialog">
+               <!-- Modal content-->
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <button type="button" class="close" data-dismiss="modal">&times;</button>
+                     <h4 class="modal-title"><span href="#about" style = "padding-left: 4px;" class='fa fa-sign-in'> </span> Easy Login</h4>
+                  </div>
+                  <div class="modal-body">
+                     <p>You must be logged in to use these features. Choose a network below to login with</p>
+                     <button onClick = "loginFacebook('${createLink(controller: 'Authentication', action: 'loginFaceBook')}')" style = "" type="button" class="btn btn-default" data-dismiss="modal">Facebook <span class = "fa fa-facebook"></span></button>
+                     <button  onClick = "loginReddit('${createLink(controller: 'Authentication', action: 'loginReddit')}')"style = "" type="button" class="btn btn-default" data-dismiss="modal">Reddit <span class = "fa fa-reddit"></span></button>
+                  </div>
+                  <div class="modal-footer">
+                     <button style = "" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- Loading Modal -->
       
 
       <!-- /.container -->
@@ -319,53 +351,49 @@
          
          $("#noLoginCheckbox").click(function() {
           if (this.checked) {
-           $('#errorAlertNoLogin').slideUp(800);	  
+        //   $('#errorAlertNoLogin').slideUp(800);	  
           } else {
-           $('#errorAlertNoLogin').slideDown(800);	  
+          // $('#errorAlertNoLogin').slideDown(800);	  
           }
          
          });
          
          
-         // ********* IMAGE BUTTON 1 *********
-         function readImg(input, imageID, containerID) {
-         if (input.files && input.files[0]) {
-         	var reader = new FileReader();
-         	reader.onload = function (e) {
-         		$('#' + imageID ).attr('src', e.target.result);
-         		$('#' + imageID).css("display", "block");
-         		$('#' + containerID).css("display", "block");
-         	}
-         
-         	reader.readAsDataURL(input.files[0]);
-         }
-         }
-         
-         $("#imageUpload1").change(function(){
-         if (validImageTest(this)){
-         	readImg(this, 'image1', 'imgContainer1');
-         }
-         });
-         
-         
-         $("#imageUpload2").change(function(){
-         if (validImageTest(this)){
-         	readImg(this, 'image2', 'imgContainer2');
-         }
-         });
-         
-         $("#imageUpload3").change(function(){
-         if (validImageTest(this)){
-         	readImg(this, 'image3', 'imgContainer3');
-         }
-         });
-         
-         
-         $("#imageUpload4").change(function(){
-         if (validImageTest(this)){
-         	readImg(this, 'image4', 'imgContainer4');
-         }
-         });
+	function readImg(input) {
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+
+			reader.onload = function (e) {
+				$('#image1').attr('src', e.target.result);
+				$('#imgContainer').css("display", "block");
+				$('#image1').css("display", "block");
+			}
+
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+
+	$("#imageUpload").change(function(){
+		errors = [];
+		
+		 if (this.files[0].size <= 8000000) {	
+			$("#imgError").css('display', 'none');
+			readImg(this);
+		 } else {
+			$("#imgError").css('display', 'none');
+			errors.push("Images must be under 8mb.");
+			
+			$("#errorMessage").html("");
+			for (i = 0; i < errors.length; i++) { 
+				$("#errorMessage").append("*" + errors[i] + "<br/>");		
+			}		
+			//$("#errorMessage").html(errors);
+			
+			$("#errorAlert").slideDown("800");
+			
+			resetFormElement1();
+		}
+	});
          
          
          function validImageTest(imgFile) {
@@ -389,14 +417,15 @@
          
          
          //************* Remove Photos ******************
-         
-         // Removes file from photo input 1
-         function removePhoto(imgContainer, button) {
-         var control = $('#' + button);
-         control.replaceWith(control = control.clone(true));
-         //$('#image1').fadeOut(1000);
-         $('#' + imgContainer).fadeOut(800);
-         }	
+	         
+			// Removes file from photo input 1
+		function resetFormElement1() {
+		var control = $('#imageUpload');
+		control.replaceWith(control = control.clone(true));
+		//$('#image1').fadeOut(1000);
+		$('#imgContainer').fadeOut(800);
+		}	
+
          
          //************* ADD OPTIONS******************
          function addOption() {
@@ -441,6 +470,10 @@
           
          window.location.href = '/ShouldIorV1/Question/askShouldI';
          
+         }
+
+         function showNoLoginQuest(){
+           	$('#noLoginQuest').modal('show'); 
          }
          
          var errors = [];

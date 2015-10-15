@@ -106,48 +106,50 @@ expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceB
 printHtmlPart(39)
 }
 printHtmlPart(40)
-expressionOut.print(createLink(controller: 'Question', action: 'askShouldI', params: [category: 'Trending']))
+expressionOut.print(createLink(controller: 'Question', action: 'askShouldIQuick', params: [category: 'Trending']))
 printHtmlPart(41)
-expressionOut.print(createLink(controller: 'Question', action: 'askShouldICustom', params: [category: 'Recent']))
+expressionOut.print(createLink(controller: 'Question', action: 'askShouldI', params: [category: 'Trending']))
 printHtmlPart(42)
-createTagBody(2, {->
+expressionOut.print(createLink(controller: 'Question', action: 'askShouldICustom', params: [category: 'Recent']))
 printHtmlPart(43)
-for( _it475584446 in (categories) ) {
-changeItVariable(_it475584446)
+createTagBody(2, {->
 printHtmlPart(44)
-expressionOut.print(it.category)
+for( _it106804552 in (categories) ) {
+changeItVariable(_it106804552)
 printHtmlPart(45)
 expressionOut.print(it.category)
 printHtmlPart(46)
-}
+expressionOut.print(it.category)
 printHtmlPart(47)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
+}
 printHtmlPart(48)
-invokeTag('actionSubmit','g',206,['onclick':("return validate()"),'value':("Post"),'action':("postShouldI"),'style':("margin-top: 1px; width: 100px; display: inline-block;"),'class':("btn btn-default")],-1)
-printHtmlPart(49)
-})
-invokeTag('form','g',211,['controller':("Question"),'action':("postShouldI"),'enctype':("multipart/form-data")],2)
-printHtmlPart(50)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'privacyPolicy'))
-printHtmlPart(51)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
-printHtmlPart(52)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'aboutPollaris'))
-printHtmlPart(53)
-expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
-printHtmlPart(54)
-expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
-printHtmlPart(55)
+printHtmlPart(49)
+invokeTag('actionSubmit','g',205,['onclick':("return validate()"),'value':("Post"),'action':("postShouldI"),'style':("margin-top: 1px; width: 100px; display: inline-block;"),'class':("btn btn-default")],-1)
+printHtmlPart(50)
 })
-invokeTag('captureBody','sitemesh',437,['style':("background-color: #f4f4f4; min-width: 330px; ")],1)
+invokeTag('form','g',210,['controller':("Question"),'action':("postShouldI"),'enctype':("multipart/form-data")],2)
+printHtmlPart(51)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'privacyPolicy'))
+printHtmlPart(52)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
+printHtmlPart(53)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'aboutPollaris'))
+printHtmlPart(54)
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
+printHtmlPart(55)
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
 printHtmlPart(56)
+})
+invokeTag('captureBody','sitemesh',436,['style':("background-color: #f4f4f4; min-width: 330px; ")],1)
+printHtmlPart(57)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1444775824685L
+public static final long LAST_MODIFIED = 1444841572670L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

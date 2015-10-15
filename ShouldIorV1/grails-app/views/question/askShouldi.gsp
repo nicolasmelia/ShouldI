@@ -119,17 +119,16 @@
 
     <div class="container" style = "max-width: 725px; ">
 		
-	<div style = "width: 100%; margin-top: 60px; margin-bottom: 8px;   ">
-   
-	  <div  id = "trendingSelect" onClick = "loadQuestionURL('${createLink(controller: 'Question', action: 'askShouldI', params: [category: 'Trending'])}')" class = "flatMenuItem"   style= " margin-left: 5px; display:inline-block; border-bottom: 2px solid #36a4ff; ">
-	  	<span   class = "flatMenuItemText"  style = " font-size: 18px;" >Yes/No</span>
-	  </div>
-	  
-	  <div  id = "recentSelect"  onClick = "loadQuestionURL('${createLink(controller: 'Question', action: 'askShouldICustom', params: [category: 'Recent'])}')" class = "flatMenuItem" style= " margin-left: 5px; display:inline-block; border-bottom: 0px solid #36a4ff; " >
-	  	<span   class = "flatMenuItemText"  style = " font-size: 18px;" >Custom</span>
-	  </div>
-	  	
-	  	
+	<div style = "width: 100%; margin-top: 50px; margin-bottom: 8px;   ">
+            <div  id = "CustomSelect" onClick = "loadQuestionURL('${createLink(controller: 'Question', action: 'askShouldIQuick', params: [category: 'Trending'])}')" class = "flatMenuItem"   style= " margin-left: 5px; display:inline-block; border-bottom: 0px solid #36a4ff; ">
+               <span   class = "flatMenuItemText"  style = " font-size: 17px;" >Quick</span>
+            </div>
+			  <div  id = "trendingSelect" onClick = "loadQuestionURL('${createLink(controller: 'Question', action: 'askShouldI', params: [category: 'Trending'])}')" class = "flatMenuItem"   style= " margin-left: 5px; display:inline-block; border-bottom: 2px solid #36a4ff; ">
+			  	<span   class = "flatMenuItemText"  style = " font-size: 17px;" >Yes/No</span>
+			  </div>			  
+			  <div  id = "recentSelect"  onClick = "loadQuestionURL('${createLink(controller: 'Question', action: 'askShouldICustom', params: [category: 'Recent'])}')" class = "flatMenuItem" style= " margin-left: 5px; display:inline-block; border-bottom: 0px solid #36a4ff; " >
+			  	<span   class = "flatMenuItemText"  style = " font-size: 17px;" >Custom</span>
+			  </div>
 	  </div>
 		<!-- Question form -->	
 		<div  class="jumbotron" style="overflow: none;  display: block; box-shadow:0 0 10px rgba(0, 0, 0, 0.15); min-height: 100px; margin: auto; min-width: 200px;  padding-left: 0px; padding-right: 0px; padding-top: 0px; padding-bottom: 1px;  margin-bottom: 20px; background-color: #FDFDFD;  ">
