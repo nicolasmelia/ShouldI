@@ -104,15 +104,8 @@
          <img style = "width:50%; vertical-align: top;  display:  block;  margin: auto;  padding:0px; min-width: 285px; " src="${resource(dir:'images',file:'logoDark.png')}"   />				
       </div>
       <div class = 'favsharButtion' style = " font-size: 25px;  display: block; width: 100%; text-align: left; margin-top: -5px; margin-bottom: -5px;">
-         <g:if test="${session.name}">
-            <a  style = "color: #79cce5; text-shadow: 1px 1px #000000;  margin:0px; padding: 0px;" href = "${createLink(controller: 'Question', action: 'askShouldI')}"  >
-               <span class= 'fa fa-pencil-square-o'> 
-         </g:if>
-         <g:else>
-         <a  style = "color: #79cce5;  text-shadow: 1px 1px #000000;  margin:0px; padding: 0px;" href = '#' onClick = "showNoLogin()"> <span class= 'fa fa-pencil-square-o'> 
-         </g:else>
-         <span  style = " text-shadow: 1px 1px #000000;" class = "element"  ></span>
-         </span> 
+            <a  style = "color: #79cce5; text-shadow: 1px 1px #000000;  margin:0px; padding: 0px;" href = "${createLink(controller: 'Question', action: 'askShouldIQuick')}"  >
+               <span class= 'fa fa-pencil-square-o'> <span  style = " text-shadow: 1px 1px #000000;" class = "element"  ></span></span> 
          </a> 
       </div>
       <div style = "width: 100%; ">

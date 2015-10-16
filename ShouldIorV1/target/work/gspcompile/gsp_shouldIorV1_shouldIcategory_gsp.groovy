@@ -80,13 +80,15 @@ expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: 
 printHtmlPart(24)
 expressionOut.print(notifyCount)
 printHtmlPart(25)
-expressionOut.print(createLink(controller: 'Question', action: 'askShouldI'))
+expressionOut.print(createLink(controller: 'Question', action: 'askShouldIQuick'))
 printHtmlPart(26)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
 printHtmlPart(27)
 }
 else {
 printHtmlPart(28)
+expressionOut.print(createLink(controller: 'Question', action: 'askShouldIQuick'))
+printHtmlPart(26)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
 printHtmlPart(27)
 }
@@ -118,8 +120,8 @@ expressionOut.print(createLink(controller: 'shouldI', action: 'category', params
 printHtmlPart(41)
 expressionOut.print(createLink(controller: 'shouldI', action: 'category', params: [category: 'Recent']))
 printHtmlPart(42)
-for( _it1505424071 in (categories) ) {
-changeItVariable(_it1505424071)
+for( _it26338900 in (categories) ) {
+changeItVariable(_it26338900)
 printHtmlPart(43)
 expressionOut.print(createLink(controller: 'shouldI', action: 'category', params: [category: it.category]))
 printHtmlPart(44)
@@ -143,8 +145,8 @@ if(true && (questions.isEmpty())) {
 printHtmlPart(53)
 }
 printHtmlPart(54)
-for( _it216421817 in (questions) ) {
-changeItVariable(_it216421817)
+for( _it979719862 in (questions) ) {
+changeItVariable(_it979719862)
 printHtmlPart(55)
 expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
 printHtmlPart(56)
@@ -186,7 +188,7 @@ printHtmlPart(74)
 expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
 printHtmlPart(75)
 })
-invokeTag('captureBody','sitemesh',301,['style':("margin-bottom: 20px; min-width: 320px;  ")],1)
+invokeTag('captureBody','sitemesh',307,['style':("margin-bottom: 20px; min-width: 320px;  ")],1)
 printHtmlPart(76)
 }
 public static final Map JSP_TAGS = new HashMap()
@@ -194,7 +196,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1444179674078L
+public static final long LAST_MODIFIED = 1444928194643L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

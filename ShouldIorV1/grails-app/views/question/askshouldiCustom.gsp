@@ -46,65 +46,65 @@
       <g:else>
          <input id = "sessionCheck" type="hidden" name="country" value="false">
       </g:else>
-      <nav class="navbar navbar-inverse navbar-fixed-top" >
-         <div class="container">
-            <div class="navbar-header">
-               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-               <span class="sr-only">Toggle navigation</span>
-               <span class="icon-bar"></span>
-               <span class="icon-bar"></span>
-               <span class="icon-bar"></span>
-               </button>
-               <a href = "${createLink(controller: 'ShouldI', action: 'home')}" ><img src="${resource(dir:'images',file:'logo.png')}"   class="navbar-brand"/></a>
-            </div>
-            <div id="navbar" class="collapse navbar-collapse">
-               <ul class="nav navbar-nav">
-                  <g:if test="${session.name}">
-                     <li><a href="${createLink(controller: 'User', action: 'myProfile', params: [category: 'My Notifications'])}"><span class= 'fa fa-bell-o'></span><span style = "padding-left: 6px;" >${notifyCount}</span></a></li>
-                     <li><a href = "${createLink(controller: 'Question', action: 'askShouldI')}" ><span class= 'fa fa-pencil-square-o'></span><span style = "padding-left: 6px;" >Ask</span></a></li>
-                     <li><a href = "${createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending'])}" ><span class= 'fa fa-book'></span><span style = "padding-left: 6px;" >Browse Categories</span></a></li>
-                  </g:if>
-                  <g:else>
-                     <li><a href="#"  onClick = "showNoLogin()" ><span class= 'fa fa-pencil-square-o'></span><span style = "padding-left: 6px;" >Ask</span></a></li>
-                     <li><a href = "${createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending'])}" ><span class= 'fa fa-book'></span><span style = "padding-left: 6px;" >Browse Categories</span></a></li>
-                  </g:else>
-               </ul>
+    <nav class="navbar navbar-inverse navbar-fixed-top" >
+      <div class="container">
+         <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a href = "${createLink(controller: 'ShouldI', action: 'home')}" ><img src="${resource(dir:'images',file:'logo.png')}"   class="navbar-brand"/></a>
+         </div>
+         <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
                <g:if test="${session.name}">
-                  <ul class="nav navbar-nav navbar-right" style = "padding: -10px;" >
-                     <li class="dropdown" style = "">
-                        <a href="#" style = "" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        <img style = "display:inline-block; width: 25px; height: 25px; margin-right: 4px; margin-top: -25px;  margin-bottom: -25px;" src = "${createLink(controller: 'User', action: 'getProfileImage', params: [id: session.userID])}" />			
-                        ${session.name}
-                        <span class="fa fa-caret-down"></span></a>
-                        <ul class="dropdown-menu">
-                           <li><a href = "${createLink(controller: 'User', action: 'myProfile', params: [category: 'My Questions'])}"><span class= 'fa  fa-user'></span><span style = "padding-left: 5px;" >My Profile</span></a></li>
-                           <li><a href = "${createLink(controller: 'ShouldI', action: 'home')}" ><span class= 'fa fa-home'></span><span style = "padding-left: 6px;" >Home</span></a></li>
-                           <li><a href = "${createLink(controller: 'ShouldI', action: 'help')}" ><span class= 'fa fa-info-circle'></span><span style = "padding-left: 6px;" >Help</span></a></li>
-                           <li role="separator" class="divider"></li>
-                           <li><a  onClick = "logout('${createLink(controller: 'ShouldI', action: 'home')}', '${createLink(controller: 'Authentication', action: 'logout')}' )" href="#"><span class= 'fa fa-sign-out'></span><span style = "padding-left: 5px;" >Log Out</span></a></li>
-                        </ul>
-                     </li>
-                  </ul>
+                  <li><a href="${createLink(controller: 'User', action: 'myProfile', params: [category: 'My Notifications'])}"><span class= 'fa fa-bell-o'></span><span style = "padding-left: 6px;" >${notifyCount}</span></a></li>
+                  <li><a href = "${createLink(controller: 'Question', action: 'askShouldIQuick')}" ><span class= 'fa fa-pencil-square-o'></span><span style = "padding-left: 6px;" >Ask</span></a></li>
+                  <li><a href = "${createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending'])}" ><span class= 'fa fa-book'></span><span style = "padding-left: 6px;" >Browse Categories</span></a></li>
                </g:if>
                <g:else>
-                  <ul class="nav navbar-nav navbar-right">
-                     <li><a id = "facebookLoginMenu" href = "#"  style = ""  onClick = "loginFacebook('${createLink(controller: 'Authentication', action: 'loginFaceBook')}')">Login with <span href="#about" style = "padding-left: 4px; color:#5BC0DE;" class='fa fa-facebook-official'></span> </a></li>
-                  </ul>
-                  <ul class="nav navbar-nav navbar-right">
-                     <li><a id = "facebookLoginMenu" href = "#"  style = "" onClick = "showNoLogin()" >Login/Signup</a></li>
-                  </ul>
+                  <li><a href = "${createLink(controller: 'Question', action: 'askShouldIQuick')}" ><span class= 'fa fa-pencil-square-o'></span><span style = "padding-left: 6px;" >Ask</span></a></li>
+                  <li><a href = "${createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending'])}" ><span class= 'fa fa-book'></span><span style = "padding-left: 6px;" >Browse Categories</span></a></li>
                </g:else>
-            </div>
-            <!--/.nav-collapse -->
+            </ul>
+            <g:if test="${session.name}">
+               <ul class="nav navbar-nav navbar-right" style = "padding: -10px;" >
+                  <li class="dropdown" style = "">
+                     <a href="#" style = "" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                     <img style = "display:inline-block; width: 25px; height: 25px; margin-right: 4px; margin-top: -25px;  margin-bottom: -25px;" src = "${createLink(controller: 'User', action: 'getProfileImage', params: [id: session.userID])}" />			
+                     ${session.name}
+                     <span class="fa fa-caret-down"></span></a>
+                     <ul class="dropdown-menu">
+                        <li><a href = "${createLink(controller: 'User', action: 'myProfile', params: [category: 'My Questions'])}"><span class= 'fa  fa-user'></span><span style = "padding-left: 5px;" >My Profile</span></a></li>
+                        <li><a href = "${createLink(controller: 'ShouldI', action: 'home')}" ><span class= 'fa fa-home'></span><span style = "padding-left: 6px;" >Home</span></a></li>
+                        <li><a href = "${createLink(controller: 'ShouldI', action: 'help')}" ><span class= 'fa fa-info-circle'></span><span style = "padding-left: 6px;" >Help</span></a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a  onClick = "logout('${createLink(controller: 'ShouldI', action: 'home')}', '${createLink(controller: 'Authentication', action: 'logout')}' )" href="#"><span class= 'fa fa-sign-out'></span><span style = "padding-left: 5px;" >Log Out</span></a></li>
+                     </ul>
+                  </li>
+               </ul>
+            </g:if>
+            <g:else>
+               <ul class="nav navbar-nav navbar-right">
+                  <li><a id = "facebookLoginMenu" href = "#"  style = ""  onClick = "loginFacebook('${createLink(controller: 'Authentication', action: 'loginFaceBook')}')">Login with <span href="#about" style = "padding-left: 4px; color:#5BC0DE;" class='fa fa-facebook-official'></span> </a></li>
+               </ul>
+               <ul class="nav navbar-nav navbar-right">
+                  <li><a id = "facebookLoginMenu" href = "#"  style = "" onClick = "showNoLogin()" >Login/Signup</a></li>
+               </ul>
+            </g:else>
          </div>
-      </nav>
+         <!--/.nav-collapse -->
+      </div>
+   </nav>
       <!-- COMMENT BOX -->	
       <div class="container" style = "max-width: 725px; margin-bottom: 15px; ">
          <div style = "width: 100%; margin-top: 70px; margin-bottom: 8px;   ">
-            <div  id = "CustomSelect" onClick = "loadQuestionURL('${createLink(controller: 'Question', action: 'askShouldIQuick', params: [category: 'Trending'])}')" class = "flatMenuItem"   style= " margin-left: 5px; display:inline-block; border-bottom: 0px solid #36a4ff; ">
+            <div  id = "CustomSelect" onClick = "loadQuestionURL('${createLink(controller: 'Question', action: 'askShouldIQuick', params: [category: 'Trending'])}')" class = "flatMenuItem"   style= " margin-left: 5px; display:inline-block; border-bottom: 2px solid #cbe7ff; ">
                <span   class = "flatMenuItemText"  style = " font-size: 17px;" >Quick</span>
             </div>
-            <div  id = "trendingSelect" onClick = "loadQuestionURL('${createLink(controller: 'Question', action: 'askShouldI', params: [category: 'Trending'])}')" class = "flatMenuItem"   style= " margin-left: 5px; display:inline-block; border-bottom: 0px solid #36a4ff; ">
+            <div  id = "trendingSelect" onClick = "loadQuestionURL('${createLink(controller: 'Question', action: 'askShouldI', params: [category: 'Trending'])}')" class = "flatMenuItem"   style= " margin-left: 5px; display:inline-block; border-bottom: 2px solid #cbe7ff;">
                <span   class = "flatMenuItemText"  style = " font-size: 17px;" >Yes/No</span>
             </div>
             <div  id = "recentSelect"  onClick = "loadQuestionURL('${createLink(controller: 'Question', action: 'askShouldICustom', params: [category: 'Recent'])}')" class = "flatMenuItem" style= " margin-left: 5px; display:inline-block; border-bottom: 2px solid #36a4ff; " >
@@ -137,7 +137,7 @@
                </div>
                <g:form controller="Question" action="postShouldICutom" enctype="multipart/form-data" >
                   <input type="text" id="title" name = "title" style = "width: 100%;  margin-top: 8px; " class="form-control" placeholder="Title">
-                  <textarea type="text" name = "question" style = "resize: none; height: 170px; margin-top: 8px; " class="form-control" id="wysihtml5-textarea" placeholder="Type away..."></textarea>
+                  <textarea type="text" name = "question" style = "resize: none; height: 170px; margin-top: 8px; " class="form-control" id="wysihtml5-textarea" placeholder="Your question..."></textarea>
                   <div style = "padding-left: 18px;  border-radius: 5px; padding-right: 18px; padding-top: 8px; margin-top: 10px;  padding-bottom: 1px; margin-bottom: 5px;   background-color: #F9F9F9; ">
                      <div  id = "option1Div" style = "display: block;">
                         <div class="form-group" style = "margin-top: 12px; " >
@@ -209,8 +209,17 @@
                      Post as anonymous
                      </label>
                   </div>
+                  
+					<div class="checkbox checkbox-danger"  style = "display: block; margin-top: 0px; margin-left: 2px;" >
+					    <input type="checkbox"  name = "privateQuestion"  id="privateQuestionCheckbox"/>
+			    <label  for="privateQuestionCheckbox">
+			        Make private
+			    </label>
+					</div> 
+			                  
+                  
                   <div class="checkbox checkbox-default"  style = "display: block; margin-top: 0px; margin-left: 2px;" >
-                     <input type="checkbox"  name = "loginToVote"  id="noLoginCheckbox" checked/>
+                     <input type="checkbox"  name = "loginToVote"  id="noLoginCheckbox" />
                      <label  for="noLoginCheckbox">
                      Require login to vote
                      </label>
@@ -319,9 +328,9 @@
          
          $("#noLoginCheckbox").click(function() {
           if (this.checked) {
-           $('#errorAlertNoLogin').slideUp(800);	  
+         //  $('#errorAlertNoLogin').slideUp(800);	  
           } else {
-           $('#errorAlertNoLogin').slideDown(800);	  
+         //  $('#errorAlertNoLogin').slideDown(800);	  
           }
          
          });

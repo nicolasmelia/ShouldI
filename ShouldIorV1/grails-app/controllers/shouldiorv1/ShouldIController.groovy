@@ -88,9 +88,9 @@ class ShouldIController {
 		String categorySort = "None"
 		def questions
 		if (params.category.toString().equals("Trending")){
-			questions = Question.executeQuery("FROM Question a WHERE a.category != 'Hot or Not' AND date > ? ORDER BY totalVotes DESC", [date], [max: 10, offset: offset])	
+			questions = Question.executeQuery("FROM Question a WHERE a.privateQuestion = false AND a.category != 'Hot or Not' AND date > ? ORDER BY totalVotes DESC", [date], [max: 10, offset: offset])	
 		} else  if (params.category.toString().equals("Recent")){
-			questions = Question.executeQuery("FROM Question a WHERE a.category != 'Hot or Not' ORDER BY date DESC", [max: 10, offset: offset])
+			questions = Question.executeQuery("FROM Question a WHERE a.privateQuestion = false AND a.category != 'Hot or Not' ORDER BY date DESC", [max: 10, offset: offset])
 		} else {
 			
 			// get the category sort method
@@ -101,13 +101,13 @@ class ShouldIController {
 			}
 			
 			if (categorySort.equals("Trending")) {
-				questions = Question.executeQuery("FROM Question a WHERE a.date > ? AND a.category = ? ORDER BY totalVotes DESC", [date, params.category], [max: 10, offset: offset])
+				questions = Question.executeQuery("FROM Question a WHERE a.privateQuestion = false AND a.date > ? AND a.category = ? ORDER BY totalVotes DESC", [date, params.category], [max: 10, offset: offset])
 			} else if (categorySort.equals("Recent")) {
 				// All other categories 
-				 questions = Question.executeQuery("FROM Question a WHERE a.category = ? ORDER BY date DESC", [params.category], [max: 10, offset: offset])
+				 questions = Question.executeQuery("FROM Question a WHERE a.privateQuestion = false AND a.category = ? ORDER BY date DESC", [params.category], [max: 10, offset: offset])
 			} else {
 			// Not sure what went wrong... No category is set, load trending.
-				questions = Question.executeQuery("FROM Question a WHERE a.category != 'Hot or Not' AND a.date > ? AND a.category = ? ORDER BY totalVotes DESC", [date, params.category], [max: 10, offset: offset])
+				questions = Question.executeQuery("FROM Question a WHERE a.privateQuestion = false AND a.category != 'Hot or Not' AND a.date > ? AND a.category = ? ORDER BY totalVotes DESC", [date, params.category], [max: 10, offset: offset])
 			} 
 			
 		}
@@ -133,7 +133,7 @@ class ShouldIController {
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.MONTH, -1);
 		Date date = cal.getTime();
-		def questions = Question.executeQuery("FROM Question a WHERE a.date > ? AND a.category != 'Hot or Not' ORDER BY  a.totalVotes", [date], [max: 25])
+		def questions = Question.executeQuery("FROM Question a WHERE a.privateQuestion = false AND a.date > ? AND a.category != 'Hot or Not' ORDER BY a.totalVotes DESC", [date], [max: 25])
 		// def questions = Question.executeQuery("FROM Question a WHERE a.totalVotes > 100 AND a.date > ?  AND a.category != 'Hot or Not' ORDER BY RAND()", [date], [max: 25])	
 		return questions
 	}
@@ -142,7 +142,7 @@ class ShouldIController {
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.MONTH, -1);
 		Date date = cal.getTime();
-		def questions2 = Question.executeQuery("FROM Question a WHERE a.category != 'Hot or Not' AND date > ? ORDER BY RAND()", [date], [max: 9])
+		def questions2 = Question.executeQuery("FROM Question a WHERE a.privateQuestion = false AND a.category != 'Hot or Not' AND date > ? ORDER BY RAND()", [date], [max: 9])
 		return questions2
 	}
 	 

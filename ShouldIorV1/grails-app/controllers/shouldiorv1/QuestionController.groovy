@@ -147,6 +147,12 @@ class QuestionController {
 			question.anonymous = false
 		}
 		
+		if (params.privateQuestion != null) {
+			question.privateQuestion = true
+		} else {
+			question.privateQuestion = false
+		}
+			
 		if (params.loginToVote != null) {
 			question.requireLoginToVote = true
 		} else {
@@ -239,6 +245,13 @@ class QuestionController {
 		} else {
 			question.anonymous = false
 		}
+		
+		if (params.privateQuestion != null) {
+			question.privateQuestion = true
+		} else {
+			question.privateQuestion = false
+		}
+		
 		
 		if (params.loginToVote != null) {
 			question.requireLoginToVote = true
@@ -363,6 +376,12 @@ class QuestionController {
 			question.anonymous = params.anonymous
 		} else {
 			question.anonymous = false
+		}
+		
+		if (params.privateQuestion != null) {
+			question.privateQuestion = true
+		} else {
+			question.privateQuestion = false
 		}
 		
 		if (params.loginToVote != null) {
@@ -699,10 +718,10 @@ class QuestionController {
 		// ******** Half from this category and half from other categories **********
 		
 		// From this category
-		def questionSet1 = Question.executeQuery("FROM Question a WHERE a.category = ? AND date > ? AND a.questionID <> ? ORDER BY RAND()", [category, date, questionID], [max: 6])
+		def questionSet1 = Question.executeQuery("FROM Question a WHERE a.privateQuestion = false AND a.category = ? AND date > ? AND a.questionID <> ? ORDER BY RAND()", [category, date, questionID], [max: 6])
 		
 		// Random from other categories
-		def questionSet2 = Question.executeQuery("FROM Question a WHERE a.category != 'Hot or Not' AND date > ? AND a.questionID <> ? ORDER BY RAND()", [date, questionID], [max: 6])
+		def questionSet2 = Question.executeQuery("FROM Question a WHERE a.privateQuestion = false AND a.category != 'Hot or Not' AND date > ? AND a.questionID <> ? ORDER BY RAND()", [date, questionID], [max: 6])
 		
 		// List of id's to not allow duplicates
 		ArrayList<String> questionIds = new ArrayList<String>()
@@ -820,10 +839,17 @@ class QuestionController {
 			// ************ Create the thumbnail ************
 			ByteArrayInputStream bais = new ByteArrayInputStream(imgFile.bytes);
 			BufferedImage orginalImage = ImageIO.read(bais)
+			BufferedImage thumbnail
 			
-			BufferedImage thumbnail =
+			if (!fileExt.toLowerCase().matches("gif")) {
+				 thumbnail =
+					Scalr.resize(orginalImage, Scalr.Method.BALANCED, Scalr.Mode.FIT_TO_WIDTH,
+					200, 200, Scalr.OP_ANTIALIAS);
+			} else { // gif thumbnail only works with 400 x 400 
+				 thumbnail =
 				Scalr.resize(orginalImage, Scalr.Method.BALANCED, Scalr.Mode.FIT_TO_WIDTH,
-				200, 200, Scalr.OP_ANTIALIAS);
+				400, 400, Scalr.OP_ANTIALIAS);
+			}
 	
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			ImageIO.write(thumbnail, fileExt, baos);

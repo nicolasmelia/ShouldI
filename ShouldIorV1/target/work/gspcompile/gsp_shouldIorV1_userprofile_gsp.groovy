@@ -66,13 +66,15 @@ expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: 
 printHtmlPart(20)
 expressionOut.print(notifyCount)
 printHtmlPart(21)
-expressionOut.print(createLink(controller: 'Question', action: 'askShouldI'))
+expressionOut.print(createLink(controller: 'Question', action: 'askShouldIQuick'))
 printHtmlPart(22)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
 printHtmlPart(23)
 }
 else {
 printHtmlPart(24)
+expressionOut.print(createLink(controller: 'Question', action: 'askShouldIQuick'))
+printHtmlPart(22)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
 printHtmlPart(23)
 }
@@ -161,8 +163,8 @@ printHtmlPart(61)
 printHtmlPart(62)
 if(true && (category != 'Following')) {
 printHtmlPart(63)
-for( _it679137498 in (question) ) {
-changeItVariable(_it679137498)
+for( _it1509114479 in (question) ) {
+changeItVariable(_it1509114479)
 printHtmlPart(64)
 expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
 printHtmlPart(65)
@@ -190,8 +192,8 @@ printHtmlPart(75)
 }
 else {
 printHtmlPart(76)
-for( _it454652207 in (users) ) {
-changeItVariable(_it454652207)
+for( _it302256620 in (users) ) {
+changeItVariable(_it302256620)
 printHtmlPart(77)
 expressionOut.print(createLink(controller: 'User', action: 'profile', params: [id: it.userID, category : 'New Questions']))
 printHtmlPart(78)
@@ -204,10 +206,10 @@ printHtmlPart(81)
 }
 printHtmlPart(82)
 createClosureForHtmlPart(83, 2)
-invokeTag('link','g',227,['action':("profile"),'params':([offset: offset, up: 'false', category: category, id: user.userID ]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
+invokeTag('link','g',226,['action':("profile"),'params':([offset: offset, up: 'false', category: category, id: user.userID ]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
 printHtmlPart(84)
 createClosureForHtmlPart(85, 2)
-invokeTag('link','g',231,['action':("profile"),'params':([offset: offset, up: 'true', category: category, id : user.userID]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
+invokeTag('link','g',230,['action':("profile"),'params':([offset: offset, up: 'true', category: category, id : user.userID]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
 printHtmlPart(86)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'privacyPolicy'))
 printHtmlPart(87)
@@ -219,14 +221,14 @@ expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceB
 printHtmlPart(90)
 expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
 printHtmlPart(91)
-invokeTag('javascript','g',279,['src':("dataAccess.js")],-1)
+invokeTag('javascript','g',278,['src':("dataAccess.js")],-1)
 printHtmlPart(92)
-invokeTag('resource','g',280,['dir':("js"),'file':("bootstrap.min.js")],-1)
+invokeTag('resource','g',279,['dir':("js"),'file':("bootstrap.min.js")],-1)
 printHtmlPart(93)
-invokeTag('javascript','g',281,['src':("buttonAnswerGlow.js")],-1)
+invokeTag('javascript','g',280,['src':("buttonAnswerGlow.js")],-1)
 printHtmlPart(94)
 })
-invokeTag('captureBody','sitemesh',300,[:],1)
+invokeTag('captureBody','sitemesh',299,[:],1)
 printHtmlPart(95)
 }
 public static final Map JSP_TAGS = new HashMap()
@@ -234,7 +236,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1444778889267L
+public static final long LAST_MODIFIED = 1444928194502L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

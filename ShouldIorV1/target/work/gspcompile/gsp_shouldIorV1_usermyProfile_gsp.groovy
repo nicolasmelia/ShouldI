@@ -66,13 +66,15 @@ expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: 
 printHtmlPart(20)
 expressionOut.print(notifyCount)
 printHtmlPart(21)
-expressionOut.print(createLink(controller: 'Question', action: 'askShouldI'))
+expressionOut.print(createLink(controller: 'Question', action: 'askShouldIQuick'))
 printHtmlPart(22)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
 printHtmlPart(23)
 }
 else {
 printHtmlPart(24)
+expressionOut.print(createLink(controller: 'Question', action: 'askShouldIQuick'))
+printHtmlPart(22)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
 printHtmlPart(23)
 }
@@ -141,8 +143,8 @@ printHtmlPart(54)
 printHtmlPart(55)
 if(true && (category != 'Following')) {
 printHtmlPart(56)
-for( _it1934424193 in (question) ) {
-changeItVariable(_it1934424193)
+for( _it2013342140 in (question) ) {
+changeItVariable(_it2013342140)
 printHtmlPart(57)
 expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
 printHtmlPart(58)
@@ -176,8 +178,8 @@ printHtmlPart(71)
 }
 else {
 printHtmlPart(72)
-for( _it1250496477 in (users) ) {
-changeItVariable(_it1250496477)
+for( _it1043090763 in (users) ) {
+changeItVariable(_it1043090763)
 printHtmlPart(73)
 expressionOut.print(createLink(controller: 'User', action: 'profile', params: [id: it.userID, category : 'New Questions']))
 printHtmlPart(74)
@@ -220,7 +222,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1444778853293L
+public static final long LAST_MODIFIED = 1444928194518L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

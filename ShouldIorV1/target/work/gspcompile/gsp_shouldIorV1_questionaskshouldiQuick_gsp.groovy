@@ -74,13 +74,15 @@ expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: 
 printHtmlPart(23)
 expressionOut.print(notifyCount)
 printHtmlPart(24)
-expressionOut.print(createLink(controller: 'Question', action: 'askShouldI'))
+expressionOut.print(createLink(controller: 'Question', action: 'askShouldIQuick'))
 printHtmlPart(25)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
 printHtmlPart(26)
 }
 else {
 printHtmlPart(27)
+expressionOut.print(createLink(controller: 'Question', action: 'askShouldIQuick'))
+printHtmlPart(25)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
 printHtmlPart(26)
 }
@@ -108,59 +110,68 @@ expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceB
 printHtmlPart(38)
 }
 printHtmlPart(39)
-expressionOut.print(createLink(controller: 'Question', action: 'askShouldIQuick', params: [category: 'Trending']))
+if(true && (session.name)) {
 printHtmlPart(40)
-expressionOut.print(createLink(controller: 'Question', action: 'askShouldI', params: [category: 'Trending']))
+expressionOut.print(createLink(controller: 'Question', action: 'askShouldIQuick', params: [category: 'Allow']))
 printHtmlPart(41)
-expressionOut.print(createLink(controller: 'Question', action: 'askShouldICustom', params: [category: 'Recent']))
+expressionOut.print(createLink(controller: 'Question', action: 'askShouldI', params: [category: 'Allow']))
 printHtmlPart(42)
-createTagBody(2, {->
+expressionOut.print(createLink(controller: 'Question', action: 'askShouldICustom', params: [category: 'Allow']))
 printHtmlPart(43)
-for( _it1657624109 in (categories) ) {
-changeItVariable(_it1657624109)
-printHtmlPart(44)
-expressionOut.print(it.category)
-printHtmlPart(45)
-expressionOut.print(it.category)
-printHtmlPart(46)
-}
-printHtmlPart(47)
-if(true && (!session.name)) {
-printHtmlPart(48)
 }
 else {
-printHtmlPart(49)
+printHtmlPart(44)
+expressionOut.print(createLink(controller: 'Question', action: 'askShouldIQuick', params: [category: 'Allow']))
+printHtmlPart(45)
 }
+printHtmlPart(46)
+createTagBody(2, {->
+printHtmlPart(47)
+for( _it118105337 in (categories) ) {
+changeItVariable(_it118105337)
+printHtmlPart(48)
+expressionOut.print(it.category)
+printHtmlPart(49)
+expressionOut.print(it.category)
 printHtmlPart(50)
-invokeTag('actionSubmit','g',203,['onclick':("return validate()"),'value':("Post"),'action':("postShouldICutom"),'style':("margin-top: 1px; width: 100px; display: inline-block;"),'class':("btn btn-default")],-1)
+}
 printHtmlPart(51)
-})
-invokeTag('form','g',207,['controller':("Question"),'action':("postShouldICutom"),'enctype':("multipart/form-data")],2)
+if(true && (!session.name)) {
 printHtmlPart(52)
-expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
+}
+else {
 printHtmlPart(53)
-expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
+}
 printHtmlPart(54)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'privacyPolicy'))
+invokeTag('actionSubmit','g',234,['onclick':("return validate()"),'value':("Post"),'action':("postShouldIQuick"),'style':("margin-top: 1px; width: 100px; display: inline-block;"),'class':("btn btn-default")],-1)
 printHtmlPart(55)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
+})
+invokeTag('form','g',238,['controller':("Question"),'action':("postShouldIQuick"),'enctype':("multipart/form-data")],2)
 printHtmlPart(56)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'aboutPollaris'))
-printHtmlPart(57)
 expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
-printHtmlPart(53)
+printHtmlPart(57)
 expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
 printHtmlPart(58)
-})
-invokeTag('captureBody','sitemesh',541,['style':("background-color: #f4f4f4; min-width: 330px; ")],1)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'privacyPolicy'))
 printHtmlPart(59)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
+printHtmlPart(60)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'aboutPollaris'))
+printHtmlPart(61)
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
+printHtmlPart(57)
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
+printHtmlPart(62)
+})
+invokeTag('captureBody','sitemesh',576,['style':("background-color: #f4f4f4; min-width: 330px; ")],1)
+printHtmlPart(63)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1444844030540L
+public static final long LAST_MODIFIED = 1444928666264L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

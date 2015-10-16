@@ -74,13 +74,15 @@ expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: 
 printHtmlPart(23)
 expressionOut.print(notifyCount)
 printHtmlPart(24)
-expressionOut.print(createLink(controller: 'Question', action: 'askShouldI'))
+expressionOut.print(createLink(controller: 'Question', action: 'askShouldIQuick'))
 printHtmlPart(25)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
 printHtmlPart(26)
 }
 else {
 printHtmlPart(27)
+expressionOut.print(createLink(controller: 'Question', action: 'askShouldIQuick'))
+printHtmlPart(25)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
 printHtmlPart(26)
 }
@@ -127,10 +129,10 @@ printHtmlPart(46)
 printHtmlPart(47)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
 printHtmlPart(48)
-invokeTag('actionSubmit','g',218,['onclick':("return validate()"),'value':("Post"),'action':("postShouldICutom"),'style':("margin-top: 1px; width: 100px; display: inline-block;"),'class':("btn btn-default")],-1)
+invokeTag('actionSubmit','g',227,['onclick':("return validate()"),'value':("Post"),'action':("postShouldICutom"),'style':("margin-top: 1px; width: 100px; display: inline-block;"),'class':("btn btn-default")],-1)
 printHtmlPart(49)
 })
-invokeTag('form','g',219,['controller':("Question"),'action':("postShouldICutom"),'enctype':("multipart/form-data")],2)
+invokeTag('form','g',228,['controller':("Question"),'action':("postShouldICutom"),'enctype':("multipart/form-data")],2)
 printHtmlPart(50)
 expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
 printHtmlPart(51)
@@ -143,7 +145,7 @@ printHtmlPart(54)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'aboutPollaris'))
 printHtmlPart(55)
 })
-invokeTag('captureBody','sitemesh',535,['style':("background-color: #f4f4f4; min-width: 330px; ")],1)
+invokeTag('captureBody','sitemesh',544,['style':("background-color: #f4f4f4; min-width: 330px; ")],1)
 printHtmlPart(56)
 }
 public static final Map JSP_TAGS = new HashMap()
@@ -151,7 +153,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1444841538601L
+public static final long LAST_MODIFIED = 1444928663685L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

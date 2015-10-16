@@ -12,6 +12,7 @@ class Question {
 	boolean anonymous 
 	boolean requireLoginToVote
 	boolean deleted
+	boolean privateQuestion
 	
 	// Question
 	String question
@@ -65,7 +66,7 @@ class Question {
 		opNotifyVoteCount(nullable:true)
 		deleted(nullable:true)
 		quick(nullable:true)
-		
+		privateQuestion(nullable:true)
 		
 		
 		answerOneImage(nullable:true)

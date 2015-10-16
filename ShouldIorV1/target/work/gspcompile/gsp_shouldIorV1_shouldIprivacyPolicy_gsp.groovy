@@ -72,13 +72,15 @@ expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: 
 printHtmlPart(24)
 expressionOut.print(notifyCount)
 printHtmlPart(25)
-expressionOut.print(createLink(controller: 'Question', action: 'askShouldI'))
+expressionOut.print(createLink(controller: 'Question', action: 'askShouldIQuick'))
 printHtmlPart(26)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
 printHtmlPart(27)
 }
 else {
 printHtmlPart(28)
+expressionOut.print(createLink(controller: 'Question', action: 'askShouldIQuick'))
+printHtmlPart(26)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
 printHtmlPart(27)
 }
@@ -116,14 +118,14 @@ expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceB
 printHtmlPart(44)
 expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
 printHtmlPart(45)
-invokeTag('resource','g',308,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput-angular.js")],-1)
+invokeTag('resource','g',306,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput-angular.js")],-1)
 printHtmlPart(46)
-invokeTag('resource','g',309,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.js")],-1)
+invokeTag('resource','g',307,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.js")],-1)
 printHtmlPart(47)
-invokeTag('resource','g',310,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.css")],-1)
+invokeTag('resource','g',308,['dir':("js/tagsJS"),'file':("bootstrap-tagsinput.css")],-1)
 printHtmlPart(48)
 })
-invokeTag('captureBody','sitemesh',332,['style':("background-color: #f4f4f4; min-width: 330px; margin-bottom: 15px; ")],1)
+invokeTag('captureBody','sitemesh',330,['style':("background-color: #f4f4f4; min-width: 330px; margin-bottom: 15px; ")],1)
 printHtmlPart(49)
 }
 public static final Map JSP_TAGS = new HashMap()
@@ -131,7 +133,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1444179841953L
+public static final long LAST_MODIFIED = 1444928194549L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

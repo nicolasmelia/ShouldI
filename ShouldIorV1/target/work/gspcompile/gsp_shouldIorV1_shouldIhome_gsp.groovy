@@ -78,13 +78,15 @@ expressionOut.print(createLink(controller: 'User', action: 'myProfile', params: 
 printHtmlPart(23)
 expressionOut.print(notifyCount)
 printHtmlPart(24)
-expressionOut.print(createLink(controller: 'Question', action: 'askShouldI'))
+expressionOut.print(createLink(controller: 'Question', action: 'askShouldIQuick'))
 printHtmlPart(25)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
 printHtmlPart(26)
 }
 else {
 printHtmlPart(27)
+expressionOut.print(createLink(controller: 'Question', action: 'askShouldIQuick'))
+printHtmlPart(25)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
 printHtmlPart(26)
 }
@@ -114,71 +116,64 @@ printHtmlPart(38)
 printHtmlPart(39)
 expressionOut.print(resource(dir:'images',file:'logoDark.png'))
 printHtmlPart(40)
-if(true && (session.name)) {
+expressionOut.print(createLink(controller: 'Question', action: 'askShouldIQuick'))
 printHtmlPart(41)
-expressionOut.print(createLink(controller: 'Question', action: 'askShouldI'))
-printHtmlPart(42)
-}
-else {
-printHtmlPart(43)
-}
-printHtmlPart(44)
 expressionOut.print(messageTitle)
-printHtmlPart(45)
+printHtmlPart(42)
 expressionOut.print(raw(messageText))
-printHtmlPart(46)
+printHtmlPart(43)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
-printHtmlPart(47)
-for( _it1350066054 in (popularQuestions) ) {
-changeItVariable(_it1350066054)
-printHtmlPart(48)
+printHtmlPart(44)
+for( _it924635900 in (popularQuestions) ) {
+changeItVariable(_it924635900)
+printHtmlPart(45)
 expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
-printHtmlPart(49)
+printHtmlPart(46)
 if(true && (it.answerOneImage)) {
-printHtmlPart(50)
+printHtmlPart(47)
 expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1', thumb: 'True']))
-printHtmlPart(51)
+printHtmlPart(48)
 }
 else {
-printHtmlPart(52)
+printHtmlPart(49)
 expressionOut.print(resource(dir:'images',file:'noImg.png'))
-printHtmlPart(53)
+printHtmlPart(50)
 }
-printHtmlPart(54)
+printHtmlPart(51)
 expressionOut.print(it.userName)
-printHtmlPart(55)
+printHtmlPart(52)
 expressionOut.print(it.questionTitle)
-printHtmlPart(56)
+printHtmlPart(53)
 expressionOut.print(it.totalVotes)
-printHtmlPart(57)
+printHtmlPart(54)
 expressionOut.print(it.totalViews)
-printHtmlPart(58)
+printHtmlPart(55)
 }
-printHtmlPart(59)
+printHtmlPart(56)
 expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
-printHtmlPart(60)
+printHtmlPart(57)
 expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
-printHtmlPart(61)
+printHtmlPart(58)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'privacyPolicy'))
-printHtmlPart(62)
+printHtmlPart(59)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
-printHtmlPart(63)
+printHtmlPart(60)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'aboutPollaris'))
-printHtmlPart(64)
+printHtmlPart(61)
 expressionOut.print(yesCount)
-printHtmlPart(65)
+printHtmlPart(62)
 expressionOut.print(noCount)
-printHtmlPart(66)
+printHtmlPart(63)
 })
-invokeTag('captureBody','sitemesh',274,['style':("background-color: #F6F6F6!important; background-image:url('${resource(dir: "images", file: "wall1.jpg")}'); margin-bottom: 20px; background-size: cover;  background-attachment: fixed; min-width: 320px;  ")],1)
-printHtmlPart(67)
+invokeTag('captureBody','sitemesh',267,['style':("background-color: #F6F6F6!important; background-image:url('${resource(dir: "images", file: "wall1.jpg")}'); margin-bottom: 20px; background-size: cover;  background-attachment: fixed; min-width: 320px;  ")],1)
+printHtmlPart(64)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1444785706944L
+public static final long LAST_MODIFIED = 1444928449856L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'
