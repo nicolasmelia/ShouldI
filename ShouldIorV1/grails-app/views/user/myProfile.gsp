@@ -27,7 +27,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
       <![endif]-->
    </head>
-   <body >
+   <body style = "background-color: #f5f8fa!important;">
            <input id = "facebookLoginLink" type="hidden" name="perdif" value="${createLink(controller: 'Authentication', action: 'loginFaceBook')}">
    
          <g:if test="${session.name}">
@@ -91,11 +91,10 @@
    </nav>
       
       
-      <div class="container" style = "max-width: 825px; margin-top: 70px; margin-bottom: 20px; " >
+      <div class="container" style = "max-width: 825px; margin-top: 75px; margin-bottom: 20px; " >
          <!-- QUESTION BLOCK -->	
-         <div  class="contentContainer">
             <!-- PROFILE INFORMATION -->	
-            <div  class="contentContainer" style = "padding: 10px 10px 0px 10px; box-shadow:0 0 0px rgba(0, 0, 0, 0.0); " >
+            <div  class="contentContainer" style = "padding: 10px 10px 0px 10px; margin: 0px; box-shadow:0 0 0px rgba(0, 0, 0, 0.0); " >
                <span style = "margin: auto; width: 100%; text-align: center; color: #5C5C5C; display: block; font-size: 18px; margin-bottom: 0px; margin-top: 2px;">
             
      
@@ -128,7 +127,7 @@
                </div>
                	             
                <div style = "width: 100%; margin: auto; padding: 0px; " >
-               	<p style =  "display: block; font-size: 15px;  margin: auto; margin-top: 7px; width: 100%;">
+               	<p style =  "display: block; font-size: 15px;  margin: auto; margin-top: 7px; margin-bottom: 12px; width: 100%;">
                	    <g:if test="${user.about != ''}">
                		  ${raw(user.about)}		           
                	    </g:if>
@@ -141,9 +140,9 @@
                
             </div>
             <!-- PROFILE INFORMATION -->	
-            <div style = "width: 100%; margin: auto; text-align: center; padding-top: 0px; display:block; margin-bottom: -6px;  ">
+            <div class="contentContainer" style = " border-top: 0px; border-bottom: 0px; width: 100%; margin: auto; border-radius: 0px; text-align: center; padding-top: 0px; display:block; margin: 0px;  ">
                <div class="dropdown"  style = " width: 100%; margin: auto; display:inline-block; border-radius: 6px 6px 0px 0px;  ">
-                  <button class="btn btn-default dropdown-toggle" type="button" style = " width: 100%; border-radius: 0px 0px 0px 0px; border: 0px; border-bottom: solid 1px; border-top: solid 1px;   border-color: #e3e3e3; " data-toggle="dropdown">
+                  <button class="btn btn-default dropdown-toggle" type="button" style = " width: 100%; border-radius: 0px 0px 0px 0px; border: 0px;  " data-toggle="dropdown">
                   ${category} 
                   <span class="caret"></span></button>
                   <ul class="dropdown-menu" style = "width: 100%; ">
@@ -155,7 +154,7 @@
                </div>
             </div>
             <!-- QUESTION REPLY -->
-            <div  class="contentContainer" style = "box-shadow:0 0 0px rgba(0, 0, 0, 0.0);" >
+            <div  class="contentContainer" style = "border-radius: 0px; margin: 0px; box-shadow:0 0 0px rgba(0, 0, 0, 0.0);" >
               <div class = "scrollCon" style = "height: 310px; overflow-x: hidden;  " >
          
 	         <g:if test="${question.isEmpty() && users.isEmpty()}">
@@ -233,11 +232,7 @@
             <!-- QUESTION REPLY -->
          </div>
          
-
-         
-      </div>
-      
-      <footer class="footer" style = "margin-top: -3px;  width: 100%;" >
+      <footer class="footer" style = "margin-top: 2px;  width: 100%;" >
       <div class="container" style = "width: 100%; text-align: left; padding: 0px; ">
       <span style = "font-size: 13px; color: #79cce5;"><a style = "color: #79cce5;"  href = "${createLink(controller: 'ShouldI', action: 'privacyPolicy')}"  >Privacy Policy</a> | </span>
       <span style = "font-size: 13px; color: #79cce5;"><a style = "color: #79cce5;" href = "${createLink(controller: 'ShouldI', action: 'help')}"  >How To</a> | </span>
@@ -245,6 +240,10 @@
       </div>   
   	  </footer>
          
+         
+      </div>
+      
+
       
  
    	     <!-- LOGIN Modal -->
@@ -270,7 +269,6 @@
    </div>     
       
       
-      </div>
       <footer class="footer" style= " width: 90%;">
          <div class="container">
          </div>
@@ -285,7 +283,7 @@
       <script>
 		      
 		      function glow(id) {
-		          	  $(id).css("background-color","rgba(80,185,255,0.05");        
+		          	  $(id).css("background-color","#f5f8fa");        
 		      }
                 
              function unGlow(id) {

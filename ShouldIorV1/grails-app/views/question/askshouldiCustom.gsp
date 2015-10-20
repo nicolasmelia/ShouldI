@@ -13,8 +13,8 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
       <!-- Bootstrap core CSS -->
       <link rel="stylesheet" type="text/css" href="<g:resource dir='css' file='bootstrap.css'/>">
+      <link rel="stylesheet" type="text/css" href="<g:resource dir='css' file='customBoot.css'/>">  
       <link rel="stylesheet" type="text/css" href="<g:resource dir='css' file='buttons.css'/>">
-            <link rel="stylesheet" type="text/css" href="<g:resource dir='css' file='customBoot.css'/>">
       
       <link rel="stylesheet" type="text/css" href="<g:resource dir='css' file='awesome-bootstrap-checkbox.css'/>">
       <!-- Bootstrap core JS -->
@@ -112,8 +112,7 @@
             </div>
          </div>
          <!-- Question form -->	
-         <div  class="jumbotron" style="overflow: none;  display: block; box-shadow:0 0 10px rgba(0, 0, 0, 0.15); min-height: 100px; margin: auto; min-width: 200px;  padding-left: 0px; padding-right: 0px; padding-top: 0px; padding-bottom: 1px;  margin-bottom: 20px; background-color: #FDFDFD;  ">
-            <div class="form-group" style = "padding-left: 16px;  display:block; padding-right: 16px; padding-top: 1px; ">
+		<div   class="contentContainer" style="overflow: none;  display: block; min-height: 100px; margin: auto; padding: 10px; margin-bottom: 20px;  ">
                <div id = "errorAlert"class="alert alert-danger" role="alert" style = " display: none; padding: 6px; margin-bottom: 10px; margin-top: 10px; " >
                   <span id = 'errorMessage' ></span>
                </div>
@@ -172,7 +171,7 @@
                               <span  onClick = "removePhoto('imgContainer3', 'imageUpload3')" style = 'text-align: right;  right: 0px; float: right;  color: #d9534f; font-size: 20px; padding-right: 0px; padding-top:0px; display: inline-block;' class='fa fa fa-minus-square '></span>
                               <img id="image3" src="#" style ="display: none; margin: auto; width: 35%" alt="Error displaying image (Image will still upload)" />
                            </div>
-                           <input  name = "answerThree" type="text" style = "width: 100%;" class="form-control" style = "" id="option3" placeholder="Ex. No, White, Slow">
+                           <input  name = "answerThree" type="text" style = "width: 100%;" class="form-control" style = "" id="option3" placeholder="Ex. Maybe...">
                            <span class="btn btn-default btn-file" style =" margin-top: 10px; height: 25px; padding: 4px; font-size: 12px;">
                            <span class = "fa fa-picture-o"></span> Add Image <input id = "imageUpload3" name = 'image3' type="file" accept="image/*">
                            </span>
@@ -185,7 +184,7 @@
                               <span class = "favsharButtion" onClick = "removePhoto('imgContainer4', 'imageUpload4')" style = 'text-align: right;  right: 0px; float: right;  color: #d9534f; font-size: 20px; padding-right: 0px; padding-top:0px; display: inline-block;' class='fa fa fa-minus-square '></span>
                               <img id="image4" src="#" style ="display: none; margin: auto; width: 35%" alt="Error displaying image (Image will still upload)" />
                            </div>
-                           <input  name = "answerFour" type="text" style = "width: 100%;" class="form-control" style = "" id="option4" placeholder="Ex. No, White, Slow">
+                           <input  name = "answerFour" type="text" style = "width: 100%;" class="form-control" style = "" id="option4" placeholder="Ex. So...">
                            <span class="btn btn-default btn-file" style =" margin-top: 10px; height: 25px; padding: 4px; font-size: 12px;">
                            <span class = "fa fa-picture-o"></span> Add Image <input id = "imageUpload4" name = 'image4' type="file" accept="image/*">
                            </span>
@@ -273,7 +272,6 @@
                <span style = "font-size: 13px; color: #79cce5;"><a style = "color: #79cce5;" href = "${createLink(controller: 'ShouldI', action: 'aboutPollaris')}">Pollaris LLC</a></span>   
             </div>
          </footer>
-      </div>
       
 
       <!-- /.container -->

@@ -52,7 +52,7 @@
   
 
 
-  <body style = "background-color: #f4f4f4; min-width: 330px; ">
+  <body style = "background-color: #f5f8fa!important; min-width: 330px; ">
   
       <input id = "facebookLoginLink" type="hidden" name="perdif" value="${createLink(controller: 'Authentication', action: 'loginFaceBook')}">
 

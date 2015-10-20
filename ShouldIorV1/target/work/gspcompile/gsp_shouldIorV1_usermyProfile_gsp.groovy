@@ -143,8 +143,8 @@ printHtmlPart(54)
 printHtmlPart(55)
 if(true && (category != 'Following')) {
 printHtmlPart(56)
-for( _it2013342140 in (question) ) {
-changeItVariable(_it2013342140)
+for( _it1676086265 in (question) ) {
+changeItVariable(_it1676086265)
 printHtmlPart(57)
 expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
 printHtmlPart(58)
@@ -178,8 +178,8 @@ printHtmlPart(71)
 }
 else {
 printHtmlPart(72)
-for( _it1043090763 in (users) ) {
-changeItVariable(_it1043090763)
+for( _it67282591 in (users) ) {
+changeItVariable(_it67282591)
 printHtmlPart(73)
 expressionOut.print(createLink(controller: 'User', action: 'profile', params: [id: it.userID, category : 'New Questions']))
 printHtmlPart(74)
@@ -192,10 +192,10 @@ printHtmlPart(77)
 }
 printHtmlPart(78)
 createClosureForHtmlPart(79, 2)
-invokeTag('link','g',225,['action':("myProfile"),'params':([offset: offset, up: 'false', category: category]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
+invokeTag('link','g',224,['action':("myProfile"),'params':([offset: offset, up: 'false', category: category]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
 printHtmlPart(80)
 createClosureForHtmlPart(81, 2)
-invokeTag('link','g',229,['action':("myProfile"),'params':([offset: offset, up: 'true', category: category]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
+invokeTag('link','g',228,['action':("myProfile"),'params':([offset: offset, up: 'true', category: category]),'style':("padding-top: 2px; padding-bottom: 2px;"),'class':("btn btn-default")],2)
 printHtmlPart(82)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'privacyPolicy'))
 printHtmlPart(83)
@@ -207,14 +207,14 @@ expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceB
 printHtmlPart(86)
 expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
 printHtmlPart(87)
-invokeTag('javascript','g',281,['src':("dataAccess.js")],-1)
+invokeTag('javascript','g',279,['src':("dataAccess.js")],-1)
 printHtmlPart(88)
-invokeTag('resource','g',282,['dir':("js"),'file':("bootstrap.min.js")],-1)
+invokeTag('resource','g',280,['dir':("js"),'file':("bootstrap.min.js")],-1)
 printHtmlPart(89)
-invokeTag('javascript','g',283,['src':("buttonAnswerGlow.js")],-1)
+invokeTag('javascript','g',281,['src':("buttonAnswerGlow.js")],-1)
 printHtmlPart(90)
 })
-invokeTag('captureBody','sitemesh',299,[:],1)
+invokeTag('captureBody','sitemesh',297,['style':("background-color: #f5f8fa!important;")],1)
 printHtmlPart(91)
 }
 public static final Map JSP_TAGS = new HashMap()
@@ -222,7 +222,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1444928194518L
+public static final long LAST_MODIFIED = 1445365665602L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

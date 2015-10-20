@@ -3,7 +3,7 @@
    <head>
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="width=device-width,height=device-height initial-scale=1">
      
       <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
       <meta name="description" content="ShouldI.fm is a place where you can ask the world questions and get honest answers. Start a poll, it's free and easy!">
@@ -34,7 +34,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
       <![endif]-->
    </head>
-   <body style = "background-color: #F6F6F6!important; background-image:url('${resource(dir: "images", file: "wall1.jpg")}'); margin-bottom: 20px; background-size: cover;  background-attachment: fixed; min-width: 320px;  ">
+   <body style = "background-color: #F6F6F6!important; background-attachment: fixed; background-repeat: no-repeat;  -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; min-width: 320px; min-height: 100%;  ">
    <g:if test="${session.name}">
       <input id = "sessionCheck" type="hidden" name="country" value="true">
    </g:if>
@@ -99,13 +99,13 @@
     <div class="container">
     
             	<div style = "text-align: center; width: 100%;  margin-top: 80px;  margin-bottom: 20px; " >
-					<img style = "width:40%; vertical-align: top;  display:  block;  margin: auto;  padding:0px; min-width: 285px; " src="${resource(dir:'images',file:'logoDark.png')}"   />				
+					<img style = "width:12%; vertical-align: top;  display:  block;  margin: auto;  padding:0px; min-width: 130px; " src="${resource(dir:'images',file:'redditLogin.png')}"   />				
 				</div>
 				
       <g:form controller="Authentication" action="loginRedditAttempt" enctype="multipart/form-data" class="form-signin" style = "max-width: 300px; margin: auto;">
         
         
-        <h2 class="form-signin-heading" style = "color: #FFFFFF;     text-shadow: 2px 2px #5e5e5e; ">sign in with <span class = "fa fa-reddit"></span></h2>
+        <h2 class="form-signin-heading" style = "color: #339ff4;    " >sign in with <span class = "fa fa-reddit"></span></h2>
        
                      <g:if test="${Success == false}">
                         <div id = "alert" class="alert alert-danger" role="alert" style = "margin: 10px 0px 10px 0px; padding: 8px; text-align: left; ">   
@@ -132,7 +132,7 @@
     </div> <!-- /container -->
 
         <footer class="footer"style="position:fixed;bottom:8px; left: 8px; height:auto;margin-top:40px;width:100%;text-align:center" >
-      <div class="container" style = "width: 100%; text-align: left; padding: 0px; ">
+      <div class="container" style = "display: none; width: 100%; text-align: left; padding: 0px; ">
       <span style = "font-size: 13px; color: #79cce5;"><a style = "color: #79cce5;"  href = "${createLink(controller: 'ShouldI', action: 'privacyPolicy')}"  >Privacy Policy</a> | </span>
       <span style = "font-size: 13px; color: #79cce5;"><a style = "color: #79cce5;" href = "${createLink(controller: 'ShouldI', action: 'help')}"  >How To</a> | </span>
       <span style = "font-size: 13px; color: #79cce5;"><a style = "color: #79cce5;" href = "${createLink(controller: 'ShouldI', action: 'aboutPollaris')}">Pollaris LLC</a></span>    

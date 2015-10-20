@@ -3,7 +3,8 @@
    <head>
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="width=device-width,height=device-height initial-scale=1">
+      
       <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
       <meta name="description" content="ShouldI.fm is a place where you can ask the world questions and get honest answers. Start a poll, it's free and easy!">
       <meta name="author" content="ShouldI.fm">
@@ -39,7 +40,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
       <![endif]-->
    </head>
-   <body style = "background-color: #F6F6F6!important; background-image:url('${resource(dir: "images", file: "wall1.jpg")}'); margin-bottom: 20px; background-size: cover;  background-attachment: fixed; min-width: 320px;  ">
+   <body style = " background-color: #f5f8fa!important; min-width: 320px; min-height: 100%; margin-bottom: 15px;  ">
    <input id = "facebookLoginLink" type="hidden" name="perdif" value="${createLink(controller: 'Authentication', action: 'loginFaceBook')}">
    <g:if test="${session.name}">
       <input id = "sessionCheck" type="hidden" name="country" value="true">
@@ -104,8 +105,8 @@
          <img style = "width:50%; vertical-align: top;  display:  block;  margin: auto;  padding:0px; min-width: 285px; " src="${resource(dir:'images',file:'logoDark.png')}"   />				
       </div>
       <div class = 'favsharButtion' style = " font-size: 25px;  display: block; width: 100%; text-align: left; margin-top: -5px; margin-bottom: -5px;">
-            <a  style = "color: #79cce5; text-shadow: 1px 1px #000000;  margin:0px; padding: 0px;" href = "${createLink(controller: 'Question', action: 'askShouldIQuick')}"  >
-               <span class= 'fa fa-pencil-square-o'> <span  style = " text-shadow: 1px 1px #000000;" class = "element"  ></span></span> 
+            <a  style = "color: #33a6dd;  margin:0px; padding: 0px;" href = "${createLink(controller: 'Question', action: 'askShouldIQuick')}"  >
+               <span class= 'fa fa-pencil-square-o'> <span  style = "" class = "element"  ></span></span> 
          </a> 
       </div>
       <div style = "width: 100%; ">
@@ -117,7 +118,7 @@
                <h3 style = "text-align: left; color: #6A6A6A; margin:0px;">
                   ${messageTitle} 
                </h3>
-               <p style = "font-size: 15px; width: 100%; margin-top: 10px; text-align: left;">
+               <p style = "font-size: 15px; color: #6A6A6A;   width: 100%; margin-top: 10px; text-align: left;">
                   ${raw(messageText)}	
                </p>
                <div>
@@ -187,7 +188,8 @@
                </div>
             </div>
          </div>
-         <div  class="contentContainer" style = "text-align: center; width: 100%; padding : 10px; background-color: rgba(0,0,0, 0.5);" >
+         
+         <div  class="contentContainer" style = " display : none; text-align: center; width: 100%; padding : 10px; background-color: rgba(0,0,0, 0.5);" >
             <div style = "width: 35%;  display: block; min-width: 250px;  margin:10px; padding :0px;  vertical-align: top;  display:inline-block;  ">
                <canvas id="chart-area" style = "width: 50%; display: block; margin:0px; padding :0px;  " />
             </div>
@@ -217,7 +219,7 @@
       });
       
         function glow(id) {
-      	  $(id).css("background-color","rgba(80,185,255,0.075)");
+      	  $(id).css("background-color","#f5f8fa");
         }
            
         function unGlow(id) {
@@ -230,7 +232,7 @@
         	 
          $(function(){
                $(".element").typed({
-                   strings: ["^1000 Start a Poll"],
+                   strings: ["^1000 Start a Poll."],
                    typeSpeed: 90,
         		cursorChar: "|",			  
         		backDelay: 500,

@@ -133,242 +133,244 @@ expressionOut.print(question.questionID)
 printHtmlPart(48)
 expressionOut.print(question.answerOneImage)
 printHtmlPart(49)
-if(true && (question.anonymous == false && question.UserID != 'nonUser')) {
+expressionOut.print(question.quick)
 printHtmlPart(50)
-expressionOut.print(createLink(controller: 'User', action: 'getProfileImage', params: [id: question.userID]))
+if(true && (question.anonymous == false && question.UserID != 'nonUser' && question.privateQuestion == false)) {
 printHtmlPart(51)
-if(true && (user.certified == true)) {
+expressionOut.print(createLink(controller: 'User', action: 'getProfileImage', params: [id: question.userID]))
 printHtmlPart(52)
-}
+if(true && (user.certified == true)) {
 printHtmlPart(53)
-expressionOut.print(createLink(controller: 'User', action: 'profile', params: [id: question.userID, category : 'New Questions']))
+}
 printHtmlPart(54)
-expressionOut.print(question.userName)
+expressionOut.print(createLink(controller: 'User', action: 'profile', params: [id: question.userID, category : 'New Questions']))
 printHtmlPart(55)
-expressionOut.print(user.followerCount)
+expressionOut.print(question.userName)
 printHtmlPart(56)
-expressionOut.print(user.peopleReached)
+expressionOut.print(user.followerCount)
 printHtmlPart(57)
+expressionOut.print(user.peopleReached)
+printHtmlPart(58)
 }
 else if(true && (question.UserID == 'nonUser' || question.privateQuestion == true)) {
-printHtmlPart(58)
-expressionOut.print(question.questionID)
 printHtmlPart(59)
+expressionOut.print(question.questionID)
+printHtmlPart(60)
 }
 else {
-printHtmlPart(60)
-expressionOut.print(resource(dir:'images',file:'blankAv.png'))
 printHtmlPart(61)
-}
+expressionOut.print(resource(dir:'images',file:'blankAv.png'))
 printHtmlPart(62)
-expressionOut.print(question.requireLoginToVote)
+}
 printHtmlPart(63)
-if(true && (thisUserPost == true || question.requireLoginToVote == false)) {
+expressionOut.print(question.requireLoginToVote)
 printHtmlPart(64)
-if(true && (question.requireLoginToVote == false)) {
+if(true && (thisUserPost == true || question.requireLoginToVote == false)) {
 printHtmlPart(65)
-}
+if(true && (question.requireLoginToVote == false)) {
 printHtmlPart(66)
-if(true && (thisUserPost == true)) {
-printHtmlPart(67)
-expressionOut.print(question.questionID)
-printHtmlPart(68)
 }
+printHtmlPart(67)
+if(true && (thisUserPost == true && question.privateQuestion == false)) {
+printHtmlPart(68)
+expressionOut.print(question.questionID)
 printHtmlPart(69)
 }
 printHtmlPart(70)
-invokeTag('formatDate','g',183,['format':("MM-dd-yyyy"),'date':(question.date)],-1)
+}
 printHtmlPart(71)
-expressionOut.print(question.totalVotes)
+invokeTag('formatDate','g',184,['format':("MM-dd-yyyy"),'date':(question.date)],-1)
 printHtmlPart(72)
-if(true && (session.name)) {
+expressionOut.print(question.totalVotes)
 printHtmlPart(73)
+if(true && (session.name)) {
+printHtmlPart(74)
 expressionOut.print(createLink(controller: 'Question', action: 'addToFavorites'))
 printHtmlPart(38)
 expressionOut.print(question.questionID)
-printHtmlPart(74)
-}
-else {
 printHtmlPart(75)
 }
-printHtmlPart(76)
-if(true && (favorite == null)) {
-printHtmlPart(77)
-}
 else {
+printHtmlPart(76)
+}
+printHtmlPart(77)
+if(true && (favorite == null)) {
 printHtmlPart(78)
 }
+else {
 printHtmlPart(79)
-if(true && (!question.quick)) {
+}
 printHtmlPart(80)
-expressionOut.print(question.questionTitle)
+if(true && (!question.quick)) {
 printHtmlPart(81)
-}
+expressionOut.print(question.questionTitle)
 printHtmlPart(82)
-if(true && (question.custom == false)) {
-printHtmlPart(66)
-if(true && (question.answerOneImage == true)) {
-printHtmlPart(83)
-expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: question.questionID, imgNum: '1', thumb: 'False']))
-printHtmlPart(84)
 }
+printHtmlPart(83)
+if(true && (question.custom == false)) {
+printHtmlPart(67)
+if(true && (question.answerOneImage == true)) {
+printHtmlPart(84)
+expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: question.questionID, imgNum: '1', thumb: 'False']))
 printHtmlPart(85)
 }
 printHtmlPart(86)
-if(true && (!question.quick)) {
+}
 printHtmlPart(87)
-expressionOut.print(raw(question.question))
+if(true && (!question.quick)) {
 printHtmlPart(88)
-}
-else {
-printHtmlPart(89)
 expressionOut.print(raw(question.question))
+printHtmlPart(89)
+}
+else {
 printHtmlPart(90)
-}
+expressionOut.print(raw(question.question))
 printHtmlPart(91)
-expressionOut.print(topAnswer)
+}
 printHtmlPart(92)
-if(true && (question.custom.toString().equals('true'))) {
+expressionOut.print(topAnswer)
 printHtmlPart(93)
+if(true && (question.custom.toString().equals('true'))) {
+printHtmlPart(94)
 if(true && (question.answerOneImage  == true)) {
-printHtmlPart(94)
+printHtmlPart(95)
 expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: question.questionID, imgNum: '1', thumb: 'False']))
-printHtmlPart(95)
+printHtmlPart(96)
 }
 else if(true && (hasQuestionImage.toString().equals('true'))) {
-printHtmlPart(96)
-expressionOut.print(resource(dir:'images',file:'noImg.png'))
 printHtmlPart(97)
-}
+expressionOut.print(resource(dir:'images',file:'noImg.png'))
 printHtmlPart(98)
-if(true && (question.answerTwoImage  == true)) {
-printHtmlPart(94)
-expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: question.questionID, imgNum: '2', thumb: 'False']))
-printHtmlPart(95)
 }
-else if(true && (hasQuestionImage.toString().equals('true'))) {
 printHtmlPart(99)
-expressionOut.print(resource(dir:'images',file:'noImg.png'))
-printHtmlPart(97)
+if(true && (question.answerTwoImage  == true)) {
+printHtmlPart(95)
+expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: question.questionID, imgNum: '2', thumb: 'False']))
+printHtmlPart(96)
 }
+else if(true && (hasQuestionImage.toString().equals('true'))) {
 printHtmlPart(100)
+expressionOut.print(resource(dir:'images',file:'noImg.png'))
+printHtmlPart(98)
 }
-printHtmlPart(66)
-if(true && (question.custom == false && question.quick == false)) {
 printHtmlPart(101)
-expressionOut.print(question.answerOneVotes)
+}
+printHtmlPart(67)
+if(true && (question.custom == false && question.quick == false)) {
 printHtmlPart(102)
-expressionOut.print(question.answerTwoVotes)
-printHtmlPart(103)
-}
-else {
-printHtmlPart(104)
-expressionOut.print(question.answerOne)
-printHtmlPart(105)
 expressionOut.print(question.answerOneVotes)
-printHtmlPart(106)
-expressionOut.print(question.answerTwo)
-printHtmlPart(107)
-expressionOut.print(question.answerTwoVotes)
 printHtmlPart(103)
-}
-printHtmlPart(108)
-if(true && (question.answerThree)) {
-printHtmlPart(109)
-if(true && (question.answerThreeImage == true)) {
-printHtmlPart(94)
-expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: question.questionID, imgNum: '3', thumb: 'False']))
-printHtmlPart(110)
-}
-else if(true && (hasQuestionImage.toString().equals('true'))) {
-printHtmlPart(96)
-expressionOut.print(resource(dir:'images',file:'noImg.png'))
-printHtmlPart(97)
-}
-printHtmlPart(111)
-}
-printHtmlPart(112)
-if(true && (question.answerFour)) {
-printHtmlPart(113)
-if(true && (question.answerFourImage  == true)) {
-printHtmlPart(94)
-expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: question.questionID, imgNum: '4', thumb: 'False']))
-printHtmlPart(114)
-}
-else if(true && (hasQuestionImage.toString().equals('true'))) {
-printHtmlPart(96)
-expressionOut.print(resource(dir:'images',file:'noImg.png'))
-printHtmlPart(97)
-}
-printHtmlPart(111)
-}
-printHtmlPart(115)
-if(true && (question.answerThree)) {
-printHtmlPart(116)
-expressionOut.print(question.answerThree)
-printHtmlPart(117)
-expressionOut.print(question.answerThreeVotes)
-printHtmlPart(118)
-}
-printHtmlPart(112)
-if(true && (question.answerFour)) {
-printHtmlPart(119)
-expressionOut.print(question.answerFour)
-printHtmlPart(120)
-expressionOut.print(question.answerFourVotes)
-printHtmlPart(118)
-}
-printHtmlPart(121)
-expressionOut.print(createLink(controller: 'Question', action: 'nextInCat', params: [category: question.category]))
-printHtmlPart(122)
-expressionOut.print(question.category)
-printHtmlPart(123)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: question.category, categorySort: 'Trending']))
-printHtmlPart(124)
-for( _it2128686424 in (questionPromo1) ) {
-changeItVariable(_it2128686424)
-printHtmlPart(125)
-expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
-printHtmlPart(126)
-if(true && (it.answerOneImage)) {
-printHtmlPart(127)
-expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1', thumb: 'True']))
-printHtmlPart(128)
+expressionOut.print(question.answerTwoVotes)
+printHtmlPart(104)
 }
 else {
-printHtmlPart(129)
+printHtmlPart(105)
+expressionOut.print(question.answerOne)
+printHtmlPart(106)
+expressionOut.print(question.answerOneVotes)
+printHtmlPart(107)
+expressionOut.print(question.answerTwo)
+printHtmlPart(108)
+expressionOut.print(question.answerTwoVotes)
+printHtmlPart(104)
+}
+printHtmlPart(109)
+if(true && (question.answerThree)) {
+printHtmlPart(110)
+if(true && (question.answerThreeImage == true)) {
+printHtmlPart(95)
+expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: question.questionID, imgNum: '3', thumb: 'False']))
+printHtmlPart(111)
+}
+else if(true && (hasQuestionImage.toString().equals('true'))) {
+printHtmlPart(97)
 expressionOut.print(resource(dir:'images',file:'noImg.png'))
+printHtmlPart(98)
+}
+printHtmlPart(112)
+}
+printHtmlPart(113)
+if(true && (question.answerFour)) {
+printHtmlPart(114)
+if(true && (question.answerFourImage  == true)) {
+printHtmlPart(95)
+expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: question.questionID, imgNum: '4', thumb: 'False']))
+printHtmlPart(115)
+}
+else if(true && (hasQuestionImage.toString().equals('true'))) {
+printHtmlPart(97)
+expressionOut.print(resource(dir:'images',file:'noImg.png'))
+printHtmlPart(98)
+}
+printHtmlPart(112)
+}
+printHtmlPart(116)
+if(true && (question.answerThree)) {
+printHtmlPart(117)
+expressionOut.print(question.answerThree)
+printHtmlPart(118)
+expressionOut.print(question.answerThreeVotes)
+printHtmlPart(119)
+}
+printHtmlPart(113)
+if(true && (question.answerFour)) {
+printHtmlPart(120)
+expressionOut.print(question.answerFour)
+printHtmlPart(121)
+expressionOut.print(question.answerFourVotes)
+printHtmlPart(119)
+}
+printHtmlPart(122)
+expressionOut.print(createLink(controller: 'Question', action: 'nextInCat', params: [category: question.category]))
+printHtmlPart(123)
+expressionOut.print(question.category)
+printHtmlPart(124)
+expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: question.category, categorySort: 'Trending']))
+printHtmlPart(125)
+for( _it1113284578 in (questionPromo1) ) {
+changeItVariable(_it1113284578)
+printHtmlPart(126)
+expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
+printHtmlPart(127)
+if(true && (it.answerOneImage)) {
 printHtmlPart(128)
+expressionOut.print(createLink(controller: 'Question', action: 'getAnswerImageById', params: [id: it.questionID, imgNum: '1', thumb: 'True']))
+printHtmlPart(129)
 }
+else {
 printHtmlPart(130)
-expressionOut.print(it.questionTitle)
-printHtmlPart(131)
+expressionOut.print(resource(dir:'images',file:'noImg.png'))
+printHtmlPart(129)
 }
+printHtmlPart(131)
+expressionOut.print(it.questionTitle)
 printHtmlPart(132)
-expressionOut.print(questionID)
+}
 printHtmlPart(133)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'privacyPolicy'))
+expressionOut.print(questionID)
 printHtmlPart(134)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
+expressionOut.print(createLink(controller: 'ShouldI', action: 'privacyPolicy'))
 printHtmlPart(135)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'aboutPollaris'))
+expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
 printHtmlPart(136)
-expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
+expressionOut.print(createLink(controller: 'ShouldI', action: 'aboutPollaris'))
 printHtmlPart(137)
-expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
 printHtmlPart(138)
-invokeTag('javascript','g',436,['src':("buttonAnswerGlow.js")],-1)
+expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
 printHtmlPart(139)
-})
-invokeTag('captureBody','sitemesh',529,['style':(" margin-bottom: 20px;  ")],1)
+invokeTag('javascript','g',437,['src':("buttonAnswerGlow.js")],-1)
 printHtmlPart(140)
+})
+invokeTag('captureBody','sitemesh',538,['style':("background-color: #f5f8fa!important; margin-bottom: 20px;  ")],1)
+printHtmlPart(141)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1444929033729L
+public static final long LAST_MODIFIED = 1445365665633L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

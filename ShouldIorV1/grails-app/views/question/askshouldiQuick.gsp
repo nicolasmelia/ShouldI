@@ -135,8 +135,7 @@
             
          </div>
          <!-- Question form -->	
-         <div  class="jumbotron" style="overflow: none;  display: block; box-shadow:0 0 10px rgba(0, 0, 0, 0.15); min-height: 100px; margin: auto; min-width: 200px;  padding-left: 0px; padding-right: 0px; padding-top: 0px; padding-bottom: 1px;  margin-bottom: 20px; background-color: #FDFDFD;  ">
-            <div class="form-group" style = "padding-left: 16px;  display:block; padding-right: 16px; padding-top: 1px; ">
+		<div   class="contentContainer" style="overflow: none;  display: block; min-height: 100px; margin: auto; padding: 10px; margin-bottom: 20px;  ">
                <div id = "errorAlert"class="alert alert-danger" role="alert" style = " display: none; padding: 6px; margin-bottom: 10px; margin-top: 10px; " >
                   <span id = 'errorMessage' ></span>
                </div>
@@ -146,7 +145,7 @@
 			 <img id="image1" src="#" style ="display: none; margin: auto; width: 50%; max-width: 200px;" alt="Error displaying image (Image will still upload)" />
 			</div>
                
-               <div id="wysihtml5-toolbar" style="display: none;  margin-top: 10px; ">
+               <div id="wysihtml5-toolbar" style="display: none;  margin-bottom: 8px; ">
                   <div class="btn-group">					
                      <a  data-wysihtml5-command="bold" style = "padding-top: 2px; padding-bottom: 2px;"  class="btn btn-default">
                      <i  style = "color: #5BC0DE;"  class="fa fa-bold"></i>
@@ -157,7 +156,7 @@
                   </div>
                </div>
                <g:form controller="Question" action="postShouldIQuick" enctype="multipart/form-data" >
-                  <textarea type="text" name = "question" style = "resize: none; height: 70px; margin-top: 8px; " class="form-control" id="wysihtml5-textarea" placeholder="Your question..."></textarea>
+                  <textarea type="text" name = "question" style = "resize: none; height: 60px; margin-top: 0px; " class="form-control" id="wysihtml5-textarea" placeholder="Your question..."></textarea>
                   <div style = "padding-left: 18px;  border-radius: 5px; padding-right: 18px; padding-top: 8px; margin-top: 10px;  padding-bottom: 1px; margin-bottom: 5px;   background-color: #F9F9F9; ">
                      <div  id = "option1Div" style = "display: block;">
                         <div class="form-group" style = "margin-top: 12px; " >
@@ -294,7 +293,7 @@
                      <h4 class="modal-title"><span href="#about" style = "padding-left: 4px;" class='fa fa-sign-in'> </span> Easy Login</h4>
                   </div>
                   <div class="modal-body">
-                     <p>You must be logged in to use these features. Choose a network below to login with</p>
+                     <p>You must be logged in to use this feature. Choose a network below to login with</p>
                      <button onClick = "loginFacebook('${createLink(controller: 'Authentication', action: 'loginFaceBook')}')" style = "" type="button" class="btn btn-default" data-dismiss="modal">Facebook <span class = "fa fa-facebook"></span></button>
                      <button  onClick = "loginReddit('${createLink(controller: 'Authentication', action: 'loginReddit')}')"style = "" type="button" class="btn btn-default" data-dismiss="modal">Reddit <span class = "fa fa-reddit"></span></button>
                   </div>
@@ -453,22 +452,17 @@
          if (id == 'option4Div') {
          	$('#' + id).slideUp(); // Option 3 slide up
          	$('#option4').val("");
-         	removePhoto('imgContainer4', 'imageUpload4');
          } else {
          	if($('#option4Div').css('display') == 'none') {
          		$('#' + id).slideUp(); // Option 3 slide up
          	// Reset elements
          	$('#option3').val("");		
          	$('#option4').val("");
-         	removePhoto('imgContainer3', 'imageUpload3');
-         	removePhoto('imgContainer4', 'imageUpload4');
          	} else {
          	$('#option4Div').slideUp(); // option 4 slide up
          	// Reset elements
          	$('#option3').val("");		
          	$('#option4').val("");
-         	removePhoto('imgContainer3', 'imageUpload3');
-         	removePhoto('imgContainer4', 'imageUpload4');
          	}
          }
          
@@ -488,22 +482,11 @@
          function validate() {
          var errorMessage;
          var hasErrors = false;
-         var title = $("#title").val();
          var question = $("#wysihtml5-textarea").val(); 
          
          $("#errorAlert").css("display", "none");
          errors = [];
-         
-         if (title == "" || title.length < 5) {
-         	hasErrors = true;
-         	errors.push("Please enter a valid title.");
-         } 
-         
-         if (title.length > 60) {
-         	hasErrors = true;
-         	errors.push("title too long. 60 character max.");
-         } 
-         
+
          if (question == "" || question.length < 10) {
          	hasErrors = true;
          	errors.push("Please enter a valid question.");

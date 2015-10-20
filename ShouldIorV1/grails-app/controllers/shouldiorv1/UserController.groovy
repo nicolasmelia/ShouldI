@@ -105,16 +105,18 @@ class UserController {
 		def questions = new ArrayList<Question>()
 		switch (params.category) {
 			case "New Questions":
-				questions = Question.findAll("from Question as q where q.userID = ? ORDER BY q.date DESC", [user.userID], [max: 10, offset: offset])
+				questions = Question.findAll("from Question as q where q.privateQuestion = false AND q.userID = ? ORDER BY q.date DESC", [user.userID], [max: 10, offset: offset])
 			break;
 			case "Top Questions":
-				questions = Question.findAll("from Question as q where q.userID = ? ORDER BY q.totalVotes DESC", [user.userID], [max: 10, offset: offset])
+				questions = Question.findAll("from Question as q where q.privateQuestion = false AND q.userID = ? ORDER BY q.totalVotes DESC", [user.userID], [max: 10, offset: offset])
 			break;
 				case "Favorites":
 				def favorites = Favorite.findAll("from Favorite as f where f.userID = ? AND f.favType = ? order by f.dateAdded DESC", [user.userID, 'Question'], [max: 10, offset: offset])
 				for (Favorite favorite : favorites) {
 					def question = Question.findByQuestionID(favorite.questionID)
-					questions.add(question)
+					if (!question.privateQuestion) {
+						questions.add(question)
+					}
 				}	
 				break;
 			case "Following":

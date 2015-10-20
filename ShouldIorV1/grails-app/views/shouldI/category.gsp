@@ -41,7 +41,7 @@
     
    <input id = "category" type="hidden" value="${category}">
    
-   <body style = "margin-bottom: 20px; min-width: 320px;  ">
+   <body style = "background-color: #f5f8fa!important; margin-bottom: 20px; min-width: 320px;  ">
    
      <input id = "facebookLoginLink" type="hidden" name="perdif" value="${createLink(controller: 'Authentication', action: 'loginFaceBook')}">
    
@@ -273,7 +273,7 @@
       
       
       function glow(id) {
-      $(id).css("background-color","#F7FBFF");
+      $(id).css("background-color","#F5F8FA");
       }
          
       function unGlow(id) {

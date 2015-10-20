@@ -55,8 +55,6 @@ printHtmlPart(12)
 })
 invokeTag('captureHead','sitemesh',52,[:],1)
 printHtmlPart(13)
-createTagBody(1, {->
-printHtmlPart(1)
 if(true && (session.name)) {
 printHtmlPart(14)
 }
@@ -114,7 +112,7 @@ expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceB
 printHtmlPart(37)
 }
 printHtmlPart(38)
-createTagBody(2, {->
+createTagBody(1, {->
 printHtmlPart(39)
 expressionOut.print(createLink(controller: 'User', action: 'getProfileImage', params: [id: session.userID]))
 printHtmlPart(40)
@@ -127,22 +125,19 @@ printHtmlPart(43)
 invokeTag('actionSubmit','g',169,['value':("Update"),'onclick':("return validate()"),'action':("updateProfile"),'style':("margin-top: 1px; width: 100px; display: inline-block;"),'class':("btn btn-default")],-1)
 printHtmlPart(44)
 })
-invokeTag('form','g',171,['controller':("User"),'action':("updateProfile"),'enctype':("multipart/form-data")],2)
+invokeTag('form','g',171,['controller':("User"),'action':("updateProfile"),'enctype':("multipart/form-data")],1)
 printHtmlPart(45)
 expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
 printHtmlPart(46)
 expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
 printHtmlPart(47)
-})
-invokeTag('captureBody','sitemesh',407,['style':("background-color: #f4f4f4; min-width: 330px; ")],1)
-printHtmlPart(48)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1444928194534L
+public static final long LAST_MODIFIED = 1445366047270L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

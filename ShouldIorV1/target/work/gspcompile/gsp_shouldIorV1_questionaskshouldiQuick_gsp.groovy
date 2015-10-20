@@ -127,8 +127,8 @@ printHtmlPart(45)
 printHtmlPart(46)
 createTagBody(2, {->
 printHtmlPart(47)
-for( _it118105337 in (categories) ) {
-changeItVariable(_it118105337)
+for( _it745089008 in (categories) ) {
+changeItVariable(_it745089008)
 printHtmlPart(48)
 expressionOut.print(it.category)
 printHtmlPart(49)
@@ -143,10 +143,10 @@ else {
 printHtmlPart(53)
 }
 printHtmlPart(54)
-invokeTag('actionSubmit','g',234,['onclick':("return validate()"),'value':("Post"),'action':("postShouldIQuick"),'style':("margin-top: 1px; width: 100px; display: inline-block;"),'class':("btn btn-default")],-1)
+invokeTag('actionSubmit','g',233,['onclick':("return validate()"),'value':("Post"),'action':("postShouldIQuick"),'style':("margin-top: 1px; width: 100px; display: inline-block;"),'class':("btn btn-default")],-1)
 printHtmlPart(55)
 })
-invokeTag('form','g',238,['controller':("Question"),'action':("postShouldIQuick"),'enctype':("multipart/form-data")],2)
+invokeTag('form','g',237,['controller':("Question"),'action':("postShouldIQuick"),'enctype':("multipart/form-data")],2)
 printHtmlPart(56)
 expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
 printHtmlPart(57)
@@ -163,7 +163,7 @@ printHtmlPart(57)
 expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
 printHtmlPart(62)
 })
-invokeTag('captureBody','sitemesh',576,['style':("background-color: #f4f4f4; min-width: 330px; ")],1)
+invokeTag('captureBody','sitemesh',559,['style':("background-color: #f4f4f4; min-width: 330px; ")],1)
 printHtmlPart(63)
 }
 public static final Map JSP_TAGS = new HashMap()
@@ -171,7 +171,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1444928666264L
+public static final long LAST_MODIFIED = 1445383002977L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

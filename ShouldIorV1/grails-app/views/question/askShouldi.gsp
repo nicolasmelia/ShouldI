@@ -17,6 +17,7 @@
   
     <!-- Bootstrap core CSS -->
       <link rel="stylesheet" type="text/css" href="<g:resource dir='css' file='bootstrap.css'/>">
+     <link rel="stylesheet" type="text/css" href="<g:resource dir='css' file='customBoot.css'/>">
       <link rel="stylesheet" type="text/css" href="<g:resource dir='css' file='buttons.css'/>">
       <link rel="stylesheet" type="text/css" href="<g:resource dir='css' file='awesome-bootstrap-checkbox.css'/>">
 	   
@@ -130,9 +131,7 @@
 	  </div>
 	  
 		<!-- Question form -->	
-		<div  class="jumbotron" style="overflow: none;  display: block; box-shadow:0 0 10px rgba(0, 0, 0, 0.15); min-height: 100px; margin: auto; min-width: 200px;  padding-left: 0px; padding-right: 0px; padding-top: 0px; padding-bottom: 1px;  margin-bottom: 20px; background-color: #FDFDFD;  ">
-			
-		<div class="form-group" style = "padding-left: 16px;  display:block; padding-right: 16px; padding-top: 1px; ">		
+		<div   class="contentContainer" style="overflow: none;  display: block; min-height: 100px; margin: auto; padding: 10px; margin-bottom: 20px;  ">
 
 		<div id = "errorAlert"class="alert alert-danger" role="alert" style = " display: none; margin-top: 10px;  margin-bottom: 0px;  padding: 6px;" >
 		 <span id = 'errorMessage' ></span>
@@ -216,10 +215,12 @@
 	
 	</div>
 	
+		
+
+	
 	
 
 
-		</div>
 		<!-- Question Form -->	
 
 	   <footer class="footer" style = "margin-top: -12px;  width: 100%;" >

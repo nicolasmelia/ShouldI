@@ -2,10 +2,12 @@
 
 
 .contentContainer{
-	box-shadow:0 0 10px rgba(0, 0, 0, 0.05); 
+	
+	border: solid 1px #e1e8ed!important; 
+	
 	border-top-left-radius: 5px; 
 	border-top-right-radius: 5px; 
-	background-color: rgba(255,255,255,0.95); 
+	background-color: rgba(255,255,255,0.95)!important; 
 	padding: 0px; padding-top: 0px; 
 	display: block; 
 	margin: 10px 0px 10px 0px; 
@@ -17,15 +19,17 @@
 	border-bottom: 1px solid #ccc;   
 	border-top-right-radius: 5px;  
 	display:block;  margin: auto;  
-	margin-top: 10px;
+	margin-top: 0px;
+	margin-bottom: 0px;
 }
 
 .contentContainerTitle > p {
 	color: #33A6DD;
 	padding: 10px;  
-	height: 30px;  
+	height: auto;  
 	font-size: 18px;
-	padding-bottom: 5px; 
+	padding-top: 10px; 
+	padding-bottom: 0px; 
 }
 
 .contentContainerTitle > p > span {

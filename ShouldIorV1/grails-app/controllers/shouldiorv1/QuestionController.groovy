@@ -8,6 +8,7 @@ import java.util.Date;
 import javax.imageio.*
 import org.apache.commons.io.IOUtils
 import org.imgscalr.*
+import org.jsoup.Jsoup
 import org.omg.CORBA.portable.ApplicationException
 
 class QuestionController {
@@ -393,12 +394,12 @@ class QuestionController {
 		
 		question.question = params.question
 		
-		String title = params.question
-		if (params.question.toString().length()  > 35) {
-			title = question.question.substring(0, 34) + "..."
+		String title = Jsoup.parse(params.question.toString()).text(); 
+		if (title.length()  > 40) {
+			title = title.substring(0, 40) + "..."
 		}
 		
-		question.questionTitle = title	
+		question.questionTitle = title.trim()
 		question.category = params.category
 		question.tags = params.tags
 		question.date = new Date()
@@ -437,6 +438,7 @@ class QuestionController {
 		} else {
 			question.userName = "nonUser"
 			question.UserID = "nonUser"
+			question.privateQuestion = true
 		}
 		
 		question.ClientAddress = request.getRemoteAddr().toString()
@@ -750,8 +752,8 @@ class QuestionController {
 	
 		for (Question question : questions) {
 			if (!question.quick) {
-				if (question.questionTitle.length()  > 32) {
-				question.questionTitle = question.questionTitle.substring(0, 32) + "..."
+				if (question.questionTitle.length()  > 40) {
+				question.questionTitle = question.questionTitle.substring(0, 40) + "..."
 				}
 			}
 		}
@@ -764,7 +766,7 @@ class QuestionController {
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.MONTH, -1);
 		Date date = cal.getTime();
-		def question = Question.executeQuery("FROM Question a WHERE a.category = ? AND date > ? ORDER BY RAND()", [params.category, date], [max: 1])
+		def question = Question.executeQuery("FROM Question a WHERE a.privateQuestion = false AND a.category = ? AND date > ? ORDER BY RAND()", [params.category, date], [max: 1])
 		redirect(action: "shouldi", params: [id: question[0].questionID])
 	}
 	

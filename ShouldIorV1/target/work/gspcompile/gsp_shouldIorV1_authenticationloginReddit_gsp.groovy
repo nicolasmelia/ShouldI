@@ -18,7 +18,7 @@ invokeTag('captureMeta','sitemesh',4,['gsp_sm_xmlClosingForEmptyTag':(""),'chars
 printHtmlPart(1)
 invokeTag('captureMeta','sitemesh',5,['gsp_sm_xmlClosingForEmptyTag':(""),'http-equiv':("X-UA-Compatible"),'content':("IE=edge")],-1)
 printHtmlPart(1)
-invokeTag('captureMeta','sitemesh',6,['gsp_sm_xmlClosingForEmptyTag':(""),'name':("viewport"),'content':("width=device-width, initial-scale=1")],-1)
+invokeTag('captureMeta','sitemesh',6,['gsp_sm_xmlClosingForEmptyTag':(""),'name':("viewport"),'content':("width=device-width,height=device-height initial-scale=1")],-1)
 printHtmlPart(2)
 invokeTag('captureMeta','sitemesh',9,['gsp_sm_xmlClosingForEmptyTag':(""),'name':("description"),'content':("ShouldI.fm is a place where you can ask the world questions and get honest answers. Start a poll, it's free and easy!")],-1)
 printHtmlPart(1)
@@ -104,7 +104,7 @@ expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceB
 printHtmlPart(34)
 }
 printHtmlPart(35)
-expressionOut.print(resource(dir:'images',file:'logoDark.png'))
+expressionOut.print(resource(dir:'images',file:'redditLogin.png'))
 printHtmlPart(36)
 createTagBody(2, {->
 printHtmlPart(37)
@@ -131,7 +131,7 @@ printHtmlPart(45)
 expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
 printHtmlPart(46)
 })
-invokeTag('captureBody','sitemesh',216,['style':("background-color: #F6F6F6!important; background-image:url('${resource(dir: "images", file: "wall1.jpg")}'); margin-bottom: 20px; background-size: cover;  background-attachment: fixed; min-width: 320px;  ")],1)
+invokeTag('captureBody','sitemesh',216,['style':("background-color: #F6F6F6!important; background-attachment: fixed; background-repeat: no-repeat;  -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; min-width: 320px; min-height: 100%;  ")],1)
 printHtmlPart(47)
 }
 public static final Map JSP_TAGS = new HashMap()
@@ -139,7 +139,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1444670856134L
+public static final long LAST_MODIFIED = 1445139594204L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'
