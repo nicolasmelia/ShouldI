@@ -118,8 +118,8 @@ expressionOut.print(createLink(controller: 'Question', action: 'askShouldICustom
 printHtmlPart(44)
 createTagBody(2, {->
 printHtmlPart(45)
-for( _it866416391 in (categories) ) {
-changeItVariable(_it866416391)
+for( _it1294534487 in (categories) ) {
+changeItVariable(_it1294534487)
 printHtmlPart(46)
 expressionOut.print(it.category)
 printHtmlPart(47)
@@ -134,26 +134,20 @@ printHtmlPart(51)
 })
 invokeTag('form','g',214,['controller':("Question"),'action':("postShouldI"),'enctype':("multipart/form-data")],2)
 printHtmlPart(52)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'privacyPolicy'))
-printHtmlPart(53)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
-printHtmlPart(54)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'aboutPollaris'))
-printHtmlPart(55)
 expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
-printHtmlPart(56)
+printHtmlPart(53)
 expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
-printHtmlPart(57)
+printHtmlPart(54)
 })
-invokeTag('captureBody','sitemesh',442,['style':("background-color: #f4f4f4; min-width: 330px; ")],1)
-printHtmlPart(58)
+invokeTag('captureBody','sitemesh',427,['style':("background-color: #f5f8fa!important;  min-width: 330px; ")],1)
+printHtmlPart(55)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1445383075473L
+public static final long LAST_MODIFIED = 1445395560695L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

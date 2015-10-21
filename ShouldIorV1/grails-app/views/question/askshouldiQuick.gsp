@@ -38,7 +38,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
       <![endif]-->
    </head>
-   <body style = "background-color: #f4f4f4; min-width: 330px; ">
+   <body style = "background-color: #f5f8fa!important;  min-width: 330px; ">
       <input id = "facebookLoginLink" type="hidden" name="perdif" value="${createLink(controller: 'Authentication', action: 'loginFaceBook')}">
       <g:if test="${session.name}">
          <input id = "sessionCheck" type="hidden" name="country" value="true">
@@ -104,7 +104,7 @@
          
          
          
-                        <g:if test="${session.name}">
+            <g:if test="${session.name}">
          
             <div  id = "CustomSelect" onClick = "loadQuestionURL('${createLink(controller: 'Question', action: 'askShouldIQuick', params: [category: 'Allow'])}')" class = "flatMenuItem"   style= " margin-left: 5px; display:inline-block; border-bottom: 2px solid #36a4ff; ">
                <span   class = "flatMenuItemText"  style = " font-size: 17px;" >Quick</span>
@@ -140,7 +140,7 @@
                   <span id = 'errorMessage' ></span>
                </div>
                
-				<div id = "imgContainer" style = "margin-top: 22px; margin-bottom: 0px; padding: 6px; background-color: #EAEAEA; display: none;" >
+				<div id = "imgContainer" style = "margin-top: 0px; margin-bottom: 7px; padding: 6px; background-color: #EAEAEA; display: none;" >
 			<span onclick = "resetFormElement1()" style = 'text-align: right;  right: 0px; float: right;  color: #d9534f; font-size: 20px; padding-right: 0px; padding-top:0px; display: inline-block;' class = 'fa fa-minus-square' ></span>
 			 <img id="image1" src="#" style ="display: none; margin: auto; width: 50%; max-width: 200px;" alt="Error displaying image (Image will still upload)" />
 			</div>
@@ -275,14 +275,7 @@
                </div>
             </div>
          </div>
-         <footer class="footer" style = "margin-top: -12px;  width: 100%;" >
-            <div class="container" style = "width: 100%; text-align: left; padding: 0px; ">
-               <span style = "font-size: 13px; color: #79cce5;"><a style = "color: #79cce5;"  href = "${createLink(controller: 'ShouldI', action: 'privacyPolicy')}"  >Privacy Policy</a> | </span>
-               <span style = "font-size: 13px; color: #79cce5;"><a style = "color: #79cce5;" href = "${createLink(controller: 'ShouldI', action: 'help')}"  >How To</a> | </span>
-               <span style = "font-size: 13px; color: #79cce5;"><a style = "color: #79cce5;" href = "${createLink(controller: 'ShouldI', action: 'aboutPollaris')}">Pollaris LLC</a></span>   
-            </div>
-         </footer>
-      </div>
+ 
                <!-- LOGIN Modal -->
          <div class="modal fade" id="noLoginQuest" role="dialog">
             <div class="modal-dialog">
@@ -303,8 +296,6 @@
                </div>
             </div>
          </div>
-         <!-- Loading Modal -->
-      
 
       <!-- /.container -->
       

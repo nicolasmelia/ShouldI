@@ -124,8 +124,8 @@ expressionOut.print(raw(messageText))
 printHtmlPart(43)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'category', params: [category: 'Trending']))
 printHtmlPart(44)
-for( _it1752894940 in (popularQuestions) ) {
-changeItVariable(_it1752894940)
+for( _it606061176 in (popularQuestions) ) {
+changeItVariable(_it606061176)
 printHtmlPart(45)
 expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
 printHtmlPart(46)
@@ -173,7 +173,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1445365665664L
+public static final long LAST_MODIFIED = 1445395999797L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

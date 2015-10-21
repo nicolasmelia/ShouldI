@@ -231,9 +231,9 @@
             
             </div>
             <!-- QUESTION REPLY -->
-         </div>
-         
-      <footer class="footer" style = "margin-top: -3px;  width: 100%;" >
+            
+                     
+      <footer class="footer" style = "margin-top: 0px;  width: 100%;" >
       <div class="container" style = "width: 100%; text-align: left; padding: 0px; ">
       <span style = "font-size: 13px; color: #79cce5;"><a style = "color: #79cce5;"  href = "${createLink(controller: 'ShouldI', action: 'privacyPolicy')}"  >Privacy Policy</a> | </span>
       <span style = "font-size: 13px; color: #79cce5;"><a style = "color: #79cce5;" href = "${createLink(controller: 'ShouldI', action: 'help')}"  >How To</a> | </span>
@@ -241,6 +241,8 @@
       </div>   
   	  </footer>
          
+         </div>
+
          
          
   	     <!-- LOGIN Modal -->
@@ -266,10 +268,7 @@
    </div>       
          
          
-      <footer class="footer" style= " width: 90%;">
-         <div class="container">
-         </div>
-      </footer>
+
       <!-- Bootstrap core JavaScript
          ================================================== -->
       <!-- Placed at the end of the document so the pages load faster -->

@@ -202,7 +202,7 @@
          </div>
          <div  class="contentContainer" style = "display: none; text-align: center; width: 100%; padding : 10px; background-color: rgba(0,0,0, 0.5);" >
          </div>
-         <footer class="footer" style = "margin-top: 10px;  width: 100%;" >
+         <footer class="footer" style = "margin-top: 0px;  width: 100%;" >
             <div class="container" style = "width: 100%; text-align: left; padding: 0px; ">
                <span style = "font-size: 13px; color: #79cce5;"><a style = "color: #79cce5;"  href = "${createLink(controller: 'ShouldI', action: 'privacyPolicy')}"  >Privacy Policy</a> | </span>
                <span style = "font-size: 13px; color: #79cce5;"><a style = "color: #79cce5;" href = "${createLink(controller: 'ShouldI', action: 'help')}"  >How To</a> | </span>

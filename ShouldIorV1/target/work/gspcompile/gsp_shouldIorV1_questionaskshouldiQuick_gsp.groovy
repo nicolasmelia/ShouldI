@@ -127,8 +127,8 @@ printHtmlPart(45)
 printHtmlPart(46)
 createTagBody(2, {->
 printHtmlPart(47)
-for( _it745089008 in (categories) ) {
-changeItVariable(_it745089008)
+for( _it1592970214 in (categories) ) {
+changeItVariable(_it1592970214)
 printHtmlPart(48)
 expressionOut.print(it.category)
 printHtmlPart(49)
@@ -152,26 +152,20 @@ expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceB
 printHtmlPart(57)
 expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
 printHtmlPart(58)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'privacyPolicy'))
-printHtmlPart(59)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
-printHtmlPart(60)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'aboutPollaris'))
-printHtmlPart(61)
 expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
 printHtmlPart(57)
 expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
-printHtmlPart(62)
+printHtmlPart(59)
 })
-invokeTag('captureBody','sitemesh',559,['style':("background-color: #f4f4f4; min-width: 330px; ")],1)
-printHtmlPart(63)
+invokeTag('captureBody','sitemesh',550,['style':("background-color: #f5f8fa!important;  min-width: 330px; ")],1)
+printHtmlPart(60)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1445383002977L
+public static final long LAST_MODIFIED = 1445393501348L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

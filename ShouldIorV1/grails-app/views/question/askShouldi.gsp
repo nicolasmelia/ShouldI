@@ -52,7 +52,7 @@
   
 
 
-  <body style = "background-color: #f4f4f4; min-width: 330px; ">
+  <body style = "background-color: #f5f8fa!important;  min-width: 330px; ">
   
       <input id = "facebookLoginLink" type="hidden" name="perdif" value="${createLink(controller: 'Authentication', action: 'loginFaceBook')}">
 
@@ -137,12 +137,12 @@
 		 <span id = 'errorMessage' ></span>
 		</div>
 		
-			<div id = "imgContainer" style = "margin-top: 22px; margin-bottom: 0px; padding: 6px; background-color: #EAEAEA; display: none;" >
+			<div id = "imgContainer" style = "margin-top: 0px; margin-bottom: 8px; padding: 6px; background-color: #EAEAEA; display: none;" >
 		<span onclick = "resetFormElement1()" style = 'text-align: right;  right: 0px; float: right;  color: #d9534f; font-size: 20px; padding-right: 0px; padding-top:0px; display: inline-block;' class = 'fa fa-minus-square' ></span>
 		 <img id="image1" src="#" style ="display: none; margin: auto; width: 50%; max-width: 200px;" alt="Error displaying image (Image will still upload)" />
 		</div>
 			                                              
-	<div id="wysihtml5-toolbar" style="display: none;  margin-top: 10px; ">
+	<div id="wysihtml5-toolbar" style="display: none;  margin-top: 0px; margin-bottom: 7px; ">
 		<div class="btn-group">
 						
 				<a  data-wysihtml5-command="bold" style = "padding-top: 2px; padding-bottom: 2px;"  class="btn btn-default">
@@ -167,7 +167,7 @@
 </div>
 
 	 <g:form controller="Question" action="postShouldI" enctype="multipart/form-data" >
-	<input id = 'title' type="text" name = "title" style = "width: 100%;  margin-top: 8px; " class="form-control"  placeholder="Title">
+	<input id = 'title' type="text" name = "title" style = "width: 100%;  margin-top: 0px; " class="form-control"  placeholder="Title">
 
 	<textarea type="text" name = "question" style = "resize: none; height: 170px; margin-top: 8px; " class="form-control" id="wysihtml5-textarea" placeholder="Your question..."></textarea>
 
@@ -215,21 +215,6 @@
 	
 	</div>
 	
-		
-
-	
-	
-
-
-		<!-- Question Form -->	
-
-	   <footer class="footer" style = "margin-top: -12px;  width: 100%;" >
-      <div class="container" style = "width: 100%; text-align: left; padding: 0px; ">
-      <span style = "font-size: 13px; color: #79cce5;"><a style = "color: #79cce5;" href = "${createLink(controller: 'ShouldI', action: 'privacyPolicy')}"  >Privacy Policy</a> | </span>
-      <span style = "font-size: 13px; color: #79cce5;"><a style = "color: #79cce5;" href = "${createLink(controller: 'ShouldI', action: 'help')}"  >How To</a> | </span>
-      <span style = "font-size: 13px; color: #79cce5;"><a style = "color: #79cce5;" href = "${createLink(controller: 'ShouldI', action: 'aboutPollaris')}">Pollaris LLC</a></span>   
-      </div>   
-  	  </footer>
 
 
   	     <!-- LOGIN Modal -->

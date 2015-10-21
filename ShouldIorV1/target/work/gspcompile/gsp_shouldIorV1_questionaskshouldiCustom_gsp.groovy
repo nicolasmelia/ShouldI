@@ -118,8 +118,8 @@ expressionOut.print(createLink(controller: 'Question', action: 'askShouldICustom
 printHtmlPart(42)
 createTagBody(2, {->
 printHtmlPart(43)
-for( _it1265178129 in (categories) ) {
-changeItVariable(_it1265178129)
+for( _it962221884 in (categories) ) {
+changeItVariable(_it962221884)
 printHtmlPart(44)
 expressionOut.print(it.category)
 printHtmlPart(45)
@@ -129,31 +129,25 @@ printHtmlPart(46)
 printHtmlPart(47)
 expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
 printHtmlPart(48)
-invokeTag('actionSubmit','g',226,['onclick':("return validate()"),'value':("Post"),'action':("postShouldICutom"),'style':("margin-top: 1px; width: 100px; display: inline-block;"),'class':("btn btn-default")],-1)
+invokeTag('actionSubmit','g',228,['onclick':("return validate()"),'value':("Post"),'action':("postShouldICutom"),'style':("margin-top: 1px; width: 100px; display: inline-block;"),'class':("btn btn-default")],-1)
 printHtmlPart(49)
 })
-invokeTag('form','g',227,['controller':("Question"),'action':("postShouldICutom"),'enctype':("multipart/form-data")],2)
+invokeTag('form','g',229,['controller':("Question"),'action':("postShouldICutom"),'enctype':("multipart/form-data")],2)
 printHtmlPart(50)
 expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceBook'))
 printHtmlPart(51)
 expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
 printHtmlPart(52)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'privacyPolicy'))
-printHtmlPart(53)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'help'))
-printHtmlPart(54)
-expressionOut.print(createLink(controller: 'ShouldI', action: 'aboutPollaris'))
-printHtmlPart(55)
 })
-invokeTag('captureBody','sitemesh',542,['style':("background-color: #f4f4f4; min-width: 330px; ")],1)
-printHtmlPart(56)
+invokeTag('captureBody','sitemesh',536,['style':("background-color: #f5f8fa!important;  min-width: 330px; ")],1)
+printHtmlPart(53)
 }
 public static final Map JSP_TAGS = new HashMap()
 protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1445383075458L
+public static final long LAST_MODIFIED = 1445395665441L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'

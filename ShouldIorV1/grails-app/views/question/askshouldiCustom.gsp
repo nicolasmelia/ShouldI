@@ -38,7 +38,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
       <![endif]-->
    </head>
-   <body style = "background-color: #f4f4f4; min-width: 330px; ">
+   <body style = "background-color: #f5f8fa!important;  min-width: 330px; ">
       <input id = "facebookLoginLink" type="hidden" name="perdif" value="${createLink(controller: 'Authentication', action: 'loginFaceBook')}">
       <g:if test="${session.name}">
          <input id = "sessionCheck" type="hidden" name="country" value="true">
@@ -116,7 +116,7 @@
                <div id = "errorAlert"class="alert alert-danger" role="alert" style = " display: none; padding: 6px; margin-bottom: 10px; margin-top: 10px; " >
                   <span id = 'errorMessage' ></span>
                </div>
-               <div id="wysihtml5-toolbar" style="display: none;  margin-top: 10px; ">
+               <div id="wysihtml5-toolbar" style="display: none;  margin-top: 0px; margin-bottom: 8px;  ">
                   <div class="btn-group">					
                      <a  data-wysihtml5-command="bold" style = "padding-top: 2px; padding-bottom: 2px;"  class="btn btn-default">
                      <i  style = "color: #5BC0DE;"  class="fa fa-bold"></i>
@@ -135,8 +135,10 @@
                   </div>
                </div>
                <g:form controller="Question" action="postShouldICutom" enctype="multipart/form-data" >
-                  <input type="text" id="title" name = "title" style = "width: 100%;  margin-top: 8px; " class="form-control" placeholder="Title">
+                  <input type="text" id="title" name = "title" style = "width: 100%;  margin-top: 0px; " class="form-control" placeholder="Title">
+                  
                   <textarea type="text" name = "question" style = "resize: none; height: 170px; margin-top: 8px; " class="form-control" id="wysihtml5-textarea" placeholder="Your question..."></textarea>
+                  
                   <div style = "padding-left: 18px;  border-radius: 5px; padding-right: 18px; padding-top: 8px; margin-top: 10px;  padding-bottom: 1px; margin-bottom: 5px;   background-color: #F9F9F9; ">
                      <div  id = "option1Div" style = "display: block;">
                         <div class="form-group" style = "margin-top: 12px; " >
@@ -265,14 +267,6 @@
                </div>
             </div>
          </div>
-         <footer class="footer" style = "margin-top: -12px;  width: 100%;" >
-            <div class="container" style = "width: 100%; text-align: left; padding: 0px; ">
-               <span style = "font-size: 13px; color: #79cce5;"><a style = "color: #79cce5;"  href = "${createLink(controller: 'ShouldI', action: 'privacyPolicy')}"  >Privacy Policy</a> | </span>
-               <span style = "font-size: 13px; color: #79cce5;"><a style = "color: #79cce5;" href = "${createLink(controller: 'ShouldI', action: 'help')}"  >How To</a> | </span>
-               <span style = "font-size: 13px; color: #79cce5;"><a style = "color: #79cce5;" href = "${createLink(controller: 'ShouldI', action: 'aboutPollaris')}">Pollaris LLC</a></span>   
-            </div>
-         </footer>
-      
 
       <!-- /.container -->
       

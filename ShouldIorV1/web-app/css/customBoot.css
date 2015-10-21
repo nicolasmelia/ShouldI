@@ -3,11 +3,11 @@
 
 .contentContainer{
 	
-	border: solid 1px #e1e8ed!important; 
+	border: solid 1px #e1e8ed;
 	
 	border-top-left-radius: 5px; 
 	border-top-right-radius: 5px; 
-	background-color: rgba(255,255,255,0.95)!important; 
+	background-color: rgba(255,255,255,0.95);
 	padding: 0px; padding-top: 0px; 
 	display: block; 
 	margin: 10px 0px 10px 0px; 

@@ -163,8 +163,8 @@ printHtmlPart(61)
 printHtmlPart(62)
 if(true && (category != 'Following')) {
 printHtmlPart(63)
-for( _it2023610047 in (question) ) {
-changeItVariable(_it2023610047)
+for( _it340418158 in (question) ) {
+changeItVariable(_it340418158)
 printHtmlPart(64)
 expressionOut.print(createLink(controller: 'Question', action: 'shouldi', params: [id: it.questionID]))
 printHtmlPart(65)
@@ -192,8 +192,8 @@ printHtmlPart(75)
 }
 else {
 printHtmlPart(76)
-for( _it510472384 in (users) ) {
-changeItVariable(_it510472384)
+for( _it654821264 in (users) ) {
+changeItVariable(_it654821264)
 printHtmlPart(77)
 expressionOut.print(createLink(controller: 'User', action: 'profile', params: [id: it.userID, category : 'New Questions']))
 printHtmlPart(78)
@@ -221,14 +221,14 @@ expressionOut.print(createLink(controller: 'Authentication', action: 'loginFaceB
 printHtmlPart(90)
 expressionOut.print(createLink(controller: 'Authentication', action: 'loginReddit'))
 printHtmlPart(91)
-invokeTag('javascript','g',276,['src':("dataAccess.js")],-1)
+invokeTag('javascript','g',275,['src':("dataAccess.js")],-1)
 printHtmlPart(92)
-invokeTag('resource','g',277,['dir':("js"),'file':("bootstrap.min.js")],-1)
+invokeTag('resource','g',276,['dir':("js"),'file':("bootstrap.min.js")],-1)
 printHtmlPart(93)
-invokeTag('javascript','g',278,['src':("buttonAnswerGlow.js")],-1)
+invokeTag('javascript','g',277,['src':("buttonAnswerGlow.js")],-1)
 printHtmlPart(94)
 })
-invokeTag('captureBody','sitemesh',297,['style':("background-color: #f5f8fa!important;")],1)
+invokeTag('captureBody','sitemesh',296,['style':("background-color: #f5f8fa!important;")],1)
 printHtmlPart(95)
 }
 public static final Map JSP_TAGS = new HashMap()
@@ -236,7 +236,7 @@ protected void init() {
 	this.jspTags = JSP_TAGS
 }
 public static final String CONTENT_TYPE = 'text/html;charset=UTF-8'
-public static final long LAST_MODIFIED = 1445365665571L
+public static final long LAST_MODIFIED = 1445395158494L
 public static final String EXPRESSION_CODEC = 'html'
 public static final String STATIC_CODEC = 'none'
 public static final String OUT_CODEC = 'html'
